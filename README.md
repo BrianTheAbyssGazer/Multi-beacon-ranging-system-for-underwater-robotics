@@ -12,6 +12,6 @@ validated multi-beacon sonar system, a real-time data collection system, and a h
 research.
 
 ## The Drone!
-<img src="Assets/Images/Drone" width="48">
+<img src="Assets/Images/Drone.jpg" width="480">
 ## The Beacon!
-<img src="Assets/Images/Beacon.jpg" width="48">
+<img src="Assets/Images/Beacon.jpg" width="480">
