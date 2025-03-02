@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.27)  2 MAR 2025 15:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.27)  2 MAR 2025 16:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -401,149 +401,59 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--20
  []
 
 
-Overfull \hbox (1.13893pt too wide) in paragraph at lines 33--33
+Overfull \hbox (1.13893pt too wide) in paragraph at lines 33--34
 []|\OT1/cmr/m/n/10 Stakeholder| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--37
-[]|\OT1/cmr/m/n/10 Patients can use
- []
-
-
-Overfull \hbox (0.58336pt too wide) in paragraph at lines 37--37
-[]|\OT1/cmr/m/n/10 government| 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 39--39
-[]|\OT1/cmr/m/n/10 Patients can use
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 39--39
-\OT1/cmr/m/n/10 com-mer-cial in-sur-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 39--39
-[]|\OT1/cmr/m/n/10 insurance
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 39--40
-[]|\OT1/cmr/m/n/10 Mutual ben-e-fit for our
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 43--43
-\OT1/cmr/m/n/10 medicine pre-scrip-
- []
-
-
-Underfull \hbox (badness 5622) in paragraph at lines 45--45
-[]|\OT1/cmr/m/n/10 highly de-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 45--45
-[]|\OT1/cmr/m/n/10 medicine
- []
-
-
-Underfull \hbox (badness 2903) in paragraph at lines 47--47
-[]|\OT1/cmr/m/n/10 Timely de-liv-ery of
- []
-
-
-Underfull \hbox (badness 5622) in paragraph at lines 47--47
-[]|\OT1/cmr/m/n/10 highly de-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 47--47
-[]|\OT1/cmr/m/n/10 medicine
- []
-
-
-Underfull \hbox (badness 7221) in paragraph at lines 49--49
-[]|\OT1/cmr/m/n/10 Immediate med-i-cal
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 49--49
-\OT1/cmr/m/n/10 con-sul-ta-tion for
- []
-
-
-Underfull \hbox (badness 1603) in paragraph at lines 49--50
-\OT1/cmr/m/n/10 jor city have doc-tors 24
- []
-
-
-Overfull \hbox (11.70259pt too wide) in paragraph at lines 31--52
- [] 
- []
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 50.
 
 [1
 
 {C:/Users/brian/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-
-Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 56.
-
-<Context Diagram.png, id=40, 603.25375pt x 393.47pt>
+<Context Diagram.png, id=37, 603.25375pt x 393.47pt>
 File: Context Diagram.png Graphic file (type png)
 <use Context Diagram.png>
-Package pdftex.def Info: Context Diagram.png  used on input line 70.
+Package pdftex.def Info: Context Diagram.png  used on input line 64.
 (pdftex.def)             Requested size: 301.62613pt x 196.73451pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 81--81
+Underfull \hbox (badness 10000) in paragraph at lines 75--75
 []|\OT1/cmr/m/n/10 Australian
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--85
+Underfull \hbox (badness 10000) in paragraph at lines 79--79
 []|\OT1/cmr/m/n/10 Hardware
  []
 
 
-Overfull \hbox (14.10257pt too wide) in paragraph at lines 75--88
+Overfull \hbox (14.10257pt too wide) in paragraph at lines 69--82
  [] 
  []
 
-[2] [3 <./Context Diagram.png>] (Requirement Analysis template.aux)
-
-Package rerunfilecheck Warning: File `"Requirement Analysis template".out' has 
-changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `"Requirement Analysis template".out
-':
-(rerunfilecheck)             Before: D038DC6970541A0528851EABC2576E4B;1138
-(rerunfilecheck)             After:  818DBDF3ADD2A96E129DC0209E7E70D0;1044.
+[2 <./Context Diagram.png>] (Requirement Analysis template.aux)
+Package rerunfilecheck Info: File `"Requirement Analysis template".out' has not
+ changed.
+(rerunfilecheck)             Checksum: 818DBDF3ADD2A96E129DC0209E7E70D0;1044.
  ) 
 Here is how much of TeX's memory you used:
- 9956 strings out of 478582
- 155901 string characters out of 2854159
- 473154 words of memory out of 3000000
+ 9955 strings out of 478582
+ 155913 string characters out of 2854159
+ 472154 words of memory out of 3000000
  28025 multiletter control sequences out of 15000+600000
  474718 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,8n,63p,559b,390s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 60i,8n,63p,559b,442s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\brian\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1000.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/
 Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program File
 s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/font
 s/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
 c/amsfonts/cm/cmti10.pfb>
-Output written on "Requirement Analysis template.pdf" (3 pages, 125296 bytes).
+Output written on "Requirement Analysis template.pdf" (2 pages, 123462 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 7 named destinations out of 1000 (max. 500000)
- 70 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 73 PDF objects out of 1000 (max. 8388607)
+ 6 named destinations out of 1000 (max. 500000)
+ 62 words of extra memory for PDF output out of 10000 (max. 10000000)
 
