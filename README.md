@@ -16,3 +16,6 @@ research.
 
 ### The Beacon!
 <img src="Assets/Images/Beacon.jpg" width="480">
+
+### The Testing Ground!
+<img src="Assets/Images/Testing_Ground.jpg" width="480">
