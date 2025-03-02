@@ -1,4 +1,4 @@
-# Multi-beacon-ranging-system-for-underwater-robotics
+### Multi-beacon-ranging-system-for-underwater-robotics
 
 This project aims to develop a sonar system capable of measuring underwater range to three beacons, expanding
 on existing hardware that supports one beacon. An undergraduate thesis is available for reference. The project
@@ -10,3 +10,8 @@ development. Students relinquish intellectual property rights over collected dat
 research publication where they will be acknowledged but not listed as authors. Expected outcomes include a
 validated multi-beacon sonar system, a real-time data collection system, and a high-quality dataset for further
 research.
+
+## The Drone!
+![](Assets/Images/Drone.jpg?raw=true)
+## The Beacon!
+![](Assets/Images/Beacon.jpg?raw=true)
