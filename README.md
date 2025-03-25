@@ -14,8 +14,7 @@ research.
 ### Project Status
 <img src="Admininistration/Gantt Chart.png" width="960">
 
-
-### Shared Folder for all Documentation [Link]([https://pages.github.com/](https://anu365-my.sharepoint.com/:f:/g/personal/u7810272_anu_edu_au/Ej7ByPz3ustMnYEdPVlyXrsB3ky1SCxQRNfJEJSD3o6qvw?e=D4FFSC))
+### Shared Folder for all Documentation [Link](https://anu365-my.sharepoint.com/:f:/g/personal/u7810272_anu_edu_au/Ej7ByPz3ustMnYEdPVlyXrsB3ky1SCxQRNfJEJSD3o6qvw?e=D4FFSC)
 
 
 ### The Drone!
