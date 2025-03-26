@@ -11,8 +11,11 @@ research publication where they will be acknowledged but not listed as authors. 
 validated multi-beacon sonar system, a real-time data collection system, and a high-quality dataset for further
 research.
 
-### Shared Folder for all Documentation
-https://anu365-my.sharepoint.com/:f:/g/personal/u7810272_anu_edu_au/Ej7ByPz3ustMnYEdPVlyXrsB3ky1SCxQRNfJEJSD3o6qvw?e=D4FFSC
+### Project Status
+<img src="Admininistration/Gantt Chart.png" width="960">
+
+### Shared Onedrive Working Folder [Link](https://anu365-my.sharepoint.com/:f:/g/personal/u7810272_anu_edu_au/Ej7ByPz3ustMnYEdPVlyXrsB3ky1SCxQRNfJEJSD3o6qvw?e=D4FFSC)
+
 
 ### The Drone!
 <img src="Assets/Images/Drone.jpg" width="480">
