@@ -91,7 +91,7 @@ void PingOut::schedule_ping(int idx, int pfx) {
 /*
 * Start multple impulses scheduling
 */
-void PingOut::start_multi_impulses_scheduler(int pfx, int num_impulses) {
+void PingOut::start_multi_impulses_scheduler(int idx, int pfx, int num_impulses) {
 	PingOut::first_impulse_pfx = pfx-1;
 	PingOut::last_impulse_pfx = pfx+num_impulses;
 	scheduled_idx = idx/samples_per_half_period;

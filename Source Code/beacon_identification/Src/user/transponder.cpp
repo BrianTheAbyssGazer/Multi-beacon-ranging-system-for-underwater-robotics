@@ -56,16 +56,18 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
 
     /************* Other transponder parameters **********/
     int response_delay = 1; //units of full buffer temporal length (one less, so 0 is actually 1)
-    int cooldown_duration = 3; //units of full buffer temporal length
+    int cooldown_duration = 4; //units of full buffer temporal length
     int last_pfx = 0;
 
     while (1) {
         
         Timestamp pt = max_peak_detector.detect_peak();
         if (pt.pfx != -1 && pt.pfx > last_pfx + cooldown_duration) {
-            ping_out.schedule_ping(pt.idx, pt.pfx + response_delay);
+        	ping_out.start_multi_impulses_scheduler(pt.idx, pt.pfx + response_delay, 2);//send 2 pulses
+        	//ping_out.start_multi_impulses_scheduler(pt.idx, pt.pfx + response_delay, 3);//send 3 pulses
             last_pfx = pt.pfx;
         }
+        if()
         ping_out.update();
 
         //TODO we can add command RX check here

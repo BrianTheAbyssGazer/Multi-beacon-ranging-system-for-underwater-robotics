@@ -58,6 +58,7 @@ class PingOut {
         PingOut(DMA_HandleTypeDef*, TIM_HandleTypeDef*);
         void schedule_ping(int, int);
         void start_periodic_scheduler(int);
+        void start_multi_impulses_scheduler(int idx, int pfx, int num_impulses)
         void update(void);
 };
 

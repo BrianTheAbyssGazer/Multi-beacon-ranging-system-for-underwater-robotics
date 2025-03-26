@@ -50,7 +50,7 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 
     /******************* SETUP TX ************************/
     PingOut ping_out(p_hdma_tim2_up, p_htim2);
-    ping_out.start_periodic_scheduler(100);
+    ping_out.start_periodic_scheduler(20);
     //PingOut::debug = true;
 
     Timestamp first_peak_tmsp(-1, -1);
