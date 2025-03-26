@@ -19,10 +19,10 @@ ax.legend()
 ax.grid()
 
 for i in range(0, 1000):  
-    value = rc.read_range()
+    value, detected_beacon_id = rc.read_range_and_beacon_id()
     
     if 0 < value < 1:  # Filter values between 0 and 1
-        print(f"{value}")  # Print the filtered value
+        print(f"range={value}, detected beacon id={detected_beacon_id}")  # Print the filtered value
         
         # Update plot data
         x_data.append(i)
