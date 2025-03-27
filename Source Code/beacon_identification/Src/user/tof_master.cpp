@@ -72,7 +72,10 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     			consecutive_pulses_detected = 1;
     		}
     	}
-    	else if(first_peak_tmsp.pfx != -1){
+    	else if(first_peak_tmsp.pfx != -1 &&
+    			cur_peak_tmsp.pfx!=first_peak_tmsp.pfx &&
+				cur_peak_tmsp.pfx!= (first_peak_tmsp.pfx + 1)%(0x8000) &&
+				cur_peak_tmsp.pfx!= (first_peak_tmsp.pfx + 2)%(0x8000){
     		max_peak_detector.send_data2computer(first_peak_tmsp, consecutive_pulses_detected);
     		first_peak_tmsp.pfx = -1;
     		consecutive_pulses_detected = 0;
