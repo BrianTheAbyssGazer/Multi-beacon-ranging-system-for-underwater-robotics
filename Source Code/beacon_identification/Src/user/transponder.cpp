@@ -63,8 +63,8 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
         
         Timestamp pt = max_peak_detector.detect_peak();
         if (pt.pfx != -1 && pt.pfx > last_pfx + cooldown_duration) {
-        	ping_out.start_multi_impulses_scheduler(pt.idx, pt.pfx + response_delay, 2);//send 2 pulses
-        	//ping_out.start_multi_impulses_scheduler(pt.idx, pt.pfx + response_delay, 3);//send 3 pulses
+        	//ping_out.start_multi_impulses_scheduler(pt.idx, pt.pfx + response_delay, 2);//send 2 pulses
+        	ping_out.start_multi_impulses_scheduler(pt.idx, pt.pfx + response_delay, 3);//send 3 pulses
             last_pfx = pt.pfx;
         }
         ping_out.update();
