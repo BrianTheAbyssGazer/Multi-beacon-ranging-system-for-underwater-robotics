@@ -23,6 +23,8 @@ volatile int PingOut::po_state = POState::SECND_HLF_FREE;
 volatile int PingOut::cur_out_pfx = 0;
 volatile int PingOut::time_to_clear = 2;
 volatile int PingOut::schedule_period = 0;
+volatile int PingOut::first_impulse_pfx = -1;
+volatile int PingOut::last_impulse_pfx = -1;
 volatile bool PingOut::time_to_schedule_period = false;
 bool PingOut::debug = false;
 
@@ -48,8 +50,6 @@ PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2
     scheduled_idx = -1;
     scheduled_pfx = -1;
     clear_idx = -1;
-    first_impulse_pfx = -1;
-    last_impulse_pfx = -1;
 
     periodic_schedule_enable = false;
     multiple_impulses_schedule_enable = false;
@@ -224,7 +224,7 @@ void first_half_written_callback(DMA_HandleTypeDef *hdma) {
     //If the scheduled impulses happen to cross pfx roll-over
     if (PingOut::cur_out_pfx == 0x7FFF && PingOut::last_impulse_pfx>0x7FFF){
         PingOut::first_impulse_pfx = -1;
-        PingOut::last_impulse_pfx=(PingOut::last_impulse_pfx)%(0x8000)
+        PingOut::last_impulse_pfx=(PingOut::last_impulse_pfx)%(0x8000);
     }
 }
 

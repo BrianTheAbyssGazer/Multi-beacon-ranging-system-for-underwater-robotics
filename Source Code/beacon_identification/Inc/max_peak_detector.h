@@ -82,7 +82,7 @@ class MaxPeakDetector {
     public:
         MaxPeakDetector(ADC_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*);
         Timestamp detect_peak(void);
-        void send_data2computer(Timestamp first_peak_tmsp, uint16_t consecutive_pulses_detected)
+        void send_data2computer(Timestamp first_peak_tmsp, uint16_t consecutive_pulses_detected);
     private:
         void search_loop(void);
         void error_1_handle();

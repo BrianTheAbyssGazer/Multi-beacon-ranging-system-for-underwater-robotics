@@ -9,5 +9,5 @@
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c:534:19:HAL_FLASH_OB_Lock	1
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c:547:19:HAL_FLASH_OB_Launch	6
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c:579:10:HAL_FLASH_GetError	1
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c:619:19:FLASH_WaitForLastOperation	8
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c:619:19:FLASH_WaitForLastOperation	9
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c:166:19:HAL_FLASH_Program	8

@@ -63,8 +63,8 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     			first_peak_tmsp = cur_peak_tmsp;
     			consecutive_pulses_detected = 1;
     		}
-    		else if(cur_peak_tmsp.pfx==(first_peak_tmsp + 1)%(0x8000) ||
-    				cur_peak_tmsp.pfx==(first_peak_tmsp + 2)%(0x8000)){
+    		else if(cur_peak_tmsp.pfx==(first_peak_tmsp.pfx + 1)%(0x8000) ||
+    				cur_peak_tmsp.pfx==(first_peak_tmsp.pfx + 2)%(0x8000)){
     			consecutive_pulses_detected++;
     		}
     		else {

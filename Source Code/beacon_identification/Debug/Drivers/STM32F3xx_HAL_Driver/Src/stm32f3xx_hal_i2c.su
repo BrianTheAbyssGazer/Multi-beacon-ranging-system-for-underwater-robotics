@@ -48,7 +48,7 @@
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.c:6830:13:I2C_DMASlaveTransmitCplt	0	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.c:6918:13:I2C_DMASlaveReceiveCplt	0	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.c:4774:13:HAL_I2C_AddrCallback	0	static
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.c:5957:13:I2C_ITAddrCplt.part.0.constprop	16	static
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.c:5957:13:I2C_ITAddrCplt.constprop	24	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.c:4792:13:HAL_I2C_ListenCpltCallback	0	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.c:6538:13:I2C_ITListenCplt	8	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.c:4808:13:HAL_I2C_MemTxCpltCallback	0	static

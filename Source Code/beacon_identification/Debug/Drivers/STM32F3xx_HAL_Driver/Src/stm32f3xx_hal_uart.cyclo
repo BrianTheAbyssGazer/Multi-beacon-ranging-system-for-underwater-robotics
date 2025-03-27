@@ -4,7 +4,7 @@
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:661:13:HAL_UART_MspInit	1
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:676:13:HAL_UART_MspDeInit	1
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:614:19:HAL_UART_DeInit	7
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:1076:19:HAL_UART_Transmit	17
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:1076:19:HAL_UART_Transmit	19
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:1246:19:HAL_UART_Transmit_IT	6
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:1333:19:HAL_UART_Transmit_DMA	8
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:1436:19:HAL_UART_DMAPause	11
@@ -47,9 +47,9 @@
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:2758:19:HAL_LIN_SendBreak	7
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:2803:23:HAL_UART_GetState	1
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:2819:10:HAL_UART_GetError	1
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:2863:19:UART_SetConfig	52
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:2863:19:UART_SetConfig	48
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:3007:6:UART_AdvFeatureConfig	24
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:3150:19:UART_WaitOnFlagUntilTimeout	10
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:3150:19:UART_WaitOnFlagUntilTimeout	11
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:1162:19:HAL_UART_Receive	12
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:3081:19:UART_CheckIdleState	8
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c:289:19:HAL_UART_Init	14

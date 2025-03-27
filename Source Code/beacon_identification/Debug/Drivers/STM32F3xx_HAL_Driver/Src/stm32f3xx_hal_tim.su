@@ -56,7 +56,7 @@
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:5922:13:HAL_TIM_PWM_PulseFinishedHalfCpltCallback	0	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:6755:6:TIM_DMADelayPulseHalfCplt	8	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:5937:13:HAL_TIM_TriggerCallback	0	static
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:3842:6:HAL_TIM_IRQHandler	24	static
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:3842:6:HAL_TIM_IRQHandler	16	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:6933:13:TIM_DMATriggerCplt	8	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:5952:13:HAL_TIM_TriggerHalfCpltCallback	0	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:6954:13:TIM_DMATriggerHalfCplt	8	static
@@ -106,7 +106,7 @@
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:2542:19:HAL_TIM_IC_Stop_DMA	16	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:2796:19:HAL_TIM_OnePulse_Start	16	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:2896:19:HAL_TIM_OnePulse_Start_IT	16	static
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:2959:19:HAL_TIM_OnePulse_Stop_IT	8	static
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:2959:19:HAL_TIM_OnePulse_Stop_IT	16	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:3233:19:HAL_TIM_Encoder_Start	32	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:3327:19:HAL_TIM_Encoder_Stop	16	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c:3387:19:HAL_TIM_Encoder_Start_IT	32	static

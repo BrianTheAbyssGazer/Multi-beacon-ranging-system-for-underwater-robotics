@@ -67,7 +67,6 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
         	//ping_out.start_multi_impulses_scheduler(pt.idx, pt.pfx + response_delay, 3);//send 3 pulses
             last_pfx = pt.pfx;
         }
-        if()
         ping_out.update();
 
         //TODO we can add command RX check here

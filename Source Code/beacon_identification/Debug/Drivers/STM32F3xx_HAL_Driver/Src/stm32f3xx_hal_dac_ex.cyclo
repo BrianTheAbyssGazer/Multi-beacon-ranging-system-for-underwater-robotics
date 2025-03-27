@@ -1,10 +1,10 @@
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.c:1068:13:DAC_DMAErrorCh1	1
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.c:1051:13:DAC_DMAHalfConvCpltCh1	1
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.c:1033:13:DAC_DMAConvCpltCh1	1
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.c:112:19:HAL_DAC_SetValue	18
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.c:112:19:HAL_DAC_SetValue	6
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.c:170:19:HAL_DACEx_DualSetValue	9
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.c:242:19:HAL_DAC_Start	11
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.c:360:19:HAL_DAC_Start_DMA	19
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.c:360:19:HAL_DAC_Start_DMA	13
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.c:574:10:HAL_DAC_GetValue	5
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.c:625:10:HAL_DACEx_DualGetValue	1
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.c:771:19:HAL_DAC_ConfigChannel	10
