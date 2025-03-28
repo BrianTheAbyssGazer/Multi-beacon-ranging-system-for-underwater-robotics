@@ -15,30 +15,30 @@ research.
 <img src="Admininistration/Gantt Chart.png" width="960">
 
 ### 1.Project Initialization & Research Completion
-1.1 Requirement Analysis
-1.2 User Needs Analysis
-1.3 Stakeholder Analysis
-1.4 Previous Research Review
+1.1 Requirement Analysis <br />
+1.2 User Needs Analysis <br />
+1.3 Stakeholder Analysis <br />
+1.4 Previous Research Review <br />
 ### 2. Recreating distance measurement function
-2.1 Configure development environment 
-2.2 Data reception and interpretation from master beacon
-2.3 Minor beacon send signals and confirm that received value from master beacon increases as distance increases.
+2.1 Configure development environment  <br />
+2.2 Data reception and interpretation from master beacon <br />
+2.3 Minor beacon send signals and confirm that received value from master beacon increases as distance increases. <br />
 ### 3. Conceptual design
-3.1 Functional flow block diagram
-3.2 Concept selection
-3.3 Design architecture
-3.4 functional allocation
+3.1 Functional flow block diagram <br />
+3.2 Concept selection <br />
+3.3 Design architecture <br />
+3.4 functional allocation <br />
 ### 4. Firmware modification
-4.1 Master beacon software updated to support multiple slave beacons
-4.2 Slave beacon communication logic implemented
-4.3 Initial validation of underwater signal stability
+4.1 Master beacon software updated to support multiple slave beacons <br />
+4.2 Slave beacon communication logic implemented <br />
+4.3 Initial validation of underwater signal stability <br />
 ### 5.Real-World Testing &Data Collection
-5.1 System tested in Real-world Environment
-5.2 Adjustments made based on real-world feedback
+5.1 System tested in Real-world Environment <br />
+5.2 Adjustments made based on real-world feedback <br />
 ### 6. Documentation & Presentation Preparation
-6.1 Experimental results analyzed and documented
-6.2 Technical report and draft paper completed
-6.3 Presentation slides prepared
+6.1 Experimental results analyzed and documented <br />
+6.2 Technical report and draft paper completed <br />
+6.3 Presentation slides prepared <br />
 
 
 
