@@ -1,0 +1,4 @@
+../Src/user/index_info_transmit.c:43:6:index_info_transmit_init	1
+../Src/user/index_info_transmit.c:56:6:transmit_idx	1
+../Src/user/index_info_transmit.c:71:6:transmit_err_1	1
+../Src/user/index_info_transmit.c:83:6:test_pattern	1

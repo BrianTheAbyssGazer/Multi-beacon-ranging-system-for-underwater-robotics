@@ -31,7 +31,7 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     //CMD_RX cmd_rx(p_huart);
 	IndexInfoTX idx_info_tx(p_huart);
 	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
-    pgas.setGain(8);
+    pgas.setGain(2);
 
 
 	//cmd_rx.start_receive();
@@ -50,7 +50,7 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 
     /******************* SETUP TX ************************/
     PingOut ping_out(p_hdma_tim2_up, p_htim2);
-    ping_out.start_periodic_scheduler(20);
+    ping_out.start_periodic_scheduler(100);
     //PingOut::debug = true;
 
     Timestamp first_peak_tmsp(-1, -1);
@@ -63,24 +63,25 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     			first_peak_tmsp = cur_peak_tmsp;
     			consecutive_pulses_detected = 1;
     		}
-    		else if(cur_peak_tmsp.pfx==(first_peak_tmsp.pfx + 1)%(0x8000) ||
-    				cur_peak_tmsp.pfx==(first_peak_tmsp.pfx + 2)%(0x8000)){
-    			consecutive_pulses_detected++;
+    		else if(cur_peak_tmsp.pfx==(first_peak_tmsp.pfx + 1)%(0x8000)){
+    			consecutive_pulses_detected = 2;
+    		}
+    		else if(cur_peak_tmsp.pfx==(first_peak_tmsp.pfx + 2)%(0x8000)){
+    		    consecutive_pulses_detected = 3;
     		}
     		else {
     			first_peak_tmsp = cur_peak_tmsp;
-    			consecutive_pulses_detected = 1;
+    			consecutive_pulses_detected = 4;
     		}
     	}
     	else if(first_peak_tmsp.pfx != -1 &&
     			cur_peak_tmsp.pfx!=first_peak_tmsp.pfx &&
 				cur_peak_tmsp.pfx!= (first_peak_tmsp.pfx + 1)%(0x8000) &&
-				cur_peak_tmsp.pfx!= (first_peak_tmsp.pfx + 2)%(0x8000){
+				cur_peak_tmsp.pfx!= (first_peak_tmsp.pfx + 2)%(0x8000)){
     		max_peak_detector.send_data2computer(first_peak_tmsp, consecutive_pulses_detected);
     		first_peak_tmsp.pfx = -1;
     		consecutive_pulses_detected = 0;
     	}
-
     	ping_out.update();
     }
 }

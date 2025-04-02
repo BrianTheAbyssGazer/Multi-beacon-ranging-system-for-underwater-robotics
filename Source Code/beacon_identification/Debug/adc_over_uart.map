@@ -3844,269 +3844,13 @@ Discarded input sections
  .debug_macro   0x00000000       0x70 ./Src/user/adc_over_uart.o
  .debug_macro   0x00000000       0x22 ./Src/user/adc_over_uart.o
  .debug_macro   0x00000000       0x16 ./Src/user/adc_over_uart.o
- .debug_macro   0x00000000       0x28 ./Src/user/adc_over_uart.o
+ .debug_macro   0x00000000       0x22 ./Src/user/adc_over_uart.o
  .debug_macro   0x00000000       0x10 ./Src/user/adc_over_uart.o
  .debug_line    0x00000000      0x832 ./Src/user/adc_over_uart.o
- .debug_str     0x00000000    0xce4d2 ./Src/user/adc_over_uart.o
+ .debug_str     0x00000000    0xce4c3 ./Src/user/adc_over_uart.o
  .comment       0x00000000       0x44 ./Src/user/adc_over_uart.o
  .ARM.attributes
                 0x00000000       0x34 ./Src/user/adc_over_uart.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_peak_detector.o
- .text          0x00000000        0x0 ./Src/user/basic_peak_detector.o
- .data          0x00000000        0x0 ./Src/user/basic_peak_detector.o
- .bss           0x00000000        0x0 ./Src/user/basic_peak_detector.o
- .debug_info    0x00000000       0x77 ./Src/user/basic_peak_detector.o
- .debug_abbrev  0x00000000       0x28 ./Src/user/basic_peak_detector.o
- .debug_aranges
-                0x00000000       0x18 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x311 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0xad8 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x2a ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x22 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x5b ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x94 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x43 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x34 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x16 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x11c ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x9b ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x57 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x370 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x16 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x4a ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x34 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x10 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x58 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x8e ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x1c ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x185 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x16 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x29 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x170 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x2e ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x28 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x103 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x6a ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x1df ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x1c ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x22 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0xd9 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000     0x102d ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x11f ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000    0x1535a ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x6d ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000     0x3574 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x4f ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x953 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x84a ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x1b5 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x23a ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x1ea ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x1bc ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x30 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x3c ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x235 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x9fe ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x77 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x176 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x61 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0xc5 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x21d ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x22c ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x5b ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0xa5 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x17d ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x81 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0xd3 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0xa60 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0xba ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x5ba ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x44 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000      0x347 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x70 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x28 ./Src/user/basic_peak_detector.o
- .debug_macro   0x00000000       0x10 ./Src/user/basic_peak_detector.o
- .debug_line    0x00000000      0x993 ./Src/user/basic_peak_detector.o
- .debug_str     0x00000000    0xd121c ./Src/user/basic_peak_detector.o
- .comment       0x00000000       0x44 ./Src/user/basic_peak_detector.o
- .ARM.attributes
-                0x00000000       0x34 ./Src/user/basic_peak_detector.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .group         0x00000000        0xc ./Src/user/basic_pulse_stream.o
- .text          0x00000000        0x0 ./Src/user/basic_pulse_stream.o
- .data          0x00000000        0x0 ./Src/user/basic_pulse_stream.o
- .bss           0x00000000        0x0 ./Src/user/basic_pulse_stream.o
- .debug_info    0x00000000       0x70 ./Src/user/basic_pulse_stream.o
- .debug_abbrev  0x00000000       0x28 ./Src/user/basic_pulse_stream.o
- .debug_aranges
-                0x00000000       0x18 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x242 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0xad8 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x170 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x2e ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x28 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x22 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x8e ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x51 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x103 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x6a ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x1df ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x1c ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x22 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0xd9 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000     0x102d ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x11f ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000    0x1535a ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x6d ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000     0x3574 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x190 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x55 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x953 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x84a ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x1b5 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x23a ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x1ea ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x1bc ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x30 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x3c ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x235 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x9fe ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x77 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x176 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x61 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0xc5 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x21d ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x22c ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x5b ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0xa5 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x17d ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x81 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0xd3 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0xa60 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0xba ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x5ba ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x44 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000      0x347 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x70 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x22 ./Src/user/basic_pulse_stream.o
- .debug_macro   0x00000000       0x28 ./Src/user/basic_pulse_stream.o
- .debug_line    0x00000000      0x80e ./Src/user/basic_pulse_stream.o
- .debug_str     0x00000000    0xce008 ./Src/user/basic_pulse_stream.o
- .comment       0x00000000       0x44 ./Src/user/basic_pulse_stream.o
- .ARM.attributes
-                0x00000000       0x34 ./Src/user/basic_pulse_stream.o
  .group         0x00000000        0xc ./Src/user/cmd_rx.o
  .group         0x00000000        0xc ./Src/user/cmd_rx.o
  .group         0x00000000        0xc ./Src/user/cmd_rx.o
@@ -4413,8 +4157,6 @@ Discarded input sections
  .text          0x00000000        0x0 ./Src/user/index_info_tx.o
  .data          0x00000000        0x0 ./Src/user/index_info_tx.o
  .bss           0x00000000        0x0 ./Src/user/index_info_tx.o
- .text._ZN11IndexInfoTX12transmit_idxEiit
-                0x00000000       0x28 ./Src/user/index_info_tx.o
  .text._ZN11IndexInfoTX12test_patternEv
                 0x00000000       0x7c ./Src/user/index_info_tx.o
  .debug_macro   0x00000000      0xbb0 ./Src/user/index_info_tx.o
@@ -4518,12 +4260,8 @@ Discarded input sections
  .text          0x00000000        0x0 ./Src/user/max_peak_detector.o
  .data          0x00000000        0x0 ./Src/user/max_peak_detector.o
  .bss           0x00000000        0x0 ./Src/user/max_peak_detector.o
- .text._ZN15MaxPeakDetector18send_data2computerE9Timestampt
-                0x00000000       0x14 ./Src/user/max_peak_detector.o
  .text._ZN15MaxPeakDetector14error_1_handleEv
                 0x00000000       0x4c ./Src/user/max_peak_detector.o
- .text._ZN9TimestampC2Eii
-                0x00000000        0x8 ./Src/user/max_peak_detector.o
  .text._ZN9Timestamp9get_totalEv
                 0x00000000       0x10 ./Src/user/max_peak_detector.o
  .text._ZN9Timestamp10from_totalEi
@@ -4576,7 +4314,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x44 ./Src/user/max_peak_detector.o
  .debug_macro   0x00000000      0x347 ./Src/user/max_peak_detector.o
  .debug_macro   0x00000000       0x70 ./Src/user/max_peak_detector.o
- .debug_macro   0x00000000       0x28 ./Src/user/max_peak_detector.o
+ .debug_macro   0x00000000       0x22 ./Src/user/max_peak_detector.o
  .debug_macro   0x00000000       0x10 ./Src/user/max_peak_detector.o
  .group         0x00000000        0xc ./Src/user/peak_detector_main.o
  .group         0x00000000        0xc ./Src/user/peak_detector_main.o
@@ -4637,7 +4375,7 @@ Discarded input sections
                 0x00000000       0x18 ./Src/user/peak_detector_main.o
  .debug_macro   0x00000000      0x25e ./Src/user/peak_detector_main.o
  .debug_macro   0x00000000      0xbb0 ./Src/user/peak_detector_main.o
- .debug_macro   0x00000000       0x28 ./Src/user/peak_detector_main.o
+ .debug_macro   0x00000000       0x22 ./Src/user/peak_detector_main.o
  .debug_macro   0x00000000      0x170 ./Src/user/peak_detector_main.o
  .debug_macro   0x00000000       0x2e ./Src/user/peak_detector_main.o
  .debug_macro   0x00000000       0x28 ./Src/user/peak_detector_main.o
@@ -4687,7 +4425,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x70 ./Src/user/peak_detector_main.o
  .debug_macro   0x00000000       0x22 ./Src/user/peak_detector_main.o
  .debug_line    0x00000000      0x84f ./Src/user/peak_detector_main.o
- .debug_str     0x00000000    0xce49c ./Src/user/peak_detector_main.o
+ .debug_str     0x00000000    0xce48d ./Src/user/peak_detector_main.o
  .comment       0x00000000       0x44 ./Src/user/peak_detector_main.o
  .ARM.attributes
                 0x00000000       0x34 ./Src/user/peak_detector_main.o
@@ -4854,8 +4592,8 @@ Discarded input sections
  .bss           0x00000000        0x0 ./Src/user/ping_out.o
  .text._ZN7PingOut13schedule_pingEii
                 0x00000000        0xc ./Src/user/ping_out.o
- .text._ZN7PingOut24start_periodic_schedulerEi
-                0x00000000       0x10 ./Src/user/ping_out.o
+ .text._ZN7PingOut30start_multi_impulses_schedulerEiii
+                0x00000000       0x28 ./Src/user/ping_out.o
  .debug_macro   0x00000000      0xbb0 ./Src/user/ping_out.o
  .debug_macro   0x00000000      0x170 ./Src/user/ping_out.o
  .debug_macro   0x00000000       0x2e ./Src/user/ping_out.o
@@ -4904,123 +4642,8 @@ Discarded input sections
  .debug_macro   0x00000000       0x44 ./Src/user/ping_out.o
  .debug_macro   0x00000000      0x347 ./Src/user/ping_out.o
  .debug_macro   0x00000000       0x70 ./Src/user/ping_out.o
- .debug_macro   0x00000000       0x28 ./Src/user/ping_out.o
+ .debug_macro   0x00000000       0x22 ./Src/user/ping_out.o
  .debug_macro   0x00000000       0x10 ./Src/user/ping_out.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .group         0x00000000        0xc ./Src/user/slow_tx.o
- .text          0x00000000        0x0 ./Src/user/slow_tx.o
- .data          0x00000000        0x0 ./Src/user/slow_tx.o
- .bss           0x00000000        0x0 ./Src/user/slow_tx.o
- .debug_info    0x00000000       0x77 ./Src/user/slow_tx.o
- .debug_abbrev  0x00000000       0x28 ./Src/user/slow_tx.o
- .debug_aranges
-                0x00000000       0x18 ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x255 ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0xbb0 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x28 ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x170 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x2e ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x28 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x1c ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x22 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x8e ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x51 ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x103 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x6a ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x1df ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x1c ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x22 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0xd9 ./Src/user/slow_tx.o
- .debug_macro   0x00000000     0x102d ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x11f ./Src/user/slow_tx.o
- .debug_macro   0x00000000    0x1535a ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x6d ./Src/user/slow_tx.o
- .debug_macro   0x00000000     0x3574 ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x197 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x55 ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x953 ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x84a ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x1b5 ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x23a ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x1ea ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x1bc ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x30 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x3c ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x235 ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x9fe ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x77 ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x176 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x61 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0xc5 ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x21d ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x22c ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x5b ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0xa5 ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x17d ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x81 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0xd3 ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0xa60 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0xba ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x5ba ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x44 ./Src/user/slow_tx.o
- .debug_macro   0x00000000      0x347 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x70 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x22 ./Src/user/slow_tx.o
- .debug_macro   0x00000000       0x10 ./Src/user/slow_tx.o
- .debug_line    0x00000000      0x814 ./Src/user/slow_tx.o
- .debug_str     0x00000000    0xce4b0 ./Src/user/slow_tx.o
- .comment       0x00000000       0x44 ./Src/user/slow_tx.o
- .ARM.attributes
-                0x00000000       0x34 ./Src/user/slow_tx.o
  .group         0x00000000        0xc ./Src/user/tof_master.o
  .group         0x00000000        0xc ./Src/user/tof_master.o
  .group         0x00000000        0xc ./Src/user/tof_master.o
@@ -5075,13 +4698,8 @@ Discarded input sections
  .text          0x00000000        0x0 ./Src/user/tof_master.o
  .data          0x00000000        0x0 ./Src/user/tof_master.o
  .bss           0x00000000        0x0 ./Src/user/tof_master.o
- .debug_info    0x00000000       0x77 ./Src/user/tof_master.o
- .debug_abbrev  0x00000000       0x28 ./Src/user/tof_master.o
- .debug_aranges
-                0x00000000       0x18 ./Src/user/tof_master.o
- .debug_macro   0x00000000      0x25a ./Src/user/tof_master.o
  .debug_macro   0x00000000      0xbb0 ./Src/user/tof_master.o
- .debug_macro   0x00000000       0x28 ./Src/user/tof_master.o
+ .debug_macro   0x00000000       0x22 ./Src/user/tof_master.o
  .debug_macro   0x00000000      0x170 ./Src/user/tof_master.o
  .debug_macro   0x00000000       0x2e ./Src/user/tof_master.o
  .debug_macro   0x00000000       0x28 ./Src/user/tof_master.o
@@ -5131,11 +4749,6 @@ Discarded input sections
  .debug_macro   0x00000000       0x70 ./Src/user/tof_master.o
  .debug_macro   0x00000000       0x22 ./Src/user/tof_master.o
  .debug_macro   0x00000000       0x10 ./Src/user/tof_master.o
- .debug_line    0x00000000      0x83d ./Src/user/tof_master.o
- .debug_str     0x00000000    0xce4c5 ./Src/user/tof_master.o
- .comment       0x00000000       0x44 ./Src/user/tof_master.o
- .ARM.attributes
-                0x00000000       0x34 ./Src/user/tof_master.o
  .group         0x00000000        0xc ./Src/user/transponder.o
  .group         0x00000000        0xc ./Src/user/transponder.o
  .group         0x00000000        0xc ./Src/user/transponder.o
@@ -5190,8 +4803,13 @@ Discarded input sections
  .text          0x00000000        0x0 ./Src/user/transponder.o
  .data          0x00000000        0x0 ./Src/user/transponder.o
  .bss           0x00000000        0x0 ./Src/user/transponder.o
+ .debug_info    0x00000000       0x77 ./Src/user/transponder.o
+ .debug_abbrev  0x00000000       0x28 ./Src/user/transponder.o
+ .debug_aranges
+                0x00000000       0x18 ./Src/user/transponder.o
+ .debug_macro   0x00000000      0x25a ./Src/user/transponder.o
  .debug_macro   0x00000000      0xbb0 ./Src/user/transponder.o
- .debug_macro   0x00000000       0x28 ./Src/user/transponder.o
+ .debug_macro   0x00000000       0x22 ./Src/user/transponder.o
  .debug_macro   0x00000000      0x170 ./Src/user/transponder.o
  .debug_macro   0x00000000       0x2e ./Src/user/transponder.o
  .debug_macro   0x00000000       0x28 ./Src/user/transponder.o
@@ -5241,6 +4859,11 @@ Discarded input sections
  .debug_macro   0x00000000       0x70 ./Src/user/transponder.o
  .debug_macro   0x00000000       0x22 ./Src/user/transponder.o
  .debug_macro   0x00000000       0x10 ./Src/user/transponder.o
+ .debug_line    0x00000000      0x83e ./Src/user/transponder.o
+ .debug_str     0x00000000    0xce4b7 ./Src/user/transponder.o
+ .comment       0x00000000       0x44 ./Src/user/transponder.o
+ .ARM.attributes
+                0x00000000       0x34 ./Src/user/transponder.o
  .text          0x00000000        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-exit.o)
  .data          0x00000000        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-exit.o)
  .bss           0x00000000        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-exit.o)
@@ -5500,8 +5123,6 @@ LOAD ./Src/stm32f3xx_hal_msp.o
 LOAD ./Src/stm32f3xx_it.o
 LOAD ./Src/system_stm32f3xx.o
 LOAD ./Src/user/adc_over_uart.o
-LOAD ./Src/user/basic_peak_detector.o
-LOAD ./Src/user/basic_pulse_stream.o
 LOAD ./Src/user/cmd_rx.o
 LOAD ./Src/user/index_info_transmit.o
 LOAD ./Src/user/index_info_tx.o
@@ -5509,7 +5130,6 @@ LOAD ./Src/user/max_peak_detector.o
 LOAD ./Src/user/peak_detector_main.o
 LOAD ./Src/user/pga.o
 LOAD ./Src/user/ping_out.o
-LOAD ./Src/user/slow_tx.o
 LOAD ./Src/user/tof_master.o
 LOAD ./Src/user/transponder.o
 START GROUP
@@ -5540,7 +5160,7 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                 0x08000000                g_pfnVectors
                 0x08000194                        . = ALIGN (0x4)
 
-.text           0x08000198     0x5190
+.text           0x08000198     0x5258
                 0x08000198                        . = ALIGN (0x4)
  *(.text)
  .text          0x08000198       0x40 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
@@ -5842,172 +5462,182 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                 0x08004ad4        0x4 ./Src/user/index_info_tx.o
                 0x08004ad4                IndexInfoTX::IndexInfoTX(__UART_HandleTypeDef*)
                 0x08004ad4                IndexInfoTX::IndexInfoTX(__UART_HandleTypeDef*)
+ .text._ZN11IndexInfoTX12transmit_idxEiit
+                0x08004ad8       0x28 ./Src/user/index_info_tx.o
+                0x08004ad8                IndexInfoTX::transmit_idx(int, int, unsigned short)
  .text._ZN11IndexInfoTX14transmit_err_1Eii
-                0x08004ad8       0x24 ./Src/user/index_info_tx.o
-                0x08004ad8                IndexInfoTX::transmit_err_1(int, int)
+                0x08004b00       0x24 ./Src/user/index_info_tx.o
+                0x08004b00                IndexInfoTX::transmit_err_1(int, int)
  .text._ZN15MaxPeakDetectorC2EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX
-                0x08004afc       0x74 ./Src/user/max_peak_detector.o
-                0x08004afc                MaxPeakDetector::MaxPeakDetector(__ADC_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*)
-                0x08004afc                MaxPeakDetector::MaxPeakDetector(__ADC_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*)
+                0x08004b24       0x74 ./Src/user/max_peak_detector.o
+                0x08004b24                MaxPeakDetector::MaxPeakDetector(__ADC_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*)
+                0x08004b24                MaxPeakDetector::MaxPeakDetector(__ADC_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*)
  .text._ZN15MaxPeakDetector11search_loopEv
-                0x08004b70      0x12c ./Src/user/max_peak_detector.o
-                0x08004b70                MaxPeakDetector::search_loop()
+                0x08004b98      0x12c ./Src/user/max_peak_detector.o
+                0x08004b98                MaxPeakDetector::search_loop()
  .text._ZN15MaxPeakDetector11detect_peakEv
-                0x08004c9c       0xb0 ./Src/user/max_peak_detector.o
-                0x08004c9c                MaxPeakDetector::detect_peak()
+                0x08004cc4       0xb0 ./Src/user/max_peak_detector.o
+                0x08004cc4                MaxPeakDetector::detect_peak()
+ .text._ZN15MaxPeakDetector18send_data2computerE9Timestampt
+                0x08004d74       0x14 ./Src/user/max_peak_detector.o
+                0x08004d74                MaxPeakDetector::send_data2computer(Timestamp, unsigned short)
  .text.HAL_ADC_ConvHalfCpltCallback
-                0x08004d4c       0x3c ./Src/user/max_peak_detector.o
-                0x08004d4c                HAL_ADC_ConvHalfCpltCallback
+                0x08004d88       0x3c ./Src/user/max_peak_detector.o
+                0x08004d88                HAL_ADC_ConvHalfCpltCallback
  .text.HAL_ADC_ConvCpltCallback
-                0x08004d88       0x20 ./Src/user/max_peak_detector.o
-                0x08004d88                HAL_ADC_ConvCpltCallback
+                0x08004dc4       0x20 ./Src/user/max_peak_detector.o
+                0x08004dc4                HAL_ADC_ConvCpltCallback
+ .text._ZN9TimestampC2Eii
+                0x08004de4        0x8 ./Src/user/max_peak_detector.o
+                0x08004de4                Timestamp::Timestamp(int, int)
+                0x08004de4                Timestamp::Timestamp(int, int)
  .text._ZN13PGA_cascade_2C2EP19OPAMP_HandleTypeDefS1_
-                0x08004da8        0x8 ./Src/user/pga.o
-                0x08004da8                PGA_cascade_2::PGA_cascade_2(OPAMP_HandleTypeDef*, OPAMP_HandleTypeDef*)
-                0x08004da8                PGA_cascade_2::PGA_cascade_2(OPAMP_HandleTypeDef*, OPAMP_HandleTypeDef*)
+                0x08004dec        0x8 ./Src/user/pga.o
+                0x08004dec                PGA_cascade_2::PGA_cascade_2(OPAMP_HandleTypeDef*, OPAMP_HandleTypeDef*)
+                0x08004dec                PGA_cascade_2::PGA_cascade_2(OPAMP_HandleTypeDef*, OPAMP_HandleTypeDef*)
  .text._ZN13PGA_cascade_27setGainEi
-                0x08004db0      0x104 ./Src/user/pga.o
-                0x08004db0                PGA_cascade_2::setGain(int)
+                0x08004df4      0x104 ./Src/user/pga.o
+                0x08004df4                PGA_cascade_2::setGain(int)
  .text._Z27first_half_written_callbackP19__DMA_HandleTypeDef
-                0x08004eb4       0xd8 ./Src/user/ping_out.o
-                0x08004eb4                first_half_written_callback(__DMA_HandleTypeDef*)
+                0x08004ef8       0xd8 ./Src/user/ping_out.o
+                0x08004ef8                first_half_written_callback(__DMA_HandleTypeDef*)
  .text._Z27secnd_half_written_callbackP19__DMA_HandleTypeDef
-                0x08004f8c       0x40 ./Src/user/ping_out.o
-                0x08004f8c                secnd_half_written_callback(__DMA_HandleTypeDef*)
+                0x08004fd0       0x40 ./Src/user/ping_out.o
+                0x08004fd0                secnd_half_written_callback(__DMA_HandleTypeDef*)
  .text._ZN7PingOutC2EP19__DMA_HandleTypeDefP17TIM_HandleTypeDef
-                0x08004fcc       0x70 ./Src/user/ping_out.o
-                0x08004fcc                PingOut::PingOut(__DMA_HandleTypeDef*, TIM_HandleTypeDef*)
-                0x08004fcc                PingOut::PingOut(__DMA_HandleTypeDef*, TIM_HandleTypeDef*)
- .text._ZN7PingOut30start_multi_impulses_schedulerEiii
-                0x0800503c       0x28 ./Src/user/ping_out.o
-                0x0800503c                PingOut::start_multi_impulses_scheduler(int, int, int)
+                0x08005010       0x70 ./Src/user/ping_out.o
+                0x08005010                PingOut::PingOut(__DMA_HandleTypeDef*, TIM_HandleTypeDef*)
+                0x08005010                PingOut::PingOut(__DMA_HandleTypeDef*, TIM_HandleTypeDef*)
+ .text._ZN7PingOut24start_periodic_schedulerEi
+                0x08005080       0x10 ./Src/user/ping_out.o
+                0x08005080                PingOut::start_periodic_scheduler(int)
  .text._ZN7PingOut3setEi
-                0x08005064       0xb8 ./Src/user/ping_out.o
-                0x08005064                PingOut::set(int)
+                0x08005090       0xb8 ./Src/user/ping_out.o
+                0x08005090                PingOut::set(int)
  .text._ZN7PingOut5clearEi
-                0x0800511c       0xa0 ./Src/user/ping_out.o
-                0x0800511c                PingOut::clear(int)
+                0x08005148       0xa0 ./Src/user/ping_out.o
+                0x08005148                PingOut::clear(int)
  .text._ZN7PingOut6updateEv
-                0x080051bc       0x8c ./Src/user/ping_out.o
-                0x080051bc                PingOut::update()
- .text.transponder_main
-                0x08005248       0x70 ./Src/user/transponder.o
-                0x08005248                transponder_main
- .text.memset   0x080052b8       0x10 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
-                0x080052b8                memset
+                0x080051e8       0x8c ./Src/user/ping_out.o
+                0x080051e8                PingOut::update()
+ .text.tof_master_main
+                0x08005274      0x10c ./Src/user/tof_master.o
+                0x08005274                tof_master_main
+ .text.memset   0x08005380       0x10 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
+                0x08005380                memset
  .text.__libc_init_array
-                0x080052c8       0x48 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
-                0x080052c8                __libc_init_array
+                0x08005390       0x48 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
+                0x08005390                __libc_init_array
  *(.glue_7)
- .glue_7        0x08005310        0x0 linker stubs
+ .glue_7        0x080053d8        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x08005310        0x0 linker stubs
+ .glue_7t       0x080053d8        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x08005310        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .eh_frame      0x080053d8        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
  *(.init)
- .init          0x08005310        0x4 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
-                0x08005310                _init
- .init          0x08005314        0x8 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
+ .init          0x080053d8        0x4 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
+                0x080053d8                _init
+ .init          0x080053dc        0x8 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
  *(.fini)
- .fini          0x0800531c        0x4 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
-                0x0800531c                _fini
- .fini          0x08005320        0x8 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
-                0x08005328                        . = ALIGN (0x4)
-                0x08005328                        _etext = .
+ .fini          0x080053e4        0x4 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crti.o
+                0x080053e4                _fini
+ .fini          0x080053e8        0x8 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtn.o
+                0x080053f0                        . = ALIGN (0x4)
+                0x080053f0                        _etext = .
 
-.vfp11_veneer   0x08005328        0x0
- .vfp11_veneer  0x08005328        0x0 linker stubs
+.vfp11_veneer   0x080053f0        0x0
+ .vfp11_veneer  0x080053f0        0x0 linker stubs
 
-.v4_bx          0x08005328        0x0
- .v4_bx         0x08005328        0x0 linker stubs
+.v4_bx          0x080053f0        0x0
+ .v4_bx         0x080053f0        0x0 linker stubs
 
-.iplt           0x08005328        0x0
- .iplt          0x08005328        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+.iplt           0x080053f0        0x0
+ .iplt          0x080053f0        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.rodata         0x08005328      0x2f8
-                0x08005328                        . = ALIGN (0x4)
+.rodata         0x080053f0      0x2f8
+                0x080053f0                        . = ALIGN (0x4)
  *(.rodata)
  *(.rodata*)
  .rodata.ADC_ConversionStop.str1.4
-                0x08005328      0x2bd ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.o
+                0x080053f0      0x2bd ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.o
                                  0x3b (size before relaxing)
  .rodata.HAL_NVIC_SetPriorityGrouping.str1.4
-                0x080055e5       0x3b ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.o
+                0x080056ad       0x3b ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.o
  .rodata.HAL_DAC_Init.str1.4
-                0x080055e5       0x38 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac.o
+                0x080056ad       0x38 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac.o
  .rodata.HAL_DAC_SetValue.str1.4
-                0x080055e5       0x3b ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.o
+                0x080056ad       0x3b ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.o
  .rodata.HAL_DMA_Init.str1.4
-                0x080055e5       0x38 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.o
+                0x080056ad       0x38 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.o
  .rodata.HAL_GPIO_Init.str1.4
-                0x080055e5       0x39 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.o
+                0x080056ad       0x39 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.o
  .rodata.HAL_OPAMP_Init.str1.4
-                0x080055e5       0x3a ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_opamp.o
+                0x080056ad       0x3a ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_opamp.o
  .rodata.HAL_RCC_OscConfig.str1.4
-                0x080055e5       0x38 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o
- *fill*         0x080055e5        0x3 
+                0x080056ad       0x38 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o
+ *fill*         0x080056ad        0x3 
  .rodata.aPredivFactorTable
-                0x080055e8       0x10 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o
+                0x080056b0       0x10 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o
  .rodata.aPLLMULFactorTable
-                0x080055f8       0x10 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o
+                0x080056c0       0x10 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o
  .rodata.HAL_RCCEx_PeriphCLKConfig.str1.4
-                0x08005608       0x3b ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.o
+                0x080056d0       0x3b ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.o
  .rodata.TIM_OC1_SetConfig.str1.4
-                0x08005608       0x38 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.o
+                0x080056d0       0x38 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.o
  .rodata.HAL_TIMEx_HallSensor_Init.str1.4
-                0x08005608       0x3b ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.o
+                0x080056d0       0x3b ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.o
  .rodata.HAL_UART_DeInit.str1.4
-                0x08005608       0x39 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.o
+                0x080056d0       0x39 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.o
  .rodata.APBPrescTable
-                0x08005608        0x8 ./Src/system_stm32f3xx.o
-                0x08005608                APBPrescTable
+                0x080056d0        0x8 ./Src/system_stm32f3xx.o
+                0x080056d0                APBPrescTable
  .rodata.AHBPrescTable
-                0x08005610       0x10 ./Src/system_stm32f3xx.o
-                0x08005610                AHBPrescTable
-                0x08005644                        . = ALIGN (0x4)
+                0x080056d8       0x10 ./Src/system_stm32f3xx.o
+                0x080056d8                AHBPrescTable
+                0x0800570c                        . = ALIGN (0x4)
 
-.ARM.extab      0x08005620        0x0
-                0x08005620                        . = ALIGN (0x4)
+.ARM.extab      0x080056e8        0x0
+                0x080056e8                        . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08005620                        . = ALIGN (0x4)
+                0x080056e8                        . = ALIGN (0x4)
 
-.ARM            0x08005620        0x0
-                0x08005620                        . = ALIGN (0x4)
-                0x08005620                        __exidx_start = .
+.ARM            0x080056e8        0x0
+                0x080056e8                        . = ALIGN (0x4)
+                0x080056e8                        __exidx_start = .
  *(.ARM.exidx*)
-                0x08005620                        __exidx_end = .
-                0x08005620                        . = ALIGN (0x4)
+                0x080056e8                        __exidx_end = .
+                0x080056e8                        . = ALIGN (0x4)
 
-.preinit_array  0x08005620        0x0
-                0x08005620                        . = ALIGN (0x4)
-                0x08005620                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x080056e8        0x0
+                0x080056e8                        . = ALIGN (0x4)
+                0x080056e8                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x08005620                        PROVIDE (__preinit_array_end = .)
-                0x08005620                        . = ALIGN (0x4)
+                0x080056e8                        PROVIDE (__preinit_array_end = .)
+                0x080056e8                        . = ALIGN (0x4)
 
-.init_array     0x08005620        0x4
-                0x08005620                        . = ALIGN (0x4)
-                0x08005620                        PROVIDE (__init_array_start = .)
+.init_array     0x080056e8        0x4
+                0x080056e8                        . = ALIGN (0x4)
+                0x080056e8                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x08005620        0x4 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
-                0x08005624                        PROVIDE (__init_array_end = .)
-                0x08005624                        . = ALIGN (0x4)
+ .init_array    0x080056e8        0x4 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+                0x080056ec                        PROVIDE (__init_array_end = .)
+                0x080056ec                        . = ALIGN (0x4)
 
-.fini_array     0x08005624        0x4
-                0x08005624                        . = ALIGN (0x4)
+.fini_array     0x080056ec        0x4
+                0x080056ec                        . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08005624        0x4 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .fini_array    0x080056ec        0x4 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
                 [!provide]                        PROVIDE (__fini_array_end = .)
-                0x08005628                        . = ALIGN (0x4)
-                0x08005628                        _sidata = LOADADDR (.data)
+                0x080056f0                        . = ALIGN (0x4)
+                0x080056f0                        _sidata = LOADADDR (.data)
 
-.rel.dyn        0x08005628        0x0
- .rel.iplt      0x08005628        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
+.rel.dyn        0x080056f0        0x0
+ .rel.iplt      0x080056f0        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.data           0x20000000       0x20 load address 0x08005628
+.data           0x20000000       0x20 load address 0x080056f0
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -6041,12 +5671,12 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  *(.RamFunc*)
                 0x20000020                        . = ALIGN (0x4)
                 0x20000020                        _edata = .
-                0x08005648                        _siccmram = LOADADDR (.ccmram)
+                0x08005710                        _siccmram = LOADADDR (.ccmram)
 
-.igot.plt       0x20000020        0x0 load address 0x08005648
+.igot.plt       0x20000020        0x0 load address 0x08005710
  .igot.plt      0x20000020        0x0 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.ccmram         0x10000000        0x0 load address 0x08005648
+.ccmram         0x10000000        0x0 load address 0x08005710
                 0x10000000                        . = ALIGN (0x4)
                 0x10000000                        _sccmram = .
  *(.ccmram)
@@ -6193,7 +5823,7 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .ARM.attributes
                 0x000004ef       0x34 ./Src/user/ping_out.o
  .ARM.attributes
-                0x00000523       0x34 ./Src/user/transponder.o
+                0x00000523       0x34 ./Src/user/tof_master.o
  .ARM.attributes
                 0x00000557       0x34 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
  .ARM.attributes
@@ -6206,7 +5836,7 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
 LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a
 LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/thumb/v7e-m+fp/hard\libgcc.a
 
-.debug_line     0x00000000    0x2584c
+.debug_line     0x00000000    0x258bf
  .debug_line    0x00000000       0x7a ./Core/Startup/startup_stm32f303retx.o
  .debug_line    0x0000007a      0xb86 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o
  .debug_line    0x00000c00      0xa04 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.o
@@ -6223,22 +5853,22 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_line    0x0001589f     0x33eb ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.o
  .debug_line    0x00018c8a     0x4d87 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.o
  .debug_line    0x0001da11      0xf02 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.o
- .debug_line    0x0001e913     0x15ee ./Src/main.o
- .debug_line    0x0001ff01      0xda0 ./Src/stm32f3xx_hal_msp.o
- .debug_line    0x00020ca1      0x847 ./Src/stm32f3xx_it.o
- .debug_line    0x000214e8      0x8f6 ./Src/system_stm32f3xx.o
- .debug_line    0x00021dde      0x979 ./Src/user/index_info_tx.o
- .debug_line    0x00022757      0xdf7 ./Src/user/max_peak_detector.o
- .debug_line    0x0002354e      0xc3c ./Src/user/pga.o
- .debug_line    0x0002418a      0xdec ./Src/user/ping_out.o
- .debug_line    0x00024f76      0x8d6 ./Src/user/transponder.o
+ .debug_line    0x0001e913     0x15ef ./Src/main.o
+ .debug_line    0x0001ff02      0xda0 ./Src/stm32f3xx_hal_msp.o
+ .debug_line    0x00020ca2      0x847 ./Src/stm32f3xx_it.o
+ .debug_line    0x000214e9      0x8f6 ./Src/system_stm32f3xx.o
+ .debug_line    0x00021ddf      0x979 ./Src/user/index_info_tx.o
+ .debug_line    0x00022758      0xdf7 ./Src/user/max_peak_detector.o
+ .debug_line    0x0002354f      0xc3c ./Src/user/pga.o
+ .debug_line    0x0002418b      0xdec ./Src/user/ping_out.o
+ .debug_line    0x00024f77      0x948 ./Src/user/tof_master.o
 
 .debug_line_str
                 0x00000000       0xad
  .debug_line_str
                 0x00000000       0xad ./Core/Startup/startup_stm32f303retx.o
 
-.debug_info     0x00000000    0x23064
+.debug_info     0x00000000    0x230cc
  .debug_info    0x00000000       0x30 ./Core/Startup/startup_stm32f303retx.o
  .debug_info    0x00000030      0x934 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o
  .debug_info    0x00000964      0xb21 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.o
@@ -6263,9 +5893,9 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_info    0x0001e97c     0x17d8 ./Src/user/max_peak_detector.o
  .debug_info    0x00020154      0x907 ./Src/user/pga.o
  .debug_info    0x00020a5b      0xebe ./Src/user/ping_out.o
- .debug_info    0x00021919     0x174b ./Src/user/transponder.o
+ .debug_info    0x00021919     0x17b3 ./Src/user/tof_master.o
 
-.debug_abbrev   0x00000000     0x477c
+.debug_abbrev   0x00000000     0x4749
  .debug_abbrev  0x00000000       0x24 ./Core/Startup/startup_stm32f303retx.o
  .debug_abbrev  0x00000024      0x28d ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o
  .debug_abbrev  0x000002b1      0x22a ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.o
@@ -6290,7 +5920,7 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_abbrev  0x00003803      0x4fb ./Src/user/max_peak_detector.o
  .debug_abbrev  0x00003cfe      0x315 ./Src/user/pga.o
  .debug_abbrev  0x00004013      0x437 ./Src/user/ping_out.o
- .debug_abbrev  0x0000444a      0x332 ./Src/user/transponder.o
+ .debug_abbrev  0x0000444a      0x2ff ./Src/user/tof_master.o
 
 .debug_aranges  0x00000000     0x1150
  .debug_aranges
@@ -6342,38 +5972,38 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_aranges
                 0x000010d0       0x60 ./Src/user/ping_out.o
  .debug_aranges
-                0x00001130       0x20 ./Src/user/transponder.o
+                0x00001130       0x20 ./Src/user/tof_master.o
 
-.debug_str      0x00000000    0xd3f9b
- .debug_str     0x00000000    0xd3f9b ./Core/Startup/startup_stm32f303retx.o
+.debug_str      0x00000000    0xd3f81
+ .debug_str     0x00000000    0xd3f81 ./Core/Startup/startup_stm32f303retx.o
                                  0xc9 (size before relaxing)
- .debug_str     0x000d3f9b    0xce752 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o
- .debug_str     0x000d3f9b    0xce496 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.o
- .debug_str     0x000d3f9b    0xcebb5 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.o
- .debug_str     0x000d3f9b    0xce7d8 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.o
- .debug_str     0x000d3f9b    0xce2ad ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac.o
- .debug_str     0x000d3f9b    0xce3b6 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.o
- .debug_str     0x000d3f9b    0xce1f1 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.o
- .debug_str     0x000d3f9b    0xce08e ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.o
- .debug_str     0x000d3f9b    0xce167 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_opamp.o
- .debug_str     0x000d3f9b    0xce33b ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o
- .debug_str     0x000d3f9b    0xce185 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.o
- .debug_str     0x000d3f9b    0xcf2e0 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.o
- .debug_str     0x000d3f9b    0xceb26 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.o
- .debug_str     0x000d3f9b    0xcebba ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.o
- .debug_str     0x000d3f9b    0xce4bf ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.o
- .debug_str     0x000d3f9b    0xcfa26 ./Src/main.o
- .debug_str     0x000d3f9b    0xcf2b0 ./Src/stm32f3xx_hal_msp.o
- .debug_str     0x000d3f9b    0xce412 ./Src/stm32f3xx_it.o
- .debug_str     0x000d3f9b    0xcde84 ./Src/system_stm32f3xx.o
- .debug_str     0x000d3f9b    0xcea5a ./Src/user/index_info_tx.o
- .debug_str     0x000d3f9b    0xcf676 ./Src/user/max_peak_detector.o
- .debug_str     0x000d3f9b    0xce802 ./Src/user/pga.o
- .debug_str     0x000d3f9b    0xceff8 ./Src/user/ping_out.o
- .debug_str     0x000d3f9b    0xcfa20 ./Src/user/transponder.o
+ .debug_str     0x000d3f81    0xce752 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o
+ .debug_str     0x000d3f81    0xce496 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.o
+ .debug_str     0x000d3f81    0xcebb5 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.o
+ .debug_str     0x000d3f81    0xce7d8 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.o
+ .debug_str     0x000d3f81    0xce2ad ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac.o
+ .debug_str     0x000d3f81    0xce3b6 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dac_ex.o
+ .debug_str     0x000d3f81    0xce1f1 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.o
+ .debug_str     0x000d3f81    0xce08e ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.o
+ .debug_str     0x000d3f81    0xce167 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_opamp.o
+ .debug_str     0x000d3f81    0xce33b ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o
+ .debug_str     0x000d3f81    0xce185 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.o
+ .debug_str     0x000d3f81    0xcf2e0 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.o
+ .debug_str     0x000d3f81    0xceb26 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.o
+ .debug_str     0x000d3f81    0xcebba ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.o
+ .debug_str     0x000d3f81    0xce4bf ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.o
+ .debug_str     0x000d3f81    0xcfa16 ./Src/main.o
+ .debug_str     0x000d3f81    0xcf2b0 ./Src/stm32f3xx_hal_msp.o
+ .debug_str     0x000d3f81    0xce412 ./Src/stm32f3xx_it.o
+ .debug_str     0x000d3f81    0xcde84 ./Src/system_stm32f3xx.o
+ .debug_str     0x000d3f81    0xcea5a ./Src/user/index_info_tx.o
+ .debug_str     0x000d3f81    0xcf667 ./Src/user/max_peak_detector.o
+ .debug_str     0x000d3f81    0xce802 ./Src/user/pga.o
+ .debug_str     0x000d3f81    0xcefe9 ./Src/user/ping_out.o
+ .debug_str     0x000d3f81    0xcfa32 ./Src/user/tof_master.o
 
 .debug_rnglists
-                0x00000000     0x15f2
+                0x00000000     0x15f3
  .debug_rnglists
                 0x00000000       0x19 ./Core/Startup/startup_stm32f303retx.o
  .debug_rnglists
@@ -6423,10 +6053,10 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_rnglists
                 0x00001568       0x77 ./Src/user/ping_out.o
  .debug_rnglists
-                0x000015df       0x13 ./Src/user/transponder.o
+                0x000015df       0x14 ./Src/user/tof_master.o
 
 .debug_loclists
-                0x00000000     0xe773
+                0x00000000     0xe7b7
  .debug_loclists
                 0x00000000       0xd9 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o
  .debug_loclists
@@ -6472,9 +6102,9 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_loclists
                 0x0000e35a      0x370 ./Src/user/ping_out.o
  .debug_loclists
-                0x0000e6ca       0xa9 ./Src/user/transponder.o
+                0x0000e6ca       0xed ./Src/user/tof_master.o
 
-.debug_macro    0x00000000    0x22962
+.debug_macro    0x00000000    0x2295c
  .debug_macro   0x00000000      0x23d ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o
  .debug_macro   0x0000023d      0xad8 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o
  .debug_macro   0x00000d15      0x170 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o
@@ -6540,16 +6170,16 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_macro   0x0002166e       0x70 ./Src/main.o
  .debug_macro   0x000216de       0x22 ./Src/main.o
  .debug_macro   0x00021700       0x22 ./Src/main.o
- .debug_macro   0x00021722       0x28 ./Src/main.o
- .debug_macro   0x0002174a      0x228 ./Src/stm32f3xx_hal_msp.o
- .debug_macro   0x00021972      0x232 ./Src/stm32f3xx_it.o
- .debug_macro   0x00021ba4      0x219 ./Src/system_stm32f3xx.o
- .debug_macro   0x00021dbd      0x237 ./Src/user/index_info_tx.o
- .debug_macro   0x00021ff4      0x256 ./Src/user/max_peak_detector.o
- .debug_macro   0x0002224a      0x24f ./Src/user/pga.o
- .debug_macro   0x00022499      0x25f ./Src/user/ping_out.o
- .debug_macro   0x000226f8       0x10 ./Src/user/ping_out.o
- .debug_macro   0x00022708      0x25a ./Src/user/transponder.o
+ .debug_macro   0x00021722       0x22 ./Src/main.o
+ .debug_macro   0x00021744      0x228 ./Src/stm32f3xx_hal_msp.o
+ .debug_macro   0x0002196c      0x232 ./Src/stm32f3xx_it.o
+ .debug_macro   0x00021b9e      0x219 ./Src/system_stm32f3xx.o
+ .debug_macro   0x00021db7      0x237 ./Src/user/index_info_tx.o
+ .debug_macro   0x00021fee      0x256 ./Src/user/max_peak_detector.o
+ .debug_macro   0x00022244      0x24f ./Src/user/pga.o
+ .debug_macro   0x00022493      0x25f ./Src/user/ping_out.o
+ .debug_macro   0x000226f2       0x10 ./Src/user/ping_out.o
+ .debug_macro   0x00022702      0x25a ./Src/user/tof_master.o
 
 .comment        0x00000000       0x43
  .comment       0x00000000       0x43 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o
@@ -6576,9 +6206,9 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .comment       0x00000043       0x44 ./Src/user/max_peak_detector.o
  .comment       0x00000043       0x44 ./Src/user/pga.o
  .comment       0x00000043       0x44 ./Src/user/ping_out.o
- .comment       0x00000043       0x44 ./Src/user/transponder.o
+ .comment       0x00000043       0x44 ./Src/user/tof_master.o
 
-.debug_frame    0x00000000     0x30d8
+.debug_frame    0x00000000     0x30e0
  .debug_frame   0x00000000      0x1d4 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o
  .debug_frame   0x000001d4      0x178 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.o
  .debug_frame   0x0000034c      0x4e0 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.o
@@ -6602,6 +6232,6 @@ LOAD C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_frame   0x00002dc4       0xec ./Src/user/max_peak_detector.o
  .debug_frame   0x00002eb0       0x80 ./Src/user/pga.o
  .debug_frame   0x00002f30      0x12c ./Src/user/ping_out.o
- .debug_frame   0x0000305c       0x30 ./Src/user/transponder.o
- .debug_frame   0x0000308c       0x20 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
- .debug_frame   0x000030ac       0x2c C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
+ .debug_frame   0x0000305c       0x38 ./Src/user/tof_master.o
+ .debug_frame   0x00003094       0x20 C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-memset.o)
+ .debug_frame   0x000030b4       0x2c C:/ST/STM32CubeIDE_1.18.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)

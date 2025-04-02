@@ -5,7 +5,7 @@ from numpy.fft import fftfreq
 from matplotlib import pyplot as plt
 import pandas as pd
 
-rc = RangeCalc("COM3", 115200, 10, 30.012)
+rc = RangeCalc("COM3", 115200, 20, 30.012)
 
 # Initialize live plot
 # plt.ion()
