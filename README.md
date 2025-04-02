@@ -11,10 +11,40 @@ research publication where they will be acknowledged but not listed as authors. 
 validated multi-beacon sonar system, a real-time data collection system, and a high-quality dataset for further
 research.
 
-### Project Status
+## Project Status
 <img src="Admininistration/Gantt Chart.png" width="960">
 
-### Shared Onedrive Working Folder [Link](https://anu365-my.sharepoint.com/:f:/g/personal/u7810272_anu_edu_au/Ej7ByPz3ustMnYEdPVlyXrsB3ky1SCxQRNfJEJSD3o6qvw?e=D4FFSC)
+### 1.Project Initialization & Research Completion
+1.1 Requirement Analysis <br />
+1.2 User Needs Analysis <br />
+1.3 Stakeholder Analysis <br />
+1.4 Previous Research Review <br />
+### 2. Recreating distance measurement function
+2.1 Configure development environment  <br />
+2.2 Data reception and interpretation from master beacon <br />
+2.3 Minor beacon send signals and confirm that received value from master beacon increases as distance increases. <br />
+### 3. Conceptual design
+3.1 Functional flow block diagram <br />
+3.2 Concept selection <br />
+3.3 Design architecture <br />
+3.4 functional allocation <br />
+### 4. Firmware modification
+4.1 Master beacon software updated to support multiple slave beacons <br />
+4.2 Slave beacon communication logic implemented <br />
+4.3 Initial validation of underwater signal stability <br />
+### 5.Real-World Testing &Data Collection
+5.1 System tested in Real-world Environment <br />
+5.2 Adjustments made based on real-world feedback <br />
+### 6. Documentation & Presentation Preparation
+6.1 Experimental results analyzed and documented <br />
+6.2 Technical report and draft paper completed <br />
+6.3 Presentation slides prepared <br />
+
+
+
+
+
+## Shared Onedrive Working Folder [Link](https://anu365-my.sharepoint.com/:f:/g/personal/u7810272_anu_edu_au/Ej7ByPz3ustMnYEdPVlyXrsB3ky1SCxQRNfJEJSD3o6qvw?e=D4FFSC)
 
 
 ### The Drone!
