@@ -50,21 +50,28 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 
     /******************* SETUP TX ************************/
     PingOut ping_out(p_hdma_tim2_up, p_htim2);
-    int response_delay = 1; //units of full buffer temporal length (one less, so 0 is actually 1)
-    int cooldown_duration = 50; //units of full buffer temporal length
-    int resend_waiting_duration = 100; //if no signal is detected in 50 buffers resend request to transponder.
+    int response_delay = 10; //units of full buffer temporal length (one less, so 0 is actually 1)
+    int cooldown_duration = 100; //units of full buffer temporal length
+    int resend_waiting_duration = 1000; //if no signal is detected in 50 buffers resend request to transponder.
     int last_sent_pfx = 0;
-
+    int silent_period = 0;
     while (1) {
 
     	Timestamp pt = max_peak_detector.detect_peak();
     	if (pt.pfx != -1 && pt.pfx > last_sent_pfx + cooldown_duration) {
     		ping_out.schedule_ping(pt.idx, pt.pfx + response_delay);
     	    last_sent_pfx = pt.pfx + response_delay;
+    	    silent_period = 0;
     	}
-    	else if (pt.pfx == -1 && pt.pfx > last_sent_pfx + resend_waiting_duration){
-    		ping_out.schedule_ping(pt.idx, pt.pfx + response_delay);
-    	    last_sent_pfx = pt.pfx + response_delay;
+    	else if (pt.pfx == -1){
+    		if (silent_period<resend_waiting_duration){
+    			silent_period++;
+    		}
+    		else{
+        		ping_out.schedule_ping(pt.idx, pt.pfx + response_delay);
+        	    last_sent_pfx = pt.pfx + response_delay;
+        	    silent_period = 0;
+    		}
     	}
         ping_out.update();
 

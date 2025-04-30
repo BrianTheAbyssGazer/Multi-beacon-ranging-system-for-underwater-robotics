@@ -56,7 +56,7 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
 
     /************* Other transponder parameters **********/
     int response_delay = 1; //units of full buffer temporal length (one less, so 0 is actually 1)
-    int cooldown_duration = 4; //units of full buffer temporal length
+    int cooldown_duration = 100; //units of full buffer temporal length
     int last_pfx = 0;
 
     while (1) {
@@ -64,7 +64,7 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
         Timestamp pt = max_peak_detector.detect_peak();
         if (pt.pfx != -1 && pt.pfx > last_pfx + cooldown_duration) {
         	//ping_out.start_datapacket_scheduler(pt.idx, pt.pfx + response_delay, 2);//send 2 pulses
-        	ping_out.start_datapacket_scheduler(pt.idx, pt.pfx + response_delay, 3);//send 3 pulses
+        	ping_out.start_datapacket_scheduler(0);
             last_pfx = pt.pfx;
         }
         ping_out.update();
