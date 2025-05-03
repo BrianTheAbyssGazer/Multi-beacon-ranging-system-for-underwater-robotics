@@ -12,8 +12,8 @@
 #define ADC_OVER_UART_MODE 0 // if setting this, remember to change DMA to NORMAL
 #define BASIC_PULSE_STREAM_MODE   0
 #define BASIC_PEAK_DETECTOR_MODE   0 // if setting this, remember to change DMA to CIRCULAR
-#define TRANSPONDER_MODE   1 // if setting this, remember to change DMA to CIRCULAR
-#define TIME_OF_FLIGHT_MODE   0 // if setting this, remember to change DMA to CIRCULAR
+#define TRANSPONDER_MODE   0 // if setting this, remember to change DMA to CIRCULAR
+#define TIME_OF_FLIGHT_MODE   1 // if setting this, remember to change DMA to CIRCULAR
 #define SLOW_TX_MODE 0
 
 

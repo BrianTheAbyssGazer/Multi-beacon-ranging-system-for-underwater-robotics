@@ -4,7 +4,7 @@ from index_info_rx import IndexInfoPacket
 
 from matplotlib import pyplot as plt
 import pandas as pd
-from pynput.keyboard import Key, Listener
+#from pynput.keyboard import Key, Listener
 
 
 
@@ -24,13 +24,12 @@ class RangeCalc:
 
     def read_range_and_beacon_id(self) -> float:
         indexInfo = self.iirx.read_next_packet()
-
-        tmsp_ping_tx = (indexInfo.pre_idx - (indexInfo.pre_idx % self.ping_period) ) * self.buf_len
         tmsp_ping_rx = indexInfo.pre_idx * self.buf_len + indexInfo.buf_idx
-        dt = (tmsp_ping_rx - tmsp_ping_tx)/self.sample_freq
+        dt = tmsp_ping_rx/self.sample_freq
         distance = 0.5 * dt * self.sos - self.offset
-        detected_beacon_id = indexInfo.peak_val
-        return distance, detected_beacon_id
+        data = indexInfo.peak_val
+        return distance, indexInfo.pre_idx, data
+        #return indexInfo.buf_idx, indexInfo.pre_idx, data
     
     def pipe_to_file(self, filepath: str, num_measurements):
         f = open(filepath, "w")
@@ -46,26 +45,7 @@ class RangeCalc:
 
     def stop_callback(self, key):
         self.recording = False
-
-    def pipe_to_file_start_stop(self, filepath: str):
-        self.recording= True
-        print("Starting recording. Press enter to stop")
-        listener = Listener(on_press = self.stop_callback)   
-        listener.start()
-        f = open(filepath, "w")
-        f.write("range\n")
-        i=0
-        while self.recording:
-            if i%100==0: print("Reading Packet", i)
-            d = self.read_range()
-            if d >= 0:
-                f.write(str(d)+"\n")
-            i+=1
- 
-        f.close()
-        print("Recording ended. File saved to ", filepath)
-
-
+    
     def calibrate(filepath_in:str, filepath_out:str, offset:float):
         '''Offset is subtracted from each range measurement.'''
         df = pd.read_csv(filepath_in)
@@ -90,9 +70,29 @@ class RangeCalc:
 
         if (show):
             plt.show()
+'''
+    def pipe_to_file_start_stop(self, filepath: str):
+        self.recording= True
+        print("Starting recording. Press enter to stop")
+        listener = Listener(on_press = self.stop_callback)   
+        listener.start()
+        f = open(filepath, "w")
+        f.write("range\n")
+        i=0
+        while self.recording:
+            if i%100==0: print("Reading Packet", i)
+            d = self.read_range()
+            if d >= 0:
+                f.write(str(d)+"\n")
+            i+=1
+ 
+        f.close()
+        print("Recording ended. File saved to ", filepath)
+'''
+
 
 if __name__=="__main__":
-    rc = RangeCalc("COM4", 115200, 10, 30.012)
+    rc = RangeCalc("COM3", 115200, 10, 30.012)
 
     #for i in range(0,1000):
     #    print(rc.read_range())

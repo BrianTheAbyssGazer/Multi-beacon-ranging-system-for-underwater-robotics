@@ -1,9 +1,0 @@
-../Src/user/ping_out.cpp:200:6:void first_half_written_callback(DMA_HandleTypeDef*)	9
-../Src/user/ping_out.cpp:231:6:void secnd_half_written_callback(DMA_HandleTypeDef*)	3
-../Src/user/ping_out.cpp:35:1:PingOut::PingOut(DMA_HandleTypeDef*, TIM_HandleTypeDef*)	2
-../Src/user/ping_out.cpp:86:6:void PingOut::schedule_ping(int, int)	1
-../Src/user/ping_out.cpp:94:6:void PingOut::start_multi_impulses_scheduler(int, int, int)	1
-../Src/user/ping_out.cpp:104:6:void PingOut::start_periodic_scheduler(int)	1
-../Src/user/ping_out.cpp:162:6:void PingOut::set(int)	6
-../Src/user/ping_out.cpp:187:6:void PingOut::clear(int)	6
-../Src/user/ping_out.cpp:113:6:void PingOut::update()	11

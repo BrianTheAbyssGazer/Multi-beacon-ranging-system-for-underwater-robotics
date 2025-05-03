@@ -5,37 +5,52 @@ from numpy.fft import fftfreq
 from matplotlib import pyplot as plt
 import pandas as pd
 
-rc = RangeCalc("COM3", 115200, 20, 30.012)
+rc = RangeCalc("COM3", 115200, 10, 30.012)
 
 # Initialize live plot
-# plt.ion()
+plt.ion()
 fig, ax = plt.subplots()
-x_data, y_data = [], []
-line, = ax.plot(x_data, y_data, label="Filtered Data (0-1)")
+distance1, index1, distance2, index2, distance3, index3 = [], [], [], [], [], []
+
+line1, = ax.plot(index1, distance1, label="beacon 1 distance")
+line2, = ax.plot(index2, distance2, label="beacon 2 distance")
+line3, = ax.plot(index3, distance3, label="beacon 3 distance")
+
 ax.set_xlabel("Sample Index")
-ax.set_ylabel("Range Value")
-ax.set_title("Real-Time Filtered Range Data (0-1)")
+ax.set_ylabel("distance (cm)")
+ax.set_title("Multi-beacon distance")
 ax.legend()
 ax.grid()
-
-for i in range(0, 1000):  
-    value, detected_beacon_id = rc.read_range_and_beacon_id()
+i,i1,i2,i3=0,0,0,0
+while i <100:  
+    distance, pfx, data = rc.read_range_and_beacon_id()
+    i+=1
+    print(f"distance={distance}m, pfx={pfx}, data={data}")  # Print the filtered value
     
-    if 0 < value < 1:  # Filter values between 0 and 1
-        print(f"range={value}, detected beacon id={detected_beacon_id}")  # Print the filtered value
-        
-        # Update plot data
-        x_data.append(i)
-        y_data.append(value)
+    # Update plot data
+    if data==1:
+        distance1.append(distance)
+        i1+=1
+        index1.append(i1)
+    elif data==2:
+        distance2.append(distance)
+        i2+=1
+        index2.append(i2)
+    elif data==3:
+        distance3.append(distance)
+        i3+=1
+        index2.append(i3)
 
-        line.set_xdata(x_data)
-        line.set_ydata(y_data)
-        ax.relim()
-        ax.autoscale_view()
-    # plt.draw()
+    line1.set_xdata(index1)
+    line1.set_ydata(distance1)
+    line2.set_xdata(index2)
+    line2.set_ydata(distance2)
+    line3.set_xdata(index3)
+    line3.set_ydata(distance3)
+    ax.relim()
+    ax.autoscale_view()
+    plt.draw()
     # plt.pause(0.01)  # Adjust for smoother updates
 
-
-
-# plt.ioff()
-# plt.show()
+plt.ioff()
+plt.show()

@@ -1,0 +1,10 @@
+../Src/user/ping_out.cpp:231:6:void first_half_written_callback(DMA_HandleTypeDef*)	8
+../Src/user/ping_out.cpp:261:6:void secnd_half_written_callback(DMA_HandleTypeDef*)	3
+../Src/user/ping_out.cpp:36:1:PingOut::PingOut(DMA_HandleTypeDef*, TIM_HandleTypeDef*)	2
+../Src/user/ping_out.cpp:87:6:void PingOut::schedule_ping(int, int)	1
+../Src/user/ping_out.cpp:92:6:bool PingOut::calculateParity(bool*, const uint8_t*, uint8_t)	3
+../Src/user/ping_out.cpp:101:10:uint16_t PingOut::start_datapacket_scheduler(uint8_t)	10
+../Src/user/ping_out.cpp:134:6:void PingOut::start_periodic_scheduler(int)	1
+../Src/user/ping_out.cpp:193:6:void PingOut::set(int)	6
+../Src/user/ping_out.cpp:218:6:void PingOut::clear(int)	6
+../Src/user/ping_out.cpp:143:6:void PingOut::update()	11

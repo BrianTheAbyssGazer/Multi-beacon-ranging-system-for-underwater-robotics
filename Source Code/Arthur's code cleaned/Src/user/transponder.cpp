@@ -32,7 +32,7 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
     //CMD_RX cmd_rx(p_huart);
 	IndexInfoTX idx_info_tx(p_huart);
 	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
-	pgas.setGain(8);
+	pgas.setGain(2);
 
 	
 	//cmd_rx.start_receive();
@@ -62,7 +62,8 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
     while (1) {
         
         Timestamp pt = max_peak_detector.detect_peak();
-        if (pt.pfx != -1 && pt.pfx > last_pfx + cooldown_duration) {
+        if (pt.pfx != -1 && ((pt.pfx > last_pfx + cooldown_duration) ||
+        		   (pt.pfx < last_pfx && (pt.pfx > last_pfx + cooldown_duration-0x8000)))) {
             ping_out.schedule_ping(pt.idx, pt.pfx + response_delay);
             last_pfx = pt.pfx;
         }

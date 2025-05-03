@@ -31,7 +31,7 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     //CMD_RX cmd_rx(p_huart);
 	IndexInfoTX idx_info_tx(p_huart);
 	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
-    pgas.setGain(8);
+    pgas.setGain(2);
 
 
 	//cmd_rx.start_receive();
@@ -50,7 +50,7 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 
     /******************* SETUP TX ************************/
     PingOut ping_out(p_hdma_tim2_up, p_htim2);
-    ping_out.start_periodic_scheduler(10);
+    ping_out.start_periodic_scheduler(50);
     //PingOut::debug = true;
 
 
