@@ -54,3 +54,4 @@ while i <100:
 
 plt.ioff()
 plt.show()
+np.savez('distances.npz', arr_1=np.array(distance1), arr_2=np.array(distance2), arr_3=np.array(distance3))

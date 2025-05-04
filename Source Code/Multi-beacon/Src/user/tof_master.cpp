@@ -87,7 +87,7 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 			else{
 				max_peak_detector.send_data2computer(tmsp.idx,(0x8000)-echo_pfx+tmsp.pfx,uint16_t(id));
 			}
-			if(id==2)id=1;
+			if(id==3)id=1;
 			else id++;
 			waiting_time = 99;
 		}
