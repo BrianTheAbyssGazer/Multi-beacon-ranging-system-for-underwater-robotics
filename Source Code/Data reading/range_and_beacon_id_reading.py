@@ -39,7 +39,7 @@ while i <100:
     elif data==3:
         distance3.append(distance)
         i3+=1
-        index2.append(i3)
+        index3.append(i3)
 
     line1.set_xdata(index1)
     line1.set_ydata(distance1)
