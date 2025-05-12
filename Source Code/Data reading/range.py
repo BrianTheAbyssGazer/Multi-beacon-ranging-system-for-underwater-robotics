@@ -30,6 +30,10 @@ class RangeCalc:
         data = indexInfo.peak_val
         return distance, indexInfo.pre_idx, data
         #return indexInfo.buf_idx, indexInfo.pre_idx, data
+
+    def debug_read(self) -> float:
+        indexInfo = self.iirx.read_next_packet()
+        return indexInfo.buf_idx, indexInfo.pre_idx, indexInfo.peak_val
     
     def pipe_to_file(self, filepath: str, num_measurements):
         f = open(filepath, "w")

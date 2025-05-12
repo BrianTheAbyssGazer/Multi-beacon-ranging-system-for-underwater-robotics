@@ -23,7 +23,7 @@ ax.legend()
 ax.grid()
 i,i1,i2,i3=0,0,0,0
 while i <100:  
-    distance, pfx, data = rc.read_range_and_beacon_id()
+    distance, pfx, data = rc.debug_read()
     i+=1
     print(f"distance={distance}m, pfx={pfx}, data={data}")  # Print the filtered value
     
