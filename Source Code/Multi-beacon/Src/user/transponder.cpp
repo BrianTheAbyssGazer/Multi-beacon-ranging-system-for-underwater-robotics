@@ -32,7 +32,7 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
     //CMD_RX cmd_rx(p_huart);
 	IndexInfoTX idx_info_tx(p_huart);
 	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
-	pgas.setGain(2);
+	pgas.setGain(8);
 
 	
 	//cmd_rx.start_receive();
@@ -57,7 +57,7 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
     /************* Other transponder parameters **********/
     // int response_delay = 1; //units of full buffer temporal length (one less, so 0 is actually 1)
     int last_pfx = 0;
-    uint8_t id = 3; // change this for different beacons
+    uint8_t id = 1; // change this for different beacons
     bool signal[15]={0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0};
     uint16_t waiting_time = 0;
     uint8_t dataPos[] = {3, 5, 6, 7, 9, 10, 11, 12};

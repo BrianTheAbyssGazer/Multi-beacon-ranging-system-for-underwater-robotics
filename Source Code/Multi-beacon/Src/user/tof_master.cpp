@@ -31,7 +31,7 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     //CMD_RX cmd_rx(p_huart);
 	IndexInfoTX idx_info_tx(p_huart);
 	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
-    pgas.setGain(2);
+    pgas.setGain(8);
 
 
 	//cmd_rx.start_receive();
