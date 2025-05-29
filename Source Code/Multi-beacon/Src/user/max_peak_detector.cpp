@@ -121,6 +121,9 @@ Timestamp MaxPeakDetector :: detect_peak() {
     return tmsp;
 }
 
+void MaxPeakDetector :: set_threshold(int threshold) {
+	search_threshold = threshold;
+}
 
 void MaxPeakDetector :: search_loop() {
     
@@ -162,7 +165,7 @@ void MaxPeakDetector :: search_loop() {
                         last_peak_idx = tentative_max_idx;
                         last_peak_pfx = tentative_max_pfx;
                     }
-                    search_threshold = last_peak_val * 0.85;
+                    //search_threshold = last_peak_val * 0.85;
                     //(*p_index_info_tx).transmit_idx(last_peak_idx, last_peak_pfx, last_peak_val);
 					//reset for next peak:
 					tentative_max_val = 0;

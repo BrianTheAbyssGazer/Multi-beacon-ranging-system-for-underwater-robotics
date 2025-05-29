@@ -31,7 +31,7 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     //CMD_RX cmd_rx(p_huart);
 	IndexInfoTX idx_info_tx(p_huart);
 	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
-    pgas.setGain(2);
+    pgas.setGain(8);
 
 
 	//cmd_rx.start_receive();
@@ -57,7 +57,6 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     int echo_pfx = -1;
     uint16_t echo = 0;
     bool debug=false;
-    bool reset_gain=false;
     int global_pfx = 0;
     int last_pfx = 0;
     //PingOut::debug = true;
@@ -67,10 +66,6 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 		global_pfx = ping_out.cur_out_pfx;
 		if(global_pfx!=last_pfx){
 			waiting_time++;
-			if(reset_gain){
-				pgas.setGain(8);
-				reset_gain=false;
-			}
 		}
 		last_pfx = global_pfx;
 		if(tmsp.pfx==-1){
@@ -79,7 +74,6 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 				else echo = ping_out.start_datapacket_scheduler(id);
 				echo_pfx = (global_pfx+15)%(0x8000);
 				waiting_time = 0;
-			    pgas.setGain(2);
 			}
 			if (waiting_time>15 && echo!=0){
 				echo = 0;
@@ -87,7 +81,7 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 		}
 		else if(echo!=0) {
 			echo--;
-			if(echo==0)reset_gain==true;
+			if(echo==0)max_peak_detector.set_threshold(2100);
 		}
 		else{
 			if(echo_pfx<tmsp.pfx){

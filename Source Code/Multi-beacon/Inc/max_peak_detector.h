@@ -83,6 +83,7 @@ class MaxPeakDetector {
         MaxPeakDetector(ADC_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*);
         Timestamp detect_peak(void);
         void send_data2computer(int d_pfx, int end_idx, uint16_t data);
+        void set_threshold(int threshold);
     private:
         void search_loop(void);
         void error_1_handle();

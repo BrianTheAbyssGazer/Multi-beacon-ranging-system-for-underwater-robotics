@@ -24,7 +24,7 @@ ax.legend()
 ax.grid()
 i=0
 start_time = time.perf_counter()
-while i <100:  
+while i <1000:  
     distance, pfx, data = rc.debug_read()
     i+=1
     print(f"distance={distance}m, pfx={pfx}, data={data}")  # Print the filtered value

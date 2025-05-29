@@ -63,16 +63,11 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
     uint8_t dataPos[] = {3, 5, 6, 7, 9, 10, 11, 12};
     int global_pfx = 0;
     bool echo=true;
-    bool reset_gain=false;
     while (1) {
     	Timestamp tmsp = max_peak_detector.detect_peak();
 		global_pfx = ping_out.cur_out_pfx;
 		if(global_pfx!=last_pfx){
 			waiting_time++;
-			if(reset_gain){
-				pgas.setGain(8);
-				reset_gain = false;
-			}
 		}
 		last_pfx = global_pfx;
 
@@ -84,7 +79,7 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
 		else if(echo){
 			echo=false;
 			waiting_time = 0;
-			reset_gain = true;
+			max_peak_detector.set_threshold(2100);
 		}
 		else{
 			if(signal[0]==0) waiting_time = 0;
@@ -98,7 +93,6 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
 				if(data==id){
 					ping_out.schedule_ping(tmsp.idx,(tmsp.pfx+1)%(0x8000));
 					waiting_time = 0;
-					pgas.setGain(2);
 				}
 				echo=true;
 				for(int i=0;i<15;i++) signal[i]=0;
