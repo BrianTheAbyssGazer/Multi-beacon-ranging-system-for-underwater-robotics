@@ -1,0 +1,6 @@
+../Src/user/pga.cpp:23:1:PGA303::PGA303(OPAMP_HandleTypeDef*)	1
+../Src/user/pga.cpp:41:6:void PGA303::setGain(int)	5
+../Src/user/pga.cpp:72:6:static void PGA303::pgaTest(OPAMP_HandleTypeDef*)	1
+../Src/user/pga.cpp:88:17:void pgaTestC(OPAMP_HandleTypeDef*)	0
+../Src/user/pga.cpp:95:1:PGA_cascade_2::PGA_cascade_2(OPAMP_HandleTypeDef*, OPAMP_HandleTypeDef*)	1
+../Src/user/pga.cpp:117:6:void PGA_cascade_2::setGain(int)	8
