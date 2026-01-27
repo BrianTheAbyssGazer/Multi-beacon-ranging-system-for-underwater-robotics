@@ -14,7 +14,8 @@
 #include "global_buffer_def.h"
 
 
-#if BASIC_PEAK_DETECTOR_MODE || TRANSPONDER_MODE || TIME_OF_FLIGHT_MODE
+#if BASIC_PEAK_DETECTOR_MODE || TRANSPONDER_MODE || TIME_OF_FLIGHT_MODE || ECHO_TRANSPONDER_MODE || ECHO_MASTER_MODE
+
 
 
 // global ADC buffer:
@@ -131,8 +132,11 @@ void MaxPeakDetector :: search_loop() {
     int peak_found = false;
 
 	while (1) {
+#if ECHO_TRANSPONDER_MODE || ECHO_MASTER_MODE
 		cur_val = buf[cur_idx];
-
+		(*p_index_info_tx).stream_adc(cur_val);
+		cur_idx++;
+#else
 		switch (search_sub_state)
 		{	
 			case MPDSearchState::FIND_SIGNAL: //------------------------------------------------------------------
@@ -216,8 +220,7 @@ void MaxPeakDetector :: search_loop() {
 				
 		} // switch
 
-		
-
+#endif
 		// conditions to escape search mode
         if (peak_found) { // we found a peak and need to terminate
             peak_found = false;

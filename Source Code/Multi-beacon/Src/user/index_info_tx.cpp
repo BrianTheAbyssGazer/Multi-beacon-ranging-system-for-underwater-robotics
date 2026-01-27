@@ -30,7 +30,9 @@ void IndexInfoTX :: transmit_idx(int buf_idx, int pre_idx, uint16_t peak_val) {
 	HAL_UART_Transmit_IT(p_huart, send_buf, IITX_PACKET_LEN); 
 }
 
-
+void IndexInfoTX :: stream_adc(uint16_t adc_val) {
+	HAL_UART_Transmit_IT(p_huart, adc_val, 2);
+}
 
 //Send error1 packet
 /*

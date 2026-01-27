@@ -11,7 +11,8 @@
 #include "global_buffer_def.h"
 #include "ping_out.h"
 
-#if  TRANSPONDER_MODE || TIME_OF_FLIGHT_MODE ||SLOW_TX_MODE
+#if  TRANSPONDER_MODE || TIME_OF_FLIGHT_MODE ||SLOW_TX_MODE || ECHO_TRANSPONDER_MODE || ECHO_MASTER_MODE
+
 
 // global out buffer, with DMA to GPIO register
 uint32_t out_buf[OUT_BUF_LEN];
@@ -70,7 +71,7 @@ PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2
                     (uint32_t)out_buf, 
                     (uint32_t)&(GPIOC->BSRR), 
                     OUT_BUF_LEN);
-    
+
     HAL_TIM_Base_Start(p_htim2);
 	TIM2->DIER |= (1<<8); //set UDE bit (update dma request enable)
 
@@ -266,9 +267,6 @@ void secnd_half_written_callback(DMA_HandleTypeDef *hdma) {
     }
     
 }
-
-
-
 
 
 #endif

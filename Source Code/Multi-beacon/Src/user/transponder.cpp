@@ -101,6 +101,7 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
 		ping_out.update();
     }
 }
+#elif ECHO_TRANSPONDER_MODE
 
 #endif
 

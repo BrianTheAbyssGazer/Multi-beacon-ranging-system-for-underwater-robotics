@@ -13,11 +13,7 @@
 #include "ping_out.h"
 
 
-#if TIME_OF_FLIGHT_MODE
-
-
-
-
+#if TIME_OF_FLIGHT_MODE || ECHO_MASTER_MODE
 
 extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
                                 TIM_HandleTypeDef* p_htim3,
@@ -63,7 +59,8 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 
     while (1) {
     	Timestamp tmsp = max_peak_detector.detect_peak();
-		global_pfx = ping_out.cur_out_pfx;
+#if TIME_OF_FLIGHT_MODE
+   		global_pfx = ping_out.cur_out_pfx;
 		if(global_pfx!=last_pfx){
 			waiting_time++;
 		}
@@ -95,9 +92,9 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 			waiting_time = 99;
 		}
 		ping_out.update();
+#endif
     }
 }
 
 #endif
-
 
