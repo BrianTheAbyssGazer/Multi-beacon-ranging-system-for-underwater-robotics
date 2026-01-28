@@ -13,8 +13,8 @@
 #define BASIC_PULSE_STREAM_MODE   0
 #define BASIC_PEAK_DETECTOR_MODE   0 // if setting this, remember to change DMA to CIRCULAR
 #define TRANSPONDER_MODE   0 // if setting this, remember to change DMA to CIRCULAR
-#define TIME_OF_FLIGHT_MODE   1 // if setting this, remember to change DMA to CIRCULAR
-#define ECHO_MASTER_MODE 0 // transponder will echo whatever recieved
+#define TIME_OF_FLIGHT_MODE   0 // if setting this, remember to change DMA to CIRCULAR
+#define ECHO_MASTER_MODE 1 // transponder will echo whatever recieved
 #define ECHO_TRANSPONDER_MODE 0 // transponder will echo whatever recieved
 
 

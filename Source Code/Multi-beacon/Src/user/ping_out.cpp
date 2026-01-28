@@ -25,9 +25,11 @@ volatile int PingOut::cur_out_pfx = 0;
 volatile int PingOut::time_to_clear = 2;
 volatile int PingOut::schedule_period = 0;
 volatile uint8_t PingOut::datapacket_index = -1;
-bool PingOut::codeword[15];
+bool PingOut::codeword[DATA_LEN];
+bool PingOut::codebits[DATA_LEN*8];
 volatile bool PingOut::time_to_schedule_period = false;
 volatile bool PingOut::time_to_schedule_databit = false;
+volatile bool PingOut::time_to_schedule_phase_keying = false;
 bool PingOut::debug = false;
 
  
@@ -85,10 +87,6 @@ PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2
 * idx will be rounded for the Out buffer in this function.
 * pfx is the same for both in and out buffer as they are the same temporal length.
 */
-void PingOut::schedule_ping(int idx, int pfx) {
-    scheduled_idx = idx/samples_per_half_period;
-    scheduled_pfx = pfx;
-}
 
 bool PingOut::calculateParity(bool codeword[], const uint8_t positions[], uint8_t size) {
 	bool parity = 0;
@@ -129,6 +127,14 @@ uint16_t PingOut::start_datapacket_scheduler(uint8_t data) {
 	return sum;
 }
 
+void PingOut::set_phase_keying_data(uint8_t* data) {
+	for (int i = 0; i < DATA_LEN; i++) {
+		uint8_t bit = data[i];
+		for (int j=0;i<8;j++)PingOut::codebits[i*8+j]=(bit >> j) & 1;
+	}
+    scheduled_idx = 1;
+    scheduled_pfx = (PingOut::cur_out_pfx + 1)%(0x8000);
+}
 /*
 * Start periodic scheduling, with period in units of total buffer length
 */
@@ -157,8 +163,9 @@ void PingOut::update() {
     	PingOut::time_to_schedule_databit = false;
     	time_to_clear = 2;
     }
-
-
+    else if(PingOut::time_to_schedule_phase_keying){
+    	PingOut::time_to_schedule_phase_keying = false;
+    }
     // clear:
     if (clear_idx >= 0 && time_to_clear == 2) {
         clear(clear_idx);
@@ -200,11 +207,27 @@ void PingOut::set(int out_idx) {
     // go over the half buffer boundary.
     // The processing delay from the ADC data should be sufficient.
    
+#if ECHO_MASTER_MODE
+    for (int i = 0; i < 8 * DATA_LEN; i++){
+    	if(PingOut::codebits[i]){
+    	    for (int j = 0; j < 8*2; j = j+2) {
+    	    	int idx=(out_idx+j+8*i)%OUT_BUF_LEN;
+    	        out_buf[idx] = BSRR_PC6_SET_MASK;
+    	    }
+    	}
+    	else{
+    	    for (int j = 1; j < 8*2+1; j = j+2) {
+    	    	int idx=(out_idx+j+8*i)%OUT_BUF_LEN;
+    	        out_buf[idx] = BSRR_PC6_SET_MASK;
+    	    }
+    	}
+    }
 
+#else
     for (int i = 0; i < peak_count*2; i = (i+2)%(OUT_BUF_LEN)) {
         out_buf[out_idx + i] = BSRR_PC6_SET_MASK;
     }
-
+#endif
     clear_idx = scheduled_idx;
     time_to_clear = 0;
 
@@ -217,11 +240,27 @@ void PingOut::set(int out_idx) {
 
 // !! Side effect - sets clear_idx to -1 after clearing
 void PingOut::clear(int out_idx) {
-    if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);} 
+	if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);}
+#if ECHO_MASTER_MODE
+    for (int i = 0; i < 8 * DATA_LEN; i++){
+    	if(PingOut::codebits[i]){
+    	    for (int j = 0; j < 8*2; j = j+2) {
+    	    	int idx=(out_idx+j+8*i)%OUT_BUF_LEN;
+    	        out_buf[idx] = BSRR_PC6_RESET_MASK;
+    	    }
+    	}
+    	else{
+    	    for (int j = 1; j < 8*2+1; j = j+2) {
+    	    	int idx=(out_idx+j+8*i)%OUT_BUF_LEN;
+    	        out_buf[idx] = BSRR_PC6_RESET_MASK;
+    	    }
+    	}
+    }
+#else
     for (int i = 0; i < peak_count*2; i = (i+2)%(OUT_BUF_LEN)) {
         out_buf[out_idx + i] = BSRR_PC6_RESET_MASK;
     }
-
+#endif
     clear_idx = -1;
     if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);}
 }

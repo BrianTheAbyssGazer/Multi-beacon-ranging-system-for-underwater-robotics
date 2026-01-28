@@ -1,4 +1,4 @@
-Src/user/adc_over_uart.o: ../Src/user/adc_over_uart.cpp ../Inc/main.h \
+Src/user/ping_out.o: ../Src/user/ping_out.cpp ../Inc/main.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h \
  ../Inc/stm32f3xx_hal_conf.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h \
@@ -35,9 +35,8 @@ Src/user/adc_over_uart.o: ../Src/user/adc_over_uart.cpp ../Inc/main.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
- ../Inc/adc_over_uart.h ../Inc/pga.h ../Inc/cmd_rx.h \
- ../Inc/global_buffer_def.h ../Inc/mode.h ../Inc/global_buffer_def.h \
- ../Inc/mode.h
+ ../Inc/max_peak_detector.h ../Inc/index_info_tx.h ../Inc/mode.h \
+ ../Inc/global_buffer_def.h ../Inc/mode.h ../Inc/ping_out.h
 ../Inc/main.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
 ../Inc/stm32f3xx_hal_conf.h:
@@ -75,10 +74,9 @@ Src/user/adc_over_uart.o: ../Src/user/adc_over_uart.cpp ../Inc/main.h \
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h:
-../Inc/adc_over_uart.h:
-../Inc/pga.h:
-../Inc/cmd_rx.h:
-../Inc/global_buffer_def.h:
+../Inc/max_peak_detector.h:
+../Inc/index_info_tx.h:
 ../Inc/mode.h:
 ../Inc/global_buffer_def.h:
 ../Inc/mode.h:
+../Inc/ping_out.h:

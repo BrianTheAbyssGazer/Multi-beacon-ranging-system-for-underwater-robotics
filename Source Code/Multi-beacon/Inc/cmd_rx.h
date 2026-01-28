@@ -6,7 +6,7 @@
  */
 
 
-
+#include "global_buffer_def.h"
 /* packet structure */
 #define CRX_PACKET_LEN 2
 // byte 0         | byte 1
@@ -31,12 +31,18 @@ class CMD_RX
         
     public:
         static uint8_t rx_buf[CRX_PACKET_LEN];
+        static uint8_t unit_test_buf[DATA_LEN];
+
         static volatile int last_cmd_type;
         static volatile int last_cmd_detail;
+        static volatile uint8_t last_cmd_data[DATA_LEN];
         CMD_RX(UART_HandleTypeDef* p_huart);
         void start_receive(void);
         int get_cmd_type(void);
         int get_cmd_detail(void);
+        int get_cmd_data(void);
+        void start_unit_test(void);
+
         
 };
 

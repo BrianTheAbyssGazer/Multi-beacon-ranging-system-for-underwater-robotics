@@ -29,7 +29,7 @@ class IndexInfoTX {
         void transmit_idx(int, int, uint16_t);
         void transmit_err_1(int, int);
         void test_pattern(void);
-        
+        void stream_adc(uint8_t adc_val);
 };
 
 #endif

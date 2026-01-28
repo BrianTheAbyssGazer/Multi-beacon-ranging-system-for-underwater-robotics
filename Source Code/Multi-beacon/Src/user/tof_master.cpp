@@ -91,8 +91,10 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 			else id++;
 			waiting_time = 99;
 		}
-		ping_out.update();
+#elif ECHO_MASTER_MODE
+		ping_out.start_periodic_scheduler(50);
 #endif
+		ping_out.update();
     }
 }
 

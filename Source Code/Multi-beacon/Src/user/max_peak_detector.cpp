@@ -122,10 +122,6 @@ Timestamp MaxPeakDetector :: detect_peak() {
     return tmsp;
 }
 
-void MaxPeakDetector :: set_threshold(int threshold) {
-	search_threshold = threshold;
-}
-
 void MaxPeakDetector :: search_loop() {
     
 	int cur_val;

@@ -24,6 +24,8 @@
 	extern uint16_t buf[BUF_LEN]; //18k elems, or 36k bytes
 	#define OUT_BUF_LEN 3000 
 	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes
+	#define DATA_LEN 15
+
 	//3k * 6 = 18k (6 ADC samples per half period of carrier)
 	//36k bytes + 12k bytes = 48k bytes (will fit into memory)
 
@@ -32,10 +34,16 @@
 	extern uint16_t buf[BUF_LEN]; //18k elems, or 36k bytes
 	#define OUT_BUF_LEN 3000 
 	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes
+	#define DATA_LEN 15
+
 	//3k * 6 = 18k (6 ADC samples per half period of carrier)
 	//36k bytes + 12k bytes = 48k bytes (will fit into memory)
-
-
+#elif ECHO_MASTER_MODE || ECHO_TRANSPONDER_MODE
+	#define BUF_LEN 18000
+	extern uint16_t buf[BUF_LEN]; //18k elems, or 36k bytes
+	#define OUT_BUF_LEN 3000
+	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes
+    #define DATA_LEN 15
 #elif SLOW_TX_MODE
 	#define OUT_BUF_LEN 3000
 	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes
