@@ -30,8 +30,13 @@ void IndexInfoTX :: transmit_idx(int buf_idx, int pre_idx, uint16_t peak_val) {
 	HAL_UART_Transmit_IT(p_huart, send_buf, IITX_PACKET_LEN); 
 }
 
-void IndexInfoTX :: stream_adc(uint8_t adc_val) {
-	HAL_UART_Transmit_IT(p_huart, adc_val, 2);
+void IndexInfoTX :: stream_adc(int adc_val) {
+    uint8_t bytes[4];
+    bytes[0] = (uint8_t)(adc_val);   // For little-endian representation in array
+    bytes[1] = (uint8_t)(adc_val >> 8);
+    bytes[2] = (uint8_t)(adc_val >> 16);
+    bytes[3] = (uint8_t)(adc_val >> 24);
+	HAL_UART_Transmit_IT(p_huart, bytes, 4);
 }
 
 //Send error1 packet

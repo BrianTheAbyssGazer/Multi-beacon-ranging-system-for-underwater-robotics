@@ -36,12 +36,12 @@ int CMD_RX::get_cmd_type(void) {
 }
 
 
-int* CMD_RX::get_cmd_detail(void) {
+int CMD_RX::get_cmd_detail(void) {
     return last_cmd_detail;
 }
 
-int CMD_RX::get_cmd_data(void) {
-    return last_cmd_data;
+uint8_t* CMD_RX::get_cmd_data(void) {
+    return const_cast<uint8_t*>(last_cmd_data);
 }
 
 

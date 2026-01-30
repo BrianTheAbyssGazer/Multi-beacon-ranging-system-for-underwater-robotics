@@ -24,13 +24,14 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
                                 TIM_HandleTypeDef* p_htim2) {
 
     /******************* SETUP RX ************************/
-    //CMD_RX cmd_rx(p_huart);
+#if ECHO_MASTER_MODE
+    CMD_RX cmd_rx(p_huart);
+	cmd_rx.start_receive();
+#endif
 	IndexInfoTX idx_info_tx(p_huart);
 	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
     pgas.setGain(8);
 
-
-	//cmd_rx.start_receive();
 
 	MaxPeakDetector max_peak_detector(p_hadc, p_htim3,  &idx_info_tx);
 
@@ -47,6 +48,7 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     /******************* SETUP TX ************************/
     PingOut ping_out(p_hdma_tim2_up, p_htim2);
     //ping_out.start_periodic_scheduler(50);
+#if TIME_OF_FLIGHT_MODE
     uint16_t max_waiting_time = 100;  //needs to be greater than signal length.
     uint16_t waiting_time = 0;
     uint8_t id=1;
@@ -55,6 +57,7 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     bool debug=false;
     int global_pfx = 0;
     int last_pfx = 0;
+#endif
     //PingOut::debug = true;
 
     while (1) {
@@ -92,7 +95,10 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 			waiting_time = 99;
 		}
 #elif ECHO_MASTER_MODE
-		ping_out.start_periodic_scheduler(50);
+		uint8_t* cmd_data = cmd_rx.get_cmd_data();
+		ping_out.set_phase_keying_data(cmd_data);
+		//ping_out.start_periodic_scheduler(50);
+		HAL_UART_Transmit_IT(p_huart, (uint8_t*)"19260817", 8);
 #endif
 		ping_out.update();
     }

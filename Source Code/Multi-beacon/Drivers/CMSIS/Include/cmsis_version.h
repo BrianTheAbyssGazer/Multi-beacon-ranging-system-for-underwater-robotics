@@ -1,1 +1,39 @@
-SZY�SYY�SYX�RXW�PWU�QXW�RYX�RYY�SYY�RYX�QXX�SZZ�TZZ�SYX�RYX�RXW�RXX�TZY�U[Z�U[[�V\\�V]\�U]\�V]\�W]]�V]]�V]]�V]]�U[[�U\[�U\[�U]\�V]]�V]]�U]\�V]]�V]]�V]\�V^]�V]]�W^]�W^]�U]]�U\\�U]\�U\\�U\\�U\\�U\\�U[[�U[[�TZZ�TZZ�U\[�U\\�T[Z�T[Z�S[Z�SZY�RYY�SYZ�SYY�SYY�QXW�PWV�RYX�RYY�QXW�QWW�QXW�QXX�QXW�QXV�PWW�PWV�QXV�SZY�U[Z�U\\�U\\�SZY�QWV�QXW�QXW�OUT�MSR�MTS�OVU�OVU�PWV�PVU�QWV�PWV�QXW�SZY�TZZ�T[[�T[Z�SZX�RYW�OVU�LTR�OWU�QXW�RYV�RYX�QXV�QXV�RYX�RYX�QYW�PXV�PXU�PXV�OXU�QYV�RYW�OWT�LTQ�LUQ�NVS�NVT�KSQ�JRP�KSP�HQM�GPK�EOI�DMD�CKC�CLE�ENG�FNI�FOJ�HQM�GPM�DMJ�DMK�DNK�FPM�JRP�KSQ�JSQ�JSQ�HQO�FNM�FOL�FNL�FNK�FOM�JRQ�JSQ�HQN�EOL�DNK�DNL�EMK�DLJ�EOL�HRO�FOL�DMI�DLH�AJE�?IE�DLJ�IRO�JRO�GOL�DMJ�DMJ�ENJ�ENJ�CLI�BKG�CLH�DMJ�ENK�FOL�GOM�GPM�GQM�IQN�JQO�FOL�CLI�CLG�ENI�GQM�HPL�GOK�KTQ�PWU�SZX�S[Z�U\\�U]]�V]]�W^^�X__�Yaa�Zab�Zaa�Y_`�X`_�X``�Yab�[bc�Zbc�Yab�Yaa�Y``�X_`�Y``�Y`a�X_`�X_`�Zbb�[cc�Zbb�Zbb�Y`b�W^_�V]]�W^^�X``�Yaa�Y`a�X_`�W_^�X__�Y_`�Y``�Zaa�[cc�[cb�[bb�[bc�\cd�\dd�\dd�\dd�\de�\dd�[bc�[dd�[dc�[bb�[cc�[cd�[cc�[cc�[cd�[cd�\de�\ee�\dd�[bb�Y__�Y__�Yaa�Zab�Zaa�Zbb�Zbb�Yaa�Ya`�X__�V^^�V^^�W__�X__�X__�X__�X_^�X^^�X^^�X__�X_`�Y`a�Y`a�X_`�W^_�X__�X_`�Zaa�Zaa�X``�W^^�W^^�X^^�X^^�X^^�Y__�Y`_�Y__�X__�X__�Y`_�Zaa�Z`a�Y``�Zaa�Zaa�Zbb�Zab�Zbb�Zcc�Zcb�Zab�Yaa�X`a�Yaa�Yaa�Zab�Zab�W^^�Yaa�[cc�[cc�[dd�Zbb�Zbb�Zbb�Zbb�Yba�Ya`�X__�X__�X``�X`_�Yaa�Zcb�Yba�Zba�Ya`�Zaa�X`_�W_]�V^^�W__�Xa`�X`_�X`_�Xb`�Yb`�X``�X_^�X`_�X``�W__�V__�V_^�U_]�U^\�U^]�U^]�U^]�U^]�U^\�U^]�U^\�U^[�U^[�U][�U][�T\Z�S[Y�S[X�S\Y�S[Y�R[X�RZX�RZX�RZY�T\Z�U^[�V_\�V_\�U_\�U_]�U_\�U^]�U^\�U^[�U^\�U^[�U]Z�T][�T\\�S\Z�T]Z�T]Z�S[Y�R[Y�S[Y�SZY�RZY�SZY�RZX�RYX�RZX�RYW�RZW�S[Z�T]\�U]\�U\[�T\[�S\Z�T]\�U]\�T\[�T[\�T\\�T\\�T[[�S[Z�S[Z�RYX�RZX�S[Z�PXW�MUU�NVV�RYX�SZZ�S[[�S[Z�
+/**************************************************************************//**
+ * @file     cmsis_version.h
+ * @brief    CMSIS Core(M) Version definitions
+ * @version  V5.0.2
+ * @date     19. April 2017
+ ******************************************************************************/
+/*
+ * Copyright (c) 2009-2017 ARM Limited. All rights reserved.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Licensed under the Apache License, Version 2.0 (the License); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#if   defined ( __ICCARM__ )
+  #pragma system_include         /* treat file as system include file for MISRA check */
+#elif defined (__clang__)
+  #pragma clang system_header   /* treat file as system include file */
+#endif
+
+#ifndef __CMSIS_VERSION_H
+#define __CMSIS_VERSION_H
+
+/*  CMSIS Version definitions */
+#define __CM_CMSIS_VERSION_MAIN  ( 5U)                                      /*!< [31:16] CMSIS Core(M) main version */
+#define __CM_CMSIS_VERSION_SUB   ( 1U)                                      /*!< [15:0]  CMSIS Core(M) sub version */
+#define __CM_CMSIS_VERSION       ((__CM_CMSIS_VERSION_MAIN << 16U) | \
+                                   __CM_CMSIS_VERSION_SUB           )       /*!< CMSIS Core(M) version number */
+#endif
