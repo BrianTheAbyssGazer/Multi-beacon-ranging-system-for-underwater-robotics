@@ -40,7 +40,7 @@ class CMD_RX
         void start_receive(void);
         int get_cmd_type(void);
         int get_cmd_detail(void);
-        int get_cmd_data(void);
+        volatile uint8_t* get_cmd_data(void);
         void start_unit_test(void);
 
         

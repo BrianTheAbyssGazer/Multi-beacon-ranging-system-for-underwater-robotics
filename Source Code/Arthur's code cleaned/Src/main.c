@@ -17,6 +17,8 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+
+#include <b.h>
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -32,7 +34,6 @@
 #include "slow_tx.h"
 #include "ping_out.h"
 #include "mode.h"
-
 
 /* USER CODE END Includes */
 
@@ -218,13 +219,13 @@ int main(void)
 	  basic_pulse_stream_main();
 
 	  #elif BASIC_PEAK_DETECTOR_MODE
-	  
+
     peak_detector_main(&hadc4, &htim3, &huart1, &hopamp2, &hopamp3);
 
 	#elif TRANSPONDER_MODE
     transponder_main(&hadc4, &htim3, &huart1, &hopamp2, &hopamp3,
     				 &hdma_tim2_up, &htim2);
-
+    int c=test_main(1);
 	#elif SLOW_TX_MODE
     slow_tx_main(&huart1, &hdma_tim2_up, &htim2);
 

@@ -1,20 +1,40 @@
 import serial
 import struct
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+from collections import deque
+
+MAX_SAMPLES = 10000
+data_buffer = deque([0] * MAX_SAMPLES, maxlen=MAX_SAMPLES)
+ser = serial.Serial("COM3", 115200,timeout=0.1)
+
+# --- Plot Setup ---
+fig, ax = plt.subplots()
+line, = ax.plot(data_buffer)
+ax.set_ylim(-10, 20) # Adjust based on your expected int range
+ax.set_title("Real-Time Serial Data (Last 1000 Samples)")
+def update(frame):
+    # Read all available chunks of 4 bytes
+    while ser.in_waiting >= 4:
+
+        flag = ser.read(1)
+        print(flag)
+        if flag==b'\xff':
+            raw_data = ser.read(4)
+            print(raw_data)
+            try:
+                # Unpack as little-endian signed int
+                value = struct.unpack('>i', raw_data)[0]
+                data_buffer.append(value)
+            except struct.error:
+                pass
+
+    # Update the plot line data
+    line.set_ydata(data_buffer)
+    return line,
 
 
-def byte_stream_to_int_list(byte_stream):
-    # Calculate the number of 16-bit integers
-    num_integers = len(byte_stream) // 2
-    # Unpack the byte stream into a list of integers
-    int_list = struct.unpack('<' + 'H' * num_integers, byte_stream) # TODO will have to change the 'H' character in order to receive formats larger than 16 bit
-    return list(int_list)
+ani = FuncAnimation(fig, update, interval=20, blit=True, cache_frame_data=False)
 
-ser = serial.Serial("COM4", 115200)
-while True:
-    print("about_to_read")
-    bs = ser.read(7)
-    print(repr(bs))
-
-    # Example usage
-    #int_list = byte_stream_to_int_list(bs)
-    #print(int_list) 
+plt.show()
+ser.close()

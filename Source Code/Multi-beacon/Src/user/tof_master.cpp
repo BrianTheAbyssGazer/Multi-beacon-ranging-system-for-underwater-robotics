@@ -24,13 +24,14 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
                                 TIM_HandleTypeDef* p_htim2) {
 
     /******************* SETUP RX ************************/
-    //CMD_RX cmd_rx(p_huart);
-	IndexInfoTX idx_info_tx(p_huart);
+    CMD_RX cmd_rx(p_huart);
+    cmd_rx.start_unit_test();
+    IndexInfoTX idx_info_tx(p_huart);
 	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
     pgas.setGain(8);
 
 
-	//cmd_rx.start_receive();
+
 
 	MaxPeakDetector max_peak_detector(p_hadc, p_htim3,  &idx_info_tx);
 
@@ -47,6 +48,7 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     /******************* SETUP TX ************************/
     PingOut ping_out(p_hdma_tim2_up, p_htim2);
     //ping_out.start_periodic_scheduler(50);
+#if TIME_OF_FLIGHT_MODE
     uint16_t max_waiting_time = 100;  //needs to be greater than signal length.
     uint16_t waiting_time = 0;
     uint8_t id=1;
@@ -56,9 +58,9 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     int global_pfx = 0;
     int last_pfx = 0;
     //PingOut::debug = true;
-
+#endif
     while (1) {
-    	Timestamp tmsp = max_peak_detector.detect_peak();
+    	max_peak_detector.detect_peak();
 #if TIME_OF_FLIGHT_MODE
    		global_pfx = ping_out.cur_out_pfx;
 		if(global_pfx!=last_pfx){
@@ -92,7 +94,10 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 			waiting_time = 99;
 		}
 #elif ECHO_MASTER_MODE
-		ping_out.start_periodic_scheduler(50);
+		if (cmd_rx.get_cmd_type() == -1) {
+					ping_out.set_phase_keying_data(cmd_rx.get_cmd_detail());
+					cmd_rx.start_unit_test();
+				}
 #endif
 		ping_out.update();
     }

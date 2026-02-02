@@ -32,6 +32,7 @@
 #include "slow_tx.h"
 #include "ping_out.h"
 #include "mode.h"
+#include "test.h"
 
 
 /* USER CODE END Includes */

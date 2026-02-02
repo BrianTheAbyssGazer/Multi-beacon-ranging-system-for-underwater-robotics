@@ -36,7 +36,7 @@ Src/user/cmd_rx.o: ../Src/user/cmd_rx.cpp ../Inc/main.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
  ../Inc/cmd_rx.h ../Inc/global_buffer_def.h ../Inc/mode.h \
- ../Inc/global_buffer_def.h
+ ../Inc/global_buffer_def.h ../Inc/mode.h
 ../Inc/main.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
 ../Inc/stm32f3xx_hal_conf.h:
@@ -78,3 +78,4 @@ Src/user/cmd_rx.o: ../Src/user/cmd_rx.cpp ../Inc/main.h \
 ../Inc/global_buffer_def.h:
 ../Inc/mode.h:
 ../Inc/global_buffer_def.h:
+../Inc/mode.h:
