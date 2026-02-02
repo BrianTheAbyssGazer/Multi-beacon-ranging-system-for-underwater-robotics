@@ -18,7 +18,6 @@ def update(frame):
     while ser.in_waiting >= 4:
 
         flag = ser.read(1)
-        print(flag)
         if flag==b'\xff':
             raw_data = ser.read(4)
             print(raw_data)
