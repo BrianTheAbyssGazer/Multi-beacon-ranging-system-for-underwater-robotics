@@ -35,9 +35,7 @@ Src/main.o: ../Src/main.c ../Inc/main.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
- ../Inc/adc_over_uart.h ../Inc/pga.h ../Inc/cmd_rx.h \
- ../Inc/basic_pulse_stream.h ../Inc/main.h ../Inc/basic_peak_detector.h \
- ../Inc/index_info_transmit.h ../Inc/mode.h
+ ../Inc/test.h
 ../Inc/main.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
 ../Inc/stm32f3xx_hal_conf.h:
@@ -75,11 +73,4 @@ Src/main.o: ../Src/main.c ../Inc/main.h \
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h:
-../Inc/adc_over_uart.h:
-../Inc/pga.h:
-../Inc/cmd_rx.h:
-../Inc/basic_pulse_stream.h:
-../Inc/main.h:
-../Inc/basic_peak_detector.h:
-../Inc/index_info_transmit.h:
-../Inc/mode.h:
+../Inc/test.h:

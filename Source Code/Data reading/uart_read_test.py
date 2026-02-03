@@ -1,20 +1,98 @@
 import serial
 import struct
+import threading
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+from matplotlib.widgets import Button,RadioButtons
+from collections import deque
+from matplotlib.ticker import FuncFormatter
+
+MAX_SAMPLES = 400
+data_buffer = deque([0] * MAX_SAMPLES, maxlen=MAX_SAMPLES)
+COMMANDS = {
+    "Frequency 1" : bytes([0xAA if i % 2 == 0 else 0xAA for i in range(8)]),
+    "Frequency 2" : bytes([0xCC if i % 2 == 0 else 0xCC for i in range(8)]),
+    "Frequency 3" : bytes([0xF0 if i % 2 == 0 else 0xF0 for i in range(8)]),
+    "Frequency 4" : bytes([0xFF if i % 2 == 0 else 0x00 for i in range(8)]),
+    "pwm 1" : bytes([0xF0 if i % 2 == 0 else 0x00 for i in range(8)]),
+    "pwm 2" : bytes([0xFF if i % 8 == 0 else 0xF0 for i in range(8)]),
+    "Phase 1" : bytes([0xAA if i <4 else 0x55 for i in range(8)]),
+    "Phase 2" : bytes([0xAA, 0xAA, 0x55, 0x55, 0xAA, 0xAA, 0x55, 0x55]),
+    "Phase 3" : bytes([0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55])
+}
+selected_command="Frequency 1"
 
 
-def byte_stream_to_int_list(byte_stream):
-    # Calculate the number of 16-bit integers
-    num_integers = len(byte_stream) // 2
-    # Unpack the byte stream into a list of integers
-    int_list = struct.unpack('<' + 'H' * num_integers, byte_stream) # TODO will have to change the 'H' character in order to receive formats larger than 16 bit
-    return list(int_list)
+signal=10
+serial_lock = threading.Lock() # Prevents simultaneous read/write collisions
 
-ser = serial.Serial("COM4", 115200)
-while True:
-    print("about_to_read")
-    bs = ser.read(7)
-    print(repr(bs))
+def rx_data(ser, data_buffer, signal,lock):
+    while True:
+        with lock:
+            if ser.in_waiting >= 5:
+                flag = ser.read(1)
+                #print(flag)
+                if flag==b'\xf0':
+                    raw_data = ser.read(4)
+                    try:
+                        # Unpack as little-endian signed int
+                        value = struct.unpack('<i', raw_data)[0]
+                        if value!=0:
+                            signal=10
+                        if signal>0:
+                            data_buffer.append(value)
+                            signal-=1
+                    except struct.error:
+                        pass
+                elif flag==b'\xff':
+                    raw_data = ser.read(4)
+                    value = struct.unpack('<i', raw_data)[0]
+                    print(value)
 
-    # Example usage
-    #int_list = byte_stream_to_int_list(bs)
-    #print(int_list) 
+def setup_plot():
+    ser = serial.Serial("COM4", 115200,timeout=0.1)
+
+    thread = threading.Thread(target=rx_data, args=(ser, data_buffer, signal,serial_lock), daemon=True)
+    thread.start()
+
+    def scale_x(x, pos):
+        return f'{x * 0.72:.2f}'
+    
+        # --- Plot Setup ---
+    fig, ax = plt.subplots(figsize=(20, 5))
+    plt.subplots_adjust(left=0,right=0.9,bottom=0.05,top=1) # Make room for the button
+    ax.xaxis.set_major_formatter(FuncFormatter(scale_x))
+    line, = ax.plot(data_buffer)
+    ax.set_ylim(-10, 250) # Adjust based on your expected int range
+
+    ax_radio = plt.axes([0.9, 0.1, 0.1, 0.9], facecolor='#f0f0f0')
+    radio = RadioButtons(ax_radio, list(COMMANDS.keys()))
+    
+    def select_cmd(label):
+        global selected_command
+        selected_command = label
+    radio.on_clicked(select_cmd)
+    
+    ax_btn = plt.axes([0.9, 0, 0.1, 0.1])
+    btn = Button(ax_btn, 'Transmit Selected', color='lightgreen')
+    
+    def send_data(event):
+        print(selected_command)
+
+        cmd_name = selected_command
+        data_to_send = COMMANDS[cmd_name]
+        with serial_lock:
+            print(f"Sending: {data_to_send.hex(' ')}")
+            ser.write(data_to_send)
+
+    btn.on_clicked(send_data)
+
+    def update(frame):
+        # Update the plot line data
+        line.set_ydata(data_buffer)
+        return line,
+    ani = FuncAnimation(fig, update, interval=30, blit=True, cache_frame_data=False)
+    plt.show()
+
+if __name__ == "__main__":
+    setup_plot()

@@ -8,6 +8,7 @@
 #include "main.h"
 #include "cmd_rx.h"
 #include "global_buffer_def.h"
+#include "mode.h"
 
 //static initialization:
 volatile int CMD_RX::last_cmd_type = CMD_NOT_RX;
@@ -28,6 +29,7 @@ void CMD_RX::start_receive(void){
     HAL_UART_Receive_IT(p_huart, rx_buf, CRX_PACKET_LEN);
 }
 void CMD_RX::start_unit_test(void){
+    last_cmd_type = CMD_NOT_RX;
     HAL_UART_Receive_IT(p_huart, unit_test_buf, DATA_LEN);
 }
 
@@ -40,8 +42,13 @@ int CMD_RX::get_cmd_detail(void) {
     return last_cmd_detail;
 }
 
+<<<<<<< HEAD
 uint8_t* CMD_RX::get_cmd_data(void) {
     return const_cast<uint8_t*>(last_cmd_data);
+=======
+volatile uint8_t* CMD_RX::get_cmd_data(void) {
+    return last_cmd_data;
+>>>>>>> ed9e1282271477a0742995d48089e5a084a1a7b2
 }
 
 
@@ -49,7 +56,10 @@ extern "C" void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	CMD_RX::last_cmd_type   = CMD_RX::rx_buf[0];
     CMD_RX::last_cmd_detail = CMD_RX::rx_buf[1];
+	#if ECHO_MASTER_MODE
     for(int i=0;i<DATA_LEN;i++)CMD_RX::last_cmd_data[i] = CMD_RX::unit_test_buf[i];
+    CMD_RX::last_cmd_type   = -1;
+	#endif
 }
 
 

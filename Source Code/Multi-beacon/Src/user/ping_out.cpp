@@ -210,10 +210,17 @@ void PingOut::set(int out_idx) {
 #if ECHO_MASTER_MODE
     for (int i = 1; i < 8 * DATA_LEN+1; i++){
     	if(PingOut::codebits[i]){
+<<<<<<< HEAD
     	    out_buf[i] = BSRR_PC6_SET_MASK;
     	}
     	else{
     	    out_buf[i] = BSRR_PC6_RESET_MASK;
+=======
+    	    out_buf[i%OUT_BUF_LEN] = BSRR_PC6_SET_MASK;
+    	}
+    	else{
+    	    out_buf[i%OUT_BUF_LEN] = BSRR_PC6_RESET_MASK;
+>>>>>>> ed9e1282271477a0742995d48089e5a084a1a7b2
     	}
     }
 
@@ -236,6 +243,7 @@ void PingOut::set(int out_idx) {
 void PingOut::clear(int out_idx) {
 	if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);}
 #if ECHO_MASTER_MODE
+<<<<<<< HEAD
     for (int i = 1; i < 8 * DATA_LEN+1; i++){
     	if(PingOut::codebits[i]){
     	    out_buf[i] = BSRR_PC6_RESET_MASK;
@@ -243,6 +251,10 @@ void PingOut::clear(int out_idx) {
     	else{
     	    out_buf[i] = BSRR_PC6_RESET_MASK;
     	}
+=======
+    for (int i = 0; i < 8 * DATA_LEN; i++){
+    	out_buf[i] = BSRR_PC6_RESET_MASK;
+>>>>>>> ed9e1282271477a0742995d48089e5a084a1a7b2
     }
 #else
     for (int i = 0; i < peak_count*2; i = (i+2)%(OUT_BUF_LEN)) {
@@ -252,7 +264,6 @@ void PingOut::clear(int out_idx) {
     clear_idx = -1;
     if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);}
 }
-
 
 
 

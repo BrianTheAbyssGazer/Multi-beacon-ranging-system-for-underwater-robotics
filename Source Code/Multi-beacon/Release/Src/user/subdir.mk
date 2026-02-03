@@ -12,6 +12,7 @@ CPP_SRCS += \
 ../Src/user/peak_detector_main.cpp \
 ../Src/user/pga.cpp \
 ../Src/user/ping_out.cpp \
+../Src/user/test.cpp \
 ../Src/user/tof_master.cpp \
 ../Src/user/transponder.cpp 
 
@@ -30,6 +31,7 @@ OBJS += \
 ./Src/user/peak_detector_main.o \
 ./Src/user/pga.o \
 ./Src/user/ping_out.o \
+./Src/user/test.o \
 ./Src/user/tof_master.o \
 ./Src/user/transponder.o 
 
@@ -41,6 +43,7 @@ CPP_DEPS += \
 ./Src/user/peak_detector_main.d \
 ./Src/user/pga.d \
 ./Src/user/ping_out.d \
+./Src/user/test.d \
 ./Src/user/tof_master.d \
 ./Src/user/transponder.d 
 
@@ -54,7 +57,7 @@ Src/user/%.o Src/user/%.su Src/user/%.cyclo: ../Src/user/%.c Src/user/subdir.mk
 clean: clean-Src-2f-user
 
 clean-Src-2f-user:
-	-$(RM) ./Src/user/adc_over_uart.cyclo ./Src/user/adc_over_uart.d ./Src/user/adc_over_uart.o ./Src/user/adc_over_uart.su ./Src/user/cmd_rx.cyclo ./Src/user/cmd_rx.d ./Src/user/cmd_rx.o ./Src/user/cmd_rx.su ./Src/user/index_info_transmit.cyclo ./Src/user/index_info_transmit.d ./Src/user/index_info_transmit.o ./Src/user/index_info_transmit.su ./Src/user/index_info_tx.cyclo ./Src/user/index_info_tx.d ./Src/user/index_info_tx.o ./Src/user/index_info_tx.su ./Src/user/max_peak_detector.cyclo ./Src/user/max_peak_detector.d ./Src/user/max_peak_detector.o ./Src/user/max_peak_detector.su ./Src/user/peak_detector_main.cyclo ./Src/user/peak_detector_main.d ./Src/user/peak_detector_main.o ./Src/user/peak_detector_main.su ./Src/user/pga.cyclo ./Src/user/pga.d ./Src/user/pga.o ./Src/user/pga.su ./Src/user/ping_out.cyclo ./Src/user/ping_out.d ./Src/user/ping_out.o ./Src/user/ping_out.su ./Src/user/tof_master.cyclo ./Src/user/tof_master.d ./Src/user/tof_master.o ./Src/user/tof_master.su ./Src/user/transponder.cyclo ./Src/user/transponder.d ./Src/user/transponder.o ./Src/user/transponder.su
+	-$(RM) ./Src/user/adc_over_uart.cyclo ./Src/user/adc_over_uart.d ./Src/user/adc_over_uart.o ./Src/user/adc_over_uart.su ./Src/user/cmd_rx.cyclo ./Src/user/cmd_rx.d ./Src/user/cmd_rx.o ./Src/user/cmd_rx.su ./Src/user/index_info_transmit.cyclo ./Src/user/index_info_transmit.d ./Src/user/index_info_transmit.o ./Src/user/index_info_transmit.su ./Src/user/index_info_tx.cyclo ./Src/user/index_info_tx.d ./Src/user/index_info_tx.o ./Src/user/index_info_tx.su ./Src/user/max_peak_detector.cyclo ./Src/user/max_peak_detector.d ./Src/user/max_peak_detector.o ./Src/user/max_peak_detector.su ./Src/user/peak_detector_main.cyclo ./Src/user/peak_detector_main.d ./Src/user/peak_detector_main.o ./Src/user/peak_detector_main.su ./Src/user/pga.cyclo ./Src/user/pga.d ./Src/user/pga.o ./Src/user/pga.su ./Src/user/ping_out.cyclo ./Src/user/ping_out.d ./Src/user/ping_out.o ./Src/user/ping_out.su ./Src/user/test.cyclo ./Src/user/test.d ./Src/user/test.o ./Src/user/test.su ./Src/user/tof_master.cyclo ./Src/user/tof_master.d ./Src/user/tof_master.o ./Src/user/tof_master.su ./Src/user/transponder.cyclo ./Src/user/transponder.d ./Src/user/transponder.o ./Src/user/transponder.su
 
 .PHONY: clean-Src-2f-user
 

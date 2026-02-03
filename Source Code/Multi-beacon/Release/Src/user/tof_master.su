@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ../Src/user/tof_master.cpp:18:17:void tof_master_main(ADC_HandleTypeDef*, TIM_HandleTypeDef*, UART_HandleTypeDef*, OPAMP_HandleTypeDef*, OPAMP_HandleTypeDef*, DMA_HandleTypeDef*, TIM_HandleTypeDef*)	176	static
+=======
+../Src/user/tof_master.cpp:18:17:void tof_master_main(ADC_HandleTypeDef*, TIM_HandleTypeDef*, UART_HandleTypeDef*, OPAMP_HandleTypeDef*, OPAMP_HandleTypeDef*, DMA_HandleTypeDef*, TIM_HandleTypeDef*)	160	static
+>>>>>>> ed9e1282271477a0742995d48089e5a084a1a7b2

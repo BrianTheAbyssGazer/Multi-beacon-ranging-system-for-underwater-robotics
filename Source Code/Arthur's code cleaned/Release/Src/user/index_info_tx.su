@@ -1,0 +1,4 @@
+../Src/user/index_info_tx.cpp:12:1:IndexInfoTX::IndexInfoTX(UART_HandleTypeDef*)	0	static
+../Src/user/index_info_tx.cpp:25:6:void IndexInfoTX::transmit_idx(int, int, uint16_t)	4	static
+../Src/user/index_info_tx.cpp:41:6:void IndexInfoTX::transmit_err_1(int, int)	0	static
+../Src/user/index_info_tx.cpp:53:6:void IndexInfoTX::test_pattern()	32	static

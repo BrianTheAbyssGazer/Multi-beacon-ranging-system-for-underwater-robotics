@@ -33,5 +33,6 @@
 "./Src/user/peak_detector_main.o"
 "./Src/user/pga.o"
 "./Src/user/ping_out.o"
+"./Src/user/test.o"
 "./Src/user/tof_master.o"
 "./Src/user/transponder.o"
