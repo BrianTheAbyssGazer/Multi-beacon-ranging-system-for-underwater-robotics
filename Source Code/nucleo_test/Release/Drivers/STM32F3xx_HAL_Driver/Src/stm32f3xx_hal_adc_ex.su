@@ -14,10 +14,10 @@
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:2284:19:HAL_ADC_Stop_IT	8	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:2390:19:HAL_ADC_Start_DMA	24	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:2661:19:HAL_ADC_Stop_DMA	16	static
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:2814:10:HAL_ADC_GetValue	8	static
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:2814:10:HAL_ADC_GetValue	0	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:3334:19:HAL_ADCEx_Calibration_Start	24	static
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:3535:10:HAL_ADCEx_Calibration_GetValue	16	static
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:3570:19:HAL_ADCEx_Calibration_SetValue	16	static
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:3535:10:HAL_ADCEx_Calibration_GetValue	0	static
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:3570:19:HAL_ADCEx_Calibration_SetValue	8	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:3635:19:HAL_ADCEx_InjectedStart	16	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:3823:19:HAL_ADCEx_InjectedStop	8	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:3966:19:HAL_ADCEx_InjectedPollForConversion	24	static
@@ -25,8 +25,8 @@
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:4425:19:HAL_ADCEx_InjectedStop_IT	8	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:4585:19:HAL_ADCEx_MultiModeStart_DMA	104	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:4725:19:HAL_ADCEx_MultiModeStop_DMA	96	static
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:4850:10:HAL_ADCEx_MultiModeGetValue	8	static
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:4904:10:HAL_ADCEx_InjectedGetValue	16	static
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:4850:10:HAL_ADCEx_MultiModeGetValue	0	static
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:4904:10:HAL_ADCEx_InjectedGetValue	0	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:5018:19:HAL_ADCEx_RegularStop	8	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:5092:19:HAL_ADCEx_RegularStop_IT	8	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:5172:19:HAL_ADCEx_RegularStop_DMA	16	static
@@ -36,7 +36,7 @@
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:5473:13:HAL_ADCEx_LevelOutOfWindow2Callback	0	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:5488:13:HAL_ADCEx_LevelOutOfWindow3Callback	0	static
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:2872:6:HAL_ADC_IRQHandler	16	static
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:5551:19:HAL_ADC_ConfigChannel	24	static
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:6017:19:HAL_ADCEx_InjectedConfigChannel	24	static
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:6769:19:HAL_ADC_AnalogWDGConfig	24	static
-../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:7054:19:HAL_ADCEx_MultiModeConfigChannel	24	static
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:5551:19:HAL_ADC_ConfigChannel	32	static
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:6017:19:HAL_ADCEx_InjectedConfigChannel	32	static
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:6769:19:HAL_ADC_AnalogWDGConfig	20	static
+../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c:7054:19:HAL_ADCEx_MultiModeConfigChannel	20	static
