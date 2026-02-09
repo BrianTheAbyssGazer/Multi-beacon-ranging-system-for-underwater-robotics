@@ -20,12 +20,12 @@
 
 // global ADC buffer:
 uint16_t buf[BUF_LEN];
-
+uint16_t uart_buf[UART_BUF_LEN];
 
 //initialise statics:
 volatile int MaxPeakDetector::global_state = MPDState::PROC_BUF_2ND_HLF;
 volatile int MaxPeakDetector::cur_pfx = 0; // incremented each time the ADC buffer completely fills
-
+bool MaxPeakDetector::sending_signal=false;
 /* Initialisation:
     // parameters
     min_aid = false;
@@ -41,18 +41,16 @@ MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef*
     this->p_index_info_tx = p_index_info_tx;
 
 	//initialise search sub-state:
-	search_sub_state = MPDSearchState::FIND_SIGNAL;
+	search_sub_state = MPDSearchState::BACKGROUND_MEASURING;
 
     //initialise start index of adc buffer (start half way through DMA will start at beginning):
     cur_idx = BUF_LEN/2;
+    uart_idx = 0;
+    bg_idx=0;
+    bg_avg=0;
 
     //set default parameter values:
     min_aid = false;
-    search_threshold_reduction = 5; 
-    search_window = 100;
-    dead_zone_len = 3*(BUF_LEN/4);
-    search_threshold = 2100;
-    
 	//initialise seach context:
 	last_peak_val = 0; //TODO need calibration startup routine
     last_peak_idx = -1;
@@ -95,17 +93,15 @@ Timestamp MaxPeakDetector :: detect_peak() {
         case MPDState::PROC_BUF_1ST_HLF:
             if (cur_idx < BUF_LEN/2) {
                 search_loop();
-            } else {
-                global_state = MPDState::IDLE;
             }
+            else cur_idx=0;
             break;
 
         case MPDState::PROC_BUF_2ND_HLF:
             if (cur_idx >= BUF_LEN/2) {
                 search_loop();
-            } else {
-                global_state = MPDState::IDLE;
             }
+            else cur_idx=BUF_LEN/2;
             break;
 
         case MPDState::ERROR_1:
@@ -123,106 +119,56 @@ Timestamp MaxPeakDetector :: detect_peak() {
 }
 
 void MaxPeakDetector :: search_loop() {
-    
+
 	int cur_val;
-    int peak_found = false;
 
 	while (1) {
-#if ECHO_MASTER_MODE
 		cur_val = buf[cur_idx];
-		(*p_index_info_tx).stream_adc(cur_val);
 		cur_idx++;
-#else
+
 		switch (search_sub_state)
-		{	
-			case MPDSearchState::FIND_SIGNAL: //------------------------------------------------------------------
-				if (cur_val > search_threshold) {
-					search_sub_state = MPDSearchState::FIND_WINDOW_MAX;
+		{
+
+			case MPDSearchState::BACKGROUND_MEASURING:
+				if(bg_idx<BG_LEN){
+					bg_avg+=cur_val;
+					bg_idx++;
+					cur_idx++;
 				}
-
-				cur_idx += 3;
-
-				break;
-
-			case MPDSearchState::FIND_WINDOW_MAX: //------------------------------------------------------------------
-				window_count++;
-
-				if (window_count > search_window) { // window is complete
-					// we have a new peak! 
-                    if (min_aid) {
-                        Timestamp min_tmsp(tentative_min_idx, tentative_min_pfx);
-                        Timestamp max_tmsp(tentative_max_idx, tentative_max_pfx);
-
-                        //compute average timestamp:
-                        Timestamp average_tmsp = Timestamp::from_total((min_tmsp.get_total() + max_tmsp.get_total())/2);
-                        
-                        last_peak_val = tentative_max_val;
-                        last_peak_idx = average_tmsp.idx;
-                        last_peak_pfx = average_tmsp.pfx;
-
-                    } else {
-                        last_peak_val = tentative_max_val;
-                        last_peak_idx = tentative_max_idx;
-                        last_peak_pfx = tentative_max_pfx;
-                    }
-                    //search_threshold = last_peak_val * 0.85;
-                    //(*p_index_info_tx).transmit_idx(last_peak_idx, last_peak_pfx, last_peak_val);
-					//reset for next peak:
-					tentative_max_val = 0;
-					tentative_max_idx = 0;
-					tentative_max_pfx = 0;
-                    tentative_min_val = 4096;
-					tentative_min_idx = 0;
-					tentative_min_pfx = 0;
-
-					//update search_threshold TODO switched off for range measurements as echos are dominating
-					//search_threshold = last_peak_val - (last_peak_val/search_threshold_reduction);
-
-					//move to DEAD_ZONE
-					window_count = 0;
-					search_sub_state = MPDSearchState::DEAD_ZONE;
-					
-				} else if (cur_val > tentative_max_val) { //new max
-					tentative_max_val = cur_val;
-					tentative_max_idx = cur_idx;
-					tentative_max_pfx = cur_pfx;
-
-				} else if (cur_val < tentative_min_val) { //new min
-                    tentative_min_val = cur_val;
-					tentative_min_idx = cur_idx;
-					tentative_min_pfx = cur_pfx;
+				else{
+					bg_avg=bg_avg/BG_LEN;
+					search_sub_state = MPDSearchState::NO_SIGNAL;
 				}
-
-				cur_idx++;
+			case MPDSearchState::NO_SIGNAL: //------------------------------------------------------------------
+				if (cur_val > 20) {
+					search_sub_state = MPDSearchState::YES_SIGNAL;
+				}
+				else cur_idx++;
 				break;
 
-			case MPDSearchState::DEAD_ZONE: //------------------------------------------------------------------
-				
-                if (dead_zone_len > 0) {
-                    //leap over dead_zone:
-                    cur_idx = (cur_idx + dead_zone_len) % BUF_LEN;
-
-                } else {
-                    //just jump to end of buffer:
-                    cur_idx = BUF_LEN;
-                }
-
-                search_sub_state = MPDSearchState::FIND_SIGNAL;
-                peak_found = true;
+			case MPDSearchState::YES_SIGNAL: //------------------------------------------------------------------
+				if (uart_idx<UART_BUF_LEN){
+					uart_buf[uart_idx]=cur_val;
+					uart_idx++;
+					cur_idx++;
+				}
+				else{
+		            global_state = MPDState::IDLE;
+					search_sub_state = MPDSearchState::NO_SIGNAL;
+					sending_signal=true;
+					for (int i=0;i<UART_BUF_LEN;i++)(*p_index_info_tx).stream_adc(uart_buf[i]);
+					sending_signal=false;
+					uart_idx=0;
+				}
 				break;
-							
-			
+
 			//------------------------------------------------------------------
-				
+
 		} // switch
 
-#endif
 		// conditions to escape search mode
-        if (peak_found) { // we found a peak and need to terminate
-            peak_found = false;
-            global_state = MPDState::IDLE;
-			break;
-		} else if ((global_state == MPDState::PROC_BUF_1ST_HLF) && (cur_idx >= (BUF_LEN/2))) {
+		if(global_state == MPDState::IDLE)break;
+		else if ((global_state == MPDState::PROC_BUF_1ST_HLF) && (cur_idx >= (BUF_LEN/2))) {
 			global_state = MPDState::IDLE;
 			break;
 		} else if (global_state == MPDState::PROC_BUF_2ND_HLF && (cur_idx >= (BUF_LEN))) {
@@ -231,13 +177,9 @@ void MaxPeakDetector :: search_loop() {
 			break;
 		} else if (global_state == MPDState::ERROR_1) {
 			break;
-		} 
+		}
 	} //while
 
-}
-
-void MaxPeakDetector :: send_data2computer(int d_pfx, int end_idx, uint16_t data) {
-    (*p_index_info_tx).transmit_idx(d_pfx, end_idx, data);
 }
 
 void MaxPeakDetector :: error_1_handle() {
@@ -251,7 +193,7 @@ void MaxPeakDetector :: error_1_handle() {
     }
 
 	//need to reset the relevant search context so we are ready to start searching again:
-	search_sub_state = MPDSearchState::FIND_SIGNAL;
+	search_sub_state = MPDSearchState::BACKGROUND_MEASURING;
 
 	last_peak_idx = -1;
     last_peak_pfx = -1;
@@ -289,7 +231,7 @@ extern "C" void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* p_hadc) {
 				break;
 
 			case MPDState::IDLE:
-				MaxPeakDetector::global_state = MPDState::PROC_BUF_1ST_HLF;
+				if(MaxPeakDetector::sending_signal==false)MaxPeakDetector::global_state = MPDState::PROC_BUF_1ST_HLF;
 				break;
 		  }
 }
@@ -313,7 +255,7 @@ extern "C"  void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* p_hadc) {
 				break;
 
 			case MPDState::IDLE:
-				MaxPeakDetector::global_state = MPDState::PROC_BUF_2ND_HLF;
+				if(MaxPeakDetector::sending_signal==false)MaxPeakDetector::global_state = MPDState::PROC_BUF_2ND_HLF;
 				break;
 		  }
 }

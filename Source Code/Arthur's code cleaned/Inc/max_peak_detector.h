@@ -12,7 +12,7 @@
 
 
 
-class Timestamp { 
+class Timestamp {
   public:
     int idx;
     int pfx;
@@ -23,7 +23,7 @@ class Timestamp {
 };
 
 enum MPDState {
-    IDLE, 
+    IDLE,
     PROC_BUF_1ST_HLF,
     PROC_BUF_2ND_HLF,
     ERROR_1,
@@ -39,15 +39,15 @@ enum MPDSearchState {
 
 class MaxPeakDetector {
     //hardware ----
-    private:    
+    private:
         ADC_HandleTypeDef* p_hadc;
         TIM_HandleTypeDef* p_htim;
         IndexInfoTX* p_index_info_tx;
-    
-    
+
+
     //states -------
     public:
-        static volatile int global_state; 
+        static volatile int global_state;
     private:
         int search_sub_state;
 
@@ -58,7 +58,7 @@ class MaxPeakDetector {
         int search_window;
         int dead_zone_len; //set to -1 to jump to buffer end after each peak detection
         int search_threshold; // this is also dynamically updated
-        
+
     //search context --------
     private:
         int last_peak_val; // the value of the last successfully detected pulse peak
@@ -77,7 +77,7 @@ class MaxPeakDetector {
         int cur_idx; //current idx of adc buffer
         static volatile int cur_pfx; // incremented each time the ADC buffer completely fills
 
-    
+
     // methods -------
     public:
         MaxPeakDetector(ADC_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*);

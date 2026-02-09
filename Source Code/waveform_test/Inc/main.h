@@ -59,6 +59,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define Battery_Sense_In_Pin GPIO_PIN_2
 #define Battery_Sense_In_GPIO_Port GPIOC
+#define Thermister_Pin GPIO_PIN_2
+#define Thermister_GPIO_Port GPIOA
 #define Rcv_Siganl_In_Pin GPIO_PIN_15
 #define Rcv_Siganl_In_GPIO_Port GPIOB
 #define ping_drive_Pin GPIO_PIN_6

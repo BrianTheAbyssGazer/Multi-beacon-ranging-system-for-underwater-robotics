@@ -29,7 +29,7 @@ class IndexInfoTX {
         void transmit_idx(int, int, uint16_t);
         void transmit_err_1(int, int);
         void test_pattern(void);
-        
+
 };
 
 #endif

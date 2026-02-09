@@ -206,9 +206,12 @@ void PingOut::set(int out_idx) {
     // The processing delay from the ADC data should be sufficient.
 
 #if ECHO_MASTER_MODE
-    for (int i = 0; i < OUT_BUF_LEN/2; i++){
-    	if(PingOut::codebits[i%(DATA_LEN*8)]) out_buf[i] = BSRR_PC6_SET_MASK;
-    }
+    for (int i = 0; i < 128; i++){
+            if(PingOut::codebits[i%(DATA_LEN*4)]) out_buf[i] = BSRR_PC6_SET_MASK;
+        }
+    for (int i = 128; i < 256; i++){
+            if(PingOut::codebits[32+i%(DATA_LEN*4)]) out_buf[i] = BSRR_PC6_SET_MASK;
+        }
 
 #else
     for (int i = 0; i < peak_count*2; i = (i+2)%(OUT_BUF_LEN)) {
@@ -229,8 +232,11 @@ void PingOut::set(int out_idx) {
 void PingOut::clear(int out_idx) {
 	if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);}
 #if ECHO_MASTER_MODE
-    for (int i = 0; i < OUT_BUF_LEN/2; i++){
-    	if(PingOut::codebits[i%(DATA_LEN*8)])out_buf[i] = BSRR_PC6_RESET_MASK;
+    for (int i = 0; i < 128; i++){
+            if(PingOut::codebits[i%(DATA_LEN*4)]) out_buf[i] = BSRR_PC6_RESET_MASK;
+        }
+    for (int i = 128; i < 256; i++){
+            if(PingOut::codebits[32+i%(DATA_LEN*4)]) out_buf[i] = BSRR_PC6_RESET_MASK;
     }
 #else
     for (int i = 0; i < peak_count*2; i = (i+2)%(OUT_BUF_LEN)) {

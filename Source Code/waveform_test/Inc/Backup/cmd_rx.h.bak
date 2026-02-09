@@ -35,6 +35,7 @@ class CMD_RX
 
         static volatile int last_cmd_type;
         static volatile int last_cmd_detail;
+        static volatile bool rx_cplt;
         static volatile uint8_t last_cmd_data[DATA_LEN];
         CMD_RX(UART_HandleTypeDef* p_huart);
         void start_receive(void);

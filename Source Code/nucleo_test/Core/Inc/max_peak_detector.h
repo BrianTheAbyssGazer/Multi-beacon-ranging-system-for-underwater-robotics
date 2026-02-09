@@ -31,9 +31,9 @@ enum MPDState {
 
 
 enum MPDSearchState {
-    FIND_SIGNAL,
-    FIND_WINDOW_MAX,
-    DEAD_ZONE,
+    NO_SIGNAL,
+    YES_SIGNAL,
+	BACKGROUND_MEASURING,
 };
 
 
@@ -54,11 +54,11 @@ class MaxPeakDetector {
     // Parameters ---------
     public:
         bool min_aid; //set to true to incorporate min peak assistance
+        static bool sending_signal;
         int search_threshold_reduction;
         int search_window;
         int dead_zone_len; //set to -1 to jump to buffer end after each peak detection
         int search_threshold; // this is also dynamically updated
-
     //search context --------
     private:
         int last_peak_val; // the value of the last successfully detected pulse peak
@@ -75,6 +75,9 @@ class MaxPeakDetector {
         
     public:
         int cur_idx; //current idx of adc buffer
+        int uart_idx; //current idx of adc buffer
+        int bg_idx; //current idx of adc buffer
+        int bg_avg; //current idx of adc buffer
         static volatile int cur_pfx; // incremented each time the ADC buffer completely fills
 
 

@@ -40,7 +40,11 @@
 	//36k bytes + 12k bytes = 48k bytes (will fit into memory)
 #elif ECHO_MASTER_MODE || ECHO_TRANSPONDER_MODE
 	#define BUF_LEN 18000
+	#define UART_BUF_LEN 1000
+	#define BG_LEN 20
 	extern uint16_t buf[BUF_LEN]; //18k elems, or 36k bytes
+	extern uint16_t uart_buf[UART_BUF_LEN]; //18k elems, or 36k bytes
+	extern uint16_t bg_buf[BG_LEN];
 	#define OUT_BUF_LEN 3000
 	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes
     #define DATA_LEN 8

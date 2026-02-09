@@ -164,7 +164,7 @@ void MaxPeakDetector :: search_loop() {
                     }
                     search_threshold = last_peak_val * 0.85;
                     (*p_index_info_tx).transmit_idx(last_peak_idx, last_peak_pfx, last_peak_val);
-					
+
 					//reset for next peak:
 					tentative_max_val = 0;
 					tentative_max_idx = 0;
@@ -214,7 +214,7 @@ void MaxPeakDetector :: search_loop() {
 				
 		} // switch
 
-		
+
 
 		// conditions to escape search mode
         if (peak_found) { // we found a peak and need to terminate

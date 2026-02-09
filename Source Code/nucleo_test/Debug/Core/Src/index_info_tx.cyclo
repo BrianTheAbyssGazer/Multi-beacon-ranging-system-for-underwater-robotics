@@ -1,5 +1,5 @@
 ../Core/Src/index_info_tx.cpp:12:1:IndexInfoTX::IndexInfoTX(UART_HandleTypeDef*)	1
-../Core/Src/index_info_tx.cpp:25:6:void IndexInfoTX::transmit_idx(int, int, uint16_t)	1
-../Core/Src/index_info_tx.cpp:33:6:void IndexInfoTX::stream_adc(uint8_t)	1
-../Core/Src/index_info_tx.cpp:49:6:void IndexInfoTX::transmit_err_1(int, int)	1
-../Core/Src/index_info_tx.cpp:61:6:void IndexInfoTX::test_pattern()	4
+../Core/Src/index_info_tx.cpp:26:6:void IndexInfoTX::stream_adc(int)	1
+../Core/Src/index_info_tx.cpp:34:6:void IndexInfoTX::stream_adc(uint16_t)	1
+../Core/Src/index_info_tx.cpp:46:6:void IndexInfoTX::transmit_err_1(int, int)	1
+../Core/Src/index_info_tx.cpp:58:6:void IndexInfoTX::test_pattern()	4
