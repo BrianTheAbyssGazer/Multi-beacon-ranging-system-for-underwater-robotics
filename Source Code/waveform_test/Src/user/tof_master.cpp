@@ -10,6 +10,8 @@
 #include "max_peak_detector.h"
 #include "cmd_rx.h"
 #include "ping_out.h"
+#include "pga.h"
+
 
 
 
@@ -25,6 +27,8 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     /******************* SETUP RX ************************/
     CMD_RX cmd_rx(p_huart);
     cmd_rx.start_unit_test();
+	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
+    pgas.setGain(2);
 
     /******************* SETUP TX ************************/
 	IndexInfoTX idx_info_tx(p_huart);

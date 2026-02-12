@@ -36,7 +36,7 @@ Src/user/tof_master.o: ../Src/user/tof_master.cpp ../Inc/mode.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
  ../Inc/max_peak_detector.h ../Inc/index_info_tx.h ../Inc/cmd_rx.h \
- ../Inc/global_buffer_def.h ../Inc/mode.h ../Inc/ping_out.h
+ ../Inc/global_buffer_def.h ../Inc/mode.h ../Inc/ping_out.h ../Inc/pga.h
 ../Inc/mode.h:
 ../Inc/main.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
@@ -81,3 +81,4 @@ Src/user/tof_master.o: ../Src/user/tof_master.cpp ../Inc/mode.h \
 ../Inc/global_buffer_def.h:
 ../Inc/mode.h:
 ../Inc/ping_out.h:
+../Inc/pga.h:
