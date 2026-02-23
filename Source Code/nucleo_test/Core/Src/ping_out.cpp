@@ -11,7 +11,7 @@
 #include "global_buffer_def.h"
 #include "ping_out.h"
 
-#if  TRANSPONDER_MODE || TIME_OF_FLIGHT_MODE ||SLOW_TX_MODE || ECHO_TRANSPONDER_MODE || ECHO_MASTER_MODE
+#if  TRANSPONDER_MODE || TIME_OF_FLIGHT_MODE ||SLOW_TX_MODE || ECHO_MASTER_MODE || PHASE_KEYING_TEST
 
 
 // global out buffer, with DMA to GPIO register
@@ -36,7 +36,7 @@ bool PingOut::debug = false;
 
 
 
-PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2, IndexInfoTX* p_index_info_tx) {
+PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2) {
 
     /* assign callbacks */
     p_hdma_tim2_up->XferHalfCpltCallback = first_half_written_callback;
@@ -46,7 +46,6 @@ PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2
 
     this->p_hdma_tim2_up = p_hdma_tim2_up;
     this->p_htim2 = p_htim2;
-    this->p_index_info_tx = p_index_info_tx;
 
     /* parameter initialisation */
     peak_count = 4;
@@ -89,44 +88,6 @@ PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2
 * pfx is the same for both in and out buffer as they are the same temporal length.
 */
 
-bool PingOut::calculateParity(bool codeword[], const uint8_t positions[], uint8_t size) {
-	bool parity = 0;
-	for (uint8_t i = 0; i < size; ++i) {
-		parity ^= codeword[positions[i]]; // 1-based to 0-based
-	}
-	return parity;
-}
-
-// Start datapacket scheduling
-uint16_t PingOut::start_datapacket_scheduler(uint8_t data) {
-	datapacket_index = 0;
-	bool dataBits[8];
-	for (int i = 0; i < 8; ++i) {
-		dataBits[7 - i] = (data >> i) & 1; // MSB first
-	}
-	uint8_t dataPos[] = {3, 5, 6, 7, 9, 10, 11, 12};
-	for (uint8_t i = 0; i < 8; ++i) {
-		codeword[dataPos[i]] = dataBits[i];
-	}
-	// Define parity positions
-	const uint8_t p1_pos[] = {3, 5, 7, 9, 11};
-	const uint8_t p2_pos[] = {3, 6, 7, 10, 11};
-	const uint8_t p4_pos[] = {5, 6, 7, 12};
-	const uint8_t p8_pos[] = {9, 10, 11, 12};
-    // Calculate and set Hamming parity bits
-    codeword[1]  = calculateParity(codeword, p1_pos, 5);  // P1 at pos 1
-    codeword[2]  = calculateParity(codeword, p2_pos, 5);  // P2 at pos 2
-    codeword[4]  = calculateParity(codeword, p4_pos, 4);  // P4 at pos 4
-    codeword[8]  = calculateParity(codeword, p8_pos, 4);  // P8 at pos 8
-    bool overall_parity = 0;
-	for (uint8_t i = 1; i < 13; ++i) {
-		overall_parity ^= codeword[i];
-	}
-	codeword[13] = overall_parity;
-	uint16_t sum=0;
-	for(int i=0;i<15;i++) if(codeword[i])sum++;
-	return sum;
-}
 
 void PingOut::set_phase_keying_data(uint8_t* data) {
 	for (int i = 0; i < DATA_LEN; i++) {
@@ -198,23 +159,34 @@ void PingOut::update() {
 //                 - sets time to clear to 0;
 void PingOut::set(int out_idx) {
     if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_SET);}
-	//(*p_index_info_tx).send_flag(cur_out_pfx);
-
     //Need small delay before setting in case we are setting right at the
     //temporal start of a half-buffer, and the width of the pulse envelope will
     // go over the half buffer boundary.
     // The processing delay from the ADC data should be sufficient.
 
 #if ECHO_MASTER_MODE
-    for (int i = 0; i < 128; i++){
+    for (uint8_t i = 0; i < 128; i++){
             if(PingOut::codebits[i%(DATA_LEN*4)]) out_buf[i] = BSRR_PC6_SET_MASK;
         }
-    for (int i = 128; i < 256; i++){
+    for (uint8_t i = 128; i < 256; i++){
             if(PingOut::codebits[32+i%(DATA_LEN*4)]) out_buf[i] = BSRR_PC6_SET_MASK;
         }
 
+#elif PHASE_KEYING_TEST
+    for (uint8_t i=0; i<SYMBOL_LEN; i++){
+    	if(i%2==0){
+        	for(uint8_t j=0; j<N_CYCLE; j+=2){
+        		out_buf[i*N_CYCLE+j] = BSRR_PC6_SET_MASK;
+        	}
+    	}
+    	else{
+        	for(uint8_t j=1; j<N_CYCLE; j+=2){
+        		out_buf[i*N_CYCLE+j] = BSRR_PC6_SET_MASK;
+        	}
+    	}
+    }
 #else
-    for (int i = 0; i < peak_count*2; i = (i+2)%(OUT_BUF_LEN)) {
+    for (uint8_t i = 0; i < peak_count*2; i = (i+2)%(OUT_BUF_LEN)) {
         out_buf[out_idx + i] = BSRR_PC6_SET_MASK;
     }
 #endif
@@ -238,6 +210,20 @@ void PingOut::clear(int out_idx) {
     for (int i = 128; i < 256; i++){
             if(PingOut::codebits[32+i%(DATA_LEN*4)]) out_buf[i] = BSRR_PC6_RESET_MASK;
     }
+#elif PHASE_KEYING_TEST
+    for (uint8_t i=0; i<SYMBOL_LEN; i++){
+    	if(i%2==0){
+        	for(uint8_t j=0; j<N_CYCLE; j+=2){
+        		out_buf[i*N_CYCLE+j] = BSRR_PC6_RESET_MASK;
+        	}
+    	}
+    	else{
+        	for(uint8_t j=1; j<N_CYCLE; j+=2){
+        		out_buf[i*N_CYCLE+j] = BSRR_PC6_RESET_MASK;
+        	}
+    	}
+    }
+
 #else
     for (int i = 0; i < peak_count*2; i = (i+2)%(OUT_BUF_LEN)) {
         out_buf[out_idx + i] = BSRR_PC6_RESET_MASK;

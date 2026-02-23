@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "tof_master.h"
+#include "transponder.h"
 #include "cmd_rx.h"
 #include "max_peak_detector.h"
 #include "ping_out.h"
@@ -119,7 +120,32 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  tof_master_main(&hadc4, &htim3, &huart2, &hdma_tim2_up, &htim2);
+#if ADC_OVER_UART_MODE
+
+//pgaTestC(&hopamp3);
+
+adc_over_uart(&hadc4, &htim3, &huart1, &hopamp2, &hopamp3);
+
+
+
+
+#elif BASIC_PULSE_STREAM_MODE
+basic_pulse_stream_init(&hdma_tim2_up, &htim2);
+basic_pulse_stream_main();
+
+#elif BASIC_PEAK_DETECTOR_MODE
+
+peak_detector_main(&hadc4, &htim3, &huart1, &hopamp2, &hopamp3);
+
+#elif TRANSPONDER_MODE
+transponder_main(&hadc4, &htim3, &huart2, &hdma_tim2_up, &htim2);
+
+#elif SLOW_TX_MODE
+slow_tx_main(&huart1, &hdma_tim2_up, &htim2);
+
+#elif TIME_OF_FLIGHT_MODE || ECHO_MASTER_MODE
+tof_master_main(&hadc4, &htim3, &huart1, &hopamp2, &hopamp3, &hdma_tim2_up, &htim2);
+#endif
   }
   /* USER CODE END 3 */
 }

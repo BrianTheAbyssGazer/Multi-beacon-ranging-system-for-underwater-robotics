@@ -12,8 +12,8 @@ import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 MAX_SAMPLES = 2000
-PORT="COM6"
-TEST_TYPE="air"
+PORT="COM5"
+TEST_TYPE="signal_test"
 data_buffer = deque([0] * MAX_SAMPLES, maxlen=MAX_SAMPLES)
 COMMANDS = {
     "1010 squarewave" : bytes([0xAA if i<4 else 0xAA for i in range(8)]),
@@ -69,7 +69,7 @@ def setup_plot():
     plt.subplots_adjust(left=0.04,right=0.9,bottom=0.1,top=1) # Make room for the button
     #ax.xaxis.set_major_formatter(FuncFormatter(scale_x))
     line, = ax.plot(data_buffer)
-    ax.set_ylim(0, 14000) # Adjust based on your expected int range
+    ax.set_ylim(0, 6000) # Adjust based on your expected int range
     #ax.set_ylim(86, 94) # Adjust based on your expected int range
 
     ax_radio = plt.axes([0.9, 0.1, 0.1, 0.9], facecolor='#f0f0f0')
@@ -93,7 +93,7 @@ def setup_plot():
     btn.on_clicked(send_data)
 
     def save_numpy_data(event):
-        filename = "unit_test/"+TEST_TYPE+f"_{selected_command}.npy"
+        filename = "unit_test/"+TEST_TYPE+f"_{selected_command}_tank_close.npy"
         
         # 2. Capture and convert
         # Convert the current deque to a standard numpy array

@@ -1,6 +1,6 @@
 ../Src/user/max_peak_detector.cpp:37:1:MaxPeakDetector::MaxPeakDetector(ADC_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*)	24	static
-../Src/user/max_peak_detector.cpp:121:6:void MaxPeakDetector::search_loop()	40	static
-../Src/user/max_peak_detector.cpp:88:11:Timestamp MaxPeakDetector::detect_peak()	16	static
+../Src/user/max_peak_detector.cpp:88:11:Timestamp MaxPeakDetector::detect_peak()	24	static
+../Src/user/max_peak_detector.cpp:121:6:void MaxPeakDetector::search_loop()	8	static
 ../Src/user/max_peak_detector.cpp:185:6:void MaxPeakDetector::error_1_handle()	16	static
 ../Src/user/max_peak_detector.cpp:217:17:void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef*)	0	static
 ../Src/user/max_peak_detector.cpp:243:18:void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef*)	0	static

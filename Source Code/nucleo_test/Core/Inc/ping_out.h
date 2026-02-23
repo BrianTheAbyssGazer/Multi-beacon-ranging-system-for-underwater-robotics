@@ -25,7 +25,6 @@ class PingOut {
     private:
         DMA_HandleTypeDef* p_hdma_tim2_up;
         TIM_HandleTypeDef* p_htim2;
-        IndexInfoTX* p_index_info_tx;
 
     public:
         static volatile int po_state;
@@ -57,7 +56,7 @@ class PingOut {
         static bool debug; //toggle GPIO on callbacks, set and reset
 
         //methods:
-        PingOut(DMA_HandleTypeDef*, TIM_HandleTypeDef*,IndexInfoTX*);
+        PingOut(DMA_HandleTypeDef*, TIM_HandleTypeDef*);
         void schedule_ping(int, int);
         void start_periodic_scheduler(int);
         uint16_t start_datapacket_scheduler(uint8_t data);

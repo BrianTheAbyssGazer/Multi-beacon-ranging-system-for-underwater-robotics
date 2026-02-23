@@ -19,7 +19,7 @@
 	#define BUF_LEN 18000
 	extern uint16_t buf[BUF_LEN]; //18k elems, or 36Kbytes
 
-#elif TRANSPONDER_MODE
+#elif TRANSPONDER_MODE && !PHASE_KEYING_TEST
 	#define BUF_LEN 18000 
 	extern uint16_t buf[BUF_LEN]; //18k elems, or 36k bytes
 	#define OUT_BUF_LEN 3000 
@@ -29,7 +29,7 @@
 	//3k * 6 = 18k (6 ADC samples per half period of carrier)
 	//36k bytes + 12k bytes = 48k bytes (will fit into memory)
 
-#elif TIME_OF_FLIGHT_MODE
+#elif TIME_OF_FLIGHT_MODE && !PHASE_KEYING_TEST
 	#define BUF_LEN 18000 
 	extern uint16_t buf[BUF_LEN]; //18k elems, or 36k bytes
 	#define OUT_BUF_LEN 3000 
@@ -38,7 +38,7 @@
 
 	//3k * 6 = 18k (6 ADC samples per half period of carrier)
 	//36k bytes + 12k bytes = 48k bytes (will fit into memory)
-#elif ECHO_MASTER_MODE || ECHO_TRANSPONDER_MODE
+#elif ECHO_MASTER_MODE || PHASE_KEYING_TEST
 	#define BUF_LEN 18000
 	#define UART_BUF_LEN 2000
 	#define BG_LEN 20
@@ -48,6 +48,8 @@
 	#define OUT_BUF_LEN 3000
 	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes
     #define DATA_LEN 8
+	#define N_CYCLE 40 //actually this is the number of pingout digits per signal digit. 2 digits output makes 1 cycle for the diaphragm
+	#define SYMBOL_LEN 8
 #elif SLOW_TX_MODE
 	#define OUT_BUF_LEN 3000
 	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes

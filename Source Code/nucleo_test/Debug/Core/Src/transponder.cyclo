@@ -1,0 +1,1 @@
+../Core/Src/transponder.cpp:22:17:void transponder_main(ADC_HandleTypeDef*, TIM_HandleTypeDef*, UART_HandleTypeDef*, DMA_HandleTypeDef*, TIM_HandleTypeDef*)	1

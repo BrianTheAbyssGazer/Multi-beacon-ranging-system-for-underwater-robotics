@@ -38,7 +38,7 @@ def run_multi_viewer():
             filename = f"{t}_{index}.npy"
             if os.path.exists(filename):
                 y_data = np.load(filename)
-                x_data = np.arange(len(y_data)) * 0.72
+                x_data = np.arange(len(y_data))*1.45
                 
                 lines[t].set_data(x_data, y_data)
                 all_y_data.extend(y_data)
@@ -50,7 +50,7 @@ def run_multi_viewer():
 
         if found_any:
             # Rescale the view to fit the new combined data
-            ax.set_xlim(0, 2000 * 0.72) # Assuming 1000 samples
+            ax.set_xlim(0, 2000 *1.45) # Assuming 1000 samples
             if all_y_data:
                 ax.set_ylim(min(all_y_data) * 0.9, max(all_y_data) * 1.1)
             ax.set_title(f"Viewing Data Group: Index {index}")

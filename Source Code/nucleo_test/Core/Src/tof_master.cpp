@@ -14,6 +14,7 @@
 
 
 
+#if ECHO_MASTER_MODE || (PHASE_KEYING_TEST && TIME_OF_FLIGHT_MODE)
 extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
                                 TIM_HandleTypeDef* p_htim3,
                                 UART_HandleTypeDef* p_huart,
@@ -22,7 +23,11 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 
     /******************* SETUP RX ************************/
     CMD_RX cmd_rx(p_huart);
+#if ECHO_MASTER_MODE
     cmd_rx.start_unit_test();
+#endif
+	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
+    pgas.setGain(2);
 
     /******************* SETUP TX ************************/
 	IndexInfoTX idx_info_tx(p_huart);
@@ -34,12 +39,13 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 
     while (1) {
     	max_peak_detector.detect_peak();
-
+#if ECHO_MASTER_MODE
 		if (cmd_rx.rx_cplt) {
 			ping_out.set_phase_keying_data(cmd_rx.get_cmd_data());
 			cmd_rx.start_unit_test();
 		}
 		ping_out.update();
+#endif
     }
 }
-
+#endif

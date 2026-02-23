@@ -25,27 +25,6 @@ C_SRCS += \
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c \
 ../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.c 
 
-C_DEPS += \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.d \
-./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.d 
-
 OBJS += \
 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o \
 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.o \
@@ -66,6 +45,27 @@ OBJS += \
 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.o \
 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.o \
 ./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.o 
+
+C_DEPS += \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.d \
+./Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

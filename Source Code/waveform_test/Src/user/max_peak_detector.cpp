@@ -14,7 +14,7 @@
 #include "global_buffer_def.h"
 
 
-#if BASIC_PEAK_DETECTOR_MODE || TRANSPONDER_MODE || TIME_OF_FLIGHT_MODE || ECHO_TRANSPONDER_MODE || ECHO_MASTER_MODE
+#if BASIC_PEAK_DETECTOR_MODE || TRANSPONDER_MODE || TIME_OF_FLIGHT_MODE || ECHO_MASTER_MODE
 
 
 
@@ -125,7 +125,7 @@ void MaxPeakDetector :: search_loop() {
 	while (1) {
 		cur_val = buf[cur_idx];
 		cur_idx++;
-
+#if ECHO_MASTER_MODE || (PHASE_KEYING_TEST && TIME_OF_FLIGHT_MODE)
 		switch (search_sub_state)
 		{
 
@@ -165,7 +165,7 @@ void MaxPeakDetector :: search_loop() {
 			//------------------------------------------------------------------
 
 		} // switch
-
+#endif
 		// conditions to escape search mode
 		if(global_state == MPDState::IDLE)break;
 		else if ((global_state == MPDState::PROC_BUF_1ST_HLF) && (cur_idx >= (BUF_LEN/2))) {
