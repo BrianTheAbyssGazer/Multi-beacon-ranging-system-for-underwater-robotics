@@ -12,8 +12,8 @@ import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 MAX_SAMPLES = 5700
-PORT="COM5"
-TEST_TYPE="box full sample"
+PORT="COM3"
+TEST_TYPE="digital_BPSK"
 data_buffer = deque([0] * MAX_SAMPLES, maxlen=MAX_SAMPLES)
 COMMANDS = {
     "1010 squarewave" : bytes([0xAA if i<4 else 0xAA for i in range(8)]),

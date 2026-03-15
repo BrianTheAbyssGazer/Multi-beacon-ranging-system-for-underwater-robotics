@@ -57,21 +57,6 @@ MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef*
     cur_idx = HAL_BUF_LEN;
     uart_idx = 0;
     ccm_idx = 0;
-    bg_idx=0;
-    bg_avg=0;
-    //set default parameter values:
-    min_aid = false;
-	//initialise seach context:
-	last_peak_val = 0; //TODO need calibration startup routine
-    last_peak_idx = -1;
-	last_peak_pfx = -1;
-    tentative_max_val = 0;
-    tentative_max_idx = 0;
-	tentative_max_pfx = 0;
-    tentative_min_val = 4096;
-    tentative_min_idx = 0;
-	tentative_min_pfx = 0;
-    window_count = 0;
     dead_zone_count = 0;
 #if DECODE
     phase = 0;
@@ -140,7 +125,6 @@ void MaxPeakDetector :: search_loop() {
 
 	while (1) {
 		cur_val = buf[cur_idx];
-		float s1,s2,sin,cos,real,imag,i,q,fraction; // Masking instead of %
 #if TIME_OF_FLIGHT_MODE && STREAM
 		switch (search_sub_state){
 			case MPDSearchState::NO_SIGNAL: //------------------------------------------------------------------
@@ -177,6 +161,7 @@ void MaxPeakDetector :: search_loop() {
 				break;
 		} // switch
 #elif TIME_OF_FLIGHT_MODE && DECODE
+		float s1,s2,sin,cos,real,imag,i,q,fraction; // Masking instead of %
 		switch (search_sub_state){
 			case MPDSearchState::NO_SIGNAL: //------------------------------------------------------------------
 				if (cur_val > 0) {
@@ -184,7 +169,7 @@ void MaxPeakDetector :: search_loop() {
 				    symbol_counter=0;
 					search_sub_state = MPDSearchState::PREAMBLE;
 				}
-				else cur_idx=11+cur_idx;
+				else cur_idx+=11;
 				break;
 			case MPDSearchState::PREAMBLE: //------------------------------------------------------------------
 				if(sample_counter<192){
@@ -196,7 +181,7 @@ void MaxPeakDetector :: search_loop() {
 					arm_sin_cos_f32(phase* 57.2958f, &sin, &cos);
 					i=real*cos+imag*sin;
 					q=imag*cos-real*sin;
-					phase += 0.5236 + (0.005 * i * q); // 1/12=0.5236 (12 samples per cycle), 0.005 is empirical
+					phase += 0.523599 + (0.005 * i * q); // 1/12=0.5236 (12 samples per cycle), 0.05 is empirical
 					corr_sum+=i;
 					cur_idx++;
 					sample_counter++;
@@ -204,7 +189,8 @@ void MaxPeakDetector :: search_loop() {
 				else{
 					rx_data[symbol_counter]=(corr_sum>0.0f);
 					cur_idx=cur_idx+1344; //12 samples per cycle * 16 cycle per symbol * 7
-					phase_int = phase*683565000.0f; //
+					phase = phase - TWOPI * std::floor(phase / TWOPI);
+					phase_int = phase*683565000.0f*2; // The whole range from 0 to 2**32 map to 0 to 2pi
 					sample_counter=0;
 					symbol_counter++;
 					corr_sum=0;
@@ -266,12 +252,16 @@ void MaxPeakDetector :: search_loop() {
 		// conditions to escape search mode
 		if ((global_state == MPDState::PROC_BUF_1ST_HLF) && (cur_idx >= (HAL_BUF_LEN))) {
 			global_state = MPDState::IDLE;
+#if TIME_OF_FLIGHT_MODE && DECODE
 			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[HAL_BUF_LEN-3+i];
+#endif
 			break;
 		} else if (global_state == MPDState::PROC_BUF_2ND_HLF && (cur_idx >= (BUF_LEN))) {
 			global_state = MPDState::IDLE;
 			cur_idx = cur_idx & BUF_MASK;
+#if TIME_OF_FLIGHT_MODE && DECODE
 			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[BUF_LEN-3+i];
+#endif
 			break;
 		} else if (global_state == MPDState::ERROR_1) {
 			break;

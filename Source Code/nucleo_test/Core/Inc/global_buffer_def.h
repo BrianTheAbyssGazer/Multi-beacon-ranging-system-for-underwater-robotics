@@ -46,5 +46,6 @@
 #elif DECODE
 	#define HILB_SIZE 4
 	#define HILB_MASK (HILB_SIZE-1)
-	#define DEAD_ZONE_LEN 13500
+	#define DEAD_ZONE_LEN 8191
+	#define TWOPI 3.14159*2
 #endif

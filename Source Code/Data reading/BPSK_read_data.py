@@ -6,7 +6,7 @@ import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 MAX_SAMPLES = 5700
-PORT="COM4"
+PORT="COM3"
 TEST_TYPE="box full sample"
 
 serial_lock = threading.Lock() # Prevents simultaneous read/write collisions
