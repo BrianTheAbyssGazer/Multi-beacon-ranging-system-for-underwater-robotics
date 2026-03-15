@@ -21,6 +21,7 @@
 // global ADC buffer:
 uint16_t buf[BUF_LEN];
 uint16_t uart_buf[UART_BUF_LEN];
+uint16_t ccm_capture_buffer[CCM_BUF_LEN] __attribute__((section(".ccmram")));
 
 //initialise statics:
 volatile int MaxPeakDetector::global_state = MPDState::PROC_BUF_2ND_HLF;
@@ -46,6 +47,7 @@ MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef*
     //initialise start index of adc buffer (start half way through DMA will start at beginning):
     cur_idx = BUF_LEN/2;
     uart_idx = 0;
+    ccm_idx = 0;
     bg_idx=0;
     bg_avg=0;
 
@@ -152,13 +154,20 @@ void MaxPeakDetector :: search_loop() {
 					uart_idx++;
 					cur_idx++;
 				}
+				else if(ccm_idx<CCM_BUF_LEN){
+					ccm_capture_buffer[ccm_idx]=cur_val;
+					ccm_idx++;
+					cur_idx++;
+				}
 				else{
 		            global_state = MPDState::IDLE;
 					search_sub_state = MPDSearchState::NO_SIGNAL;
 					sending_signal=true;
-					for (int i=0;i<UART_BUF_LEN;i++)(*p_index_info_tx).stream_adc(uart_buf[i]);
+					for (uint16_t i=0;i<UART_BUF_LEN;i++)(*p_index_info_tx).stream_adc(uart_buf[i]);
+					for (uint16_t i=0;i<CCM_BUF_LEN;i++)(*p_index_info_tx).stream_adc(ccm_capture_buffer[i]);
 					sending_signal=false;
 					uart_idx=0;
+					ccm_idx=0;
 				}
 				break;
 

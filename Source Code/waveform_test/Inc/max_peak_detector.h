@@ -74,9 +74,10 @@ class MaxPeakDetector {
         int dead_zone_count;
         
     public:
-        int cur_idx; //current idx of adc buffer
-        int uart_idx; //current idx of adc buffer
-        int bg_idx; //current idx of adc buffer
+        uint16_t cur_idx; //current idx of adc buffer
+        uint16_t uart_idx; //current idx of adc buffer
+        uint16_t ccm_idx; //current idx of adc buffer
+        uint16_t bg_idx; //current idx of adc buffer
         int bg_avg; //current idx of adc buffer
         static volatile int cur_pfx; // incremented each time the ADC buffer completely fills
 

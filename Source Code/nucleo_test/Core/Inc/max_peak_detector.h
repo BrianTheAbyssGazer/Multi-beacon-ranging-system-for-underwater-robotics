@@ -9,6 +9,8 @@
 #ifdef __cplusplus
 
 #include "index_info_tx.h"
+#include <deque>
+#include "global_buffer_def.h"
 
 
 
@@ -32,8 +34,9 @@ enum MPDState {
 
 enum MPDSearchState {
     NO_SIGNAL,
+	PREAMBLE,
     YES_SIGNAL,
-	BACKGROUND_MEASURING,
+	SENDING,
 };
 
 
@@ -72,15 +75,23 @@ class MaxPeakDetector {
         int tentative_min_pfx;
         int window_count;
         int dead_zone_count;
-        
+#if DECODE
+        float phase;
+        uint32_t phase_int;
+        uint16_t sample_counter;
+        uint16_t symbol_counter;
+        float corr_sum;
+#endif
     public:
-        int cur_idx; //current idx of adc buffer
-        int uart_idx; //current idx of adc buffer
-        int bg_idx; //current idx of adc buffer
+        uint16_t cur_idx; //current idx of adc buffer
+        uint16_t uart_idx; //current idx of adc buffer
+        uint16_t ccm_idx; //current idx of adc buffer
+        uint16_t bg_idx; //current idx of adc buffer
         int bg_avg; //current idx of adc buffer
         static volatile int cur_pfx; // incremented each time the ADC buffer completely fills
-
-
+#if DECODE
+        bool rx_data[DATA_LEN];
+#endif
     // methods -------
     public:
         MaxPeakDetector(ADC_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*);

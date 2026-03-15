@@ -32,7 +32,9 @@ Core/Src/max_peak_detector.o: ../Core/Src/max_peak_detector.cpp \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
  ../Core/Inc/max_peak_detector.h ../Core/Inc/index_info_tx.h \
- ../Core/Inc/mode.h ../Core/Inc/global_buffer_def.h ../Core/Inc/mode.h
+ ../Core/Inc/global_buffer_def.h ../Core/Inc/mode.h ../Core/Inc/mode.h \
+ ../Core/Inc/global_buffer_def.h ../Middlewares/ST/ARM/DSP/Inc/arm_math.h \
+ ../Drivers/CMSIS/Include/cmsis_compiler.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
 ../Core/Inc/stm32f3xx_hal_conf.h:
@@ -68,6 +70,9 @@ Core/Src/max_peak_detector.o: ../Core/Src/max_peak_detector.cpp \
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h:
 ../Core/Inc/max_peak_detector.h:
 ../Core/Inc/index_info_tx.h:
-../Core/Inc/mode.h:
 ../Core/Inc/global_buffer_def.h:
 ../Core/Inc/mode.h:
+../Core/Inc/mode.h:
+../Core/Inc/global_buffer_def.h:
+../Middlewares/ST/ARM/DSP/Inc/arm_math.h:
+../Drivers/CMSIS/Include/cmsis_compiler.h:

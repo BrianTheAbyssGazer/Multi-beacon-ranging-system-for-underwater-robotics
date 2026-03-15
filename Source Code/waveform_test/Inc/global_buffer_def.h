@@ -40,16 +40,22 @@
 	//36k bytes + 12k bytes = 48k bytes (will fit into memory)
 #elif ECHO_MASTER_MODE || PHASE_KEYING_TEST
 	#define BUF_LEN 18000
-	#define UART_BUF_LEN 2000
+	#define UART_BUF_LEN 2800
+	#define CCM_BUF_LEN 4096
 	#define BG_LEN 20
 	extern uint16_t buf[BUF_LEN]; //18k elems, or 36k bytes
 	extern uint16_t uart_buf[UART_BUF_LEN]; //18k elems, or 36k bytes
+	extern uint16_t ccm_capture_buffer[CCM_BUF_LEN] __attribute__((section(".ccmram")));
 	extern uint16_t bg_buf[BG_LEN];
 	#define OUT_BUF_LEN 3000
 	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes
     #define DATA_LEN 8
 	#define N_CYCLE 40 //actually this is the number of pingout digits per signal digit. 2 digits output makes 1 cycle for the diaphragm
 	#define SYMBOL_LEN 8
+	#define GOLD_CODE_0 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1
+	#define GOLD_CODE_1 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0
+	#define GOLD_CODE_2 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0
+	#define GOLD_CODE_3 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0
 #elif SLOW_TX_MODE
 	#define OUT_BUF_LEN 3000
 	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes

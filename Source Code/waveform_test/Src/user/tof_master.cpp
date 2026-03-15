@@ -34,7 +34,7 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
 
     /******************* SETUP TX ************************/
 	IndexInfoTX idx_info_tx(p_huart);
-    PingOut ping_out(p_hdma_tim2_up, p_htim2,&idx_info_tx);
+    PingOut ping_out(p_hdma_tim2_up, p_htim2);
     //ping_out.start_periodic_scheduler(2);
     //PingOut::debug = true;
 	MaxPeakDetector max_peak_detector(p_hadc, p_htim3,  &idx_info_tx);

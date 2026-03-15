@@ -1,8 +1,7 @@
 ../Core/Src/ping_out.cpp:39:1:PingOut::PingOut(DMA_HandleTypeDef*, TIM_HandleTypeDef*)	2
-../Core/Src/ping_out.cpp:92:6:void PingOut::set_phase_keying_data(uint8_t*)	3
-../Core/Src/ping_out.cpp:103:6:void PingOut::start_periodic_scheduler(int)	1
-../Core/Src/ping_out.cpp:112:6:void PingOut::update()	13
-../Core/Src/ping_out.cpp:160:6:void PingOut::set(int)	7
-../Core/Src/ping_out.cpp:204:6:void PingOut::clear(int)	7
-../Core/Src/ping_out.cpp:239:6:void first_half_written_callback(DMA_HandleTypeDef*)	10
-../Core/Src/ping_out.cpp:270:6:void secnd_half_written_callback(DMA_HandleTypeDef*)	3
+../Core/Src/ping_out.cpp:97:6:void PingOut::start_periodic_scheduler(int)	1
+../Core/Src/ping_out.cpp:106:6:void PingOut::update()	9
+../Core/Src/ping_out.cpp:151:6:void PingOut::set(uint16_t)	9
+../Core/Src/ping_out.cpp:174:6:void PingOut::clear(uint16_t)	11
+../Core/Src/ping_out.cpp:206:6:void first_half_written_callback(DMA_HandleTypeDef*)	4
+../Core/Src/ping_out.cpp:222:6:void secnd_half_written_callback(DMA_HandleTypeDef*)	3

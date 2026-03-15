@@ -31,7 +31,7 @@ class PingOut {
         static volatile int cur_out_pfx; // the prefix of the free space on the buffer
         static volatile uint8_t datapacket_index;
         static bool codeword[];
-        static bool codebits[];
+        static bool goldcode[];
 
     private:
         int scheduled_idx; //this has already been rounded to out_buf units
@@ -62,7 +62,6 @@ class PingOut {
         uint16_t start_datapacket_scheduler(uint8_t data);
         void update(void);
         bool calculateParity(bool codeword[], const uint8_t positions[], uint8_t size);
-        void set_phase_keying_data(uint8_t* data);
 };
 
 

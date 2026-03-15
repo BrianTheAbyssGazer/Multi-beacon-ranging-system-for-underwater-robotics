@@ -51,7 +51,7 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
 
     /******************* SETUP TX ************************/
     PingOut ping_out(p_hdma_tim2_up, p_htim2);
-    ping_out.start_periodic_scheduler(200);
+    ping_out.start_periodic_scheduler(1000);
     //PingOut::debug = true;
 
     while (1) {

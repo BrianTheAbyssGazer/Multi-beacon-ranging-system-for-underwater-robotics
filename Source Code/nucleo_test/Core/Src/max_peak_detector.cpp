@@ -12,20 +12,30 @@
 #include "max_peak_detector.h"
 #include "mode.h"
 #include "global_buffer_def.h"
+#include "arm_math.h"
 
-
-#if BASIC_PEAK_DETECTOR_MODE || TRANSPONDER_MODE || TIME_OF_FLIGHT_MODE || ECHO_TRANSPONDER_MODE || ECHO_MASTER_MODE
+#if BASIC_PEAK_DETECTOR_MODE || TRANSPONDER_MODE || TIME_OF_FLIGHT_MODE || ECHO_MASTER_MODE
 
 
 
 // global ADC buffer:
 uint16_t buf[BUF_LEN];
+#if STREAM
 uint16_t uart_buf[UART_BUF_LEN];
+uint16_t ccm_capture_buffer[CCM_BUF_LEN] __attribute__((section(".ccmram")));
+#elif DECODE
+uint16_t buf_res[3];
+static const float sin_lut[32] = {0.0, 0.19509, 0.382683, 0.55557, 0.707107, 0.83147, 0.92388, 0.980785, 1.0, 0.980785, 0.92388, 0.83147,
+		0.707107, 0.55557, 0.382683, 0.19509, 0.0, -0.19509, -0.382683, -0.55557, -0.707107, -0.83147, -0.92388, -0.980785, -1.0, -0.980785,
+		-0.92388, -0.83147, -0.707107, -0.55557, -0.382683, -0.19509};
+static const float cos_lut[32] = {1.0, 0.980785, 0.92388, 0.83147, 0.707107, 0.55557, 0.382683, 0.19509, 0.0, -0.19509, -0.382683, -0.55557,
+		-0.707107, -0.83147, -0.92388, -0.980785, -1.0, -0.980785, -0.92388, -0.83147, -0.707107, -0.55557, -0.382683, -0.19509, -0.0, 0.19509,
+		0.382683, 0.55557, 0.707107, 0.83147, 0.92388, 0.980785};
+#endif
 
 //initialise statics:
 volatile int MaxPeakDetector::global_state = MPDState::PROC_BUF_2ND_HLF;
 volatile int MaxPeakDetector::cur_pfx = 0; // incremented each time the ADC buffer completely fills
-bool MaxPeakDetector::sending_signal=false;
 /* Initialisation:
     // parameters
     min_aid = false;
@@ -41,14 +51,14 @@ MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef*
     this->p_index_info_tx = p_index_info_tx;
 
 	//initialise search sub-state:
-	search_sub_state = MPDSearchState::BACKGROUND_MEASURING;
+	search_sub_state = MPDSearchState::NO_SIGNAL;
 
     //initialise start index of adc buffer (start half way through DMA will start at beginning):
-    cur_idx = BUF_LEN/2;
+    cur_idx = HAL_BUF_LEN;
     uart_idx = 0;
+    ccm_idx = 0;
     bg_idx=0;
     bg_avg=0;
-
     //set default parameter values:
     min_aid = false;
 	//initialise seach context:
@@ -63,7 +73,13 @@ MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef*
 	tentative_min_pfx = 0;
     window_count = 0;
     dead_zone_count = 0;
-
+#if DECODE
+    phase = 0;
+    phase_int=0;
+    sample_counter=0;
+    symbol_counter=0;
+    corr_sum=0;
+#endif
 	//zero initialise the adc buffer:
 	for (int i = 0; i < BUF_LEN; i++) {
 		buf[i] = 0;
@@ -91,17 +107,19 @@ Timestamp MaxPeakDetector :: detect_peak() {
     switch (global_state)
     {
         case MPDState::PROC_BUF_1ST_HLF:
-            if (cur_idx < BUF_LEN/2) {
+            if (cur_idx < HAL_BUF_LEN) {
                 search_loop();
+            } else {
+                global_state = MPDState::IDLE;
             }
-            else cur_idx=0;
             break;
 
         case MPDState::PROC_BUF_2ND_HLF:
-            if (cur_idx >= BUF_LEN/2) {
+            if (cur_idx >= HAL_BUF_LEN) {
                 search_loop();
+            } else {
+                global_state = MPDState::IDLE;
             }
-            else cur_idx=BUF_LEN/2;
             break;
 
         case MPDState::ERROR_1:
@@ -113,67 +131,147 @@ Timestamp MaxPeakDetector :: detect_peak() {
     }
 
     Timestamp tmsp(last_peak_idx, last_peak_pfx);
-    last_peak_idx = -1;
-    last_peak_pfx = -1;
     return tmsp;
 }
 
 void MaxPeakDetector :: search_loop() {
 
-	int cur_val;
+	uint16_t cur_val;
 
 	while (1) {
 		cur_val = buf[cur_idx];
-		cur_idx++;
-
-		switch (search_sub_state)
-		{
-
-			case MPDSearchState::BACKGROUND_MEASURING:
-				if(bg_idx<BG_LEN){
-					bg_avg+=cur_val;
-					bg_idx++;
-					cur_idx++;
-				}
-				else{
-					bg_avg=bg_avg/BG_LEN;
-					search_sub_state = MPDSearchState::NO_SIGNAL;
-				}
+		float s1,s2,sin,cos,real,imag,i,q,fraction; // Masking instead of %
+#if TIME_OF_FLIGHT_MODE && STREAM
+		switch (search_sub_state){
 			case MPDSearchState::NO_SIGNAL: //------------------------------------------------------------------
-				if (cur_val > 20) {
+				if (cur_val > 2000||cur_val<1855) {
+					uart_idx=0;
+					ccm_idx=0;
 					search_sub_state = MPDSearchState::YES_SIGNAL;
 				}
-				else cur_idx++;
+				cur_idx++;
 				break;
-
 			case MPDSearchState::YES_SIGNAL: //------------------------------------------------------------------
-				if (uart_idx<UART_BUF_LEN){
+				if(ccm_idx<SKIP){
+					ccm_idx++;
+					cur_idx++;
+				}
+				else if (ccm_idx<CCM_BUF_LEN+SKIP){
+					ccm_capture_buffer[ccm_idx-SKIP]=cur_val;
+					ccm_idx++;
+					cur_idx++;
+				}
+				else if(uart_idx<UART_BUF_LEN){
 					uart_buf[uart_idx]=cur_val;
 					uart_idx++;
 					cur_idx++;
 				}
 				else{
-		            global_state = MPDState::IDLE;
-					search_sub_state = MPDSearchState::NO_SIGNAL;
-					sending_signal=true;
-					for (int i=0;i<UART_BUF_LEN;i++)(*p_index_info_tx).stream_adc(uart_buf[i]);
-					sending_signal=false;
-					uart_idx=0;
+					search_sub_state = MPDSearchState::SENDING;
 				}
 				break;
-
-			//------------------------------------------------------------------
-
+			case MPDSearchState::SENDING:
+				for (uint16_t i=0;i<CCM_BUF_LEN;i++)(*p_index_info_tx).stream_adc(ccm_capture_buffer[i]);
+				for (uint16_t i=0;i<UART_BUF_LEN;i++)(*p_index_info_tx).stream_adc(uart_buf[i]);
+				search_sub_state = MPDSearchState::NO_SIGNAL;
+				break;
 		} // switch
+#elif TIME_OF_FLIGHT_MODE && DECODE
+		switch (search_sub_state){
+			case MPDSearchState::NO_SIGNAL: //------------------------------------------------------------------
+				if (cur_val > 0) {
+				    sample_counter=0;
+				    symbol_counter=0;
+					search_sub_state = MPDSearchState::PREAMBLE;
+				}
+				else cur_idx=11+cur_idx;
+				break;
+			case MPDSearchState::PREAMBLE: //------------------------------------------------------------------
+				if(sample_counter<192){
+					uint16_t pre_val;
+					if ((cur_idx&HAL_BUF_MASK)<3)pre_val=buf_res[cur_idx];
+					else pre_val=buf[cur_idx-3];
+					imag = (float(pre_val)-1884) * 0.000488281f;// 1/2048=0.00048828125
+					real = (float(cur_val) - 1884) * 0.000488281f;
+					arm_sin_cos_f32(phase* 57.2958f, &sin, &cos);
+					i=real*cos+imag*sin;
+					q=imag*cos-real*sin;
+					phase += 0.5236 + (0.005 * i * q); // 1/12=0.5236 (12 samples per cycle), 0.005 is empirical
+					corr_sum+=i;
+					cur_idx++;
+					sample_counter++;
+				}
+				else{
+					rx_data[symbol_counter]=(corr_sum>0.0f);
+					cur_idx=cur_idx+1344; //12 samples per cycle * 16 cycle per symbol * 7
+					phase_int = phase*683565000.0f; //
+					sample_counter=0;
+					symbol_counter++;
+					corr_sum=0;
+					search_sub_state = MPDSearchState::YES_SIGNAL;
+				}
+			case MPDSearchState::YES_SIGNAL: //------------------------------------------------------------------
+				if(symbol_counter<8){
+					if(sample_counter<192){
+						uint16_t pre_val;
+						if ((cur_idx&HAL_BUF_MASK)<3)pre_val=buf_res[cur_idx];
+						else pre_val=buf[cur_idx-3];
+						float imag = (float(pre_val)-1884) * 0.000488281f;// 1/2048=0.00048828125
+						float real = (float(cur_val) - 1884) * 0.000488281f;
+						uint8_t i_lut = phase_int >> 27;//use top 5=32-27 bits as approximate index
+						fraction = (phase_int & 0x07FFFFFF) * 2.38419e-7f;
+						s1 = sin_lut[i_lut];
+						s2 = sin_lut[(i_lut + 1) & 31]; // Masking instead of %
+						sin = s1 + fraction * (s2 - s1);
 
+						s1 = cos_lut[i_lut];
+						s2 = cos_lut[(i_lut + 1) & 31]; // Masking instead of %
+						cos=cos_lut[i_lut];
+
+						float i=real*cos+imag*sin;
+						phase_int += 357913941; // 357913941 = round(2**32/12)
+						corr_sum+=i;
+						cur_idx++;
+						sample_counter++;
+					}
+					else{
+						rx_data[symbol_counter]=(corr_sum>0.0f);
+						cur_idx=cur_idx+1344; //12 samples per cycle * 16 cycle per symbol * 7
+						sample_counter=0;
+						symbol_counter++;
+						corr_sum=0;
+					}
+				}
+				else{
+					symbol_counter=0;
+					sample_counter=0;
+					corr_sum=0;
+					phase=0;
+					cur_idx+=DEAD_ZONE_LEN;
+					uint8_t data = 0;
+				    for (int i = 0; i < 8; ++i) {
+				        if (rx_data[i]) {
+				        	data |= (1 << i); // Set the i-th bit
+				        }
+				    }
+					if(!rx_data[0]){
+						data=~data;
+					}
+				    (*p_index_info_tx).send_byte(data);
+					search_sub_state = MPDSearchState::NO_SIGNAL;
+				}
+				break;
+		} // switch
+#endif
 		// conditions to escape search mode
-		if(global_state == MPDState::IDLE)break;
-		else if ((global_state == MPDState::PROC_BUF_1ST_HLF) && (cur_idx >= (BUF_LEN/2))) {
+		if ((global_state == MPDState::PROC_BUF_1ST_HLF) && (cur_idx >= (HAL_BUF_LEN))) {
 			global_state = MPDState::IDLE;
+			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[HAL_BUF_LEN-3+i];
 			break;
 		} else if (global_state == MPDState::PROC_BUF_2ND_HLF && (cur_idx >= (BUF_LEN))) {
 			global_state = MPDState::IDLE;
-			cur_idx = 0;
+			cur_idx = cur_idx & BUF_MASK;
+			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[BUF_LEN-3+i];
 			break;
 		} else if (global_state == MPDState::ERROR_1) {
 			break;
@@ -183,34 +281,14 @@ void MaxPeakDetector :: search_loop() {
 }
 
 void MaxPeakDetector :: error_1_handle() {
-    (*p_index_info_tx).transmit_err_1(cur_idx, cur_pfx); //send error notification
+    (*p_index_info_tx).send_byte(128); //send error notification
 	global_state = MPDState::IDLE; // then skip this half buffer and try on the next
 
-    if (cur_idx > BUF_LEN/2) {
-        cur_idx = BUF_LEN/2;
-    } else {
-        cur_idx = 0;
-    }
-
 	//need to reset the relevant search context so we are ready to start searching again:
-	search_sub_state = MPDSearchState::BACKGROUND_MEASURING;
-
-	last_peak_idx = -1;
-    last_peak_pfx = -1;
-
-    tentative_max_val = 0;
-    tentative_max_idx = 0;
-    tentative_max_pfx = 0;
-
-    tentative_min_val = 4096;
-    tentative_min_idx = 0;
-    tentative_min_pfx = 0;
-
-    window_count = 0;
-    dead_zone_count = 0;
+	search_sub_state = MPDSearchState::NO_SIGNAL;
 }
 
- 
+
 
 
 //Called when first half of buffer is filled
@@ -231,7 +309,7 @@ extern "C" void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* p_hadc) {
 				break;
 
 			case MPDState::IDLE:
-				if(MaxPeakDetector::sending_signal==false)MaxPeakDetector::global_state = MPDState::PROC_BUF_1ST_HLF;
+				MaxPeakDetector::global_state = MPDState::PROC_BUF_1ST_HLF;
 				break;
 		  }
 }
@@ -255,7 +333,7 @@ extern "C"  void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* p_hadc) {
 				break;
 
 			case MPDState::IDLE:
-				if(MaxPeakDetector::sending_signal==false)MaxPeakDetector::global_state = MPDState::PROC_BUF_2ND_HLF;
+				MaxPeakDetector::global_state = MPDState::PROC_BUF_2ND_HLF;
 				break;
 		  }
 }
@@ -278,13 +356,7 @@ int Timestamp::get_total(void) {
 * Returns a timestamp object from the total timestamp integer
 */
 Timestamp Timestamp::from_total(int total_timestamp) {
-    return Timestamp(total_timestamp % BUF_LEN, total_timestamp / BUF_LEN);
+    return Timestamp(total_timestamp & BUF_MASK, total_timestamp / BUF_LEN);
 }
-
-
-
-
-
-
 
 #endif

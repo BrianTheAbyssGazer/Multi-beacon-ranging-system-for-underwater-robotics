@@ -144,7 +144,7 @@ transponder_main(&hadc4, &htim3, &huart2, &hdma_tim2_up, &htim2);
 slow_tx_main(&huart1, &hdma_tim2_up, &htim2);
 
 #elif TIME_OF_FLIGHT_MODE || ECHO_MASTER_MODE
-tof_master_main(&hadc4, &htim3, &huart1, &hopamp2, &hopamp3, &hdma_tim2_up, &htim2);
+tof_master_main(&hadc4, &htim3, &huart2, &hdma_tim2_up, &htim2);
 #endif
   }
   /* USER CODE END 3 */

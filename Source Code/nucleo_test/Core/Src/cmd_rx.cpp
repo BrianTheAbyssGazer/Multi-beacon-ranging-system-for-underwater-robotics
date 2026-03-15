@@ -13,9 +13,9 @@
 volatile int CMD_RX::last_cmd_type = CMD_NOT_RX;
 volatile bool CMD_RX::rx_cplt = false;
 volatile int CMD_RX::last_cmd_detail = 0;
-volatile uint8_t CMD_RX::last_cmd_data[DATA_LEN] = {0,0,0,0, 0,0,0,0};
+volatile uint8_t CMD_RX::last_cmd_data[8] = {0,0,0,0, 0,0,0,0};
 uint8_t CMD_RX::rx_buf[CRX_PACKET_LEN] = {CMD_NOT_RX, 0};
-uint8_t CMD_RX::unit_test_buf[DATA_LEN] = {0,0,0,0, 0,0,0,0};
+uint8_t CMD_RX::unit_test_buf[8] = {0,0,0,0, 0,0,0,0};
 
 
 CMD_RX::CMD_RX(UART_HandleTypeDef* p_huart) {

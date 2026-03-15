@@ -32,8 +32,8 @@ Core/Src/ping_out.o: ../Core/Src/ping_out.cpp ../Core/Inc/main.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
  ../Core/Inc/max_peak_detector.h ../Core/Inc/index_info_tx.h \
- ../Core/Inc/mode.h ../Core/Inc/global_buffer_def.h ../Core/Inc/mode.h \
- ../Core/Inc/ping_out.h
+ ../Core/Inc/global_buffer_def.h ../Core/Inc/mode.h ../Core/Inc/mode.h \
+ ../Core/Inc/global_buffer_def.h ../Core/Inc/ping_out.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
 ../Core/Inc/stm32f3xx_hal_conf.h:
@@ -69,7 +69,8 @@ Core/Src/ping_out.o: ../Core/Src/ping_out.cpp ../Core/Inc/main.h \
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h:
 ../Core/Inc/max_peak_detector.h:
 ../Core/Inc/index_info_tx.h:
-../Core/Inc/mode.h:
 ../Core/Inc/global_buffer_def.h:
 ../Core/Inc/mode.h:
+../Core/Inc/mode.h:
+../Core/Inc/global_buffer_def.h:
 ../Core/Inc/ping_out.h:

@@ -19,41 +19,32 @@
 	#define BUF_LEN 18000
 	extern uint16_t buf[BUF_LEN]; //18k elems, or 36Kbytes
 
-#elif TRANSPONDER_MODE && !PHASE_KEYING_TEST
-	#define BUF_LEN 18000 
+#elif TIME_OF_FLIGHT_MODE || TRANSPONDER_MODE
+	#define BUF_LEN 16384 // 16384 = 2^14
+	#define HAL_BUF_LEN 8192 // 16384 = 2^14
+	#define BUF_MASK 16383
+	#define HAL_BUF_MASK 8191
 	extern uint16_t buf[BUF_LEN]; //18k elems, or 36k bytes
-	#define OUT_BUF_LEN 3000 
-	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes
-	#define DATA_LEN 15
-
-	//3k * 6 = 18k (6 ADC samples per half period of carrier)
-	//36k bytes + 12k bytes = 48k bytes (will fit into memory)
-
-#elif TIME_OF_FLIGHT_MODE && !PHASE_KEYING_TEST
-	#define BUF_LEN 18000 
-	extern uint16_t buf[BUF_LEN]; //18k elems, or 36k bytes
-	#define OUT_BUF_LEN 3000 
-	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes
-	#define DATA_LEN 15
-
-	//3k * 6 = 18k (6 ADC samples per half period of carrier)
-	//36k bytes + 12k bytes = 48k bytes (will fit into memory)
-#elif ECHO_MASTER_MODE || PHASE_KEYING_TEST
-	#define BUF_LEN 18000
-	#define UART_BUF_LEN 2000
-	#define BG_LEN 20
-	extern uint16_t buf[BUF_LEN]; //18k elems, or 36k bytes
-	extern uint16_t uart_buf[UART_BUF_LEN]; //18k elems, or 36k bytes
-	extern uint16_t bg_buf[BG_LEN];
-	#define OUT_BUF_LEN 3000
+	#define OUT_BUF_LEN 2048 // 2048 = 2^11
+	#define OUT_BUF_MASK 2047
 	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes
     #define DATA_LEN 8
-	#define N_CYCLE 40 //actually this is the number of pingout digits per signal digit. 2 digits output makes 1 cycle for the diaphragm
-	#define SYMBOL_LEN 8
+	#define N_CYCLE 16 //cycle per symbol
+
 #elif SLOW_TX_MODE
 	#define OUT_BUF_LEN 3000
 	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes
 
 #endif
 
-
+#if STREAM
+	#define UART_BUF_LEN 1500
+	#define CCM_BUF_LEN 4096
+	#define SKIP 0
+	extern uint16_t uart_buf[UART_BUF_LEN]; //18k elems, or 36k bytes
+	extern uint16_t ccm_capture_buffer[CCM_BUF_LEN] __attribute__((section(".ccmram")));
+#elif DECODE
+	#define HILB_SIZE 4
+	#define HILB_MASK (HILB_SIZE-1)
+	#define DEAD_ZONE_LEN 13500
+#endif

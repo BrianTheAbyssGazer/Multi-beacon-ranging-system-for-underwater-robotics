@@ -25,8 +25,8 @@ volatile int PingOut::cur_out_pfx = 0;
 volatile int PingOut::time_to_clear = 2;
 volatile int PingOut::schedule_period = 0;
 volatile uint8_t PingOut::datapacket_index = -1;
-bool PingOut::codeword[15];
-bool PingOut::codebits[DATA_LEN*8];
+bool PingOut::codeword[3]={1,0,1};
+bool PingOut::goldcode[15]={GOLD_CODE_1};
 volatile bool PingOut::time_to_schedule_period = false;
 volatile bool PingOut::time_to_schedule_databit = false;
 volatile bool PingOut::time_to_schedule_phase_keying = false;
@@ -56,8 +56,6 @@ PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2
     clear_idx = -1;
 
     periodic_schedule_enable = false;
-    codeword[0]=true;
-    codeword[14]=true;
 
     /* buffer initialization to reset (LOW):*/
 	for (int i = 0; i < OUT_BUF_LEN; i++) {
@@ -88,15 +86,6 @@ PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2
 * pfx is the same for both in and out buffer as they are the same temporal length.
 */
 
-
-void PingOut::set_phase_keying_data(uint8_t* data) {
-	for (int i = 0; i < DATA_LEN; i++) {
-		uint8_t bit = data[i];
-		for (int j=0;j<8;j++)PingOut::codebits[i*8+j]=(bit >> j) & 1;
-	}
-    scheduled_idx = 1;
-    scheduled_pfx = (PingOut::cur_out_pfx + 2)%(0x8000);
-}
 /*
 * Start periodic scheduling, with period in units of total buffer length
 */
@@ -173,16 +162,34 @@ void PingOut::set(int out_idx) {
         }
 
 #elif PHASE_KEYING_TEST
-    for (uint8_t i=0; i<SYMBOL_LEN; i++){
-    	if(i%2==0){
-        	for(uint8_t j=0; j<N_CYCLE; j+=2){
-        		out_buf[i*N_CYCLE+j] = BSRR_PC6_SET_MASK;
-        	}
+    for (uint8_t i=0; i<3; i++){
+    	if(codeword[i]){
+    		for(uint8_t j=0; j<15; j++){
+    			if(goldcode[j]){
+    	        	for(uint8_t k=0; k<N_CYCLE; k+=2){
+    	        		out_buf[(i*15+j)*N_CYCLE+k] = BSRR_PC6_SET_MASK;
+    	        	}
+    			}
+    			else{
+    	        	for(uint8_t k=1; k<N_CYCLE; k+=2){
+    	        		out_buf[(i*15+j)*N_CYCLE+k] = BSRR_PC6_SET_MASK;
+    	        	}
+    			}
+    		}
     	}
     	else{
-        	for(uint8_t j=1; j<N_CYCLE; j+=2){
-        		out_buf[i*N_CYCLE+j] = BSRR_PC6_SET_MASK;
-        	}
+    		for(uint8_t j=0; j<15; j++){
+				if(goldcode[j]){
+					for(uint8_t k=1; k<N_CYCLE; k+=2){
+						out_buf[(i*15+j)*N_CYCLE+k] = BSRR_PC6_SET_MASK;
+					}
+				}
+				else{
+					for(uint8_t k=0; k<N_CYCLE; k+=2){
+						out_buf[(i*15+j)*N_CYCLE+k] = BSRR_PC6_SET_MASK;
+					}
+				}
+			}
     	}
     }
 #else
@@ -211,16 +218,34 @@ void PingOut::clear(int out_idx) {
             if(PingOut::codebits[32+i%(DATA_LEN*4)]) out_buf[i] = BSRR_PC6_RESET_MASK;
     }
 #elif PHASE_KEYING_TEST
-    for (uint8_t i=0; i<SYMBOL_LEN; i++){
-    	if(i%2==0){
-        	for(uint8_t j=0; j<N_CYCLE; j+=2){
-        		out_buf[i*N_CYCLE+j] = BSRR_PC6_RESET_MASK;
-        	}
+    for (uint8_t i=0; i<3; i++){
+    	if(codeword[i]){
+    		for(uint8_t j=0; j<15; j++){
+    			if(goldcode[j]){
+    	        	for(uint8_t k=0; k<N_CYCLE; k+=2){
+    	        		out_buf[(i*15+j)*N_CYCLE+k] = BSRR_PC6_RESET_MASK;
+    	        	}
+    			}
+    			else{
+    	        	for(uint8_t k=1; k<N_CYCLE; k+=2){
+    	        		out_buf[(i*15+j)*N_CYCLE+k] = BSRR_PC6_RESET_MASK;
+    	        	}
+    			}
+    		}
     	}
     	else{
-        	for(uint8_t j=1; j<N_CYCLE; j+=2){
-        		out_buf[i*N_CYCLE+j] = BSRR_PC6_RESET_MASK;
-        	}
+    		for(uint8_t j=0; j<15; j++){
+				if(goldcode[j]){
+					for(uint8_t k=1; k<N_CYCLE; k+=2){
+						out_buf[(i*15+j)*N_CYCLE+k] = BSRR_PC6_RESET_MASK;
+					}
+				}
+				else{
+					for(uint8_t k=0; k<N_CYCLE; k+=2){
+						out_buf[(i*15+j)*N_CYCLE+k] = BSRR_PC6_RESET_MASK;
+					}
+				}
+			}
     	}
     }
 
