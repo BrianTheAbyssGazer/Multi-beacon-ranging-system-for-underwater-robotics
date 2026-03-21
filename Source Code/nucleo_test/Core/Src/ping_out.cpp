@@ -10,13 +10,13 @@
 #include "mode.h"
 #include "global_buffer_def.h"
 #include "ping_out.h"
-
+#include <string>
 #if  TRANSPONDER_MODE || TIME_OF_FLIGHT_MODE
 
 
 // global out buffer, with DMA to GPIO register
 uint32_t out_buf[OUT_BUF_LEN];
-
+static const std::string info="I am beacon 1!";
 
 
 //initialize statics
@@ -24,9 +24,6 @@ volatile int PingOut::po_state = POState::SECND_HLF_FREE;
 volatile int PingOut::cur_out_pfx = 0;
 volatile int PingOut::time_to_clear = 3;
 volatile int PingOut::schedule_period = 0;
-volatile uint8_t PingOut::datapacket_index = -1;
-bool PingOut::codeword[DATA_LEN]={1,1,1,0,0,1,0,1};
-//bool PingOut::codeword[DATA_LEN]={1,1,1,1};
 volatile bool PingOut::time_to_schedule_period = false;
 volatile bool PingOut::time_to_schedule_databit = false;
 volatile bool PingOut::time_to_schedule_phase_keying = false;
@@ -53,18 +50,17 @@ PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2
     /* schedule data initialisation */
     scheduled_idx = 0;
     clear_offset = 0;
-    set_half = true;
-    clear_idx = -1;
-    data_idx = 0;
-    sending=false;
+    cur_idx=0;
+    data_idx=0;
+    set_state=SetState::IDLE;
     periodic_schedule_enable = false;
 
     /* buffer initialization to reset (LOW):*/
 	for (int i = 0; i < OUT_BUF_LEN; i++) {
 		out_buf[i] = BSRR_PC6_RESET_MASK;
 	}
-	//for (int i = 600; i < 3000; i+=2) {
-	//	out_buf[i] = BSRR_PC6_SET_MASK;
+	//for (int i = 0; i < 8; i++) {
+	//	for (int j = 0; j<16; j+=2) out_buf[i*DEAD_INTERVAL+j] = BSRR_PC6_SET_MASK;
 	//}
 
 
@@ -104,44 +100,34 @@ void PingOut::start_periodic_scheduler(int period) {
 * to ensure any scheduled output is actually transmitted.
 */
 void PingOut::update() {
-    if (PingOut::time_to_schedule_period){
-    	//periodic scheduling:
-        if (periodic_schedule_enable) {
-        	scheduled_idx = 0;
-        	clear_offset = 0;
-        	data_idx = 0;
-            clear_idx =0;
-            time_to_clear=0;
-            PingOut::time_to_schedule_period = false;
-            sending = true;
-            set_half = true;
-        }
-    }
-
-    // clear:
-    if (time_to_clear==2) {
-        clear(clear_offset);
+    if ((PingOut::cur_out_pfx%PingOut::schedule_period) == 0 && periodic_schedule_enable){
+		scheduled_idx = 0;
+		data_idx = 0;
+		time_to_clear=0;
+		set_state==SetState::SET;
     }
 
     // set:
-    if (sending) {
-        switch (PingOut::po_state)
-        {
-        case POState::FIRST_HLF_FREE:
-            if (scheduled_idx<(OUT_BUF_LEN/2)) {
-                set(scheduled_idx);
-                set_half = false;
-            }
-            break;
+	switch (po_state)
+	{
+	case POState::FIRST_HLF_FREE:
+		if (cur_idx<HAL_OUT_BUF_LEN) {
+			if (set_state==SetState::SET) set();
+			else if(set_state==SetState::CLEAR) clear();
+		}
+		po_state=POState::IDLE;
+		break;
 
-        case POState::SECND_HLF_FREE:
-            if (scheduled_idx>=(OUT_BUF_LEN/2)) {
-                set(scheduled_idx);
-                set_half = true;
-            }
-            break;
-        }
-    }
+	case POState::SECND_HLF_FREE:
+		if (cur_idx>=HAL_OUT_BUF_LEN) {
+			if (set_state==SetState::SET) set();
+			else if(set_state==SetState::CLEAR) clear();
+		}
+		po_state=POState::IDLE;
+		break;
+	case POState::IDLE:
+		break;
+	}
 }
 
 
@@ -150,52 +136,80 @@ void PingOut::update() {
 //                 - sets time to clear to 0;
 void PingOut::set(uint16_t offset) {
     if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_SET);}
-    uint16_t imax;
-    if (data_idx+32>=DATA_LEN*8){
-    	sending=false;
-    	imax=DATA_LEN*8;
+#if DEBUG_TIM
+    for (uint8_t i=0;i<4;i++,data_idx++){
+    	if(data_idx<800)for(uint16_t j=0; j<16;j+=2) out_buf[scheduled_idx+i*DEAD_INTERVAL+j]=BSRR_PC6_SET_MASK;
+    	else sending=false;
     }
-    else imax=data_idx+32;
-    for (uint16_t i=0;data_idx<imax;data_idx++,i++){
-    	if((data_idx & 7)==0){
-    		if(codeword[data_idx/8]){
-    			for(uint16_t j=0; j<N_CYCLE*2;j+=2) out_buf[offset+i*N_CYCLE*2+j]=BSRR_PC6_SET_MASK;
-    		}
-    		else{
-    			for(uint16_t j=1; j<N_CYCLE*2;j+=2) out_buf[offset+i*N_CYCLE*2+j]=BSRR_PC6_SET_MASK;
-    		}
+#else
+	uint16_t i_set;         // Lower 9 bits (0-511)
+	uint8_t i_bit,i_char;    // Next 3 bits (0-7)
+    while(1){
+    	if((cur_idx>=HAL_OUT_BUF_LEN) && po_state==POState::FIRST_HLF_FREE){
+    		break;
     	}
+    	else if((cur_idx>=OUT_BUF_LEN) && po_state==POState::SECND_HLF_FREE){
+    		cur_idx=cur_idx&OUT_BUF_MASK;
+    		break;
+    	}
+    	else{
+
+    	}
+
+		i_set = data_idx & 511;         // Lower 9 bits (0-511)
+		i_bit  = (data_idx >> 9) & 7;    // Next 3 bits (0-7)
+		i_char = data_idx >> 12;
+		if(i_char>13){
+			set_state==SetState::CLEAR;
+			time_to_clear=2;
+			break;
+		}
+		char c = info[i_char];
+		bool bit = c & 1 <<(i_bit);
+		bool phase = bool(i_set & 1);
+		if(bit){
+			if(i_set < N_CYCLE*2 && (!phase)) out_buf[cur_idx]=BSRR_PC6_SET_MASK;
+			else out_buf[cur_idx]=BSRR_PC6_RESET_MASK;
+		}
+		else{
+			if(i_set < N_CYCLE*2 && phase) out_buf[cur_idx]=BSRR_PC6_SET_MASK;
+			else out_buf[cur_idx]=BSRR_PC6_RESET_MASK;
+		}
+		data_idx++;
+    	cur_idx++;
     }
-    scheduled_idx=(scheduled_idx+OUT_BUF_LEN/2)&OUT_BUF_MASK;
+    po_state = POState::IDLE;
+#endif
+    scheduled_idx=(scheduled_idx+HAL_OUT_BUF_LEN)&OUT_BUF_MASK;
+
     if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET);}
 }
 
 // !! Side effect - sets clear_idx to -1 after clearing
 void PingOut::clear(uint16_t offset) {
 	if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);}
-    uint16_t imax;
-    if (clear_idx+32>=DATA_LEN*8){
-    	imax=DATA_LEN*8;
-    	time_to_clear=3;
+	time_to_clear=1;
+#if DEBUG_TIM
+    for (uint8_t i=0;i<4;i++,clear_idx++){
+    	if(clear_idx<800) for(uint16_t j=0; j<16;j+=2) out_buf[offset+i*DEAD_INTERVAL+j]=BSRR_PC6_RESET_MASK;
+    	else time_to_clear=3;
     }
-    else {
-    	imax=clear_idx+32;
-    	time_to_clear=1;
-    }
-    for (uint16_t i=0;clear_idx<imax;clear_idx++,i++){
-    	if((data_idx & 7)==0){
-    		if(codeword[clear_idx/8]){
-    			for(uint16_t j=0; j<N_CYCLE*2;j+=2) out_buf[offset+i*N_CYCLE*2+j]=BSRR_PC6_RESET_MASK;
-    		}
-    		else{
-    			for(uint16_t j=1; j<N_CYCLE*2;j+=2) out_buf[offset+i*N_CYCLE*2+j]=BSRR_PC6_RESET_MASK;
-    		}
+#else
+	for (uint8_t i=0;i<HAL_OUT_BUF_LEN/DEAD_INTERVAL;i++,clear_idx++){
+    	if(clear_idx<DATA_LEN){
+    		size_t i_char = clear_idx / 8; // Determine which character
+    		size_t i_bit = clear_idx & 7; // Determine which bit (0-7)
+    		unsigned char character = static_cast<unsigned char>(info[i_char]);
+    		bool bit=(character >> i_bit) & 1;
+    		if(bit)for(uint16_t j=0; j<N_CYCLE*2;j+=2) out_buf[clear_offset+i*DEAD_INTERVAL+j]=BSRR_PC6_RESET_MASK;
+    		else for(uint16_t j=1; j<N_CYCLE*2;j+=2) out_buf[clear_offset+i*DEAD_INTERVAL+j]=BSRR_PC6_RESET_MASK;
+    	}
+    	else{
+    		time_to_clear=3;
     	}
     }
-    for (uint16_t i=0;i<OUT_BUF_LEN/2;i++){
-    	out_buf[i+clear_offset]=BSRR_PC6_RESET_MASK;
-    }
-    clear_offset=(clear_offset+OUT_BUF_LEN/2)&OUT_BUF_MASK;
+#endif
+    clear_offset=(clear_offset+HAL_OUT_BUF_LEN)&OUT_BUF_MASK;
 
     if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);}
 }
@@ -207,25 +221,31 @@ void first_half_written_callback(DMA_HandleTypeDef *hdma) {
 
     if (PingOut::debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);}
     PingOut::cur_out_pfx = (PingOut::cur_out_pfx + 1)%(0x8000); //roll-over after 0x7FFF to match peak detector
-    PingOut::po_state = POState::FIRST_HLF_FREE;
     if (PingOut::time_to_clear < 2) {
         PingOut::time_to_clear++;
     }
 
     //periodic scheduling
-    if ((PingOut::cur_out_pfx%PingOut::schedule_period) == 0)
+    if (PingOut::po_state = POState::IDLE)
     {
-        PingOut::time_to_schedule_period = true;
+        PingOut::po_state = POState::FIRST_HLF_FREE;
     }
+    else PingOut::po_state = POState::ERROR;
 }
 
 void secnd_half_written_callback(DMA_HandleTypeDef *hdma) {
     if (PingOut::debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);}
-    PingOut::po_state = POState::SECND_HLF_FREE;
+
     if (PingOut::time_to_clear < 2) {
         PingOut::time_to_clear++;
     }
 
+    //periodic scheduling
+    if (PingOut::po_state = POState::IDLE)
+    {
+    	PingOut::po_state = POState::SECND_HLF_FREE;
+    }
+    else PingOut::po_state = POState::ERROR;
 }
 
 

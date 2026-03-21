@@ -19,5 +19,6 @@
 
 #define STREAM 0 // transponder will echo whatever recieved
 #define DECODE 1 // transponder will echo whatever recieved
+#define DEBUG_TIM 0 // transponder will echo whatever recieved
 
 

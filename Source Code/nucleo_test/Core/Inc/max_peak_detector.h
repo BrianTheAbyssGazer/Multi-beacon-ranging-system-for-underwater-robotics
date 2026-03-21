@@ -78,9 +78,14 @@ class MaxPeakDetector {
 #if DECODE
         float phase;
         uint32_t phase_int;
-        uint16_t sample_counter;
-        uint16_t symbol_counter;
+        uint8_t sample_counter;
+        uint8_t symbol_counter;
         float corr_sum;
+#elif DEBUG_TIM
+        uint16_t pre_val;
+        uint16_t corr_sum;
+        uint8_t sample_counter;
+        uint8_t symbol_counter;
 #endif
     public:
         uint16_t cur_idx; //current idx of adc buffer
@@ -90,7 +95,8 @@ class MaxPeakDetector {
         int bg_avg; //current idx of adc buffer
         static volatile int cur_pfx; // incremented each time the ADC buffer completely fills
 #if DECODE
-        bool rx_data[DATA_LEN];
+        uint8_t rx_data[DATA_LEN/8];
+        uint8_t inverse_data=0;
 #endif
     // methods -------
     public:

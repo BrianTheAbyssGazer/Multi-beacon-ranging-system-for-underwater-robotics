@@ -11,9 +11,9 @@ import os
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-MAX_SAMPLES = 5700
-PORT="COM3"
-TEST_TYPE="digital_BPSK"
+MAX_SAMPLES = 6200
+PORT="COM7"
+TEST_TYPE="air_BPSK"
 data_buffer = deque([0] * MAX_SAMPLES, maxlen=MAX_SAMPLES)
 COMMANDS = {
     "1010 squarewave" : bytes([0xAA if i<4 else 0xAA for i in range(8)]),
@@ -73,7 +73,7 @@ def setup_plot():
     plt.subplots_adjust(left=0.04,right=0.9,bottom=0.1,top=1) # Make room for the button
     #ax.xaxis.set_major_formatter(FuncFormatter(scale_x))
     line, = ax.plot(data_buffer)
-    ax.set_ylim(0, 18000) # Adjust based on your expected int range
+    ax.set_ylim(0, 4500) # Adjust based on your expected int range
     #ax.set_ylim(86, 94) # Adjust based on your expected int range
 
     ax_radio = plt.axes([0.9, 0.1, 0.1, 0.9], facecolor='#f0f0f0')

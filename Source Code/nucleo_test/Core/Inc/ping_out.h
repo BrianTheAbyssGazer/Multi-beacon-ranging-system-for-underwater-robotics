@@ -15,8 +15,16 @@
 enum POState {
     FIRST_HLF_FREE,
     SECND_HLF_FREE,
+	DISABLE,
+	IDLE,
+	ERROR,
 };
 
+enum SetState {
+    SET,
+    CLEAR,
+	IDLE,
+};
 
 /*
 * Class for managing the transponder output
@@ -29,17 +37,15 @@ class PingOut {
     public:
         static volatile int po_state;
         static volatile int cur_out_pfx; // the prefix of the free space on the buffer
-        static volatile uint8_t datapacket_index;
         static bool codeword[];
 
     private:
         uint16_t scheduled_idx; //this has already been rounded to out_buf units
         uint16_t clear_offset; //this has already been rounded to out_buf units
         int scheduled_pfx; // -1 indicates nothing to schedule
-        uint16_t data_idx;
-		bool set_half;
-        int clear_idx;
-        bool sending;
+        uint16_t cur_idx;
+        uint32_t data_idx;
+        uint8_t set_state;
     public:
         static volatile int time_to_clear; //0,1 or 2.  Clear on 1
         bool periodic_schedule_enable;

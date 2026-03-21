@@ -3,5 +3,5 @@
 ../Src/user/ping_out.cpp:39:1:PingOut::PingOut(DMA_HandleTypeDef*, TIM_HandleTypeDef*)	16	static
 ../Src/user/ping_out.cpp:97:6:void PingOut::start_periodic_scheduler(int)	0	static
 ../Src/user/ping_out.cpp:151:6:void PingOut::set(uint16_t)	24	static
-../Src/user/ping_out.cpp:174:6:void PingOut::clear(uint16_t)	40	static
+../Src/user/ping_out.cpp:174:6:void PingOut::clear(uint16_t)	32	static
 ../Src/user/ping_out.cpp:106:6:void PingOut::update()	16	static

@@ -37,7 +37,6 @@ class PingOut {
         uint16_t clear_offset; //this has already been rounded to out_buf units
         int scheduled_pfx; // -1 indicates nothing to schedule
         uint16_t data_idx;
-		bool set_half;
         int clear_idx;
         bool sending;
     public:

@@ -58,34 +58,37 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := adc_over_uart
+BUILD_ARTIFACT_NAME := unit_test_ping_out
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-adc_over_uart.elf \
+unit_test_ping_out.elf \
 
 MAP_FILES += \
-adc_over_uart.map \
+unit_test_ping_out.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-adc_over_uart.list \
+unit_test_ping_out.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: adc_over_uart.elf secondary-outputs
+main-build: unit_test_ping_out.elf secondary-outputs
+
+dependents:
+	-cd C:/Users/u5893274/OneDrive\ -\ Australian\ National\ University/Documents/sonar/Source\ Code/nucleo_test/Release && $(MAKE) all
 
 # Tool invocations
-adc_over_uart.elf adc_over_uart.map: $(OBJS) $(USER_OBJS) F:\PhD\Multi-beacon-ranging-system-for-underwater-robotics\Source\ Code\nucleo_test\STM32F303RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "adc_over_uart.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"F:\PhD\Multi-beacon-ranging-system-for-underwater-robotics\Source Code\nucleo_test\STM32F303RETX_FLASH.ld" -Wl,-Map="adc_over_uart.map" -Wl,--gc-sections -static -L../Middlewares/ST/ARM/DSP/Lib --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+unit_test_ping_out.elf unit_test_ping_out.map: $(OBJS) $(USER_OBJS) C:/Users/u5893274/OneDrive\ -\ Australian\ National\ University/Documents/sonar/Source\ Code/nucleo_test/Release/unit_test_ping_out.elf C:\Users\u5893274\OneDrive\ -\ Australian\ National\ University\Documents\sonar\Source\ Code\nucleo_test\STM32F303RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "unit_test_ping_out.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\u5893274\OneDrive - Australian National University\Documents\sonar\Source Code\nucleo_test\STM32F303RETX_FLASH.ld" -Wl,-Map="unit_test_ping_out.map" -Wl,--gc-sections -static -L../Middlewares/ST/ARM/DSP/Lib --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -94,14 +97,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-adc_over_uart.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "adc_over_uart.list"
+unit_test_ping_out.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "unit_test_ping_out.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) adc_over_uart.elf adc_over_uart.list adc_over_uart.map default.size.stdout
+	-$(RM) default.size.stdout unit_test_ping_out.elf unit_test_ping_out.list unit_test_ping_out.map
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
@@ -114,5 +117,6 @@ warn-no-linker-script-specified:
 	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
 
 .PHONY: all clean dependents main-build fail-specified-linker-script-missing warn-no-linker-script-specified
+C:/Users/u5893274/OneDrive\ -\ Australian\ National\ University/Documents/sonar/Source\ Code/nucleo_test/Release/unit_test_ping_out.elf:
 
 -include ../makefile.targets

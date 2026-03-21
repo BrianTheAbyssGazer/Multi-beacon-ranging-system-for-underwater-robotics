@@ -31,12 +31,12 @@ class CMD_RX
         
     public:
         static uint8_t rx_buf[CRX_PACKET_LEN];
-        static uint8_t unit_test_buf[DATA_LEN];
+        static uint8_t unit_test_buf[8];
 
         static volatile int last_cmd_type;
         static volatile int last_cmd_detail;
         static volatile bool rx_cplt;
-        static volatile uint8_t last_cmd_data[DATA_LEN];
+        static volatile uint8_t last_cmd_data[8];
         CMD_RX(UART_HandleTypeDef* p_huart);
         void start_receive(void);
         int get_cmd_type(void);
