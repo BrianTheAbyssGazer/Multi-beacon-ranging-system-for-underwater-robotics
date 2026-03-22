@@ -6,11 +6,12 @@ import os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 MAX_SAMPLES = 5700
-PORT="COM5"
+PORT="COM3"
 TEST_TYPE="box full sample"
 serial_lock = threading.Lock() # Prevents simultaneous read/write collisions
 def rx_data(ser,lock):
-    buffer=bytearray(14) 
+    N=14
+    buffer=bytearray(N) 
     filling=False
     index=0
     template="I am beacon 1!"
@@ -22,7 +23,7 @@ def rx_data(ser,lock):
                     char  = ser.read(1)
                     #print( struct.unpack('B', char)[0])
                     #print(format(char[0], '08b'))
-                    if not filling and char==b'I':
+                    if not filling:
                         filling = True
                         index=0
 
@@ -30,11 +31,12 @@ def rx_data(ser,lock):
                     if filling:
                         buffer[index] = ord(char) # Store as integer (byte)
                         index += 1
-                    if index==14:
-                        result_string = buffer.decode('ascii', errors='ignore')
-                        print(f"{result_string}")
-                        xor_binary = [format(ord(a) ^ b, '08b') for a, b in zip(template, buffer)]
+                    if index==N:
+                        #result_string = buffer.decode('ascii', errors='ignore')
+                        #print(f"{result_string}")
+                        #xor_binary = [format(ord(a) ^ b, '08b') for a, b in zip(template, buffer)]
                         #print(xor_binary)
+                        print(buffer)
                         index=0
                         filling = False
 

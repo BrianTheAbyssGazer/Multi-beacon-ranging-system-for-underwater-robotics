@@ -5,7 +5,6 @@
  *      Author: arthur
  */
 
-
 #ifdef __cplusplus
 
 #define BSRR_PC6_SET_MASK 1<<6
@@ -15,15 +14,14 @@
 enum POState {
     FIRST_HLF_FREE,
     SECND_HLF_FREE,
-	DISABLE,
-	IDLE,
-	ERROR,
+	PO_IDLE,
+	ERROR_2,
 };
 
 enum SetState {
-    SET,
+    SET_PIN,
     CLEAR,
-	IDLE,
+	DISABLED,
 };
 
 /*
@@ -33,7 +31,7 @@ class PingOut {
     private:
         DMA_HandleTypeDef* p_hdma_tim2_up;
         TIM_HandleTypeDef* p_htim2;
-
+        IndexInfoTX* p_index_info_tx;
     public:
         static volatile int po_state;
         static volatile int cur_out_pfx; // the prefix of the free space on the buffer
@@ -45,18 +43,18 @@ class PingOut {
         int scheduled_pfx; // -1 indicates nothing to schedule
         uint16_t cur_idx;
         uint32_t data_idx;
-        uint8_t set_state;
     public:
         static volatile int time_to_clear; //0,1 or 2.  Clear on 1
         bool periodic_schedule_enable;
+        static uint8_t set_state;
+
         static volatile int schedule_period; // units of total buffer lengths
         static volatile bool time_to_schedule_period;
         static volatile bool time_to_schedule_databit;
         static volatile bool time_to_schedule_phase_keying;
 
 
-        void set(uint16_t);
-        void clear(uint16_t);
+        void set();
 
     public:
         //parameters:
@@ -65,7 +63,7 @@ class PingOut {
         static bool debug; //toggle GPIO on callbacks, set and reset
 
         //methods:
-        PingOut(DMA_HandleTypeDef*, TIM_HandleTypeDef*);
+        PingOut(DMA_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*);
         void schedule_ping(int, int);
         void start_periodic_scheduler(int);
         uint16_t start_datapacket_scheduler(uint8_t data);

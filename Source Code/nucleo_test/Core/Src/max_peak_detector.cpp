@@ -227,12 +227,12 @@ void MaxPeakDetector :: search_loop() {
 				    symbol_counter=0;
 					search_sub_state = MPDSearchState::YES_SIGNAL;
 				}
-				else cur_idx+=1;
+				else cur_idx+=2;
 				break;
 			case MPDSearchState::YES_SIGNAL: //------------------------------------------------------------------
 				if(symbol_counter<DATA_LEN){
 					if(sample_counter<12*N_CYCLE){
-						corr_sum+=cur_val/10;
+						corr_sum+=cur_val/100;
 						cur_idx++;
 						sample_counter++;
 					}

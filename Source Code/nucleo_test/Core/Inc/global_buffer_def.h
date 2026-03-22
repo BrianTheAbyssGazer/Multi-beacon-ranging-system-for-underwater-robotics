@@ -27,7 +27,7 @@
 	#define HAL_OUT_BUF_LEN 2048 // 2048 = 2^11
 	#define OUT_BUF_MASK 4095
 	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes
-	#define	STRING_LEN 10
+	#define	STRING_LEN 14
     #define DATA_LEN 8*STRING_LEN
 	#define N_CYCLE 8 //cycle per symbol
 	#define DEAD_INTERVAL 512 // 2**8 interval between bits
