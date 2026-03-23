@@ -84,11 +84,11 @@ all: main-build
 main-build: unit_test_ping_out.elf secondary-outputs
 
 dependents:
-	-cd F:/PhD/Multi-beacon-ranging-system-for-underwater-robotics/Source\ Code/nucleo_test/Release && $(MAKE) all
+	-cd C:/Users/u5893274/OneDrive\ -\ Australian\ National\ University/Documents/sonar/Source\ Code/nucleo_test/Release && $(MAKE) clean all
 
 # Tool invocations
-unit_test_ping_out.elf unit_test_ping_out.map: $(OBJS) $(USER_OBJS) F:/PhD/Multi-beacon-ranging-system-for-underwater-robotics/Source\ Code/nucleo_test/Release/unit_test_ping_out.elf F:\PhD\Multi-beacon-ranging-system-for-underwater-robotics\Source\ Code\nucleo_test\STM32F303RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "unit_test_ping_out.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"F:\PhD\Multi-beacon-ranging-system-for-underwater-robotics\Source Code\nucleo_test\STM32F303RETX_FLASH.ld" -Wl,-Map="unit_test_ping_out.map" -Wl,--gc-sections -static -L../Middlewares/ST/ARM/DSP/Lib --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+unit_test_ping_out.elf unit_test_ping_out.map: $(OBJS) $(USER_OBJS) C:/Users/u5893274/OneDrive\ -\ Australian\ National\ University/Documents/sonar/Source\ Code/nucleo_test/Release/unit_test_ping_out.elf C:\Users\u5893274\OneDrive\ -\ Australian\ National\ University\Documents\sonar\Source\ Code\nucleo_test\STM32F303RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "unit_test_ping_out.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\u5893274\OneDrive - Australian National University\Documents\sonar\Source Code\nucleo_test\STM32F303RETX_FLASH.ld" -Wl,-Map="unit_test_ping_out.map" -Wl,--gc-sections -static -L../Middlewares/ST/ARM/DSP/Lib --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -117,6 +117,6 @@ warn-no-linker-script-specified:
 	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
 
 .PHONY: all clean dependents main-build fail-specified-linker-script-missing warn-no-linker-script-specified
-F:/PhD/Multi-beacon-ranging-system-for-underwater-robotics/Source\ Code/nucleo_test/Release/unit_test_ping_out.elf:
+C:/Users/u5893274/OneDrive\ -\ Australian\ National\ University/Documents/sonar/Source\ Code/nucleo_test/Release/unit_test_ping_out.elf:
 
 -include ../makefile.targets

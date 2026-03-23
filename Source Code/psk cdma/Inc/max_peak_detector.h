@@ -16,12 +16,12 @@
 
 class Timestamp {
   public:
-    int idx;
-    int pfx;
+	uint16_t idx;
+	uint16_t pfx;
 
-    Timestamp(int, int);
-    int get_total(void);
-    static Timestamp from_total(int);
+    Timestamp(uint16_t, uint16_t);
+    uint16_t get_total(void);
+    static Timestamp from_total(uint16_t);
 };
 
 enum MPDState {
@@ -34,9 +34,8 @@ enum MPDState {
 
 enum MPDSearchState {
     NO_SIGNAL,
-	PREAMBLE,
     YES_SIGNAL,
-	SENDING,
+	DEMODULATOR_DISABLED,
 };
 
 
@@ -50,31 +49,31 @@ class MaxPeakDetector {
 
     //states -------
     public:
-        static volatile int global_state;
+        static volatile uint16_t global_state;
     private:
-        int search_sub_state;
+        uint16_t search_sub_state;
 
     // Parameters ---------
     public:
         bool min_aid; //set to true to incorporate min peak assistance
         static bool sending_signal;
-        int search_threshold_reduction;
-        int search_window;
-        int dead_zone_len; //set to -1 to jump to buffer end after each peak detection
-        int search_threshold; // this is also dynamically updated
-    //search context --------
+        uint16_t search_threshold_reduction;
+        uint16_t search_window;
+        uint16_t dead_zone_len; //set to -1 to jump to buffer end after each peak detection
+        uint16_t search_threshold;   //search context --------
     private:
-        int last_peak_val; // the value of the last successfully detected pulse peak
-        int last_peak_idx;
-        int last_peak_pfx;
-        int tentative_max_val;
-        int tentative_max_idx;
-        int tentative_max_pfx;
-        int tentative_min_val;
-        int tentative_min_idx;
-        int tentative_min_pfx;
-        int window_count;
-        int dead_zone_count;
+		uint16_t last_peak_val; // the value of the last successfully detected pulse peak
+		uint16_t last_peak_idx;
+		uint16_t last_peak_pfx;
+		uint16_t enable_pfx;
+		uint16_t tentative_max_val;
+		uint16_t tentative_max_idx;
+		uint16_t tentative_max_pfx;
+		uint16_t tentative_min_val;
+		uint16_t tentative_min_idx;
+		uint16_t tentative_min_pfx;
+		uint16_t window_count;
+		uint16_t dead_zone_count;
 #if DECODE
         float phase;
         uint32_t phase_int;
@@ -92,8 +91,7 @@ class MaxPeakDetector {
         uint16_t uart_idx; //current idx of adc buffer
         uint16_t ccm_idx; //current idx of adc buffer
         uint16_t bg_idx; //current idx of adc buffer
-        int bg_avg; //current idx of adc buffer
-        static volatile int cur_pfx; // incremented each time the ADC buffer completely fills
+        static volatile uint16_t cur_pfx; // incremented each time the ADC buffer completely fills
 #if DECODE
         uint8_t rx_data[DATA_LEN/8];
         uint8_t inverse_data=0;
@@ -102,7 +100,7 @@ class MaxPeakDetector {
     public:
         MaxPeakDetector(ADC_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*);
         Timestamp detect_peak(void);
-        void send_data2computer(int d_pfx, int end_idx, uint16_t data);
+        void send_data2computer(uint16_t d_pfx, uint16_t end_idx, uint16_t data);
 
     private:
         void search_loop(void);
