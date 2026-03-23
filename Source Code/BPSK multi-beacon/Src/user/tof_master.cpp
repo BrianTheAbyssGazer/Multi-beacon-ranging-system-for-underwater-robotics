@@ -35,30 +35,31 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     /******************* SETUP TX ************************/
 	IndexInfoTX idx_info_tx(p_huart);
     PingOut ping_out(p_hdma_tim2_up, p_htim2, &idx_info_tx);
-    ping_out.start_periodic_scheduler(50);
-    PingOut::debug = true;
+    //ping_out.start_periodic_scheduler(50);
+    //PingOut::debug = true;
 	MaxPeakDetector max_peak_detector(p_hadc, p_htim3,  &idx_info_tx);
-	max_peak_detector.min_aid = true;
 
     while (1) {
-    	max_peak_detector.detect_peak();
-    	if(max_peak_detector.signal_flag){
-    		uint16_t idx_peak=max_peak_detector.last_peak_idx;
-    		uint16_t pfx_peak=max_peak_detector.last_peak_pfx;
-			if (idx_peak<HAL_OUT_BUF_LEN){
-				idx_peak+=HAL_OUT_BUF_LEN;
-				idx_peak/=6;
-			}
-			else {
-				idx_peak-=HAL_OUT_BUF_LEN;
-				idx_peak/=6;
-				pfx_peak++;
-			}
-			pfx_peak+=(DATA_LEN/(OUT_BUF_LEN/DEAD_INTERVAL));
-			ping_out.schedule(pfx_peak,idx_peak);
-			max_peak_detector.signal_flag=false;
+    	if(max_peak_detector.global_state == ping_out.po_state){
+        	max_peak_detector.detect_peak();
+        	if(max_peak_detector.signal_flag){
+        		uint16_t idx_peak=max_peak_detector.last_peak_idx;
+        		uint16_t pfx_peak=max_peak_detector.last_peak_pfx;
+    			if (idx_peak<HAL_BUF_LEN){
+    				idx_peak+=HAL_BUF_LEN;
+    			}
+    			else {
+    				idx_peak-=HAL_BUF_LEN;
+    				pfx_peak++;
+    			}
+    			idx_peak/=6;
+    			pfx_peak+=DATA_PFX;
+    			max_peak_detector.mark_pinout(pfx_peak,idx_peak*6);
+    			ping_out.schedule(pfx_peak,idx_peak);
+    			max_peak_detector.signal_flag=false;
+        	}
+        	ping_out.update();
     	}
-    	ping_out.update();
     }
 }
 #endif

@@ -32,6 +32,7 @@ class IndexInfoTX {
         void stream_adc(int adc_val);
         void stream_adc(uint16_t adc_val);
         void send_byte(uint8_t byte);
+        void send_bytes(uint8_t* bytes);
 };
 
 #endif

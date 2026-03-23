@@ -39,24 +39,30 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
 
 	MaxPeakDetector max_peak_detector(p_hadc, p_htim3,  &idx_info_tx);
 
-	//parameter tweaking:
-	max_peak_detector.min_aid = true;
-    //max_peak_detector.search_threshold_reduction = 5; 
-    //max_peak_detector.search_window = 200;
-    //max_peak_detector.dead_zone_len = 4000;
-    //max_peak_detector.search_threshold = 2500;
-
-
-
-
     /******************* SETUP TX ************************/
     PingOut ping_out(p_hdma_tim2_up, p_htim2, &idx_info_tx);
-    ping_out.start_periodic_scheduler(40);
+    //ping_out.start_periodic_scheduler(40);
     //PingOut::debug = true;
 
     while (1) {
     	max_peak_detector.detect_peak();
-		ping_out.update();
+    	if(max_peak_detector.signal_flag){
+    		uint16_t idx_peak=max_peak_detector.last_peak_idx;
+    		uint16_t pfx_peak=max_peak_detector.last_peak_pfx;
+			if (idx_peak<HAL_BUF_LEN){
+				idx_peak+=HAL_BUF_LEN;
+			}
+			else {
+				idx_peak-=HAL_BUF_LEN;
+				pfx_peak++;
+			}
+			idx_peak/=6;
+			pfx_peak+=(DATA_LEN/(OUT_BUF_LEN/DEAD_INTERVAL));
+			max_peak_detector.mark_pinout(pfx_peak,idx_peak*6);
+			ping_out.schedule(pfx_peak,idx_peak);
+			max_peak_detector.signal_flag=false;
+    	}
+    	ping_out.update();
     }
 }
 #endif

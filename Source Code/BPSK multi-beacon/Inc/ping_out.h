@@ -42,6 +42,7 @@ class PingOut {
         uint16_t scheduled_pfx; // -1 indicates nothing to schedule
         uint16_t cur_idx;
         uint32_t data_idx;
+        bool enable_scheduler;
     public:
         bool periodic_schedule_enable;
         static uint8_t set_state;
@@ -68,11 +69,12 @@ class PingOut {
         uint16_t start_datapacket_scheduler(uint8_t data);
         void update(void);
         bool calculateParity(bool codeword[], const uint8_t positions[], uint8_t size);
+    private:
+        void enable_pingout();
 };
 
 
 void first_half_written_callback(DMA_HandleTypeDef*);
-
 void secnd_half_written_callback(DMA_HandleTypeDef*);
 
 extern "C" {

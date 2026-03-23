@@ -25,9 +25,9 @@ class Timestamp {
 };
 
 enum MPDState {
-    IDLE,
     PROC_BUF_1ST_HLF,
     PROC_BUF_2ND_HLF,
+    IDLE,
     ERROR_1,
 };
 
@@ -55,7 +55,6 @@ class MaxPeakDetector {
 
     // Parameters ---------
     public:
-        bool min_aid; //set to true to incorporate min peak assistance
         static bool sending_signal;
         uint16_t search_threshold_reduction;
         uint16_t search_window;
@@ -68,8 +67,12 @@ class MaxPeakDetector {
 
     private:
 		uint16_t enable_pfx;
+		uint16_t enable_idx;
+		uint16_t pinout_idx;
+		uint16_t pinout_pfx;
 		uint16_t disable_pfx;
 		uint16_t disable_idx;
+		uint32_t delta_idx;
 		uint16_t tentative_max_val;
 		uint16_t tentative_max_idx;
 		uint16_t tentative_max_pfx;
@@ -97,7 +100,7 @@ class MaxPeakDetector {
         uint16_t bg_idx; //current idx of adc buffer
         static volatile uint16_t cur_pfx; // incremented each time the ADC buffer completely fills
 #if DECODE
-        uint8_t rx_data[DATA_LEN/8];
+        uint8_t rx_data[STRING_LEN+4];
         uint8_t inverse_data=0;
 #endif
     // methods -------
@@ -105,7 +108,7 @@ class MaxPeakDetector {
         MaxPeakDetector(ADC_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*);
         void detect_peak(void);
         void send_data2computer(uint16_t d_pfx, uint16_t end_idx, uint16_t data);
-
+        void mark_pinout(uint16_t pfx, uint16_t idx);
     private:
         void search_loop(void);
         void error_1_handle();

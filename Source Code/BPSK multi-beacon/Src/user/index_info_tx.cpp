@@ -8,6 +8,7 @@
 
 #include "main.h"
 #include "index_info_tx.h"
+#include "global_buffer_def.h"
 
 IndexInfoTX :: IndexInfoTX(UART_HandleTypeDef* p_huart) {
     this->p_huart = p_huart;
@@ -41,6 +42,12 @@ void IndexInfoTX :: send_byte(uint8_t byte) {
 	static uint8_t bytes[2]={INFO_1,0};
 	bytes[1] = byte;
 	HAL_UART_Transmit(p_huart, bytes, 2, 0xFFFF);
+}
+void IndexInfoTX :: send_bytes(uint8_t* data) {
+	static uint8_t bytes[STRING_LEN+5];
+	bytes[0] = INFO_3;
+	for(size_t i=0;i<STRING_LEN+4;i++)bytes[i+1]=data[i];
+	HAL_UART_Transmit(p_huart, bytes, STRING_LEN+5, 0xFFFF);
 }
 //Send error1 packet
 /*

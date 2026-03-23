@@ -31,7 +31,8 @@
     #define DATA_LEN 8*STRING_LEN
 	#define N_CYCLE 8 //cycle per symbol
 	#define DEAD_INTERVAL 512 // 2**8 interval between bits
-	#define TIMEOUT 17+(DATA_LEN/(OUT_BUF_LEN/DEAD_INTERVAL))*2
+	#define DATA_PFX (DATA_LEN/(OUT_BUF_LEN/DEAD_INTERVAL)) //length of datapackage in pfx
+	#define TIMEOUT (17+DATA_PFX*2)
 #elif SLOW_TX_MODE
 	#define OUT_BUF_LEN 3000
 	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes

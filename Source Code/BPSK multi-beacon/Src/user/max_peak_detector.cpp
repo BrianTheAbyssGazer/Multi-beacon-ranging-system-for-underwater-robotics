@@ -19,6 +19,7 @@
 
 
 // global ADC buffer:
+static const uint8_t my_id[STRING_LEN]={0x4D,0x31};
 uint16_t buf[BUF_LEN];
 #if STREAM
 uint16_t uart_buf[UART_BUF_LEN];
@@ -32,7 +33,6 @@ volatile uint16_t MaxPeakDetector::global_state = MPDState::PROC_BUF_2ND_HLF;
 volatile uint16_t MaxPeakDetector::cur_pfx = 0; // incremented each time the ADC buffer completely fills
 /* Initialisation:
     // parameters
-    min_aid = false;
     search_threshold_reduction = 5; 
     search_window = 200;
     dead_zone_len = 4000;
@@ -51,7 +51,6 @@ MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef*
     cur_idx = HAL_BUF_LEN;
     uart_idx = 0;
     ccm_idx = 0;
-    enable_pfx=0;
     dead_zone_count = 0;
 #if DECODE
     phase = 0;
@@ -60,8 +59,14 @@ MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef*
     symbol_counter=0;
     corr_sum=0;
     signal_flag = false;
-    disable_idx=1;
-	disable_pfx=1;
+	pinout_pfx = 0;
+	pinout_idx = HAL_BUF_LEN;
+    enable_pfx = DATA_PFX+1;
+    enable_idx = 0;
+    disable_idx= HAL_BUF_LEN;
+	disable_pfx= TIMEOUT-DATA_PFX;
+	last_peak_idx=HAL_BUF_LEN;
+	last_peak_pfx=0;
 #elif DEBUG_TIM
     pre_val=1884;
     corr_sum=0;
@@ -126,18 +131,20 @@ void MaxPeakDetector :: search_loop() {
 		float sin,cos,real,imag,i_channel,q_channel; // Masking instead of %
 		switch (search_sub_state){
 			case MPDSearchState::NO_SIGNAL: //------------------------------------------------------------------
-				if(cur_pfx=disable_pfx){
-					if(!(disable_idx>=HAL_BUF_LEN && cur_idx<HAL_BUF_LEN)){
-						search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
-						enable_pfx=cur_pfx+(DATA_LEN/(OUT_BUF_LEN/DEAD_INTERVAL))+1;
-						disable_pfx+=TIMEOUT;
-					}
+#if TIME_OF_FLIGHT_MODE
+				if((cur_pfx==disable_pfx) && (cur_idx>disable_idx)){
+					search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
+					enable_pfx+=TIMEOUT;
+					pinout_pfx+=TIMEOUT;
+					disable_pfx+=TIMEOUT;
+					break;
 				}
-				else if (cur_val > 2384||cur_val<1384) {
+#endif
+				if (cur_val > 2384||cur_val<1384) {
 				    sample_counter=0;
 				    symbol_counter=0;
 					search_sub_state = MPDSearchState::YES_SIGNAL;
-					cur_idx+=3;
+					signal_flag=true;
 				}
 				else cur_idx+=2;
 				break;
@@ -167,9 +174,6 @@ void MaxPeakDetector :: search_loop() {
 						sample_counter++;
 					}
 					else{
-						if(!symbol_counter){
-							signal_flag=true;
-						}
 						uint8_t i_char = symbol_counter / 8; // Find the character
 						uint8_t i_bit = symbol_counter & 7; // Find the bit position (0-7)
 						if(corr_sum>0.0f){
@@ -196,7 +200,17 @@ void MaxPeakDetector :: search_loop() {
 					    (*p_index_info_tx).send_byte(rx_data[j]^inverse_data);
 					    rx_data[j]=0;
 					}
-					enable_pfx=cur_pfx+(DATA_LEN/(OUT_BUF_LEN/DEAD_INTERVAL))+1;
+#if TRANSPONDER_MODE
+					if(memcmp(rx_data, my_id, STRING_LEN) == 0){
+						signal_flag=true;
+					}
+#elif TIME_OF_FLIGHT_MODE
+					signal_flag=true;
+					if(last_peak_pfx>pinout_pfx) delta_idx=uint32_t(last_peak_pfx-pinout_pfx)*BUF_LEN+last_peak_idx-pinout_idx;
+					else delta_idx=uint32_t(0xFFFF-pinout_pfx+last_peak_pfx+1)*BUF_LEN+last_peak_idx-pinout_idx;
+					for (uint8_t j = 0; j < 4; j++) rx_data[STRING_LEN+j] = uint8_t((delta_idx>>(j*8)) & 0xFF); // 0x78
+					(*p_index_info_tx).send_bytes(rx_data);
+#endif
 					search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
 				}
 				break;
@@ -226,8 +240,13 @@ void MaxPeakDetector :: search_loop() {
 				break;
 #endif
 			case MPDSearchState::DEMODULATOR_DISABLED:
-				if(cur_pfx==enable_pfx)search_sub_state = MPDSearchState::NO_SIGNAL;
-				else cur_idx+=HAL_BUF_LEN;
+				if(cur_pfx<enable_pfx)
+					cur_idx+=HAL_BUF_LEN;
+				else if(cur_pfx==enable_pfx){
+					if(cur_idx>=enable_idx)search_sub_state = MPDSearchState::NO_SIGNAL;
+					else cur_idx+=2;
+				}
+				else search_sub_state = MPDSearchState::NO_SIGNAL;
 				break;
 		} // switch
 
@@ -250,6 +269,17 @@ void MaxPeakDetector :: search_loop() {
 		}
 	} //while
 
+}
+void MaxPeakDetector::mark_pinout(uint16_t pfx, uint16_t idx) {
+	//timing of pinout
+	pinout_pfx = pfx;
+	pinout_idx = idx;
+	//timing for recover receiving after pinout
+	enable_pfx = pfx+DATA_PFX+2;
+	enable_idx = idx;
+	//timing to disable receiving after timeout period after pinout
+	disable_pfx=pfx+TIMEOUT-DATA_PFX;
+	disable_idx=idx;
 }
 
 void MaxPeakDetector :: error_1_handle() {
