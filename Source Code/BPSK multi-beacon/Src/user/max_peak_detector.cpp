@@ -24,7 +24,7 @@ uint16_t buf[BUF_LEN];
 #if STREAM
 uint16_t uart_buf[UART_BUF_LEN];
 uint16_t ccm_capture_buffer[CCM_BUF_LEN] __attribute__((section(".ccmram")));
-#elif DECODE
+#elif DECODE||DEBUG_TIM
 uint16_t buf_res[3]={1884,1884,1884};
 #endif
 
@@ -59,14 +59,16 @@ MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef*
     symbol_counter=0;
     corr_sum=0;
     signal_flag = false;
+    data_flag = false;
 	pinout_pfx = 0;
 	pinout_idx = HAL_BUF_LEN;
     enable_pfx = DATA_PFX+1;
     enable_idx = 0;
+	disable_pfx= TIMEOUT;
     disable_idx= HAL_BUF_LEN;
-	disable_pfx= TIMEOUT-DATA_PFX;
-	last_peak_idx=HAL_BUF_LEN;
-	last_peak_pfx=0;
+	last_peak_pfx=TIMEOUT;
+	last_peak_idx=HAL_BUF_LEN+12;
+	last_peak_val=1884;
 #elif DEBUG_TIM
     pre_val=1884;
     corr_sum=0;
@@ -131,20 +133,11 @@ void MaxPeakDetector :: search_loop() {
 		float sin,cos,real,imag,i_channel,q_channel; // Masking instead of %
 		switch (search_sub_state){
 			case MPDSearchState::NO_SIGNAL: //------------------------------------------------------------------
-#if TIME_OF_FLIGHT_MODE
-				if((cur_pfx==disable_pfx) && (cur_idx>disable_idx)){
-					search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
-					enable_pfx+=TIMEOUT;
-					pinout_pfx+=TIMEOUT;
-					disable_pfx+=TIMEOUT;
-					break;
-				}
-#endif
 				if (cur_val > 2384||cur_val<1384) {
 				    sample_counter=0;
 				    symbol_counter=0;
 					search_sub_state = MPDSearchState::YES_SIGNAL;
-					signal_flag=true;
+					//signal_flag=true;
 				}
 				else cur_idx+=2;
 				break;
@@ -174,7 +167,7 @@ void MaxPeakDetector :: search_loop() {
 						sample_counter++;
 					}
 					else{
-						uint8_t i_char = symbol_counter / 8; // Find the character
+						uint8_t i_char = symbol_counter / 8; // to be changed to >>3
 						uint8_t i_bit = symbol_counter & 7; // Find the bit position (0-7)
 						if(corr_sum>0.0f){
 							rx_data[i_char] |= (1 << i_bit);
@@ -182,6 +175,7 @@ void MaxPeakDetector :: search_loop() {
 						else{
 							rx_data[i_char] &= ~(1 << i_bit);
 						}
+
 						cur_idx+=(DEAD_INTERVAL-N_CYCLE)*6; //12 samples per cycle * 16 cycle per symbol * 7
 						sample_counter=0;
 						symbol_counter++;
@@ -193,40 +187,59 @@ void MaxPeakDetector :: search_loop() {
 					sample_counter=0;
 					corr_sum=0;
 					phase=0;
-					cur_idx+=HAL_BUF_LEN;
 					if (rx_data[0]&1) inverse_data=0;
 					else inverse_data=0xFF;
 					for (uint8_t j = 0; j < STRING_LEN; j++){
-					    (*p_index_info_tx).send_byte(rx_data[j]^inverse_data);
-					    rx_data[j]=0;
+						rx_data[j]=rx_data[j]^inverse_data;
 					}
-#if TRANSPONDER_MODE
-					if(memcmp(rx_data, my_id, STRING_LEN) == 0){
-						signal_flag=true;
-					}
-#elif TIME_OF_FLIGHT_MODE
-					signal_flag=true;
+
 					if(last_peak_pfx>pinout_pfx) delta_idx=uint32_t(last_peak_pfx-pinout_pfx)*BUF_LEN+last_peak_idx-pinout_idx;
 					else delta_idx=uint32_t(0xFFFF-pinout_pfx+last_peak_pfx+1)*BUF_LEN+last_peak_idx-pinout_idx;
-					for (uint8_t j = 0; j < 4; j++) rx_data[STRING_LEN+j] = uint8_t((delta_idx>>(j*8)) & 0xFF); // 0x78
+#if TRANSPONDER_MODE
+					//if(memcmp(rx_data, my_id, STRING_LEN) == 0) data_flag=true;
+					if(0) data_flag=true;
+					else {
+						enable_pfx=cur_pfx+1;
+						enable_idx=cur_idx;
+					}
+					for (uint8_t j = 0; j < 4; j++) rx_data[STRING_LEN+j] = uint8_t((cur_idx>>(j*8)) & 0xFF); // 0x78
 					(*p_index_info_tx).send_bytes(rx_data);
+					//(*p_index_info_tx).stream_adc(cur_idx);
+
+#elif TIME_OF_FLIGHT_MODE
+					//data_flag=true;
+					//(*p_index_info_tx).stream_adc(last_peak_idx);
+					//(*p_index_info_tx).stream_adc(last_peak_pfx);
+
 #endif
+					//timing of pinout
+					pinout_pfx = last_peak_pfx+DATA_PFX;
+					pinout_idx = (last_peak_idx/6)*6;
+					mark_pinout();
 					search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
+					last_peak_val=1884;
 				}
 				break;
 #elif DEBUG_TIM
 			case MPDSearchState::YES_SIGNAL: //------------------------------------------------------------------
 				if(symbol_counter<DATA_LEN){
-					if(sample_counter<12*N_CYCLE){
+					if(sample_counter<6*N_CYCLE){
 						corr_sum+=cur_val/100;
 						cur_idx++;
 						sample_counter++;
+						if(!symbol_counter){
+							if(cur_val>last_peak_val){
+								last_peak_val=cur_val;
+								last_peak_idx=cur_idx;
+								last_peak_pfx=cur_pfx;
+							}
+						}
 					}
 					else{
-						cur_idx+=DEAD_INTERVAL*6-N_CYCLE*12; //12 samples per cycle * 16 cycle per symbol * 7
+						cur_idx+=(DEAD_INTERVAL-N_CYCLE)*6; //12 samples per cycle * 16 cycle per symbol * 7
 						sample_counter=0;
 						symbol_counter++;
-					    (*p_index_info_tx).stream_adc(corr_sum);
+						(*p_index_info_tx).stream_adc(corr_sum);
 						corr_sum=0;
 					}
 				}
@@ -234,8 +247,14 @@ void MaxPeakDetector :: search_loop() {
 					symbol_counter=0;
 					sample_counter=0;
 					corr_sum=0;
+
+					enable_pfx=cur_pfx+1;
+					enable_idx=cur_idx;
+					pinout_pfx = last_peak_pfx+DATA_PFX;
+					pinout_idx = (last_peak_idx/6)*6;
+					mark_pinout();
 					search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
-					enable_pfx=cur_pfx+5;
+					last_peak_val=1884;
 				}
 				break;
 #endif
@@ -243,47 +262,65 @@ void MaxPeakDetector :: search_loop() {
 				if(cur_pfx<enable_pfx)
 					cur_idx+=HAL_BUF_LEN;
 				else if(cur_pfx==enable_pfx){
-					if(cur_idx>=enable_idx)search_sub_state = MPDSearchState::NO_SIGNAL;
+					if(cur_idx>=enable_idx){
+						search_sub_state = MPDSearchState::NO_SIGNAL;
+						}
 					else cur_idx+=2;
 				}
-				else search_sub_state = MPDSearchState::NO_SIGNAL;
+				else {
+					search_sub_state = MPDSearchState::NO_SIGNAL;
+				}
 				break;
 		} // switch
 
 		// conditions to escape search mode
 		if ((global_state == MPDState::PROC_BUF_1ST_HLF) && (cur_idx >= (HAL_BUF_LEN))) {
 			global_state = MPDState::IDLE;
-#if TIME_OF_FLIGHT_MODE && DECODE
 			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[HAL_BUF_LEN-3+i];
+#if TIME_OF_FLIGHT_MODE
+			if((cur_pfx==disable_pfx)&&(disable_idx<HAL_BUF_LEN)&&(!signal_flag)){
+				search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
+				pinout_pfx+=TIMEOUT;
+				mark_pinout();
+				pinout_idx=(pinout_idx+66)%BUF_LEN;
+				break;
+			}
 #endif
 			break;
 		} else if (global_state == MPDState::PROC_BUF_2ND_HLF && (cur_idx >= (BUF_LEN))) {
 			global_state = MPDState::IDLE;
 			cur_idx = cur_idx % BUF_LEN;
-#if TIME_OF_FLIGHT_MODE && DECODE
 			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[BUF_LEN-3+i];
+#if TIME_OF_FLIGHT_MODE
+			if((cur_pfx==disable_pfx)&&(disable_idx>=HAL_BUF_LEN)&&(!signal_flag)){
+				search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
+				pinout_pfx+=TIMEOUT;
+				mark_pinout();
+				pinout_idx=(pinout_idx+66)%BUF_LEN;
+				break;
+			}
 #endif
 			break;
 		} else if (global_state == MPDState::ERROR_1) {
 			break;
 		}
 	} //while
-
 }
-void MaxPeakDetector::mark_pinout(uint16_t pfx, uint16_t idx) {
-	//timing of pinout
-	pinout_pfx = pfx;
-	pinout_idx = idx;
-	//timing for recover receiving after pinout
-	enable_pfx = pfx+DATA_PFX+2;
-	enable_idx = idx;
+void MaxPeakDetector::mark_pinout() {
 	//timing to disable receiving after timeout period after pinout
-	disable_pfx=pfx+TIMEOUT-DATA_PFX;
-	disable_idx=idx;
+	disable_pfx=pinout_pfx+TIMEOUT;
+	disable_idx=pinout_idx;
+	//timing for recover receiving after pinout
+	enable_pfx = pinout_pfx+DATA_PFX+4;  // delay from pingout to actual sound wave is 2pfx+1008idx
+	enable_idx = pinout_idx+2016; // delay from pingout to actual sound wave is 2pfx+1008idx
+	if(enable_idx>=BUF_LEN){
+		enable_idx-=BUF_LEN;
+		enable_pfx++;
+	}
 }
 
 void MaxPeakDetector :: error_1_handle() {
-    (*p_index_info_tx).send_byte(128); //send error notification
+    //(*p_index_info_tx).stream_adc(7); //send error notification
 	global_state = MPDState::IDLE; // then skip this half buffer and try on the next
 
 	//need to reset the relevant search context so we are ready to start searching again:
@@ -300,14 +337,9 @@ extern "C" void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* p_hadc) {
 	//state transition
 		switch (MaxPeakDetector::global_state)
 		  {
-		  	case MPDState::PROC_BUF_1ST_HLF:
-		  		MaxPeakDetector::global_state = MPDState::ERROR_1;
-				break;
-			case MPDState::PROC_BUF_2ND_HLF:
-				MaxPeakDetector::global_state = MPDState::ERROR_1;
-				break;
 
 			case MPDState::ERROR_1:
+				MaxPeakDetector::global_state = MPDState::IDLE;
 				break;
 
 			case MPDState::IDLE:
@@ -324,14 +356,9 @@ extern "C"  void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* p_hadc) {
     //state transition
 		switch (MaxPeakDetector::global_state)
 		  {
-		  	case MPDState::PROC_BUF_1ST_HLF:
-		  		MaxPeakDetector::global_state = MPDState::ERROR_1;
-				break;
-			case MPDState::PROC_BUF_2ND_HLF:
-				MaxPeakDetector::global_state = MPDState::ERROR_1;
-				break;
 				
 			case MPDState::ERROR_1:
+				MaxPeakDetector::global_state = MPDState::IDLE;
 				break;
 
 			case MPDState::IDLE:

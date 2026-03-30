@@ -61,15 +61,16 @@ class MaxPeakDetector {
         uint16_t dead_zone_len; //set to -1 to jump to buffer end after each peak detection
         uint16_t search_threshold;   //search context --------
         bool signal_flag;
+        bool data_flag;
 		uint16_t last_peak_val; // the value of the last successfully detected pulse peak
 		uint16_t last_peak_idx;
 		uint16_t last_peak_pfx;
+		uint16_t pinout_idx;
+		uint16_t pinout_pfx;
 
     private:
 		uint16_t enable_pfx;
 		uint16_t enable_idx;
-		uint16_t pinout_idx;
-		uint16_t pinout_pfx;
 		uint16_t disable_pfx;
 		uint16_t disable_idx;
 		uint32_t delta_idx;
@@ -108,7 +109,7 @@ class MaxPeakDetector {
         MaxPeakDetector(ADC_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*);
         void detect_peak(void);
         void send_data2computer(uint16_t d_pfx, uint16_t end_idx, uint16_t data);
-        void mark_pinout(uint16_t pfx, uint16_t idx);
+        void mark_pinout();
     private:
         void search_loop(void);
         void error_1_handle();

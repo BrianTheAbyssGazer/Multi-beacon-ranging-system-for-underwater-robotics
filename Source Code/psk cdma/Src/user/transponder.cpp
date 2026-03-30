@@ -55,7 +55,7 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
     //PingOut::debug = true;
 
     while (1) {
-    	max_peak_detector.detect_peak();
+    	//max_peak_detector.detect_peak();
 		ping_out.update();
     }
 }

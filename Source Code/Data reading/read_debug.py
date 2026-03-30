@@ -9,7 +9,7 @@ MAX_SAMPLES = 5700
 PORT="COM7"
 TEST_TYPE="box full sample"
 serial_lock = threading.Lock() # Prevents simultaneous read/write collisions
-N=14*8
+N=1
 def rx_data(ser,lock):
     b=np.zeros(N)
     filling=False
@@ -21,6 +21,7 @@ def rx_data(ser,lock):
                 flag = ser.read(1)
                 if flag==b'\xf2':
                     data  = ser.read(2)
+                    #print(data)
                     value = struct.unpack('<H', data)[0]
                     a=int(value)
                     if(index==N):

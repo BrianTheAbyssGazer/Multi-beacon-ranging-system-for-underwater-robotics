@@ -42,21 +42,13 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     while (1) {
     	if(max_peak_detector.global_state == ping_out.po_state){
         	max_peak_detector.detect_peak();
-        	if(max_peak_detector.signal_flag){
-        		uint16_t idx_peak=max_peak_detector.last_peak_idx;
-        		uint16_t pfx_peak=max_peak_detector.last_peak_pfx;
-    			if (idx_peak<HAL_BUF_LEN){
-    				idx_peak+=HAL_BUF_LEN;
-    			}
-    			else {
-    				idx_peak-=HAL_BUF_LEN;
-    				pfx_peak++;
-    			}
-    			idx_peak/=6;
-    			pfx_peak+=DATA_PFX;
-    			max_peak_detector.mark_pinout(pfx_peak,idx_peak*6);
-    			ping_out.schedule(pfx_peak,idx_peak);
-    			max_peak_detector.signal_flag=false;
+        	if(max_peak_detector.signal_flag) {
+        		ping_out.enable_scheduler = false;
+        	}
+        	if(max_peak_detector.data_flag){
+    			ping_out.schedule(max_peak_detector.pinout_pfx,max_peak_detector.pinout_idx/6);
+    			max_peak_detector.data_flag=false;
+        		max_peak_detector.signal_flag =false;
         	}
         	ping_out.update();
     	}

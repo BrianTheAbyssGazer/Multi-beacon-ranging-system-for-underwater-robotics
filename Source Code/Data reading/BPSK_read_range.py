@@ -3,6 +3,7 @@ import struct
 import threading
 import os
 
+
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 MAX_SAMPLES = 5700
@@ -16,6 +17,7 @@ def rx_data(ser):
                 payload = ser.read(6)
                 char1 = chr(payload[0])
                 char2 = chr(payload[1])
+                #print(payload[0],payload[1])
                 integer_bytes = payload[2:6]
                 range_val = int.from_bytes(integer_bytes, byteorder='little')
                 print(f"Received: {char1}{char2} | Range: {range_val}")

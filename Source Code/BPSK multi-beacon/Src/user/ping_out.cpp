@@ -19,7 +19,7 @@ static const std::string info="M1";
 
 
 //initialize statics
-volatile uint16_t PingOut::po_state = POState::PO_IDLE;
+volatile uint16_t PingOut::po_state = POState::SECND_HLF_FREE;
 uint8_t PingOut::set_state = SetState::PO_DISABLED;
 volatile uint16_t PingOut::cur_out_pfx = 0;
 volatile uint16_t PingOut::schedule_period = 0;
@@ -101,9 +101,7 @@ void PingOut::start_periodic_scheduler(uint16_t period) {
 void PingOut::schedule(uint16_t pfx, uint16_t idx) {
 	scheduled_pfx = pfx;
     scheduled_idx = idx;
-#if TRANSPONDER_MODE
     enable_scheduler = true;
-#endif
 }
 /*
 * Should be run at least twice per full in/out buffer (one per half),
@@ -125,7 +123,7 @@ void PingOut::update() {
 		if (cur_idx<HAL_OUT_BUF_LEN) {
 			set();
 		}
-		po_state=POState::PO_IDLE;
+		//po_state=POState::PO_IDLE;
 		break;
 
 	case POState::SECND_HLF_FREE:
@@ -133,7 +131,7 @@ void PingOut::update() {
 		if (cur_idx>=HAL_OUT_BUF_LEN) {
 			set();
 		}
-		po_state=POState::PO_IDLE;
+		//po_state=POState::PO_IDLE;
 		break;
 	case POState::PO_IDLE:
 		break;
@@ -211,8 +209,11 @@ void PingOut::enable_pingout(){
 	set_state=SetState::SET_PIN;
 	data_idx = 0;
 	cur_idx = scheduled_idx;
+	//(*p_index_info_tx).stream_adc(cur_idx);
+
 #if TIME_OF_FLIGHT_MODE
 	scheduled_pfx+=TIMEOUT;
+	scheduled_idx=(scheduled_idx+11)%OUT_BUF_LEN;
 #elif TRANSPONDER_MODE
 	enable_scheduler = false;
 #endif
