@@ -13,7 +13,6 @@
 #include "global_buffer_def.h"
 
 
-
 class Timestamp {
   public:
 	uint16_t idx;
@@ -36,6 +35,7 @@ enum MPDSearchState {
     NO_SIGNAL,
     YES_SIGNAL,
 	DEMODULATOR_DISABLED,
+	SENDING
 };
 
 
@@ -50,7 +50,6 @@ class MaxPeakDetector {
     //states -------
     public:
         static volatile uint16_t global_state;
-    private:
         uint16_t search_sub_state;
 
     // Parameters ---------
@@ -71,8 +70,6 @@ class MaxPeakDetector {
     private:
 		uint16_t enable_pfx;
 		uint16_t enable_idx;
-		uint16_t disable_pfx;
-		uint16_t disable_idx;
 		uint32_t delta_idx;
 		uint16_t tentative_max_val;
 		uint16_t tentative_max_idx;
@@ -111,7 +108,7 @@ class MaxPeakDetector {
         void send_data2computer(uint16_t d_pfx, uint16_t end_idx, uint16_t data);
         void mark_pinout();
     private:
-        void search_loop(void);
+        void search_loop(uint16_t offset);
         void error_1_handle();
 };
 

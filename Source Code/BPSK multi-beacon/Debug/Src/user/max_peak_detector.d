@@ -37,7 +37,7 @@ Src/user/max_peak_detector.o: ../Src/user/max_peak_detector.cpp \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
  ../Inc/max_peak_detector.h ../Inc/index_info_tx.h \
  ../Inc/global_buffer_def.h ../Inc/mode.h ../Inc/mode.h \
- ../Inc/global_buffer_def.h ../Middlewares/ST/ARM/DSP/Inc/arm_math.h \
+ ../Middlewares/ST/ARM/DSP/Inc/arm_math.h \
  ../Drivers/CMSIS/Include/cmsis_compiler.h
 ../Inc/main.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
@@ -81,6 +81,5 @@ Src/user/max_peak_detector.o: ../Src/user/max_peak_detector.cpp \
 ../Inc/global_buffer_def.h:
 ../Inc/mode.h:
 ../Inc/mode.h:
-../Inc/global_buffer_def.h:
 ../Middlewares/ST/ARM/DSP/Inc/arm_math.h:
 ../Drivers/CMSIS/Include/cmsis_compiler.h:

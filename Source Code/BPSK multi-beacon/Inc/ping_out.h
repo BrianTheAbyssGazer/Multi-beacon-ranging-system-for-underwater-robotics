@@ -4,6 +4,7 @@
  *  Created on: Sep 13, 2024
  *      Author: arthur
  */
+#include "index_info_tx.h"
 
 #ifdef __cplusplus
 
@@ -36,12 +37,15 @@ class PingOut {
         static volatile uint16_t cur_out_pfx; // the prefix of the free space on the buffer
 
     private:
-        uint16_t scheduled_idx; //this has already been rounded to out_buf units
         uint16_t clear_offset; //this has already been rounded to out_buf units
         uint16_t cur_idx;
         uint32_t data_idx;
+#if TIME_OF_FLIGHT_MODE
+        const char* info;
+#endif
     public:
         uint16_t scheduled_pfx; // -1 indicates nothing to schedule
+        uint16_t scheduled_idx; //this has already been rounded to out_buf units
 
         bool periodic_schedule_enable;
         bool enable_scheduler;

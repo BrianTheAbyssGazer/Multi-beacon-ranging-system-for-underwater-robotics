@@ -9,7 +9,7 @@ MAX_SAMPLES = 5700
 PORT="COM7"
 TEST_TYPE="box full sample"
 serial_lock = threading.Lock() # Prevents simultaneous read/write collisions
-N=1
+N=2
 def rx_data(ser,lock):
     b=np.zeros(N)
     filling=False

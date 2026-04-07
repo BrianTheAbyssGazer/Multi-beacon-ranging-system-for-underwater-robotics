@@ -11,9 +11,9 @@ import os
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-MAX_SAMPLES = 6200
+MAX_SAMPLES = 11200
 PORT="COM7"
-TEST_TYPE="air_BPSK"
+TEST_TYPE="multi_BPSK"
 data_buffer = deque([0] * MAX_SAMPLES, maxlen=MAX_SAMPLES)
 COMMANDS = {
     "1010 squarewave" : bytes([0xAA if i<4 else 0xAA for i in range(8)]),
@@ -50,14 +50,6 @@ def rx_data(ser, data_buffer, save,lock):
                         data_buffer.append(value)
                     except struct.error:
                         pass
-                elif flag==b'\xff':
-                    raw_data = ser.read(4)
-                    value = struct.unpack('<i', raw_data)[0]
-                    print(value)
-                elif flag==b'\xff':
-                    raw_data = ser.read(4)
-                    value = struct.unpack('<i', raw_data)[0]
-                    print(value)
 
 def setup_plot():
     ser = serial.Serial(PORT, 115200,timeout=0.1)
@@ -73,7 +65,7 @@ def setup_plot():
     plt.subplots_adjust(left=0.04,right=0.9,bottom=0.1,top=1) # Make room for the button
     #ax.xaxis.set_major_formatter(FuncFormatter(scale_x))
     line, = ax.plot(data_buffer)
-    ax.set_ylim(0, 4500) # Adjust based on your expected int range
+    ax.set_ylim(0, 12288) # Adjust based on your expected int range
     #ax.set_ylim(86, 94) # Adjust based on your expected int range
 
     ax_radio = plt.axes([0.9, 0.1, 0.1, 0.9], facecolor='#f0f0f0')

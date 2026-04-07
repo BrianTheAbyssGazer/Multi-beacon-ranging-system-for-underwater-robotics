@@ -6,17 +6,16 @@
  */
 
 #include "main.h"
-#include "max_peak_detector.h"
 #include "mode.h"
 #include "global_buffer_def.h"
 #include "ping_out.h"
-#include <string>
-
 
 // global out buffer, with DMA to GPIO register
 uint32_t out_buf[OUT_BUF_LEN];
-static const std::string info="M1";
 
+#if TRANSPONDER_MODE
+static constexpr char info[STRING_LEN] = {id_list[ID*2],id_list[ID*2+1]};
+#endif
 
 //initialize statics
 volatile uint16_t PingOut::po_state = POState::SECND_HLF_FREE;
@@ -49,12 +48,13 @@ PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2
     samples_per_half_period = 6;
     /* schedule data initialisation */
     clear_offset = 0;
-    cur_idx=0;
-    data_idx=0;
+    cur_idx = 0;
+    data_idx = 0;
     periodic_schedule_enable = false;
-    scheduled_pfx = TIMEOUT;
+    scheduled_pfx = INIT_OUT;
     scheduled_idx = HAL_OUT_BUF_LEN;
 #if TIME_OF_FLIGHT_MODE
+    info = id_list;
     enable_scheduler = true;
 #elif TRANSPONDER_MODE
     enable_scheduler = false;
@@ -101,6 +101,7 @@ void PingOut::start_periodic_scheduler(uint16_t period) {
 void PingOut::schedule(uint16_t pfx, uint16_t idx) {
 	scheduled_pfx = pfx;
     scheduled_idx = idx;
+	//(*p_index_info_tx).stream_adc(idx);
     enable_scheduler = true;
 }
 /*
@@ -115,6 +116,8 @@ void PingOut::update() {
 		set_state=SetState::SET_PIN;
 		cur_idx = scheduled_idx;
     }
+	//(*p_index_info_tx).stream_adc(cur_out_pfx);
+
     // set:
 	switch (po_state)
 	{
@@ -127,6 +130,7 @@ void PingOut::update() {
 		break;
 
 	case POState::SECND_HLF_FREE:
+		//(*p_index_info_tx).stream_adc(scheduled_pfx);
 		if (cur_out_pfx==scheduled_pfx && enable_scheduler && scheduled_idx>=HAL_OUT_BUF_LEN) enable_pingout();
 		if (cur_idx>=HAL_OUT_BUF_LEN) {
 			set();
@@ -209,14 +213,14 @@ void PingOut::enable_pingout(){
 	set_state=SetState::SET_PIN;
 	data_idx = 0;
 	cur_idx = scheduled_idx;
-	//(*p_index_info_tx).stream_adc(cur_idx);
-
-#if TIME_OF_FLIGHT_MODE
-	scheduled_pfx+=TIMEOUT;
-	scheduled_idx=(scheduled_idx+11)%OUT_BUF_LEN;
-#elif TRANSPONDER_MODE
 	enable_scheduler = false;
+#if TIME_OF_FLIGHT_MODE
+    info+=2;
+	if (*info == '\0') { // Check if we hit the null terminator
+		info = id_list;
+	}
 #endif
+	//(*p_index_info_tx).stream_adc(cur_out_pfx);
 }
 
 void first_half_written_callback(DMA_HandleTypeDef *hdma) {

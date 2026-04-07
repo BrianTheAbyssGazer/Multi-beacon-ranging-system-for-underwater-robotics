@@ -39,7 +39,7 @@ Src/main.o: ../Src/main.c ../Inc/main.h \
  ../Inc/global_buffer_def.h ../Inc/mode.h ../Inc/basic_pulse_stream.h \
  ../Inc/main.h ../Inc/max_peak_detector.h ../Inc/peak_detector_main.h \
  ../Inc/transponder.h ../Inc/tof_master.h ../Inc/slow_tx.h \
- ../Inc/ping_out.h ../Inc/mode.h
+ ../Inc/ping_out.h ../Inc/index_info_tx.h ../Inc/mode.h
 ../Inc/main.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
 ../Inc/stm32f3xx_hal_conf.h:
@@ -90,4 +90,5 @@ Src/main.o: ../Src/main.c ../Inc/main.h \
 ../Inc/tof_master.h:
 ../Inc/slow_tx.h:
 ../Inc/ping_out.h:
+../Inc/index_info_tx.h:
 ../Inc/mode.h:

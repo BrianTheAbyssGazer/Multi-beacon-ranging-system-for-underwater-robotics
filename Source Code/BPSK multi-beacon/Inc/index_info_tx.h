@@ -4,9 +4,10 @@
  *  Created on: Sep 11, 2024
  *      Author: arthur
  */
+#ifndef SERIEAL_TX  // Header Guard: Prevents double inclusion in ONE file
+#define SERIEAL_TX
 
 #ifdef __cplusplus
-
 enum IdxInfoHeader {
      INDEX  = 0xF0, //6 byte payload with buf_idx, pre_idx, peak_val
      INFO_1 = 0xF1, //reserved
@@ -35,4 +36,5 @@ class IndexInfoTX {
         void send_bytes(uint8_t* bytes);
 };
 
+#endif
 #endif

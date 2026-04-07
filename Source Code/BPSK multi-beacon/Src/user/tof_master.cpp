@@ -45,7 +45,16 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
         	if(max_peak_detector.signal_flag) {
         		ping_out.enable_scheduler = false;
         	}
+        	else if(ping_out.cur_out_pfx-ping_out.scheduled_pfx>TIMEOUT){//to be wrapped around
+    			ping_out.schedule(ping_out.cur_out_pfx+1,(ping_out.scheduled_idx+11)%OUT_BUF_LEN);
+    			max_peak_detector.pinout_pfx = max_peak_detector.cur_pfx+1;
+    			max_peak_detector.pinout_idx = (max_peak_detector.pinout_idx+66)%BUF_LEN;
+    			max_peak_detector.mark_pinout();
+    			max_peak_detector.search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
+        	}
         	if(max_peak_detector.data_flag){
+        		//idx_info_tx.stream_adc(max_peak_detector.pinout_pfx);
+        		//idx_info_tx.stream_adc(ping_out.cur_out_pfx);
     			ping_out.schedule(max_peak_detector.pinout_pfx,max_peak_detector.pinout_idx/6);
     			max_peak_detector.data_flag=false;
         		max_peak_detector.signal_flag =false;
