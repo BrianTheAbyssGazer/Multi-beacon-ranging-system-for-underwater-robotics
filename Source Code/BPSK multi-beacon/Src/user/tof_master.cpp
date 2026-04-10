@@ -16,6 +16,8 @@
 
 
 #if ECHO_MASTER_MODE || TIME_OF_FLIGHT_MODE
+
+uint8_t gain[3] = {8,8,8};
 extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
                                 TIM_HandleTypeDef* p_htim3,
                                 UART_HandleTypeDef* p_huart,
@@ -30,7 +32,7 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     cmd_rx.start_unit_test();
 #endif
 	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
-    pgas.setGain(2);
+    pgas.setGain(gain[0]);
 
     /******************* SETUP TX ************************/
 	IndexInfoTX idx_info_tx(p_huart);
@@ -53,12 +55,16 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     			max_peak_detector.search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
         	}
         	if(max_peak_detector.data_flag){
-        		//idx_info_tx.stream_adc(max_peak_detector.pinout_pfx);
-        		//idx_info_tx.stream_adc(ping_out.cur_out_pfx);
     			ping_out.schedule(max_peak_detector.pinout_pfx,max_peak_detector.pinout_idx/6);
     			max_peak_detector.data_flag=false;
         		max_peak_detector.signal_flag =false;
         	}
+        	if(ping_out.scheduled_flag){
+        	    pgas.setGain(gain[ping_out.beacon_id]);
+        	    max_peak_detector.beacon_id=ping_out.beacon_id;
+        		ping_out.scheduled_flag=false;
+        	}
+        	//idx_info_tx.stream_adc(gain[1]);
         	ping_out.update();
     	}
     }

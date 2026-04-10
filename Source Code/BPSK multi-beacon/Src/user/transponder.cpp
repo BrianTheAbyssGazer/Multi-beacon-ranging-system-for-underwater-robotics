@@ -16,9 +16,7 @@
 
 #if TRANSPONDER_MODE
 
-
-
-
+uint8_t gain=8;
 
 extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc, 
                                 TIM_HandleTypeDef* p_htim3, 
@@ -32,8 +30,7 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
     //CMD_RX cmd_rx(p_huart);
 	IndexInfoTX idx_info_tx(p_huart);
 	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
-	pgas.setGain(2);
-
+	pgas.setGain(gain);
 	
 	//cmd_rx.start_receive();
 
@@ -54,6 +51,10 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
     			ping_out.schedule(max_peak_detector.pinout_pfx,max_peak_detector.pinout_idx/6);
     			max_peak_detector.data_flag=false;
         		max_peak_detector.signal_flag =false;
+        	}
+        	if(ping_out.scheduled_flag){
+        	    pgas.setGain(gain);
+        		ping_out.scheduled_flag=false;
         	}
         	ping_out.update();
     	}

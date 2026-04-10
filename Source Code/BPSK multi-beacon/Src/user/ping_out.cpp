@@ -53,8 +53,10 @@ PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2
     periodic_schedule_enable = false;
     scheduled_pfx = INIT_OUT;
     scheduled_idx = HAL_OUT_BUF_LEN;
+    scheduled_flag = false;
 #if TIME_OF_FLIGHT_MODE
     info = id_list;
+    beacon_id = 0;
     enable_scheduler = true;
 #elif TRANSPONDER_MODE
     enable_scheduler = false;
@@ -214,10 +216,13 @@ void PingOut::enable_pingout(){
 	data_idx = 0;
 	cur_idx = scheduled_idx;
 	enable_scheduler = false;
+	scheduled_flag=true;
 #if TIME_OF_FLIGHT_MODE
     info+=2;
+    beacon_id++;
 	if (*info == '\0') { // Check if we hit the null terminator
 		info = id_list;
+	    beacon_id=0;
 	}
 #endif
 	//(*p_index_info_tx).stream_adc(cur_out_pfx);

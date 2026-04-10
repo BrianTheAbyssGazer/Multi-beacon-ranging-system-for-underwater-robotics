@@ -50,7 +50,7 @@
 #if STREAM
 	#define UART_BUF_LEN 7000
 	#define CCM_BUF_LEN 4096
-	#define SKIP 6*DEAD_INTERVAL*8
+	#define SKIP 6*DEAD_INTERVAL*15
 	extern uint16_t uart_buf[UART_BUF_LEN]; //18k elems, or 36k bytes
 	extern uint16_t ccm_capture_buffer[CCM_BUF_LEN] __attribute__((section(".ccmram")));
 #elif DECODE || DEBUG_TIM
@@ -58,7 +58,9 @@
 #endif
 
 #if TRANSPONDER_MODE
-	#define ID 2
+	#define ID 1  //can be 0 1 2
+	extern uint8_t gain;
+#elif TIME_OF_FLIGHT_MODE
+	extern uint8_t gain[3];
 #endif
-
 #endif

@@ -46,9 +46,13 @@ class PingOut {
     public:
         uint16_t scheduled_pfx; // -1 indicates nothing to schedule
         uint16_t scheduled_idx; //this has already been rounded to out_buf units
+#if TIME_OF_FLIGHT_MODE
+        uint8_t beacon_id;
+#endif
 
         bool periodic_schedule_enable;
         bool enable_scheduler;
+        bool scheduled_flag;
         static uint8_t set_state;
 
         static volatile uint16_t schedule_period;

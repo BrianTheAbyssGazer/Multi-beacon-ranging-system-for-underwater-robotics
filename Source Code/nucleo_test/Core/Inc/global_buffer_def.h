@@ -40,7 +40,7 @@
 #if STREAM
 	#define UART_BUF_LEN 2000
 	#define CCM_BUF_LEN 4096
-	#define SKIP 6*DEAD_INTERVAL*36
+	#define SKIP 6*DEAD_INTERVAL*1
 	extern uint16_t uart_buf[UART_BUF_LEN]; //18k elems, or 36k bytes
 	extern uint16_t ccm_capture_buffer[CCM_BUF_LEN] __attribute__((section(".ccmram")));
 #elif DECODE || DEBUG_TIM

@@ -35,14 +35,14 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
     /******************* SETUP TX ************************/
 	IndexInfoTX idx_info_tx(p_huart);
     PingOut ping_out(p_hdma_tim2_up, p_htim2, &idx_info_tx);
-    //ping_out.start_periodic_scheduler(50);
+    ping_out.start_periodic_scheduler(50);
     PingOut::debug = true;
 	MaxPeakDetector max_peak_detector(p_hadc, p_htim3,  &idx_info_tx);
 	max_peak_detector.min_aid = true;
 
     while (1) {
     	max_peak_detector.detect_peak();
-    	//ping_out.update();
+    	ping_out.update();
 #if ECHO_MASTER_MODE
 		if (cmd_rx.rx_cplt) {
 			ping_out.set_phase_keying_data(cmd_rx.get_cmd_data());

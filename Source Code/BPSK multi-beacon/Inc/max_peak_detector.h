@@ -66,7 +66,9 @@ class MaxPeakDetector {
 		uint16_t last_peak_pfx;
 		uint16_t pinout_idx;
 		uint16_t pinout_pfx;
-
+#if TIME_OF_FLIGHT_MODE
+		uint8_t beacon_id;
+#endif
     private:
 		uint16_t enable_pfx;
 		uint16_t enable_idx;
@@ -79,6 +81,7 @@ class MaxPeakDetector {
 		uint16_t tentative_min_pfx;
 		uint16_t window_count;
 		uint16_t dead_zone_count;
+
 #if DECODE
         float phase;
         uint32_t phase_int;

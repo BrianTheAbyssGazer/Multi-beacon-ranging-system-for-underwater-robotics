@@ -6,10 +6,10 @@ import numpy as np
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 MAX_SAMPLES = 5700
-PORT="COM7"
+PORT="COM5"
 TEST_TYPE="box full sample"
 serial_lock = threading.Lock() # Prevents simultaneous read/write collisions
-N=2
+N=1
 def rx_data(ser,lock):
     b=np.zeros(N)
     filling=False

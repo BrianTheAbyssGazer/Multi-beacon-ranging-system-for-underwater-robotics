@@ -10,7 +10,7 @@ PORT="COM7"
 TEST_TYPE="box full sample"
 serial_lock = threading.Lock() # Prevents simultaneous read/write collisions
 def rx_data(ser,lock):
-    N=14
+    N=1
     buffer=bytearray(N) 
     filling=False
     index=0

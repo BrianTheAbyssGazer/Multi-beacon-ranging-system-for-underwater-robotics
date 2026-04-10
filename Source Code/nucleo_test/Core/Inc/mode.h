@@ -17,8 +17,8 @@
 #define ECHO_MASTER_MODE 0 // transponder will echo whatever recieved
 
 
-#define STREAM 0 // transponder will echo whatever recieved
-#define DECODE 1 // transponder will echo whatever recieved
+#define STREAM 1 // transponder will echo whatever recieved
+#define DECODE 0 // transponder will echo whatever recieved
 #define DEBUG_TIM 0 // transponder will echo whatever recieved
 
 
