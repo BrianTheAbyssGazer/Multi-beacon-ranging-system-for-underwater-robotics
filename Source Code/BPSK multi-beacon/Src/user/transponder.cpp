@@ -16,7 +16,8 @@
 
 #if TRANSPONDER_MODE
 
-uint8_t gain=8;
+uint8_t gain=2;
+uint8_t lost_time=0;
 
 extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc, 
                                 TIM_HandleTypeDef* p_htim3, 
@@ -40,7 +41,7 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
     PingOut ping_out(p_hdma_tim2_up, p_htim2, &idx_info_tx);
     //ping_out.start_periodic_scheduler(40);
     //PingOut::debug = true;
-
+    uint16_t prev_pfx=0;
     while (1) {
     	if(max_peak_detector.global_state == ping_out.po_state){
         	max_peak_detector.detect_peak();
@@ -52,11 +53,18 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
     			max_peak_detector.data_flag=false;
         		max_peak_detector.signal_flag =false;
         	}
+        	if(prev_pfx!=ping_out.cur_out_pfx)lost_time++;
         	if(ping_out.scheduled_flag){
+        		if(lost_time>59){
+        			if(gain<8)gain++;
+					lost_time=0;
+        		}
         	    pgas.setGain(gain);
+				max_peak_detector.mark_pinout();
         		ping_out.scheduled_flag=false;
         	}
         	ping_out.update();
+        	prev_pfx=ping_out.cur_out_pfx;
     	}
     }
 }

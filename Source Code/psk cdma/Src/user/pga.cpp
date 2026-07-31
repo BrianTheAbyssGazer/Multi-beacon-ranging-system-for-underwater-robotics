@@ -39,22 +39,19 @@ Index  |  Gain
 Indexes not in [1,4] will be ignored.
 */
 void PGA303::setGain(int index) {
+    p_hopamp->Instance->CSR |= MY_GAIN_MASK;
     switch (index)
     {
     case 1:
-        p_hopamp->Instance->CSR |= MY_GAIN_MASK;
 	    p_hopamp->Instance->CSR &= MY_GAIN_2;
         break;
     case 2:
-        p_hopamp->Instance->CSR |= MY_GAIN_MASK;
 	    p_hopamp->Instance->CSR &= MY_GAIN_4;
         break;
     case 3:
-        p_hopamp->Instance->CSR |= MY_GAIN_MASK;
 	    p_hopamp->Instance->CSR &= MY_GAIN_8;
         break;
     case 4:
-        p_hopamp->Instance->CSR |= MY_GAIN_MASK;
 	    p_hopamp->Instance->CSR &= MY_GAIN_16;
         break;
     

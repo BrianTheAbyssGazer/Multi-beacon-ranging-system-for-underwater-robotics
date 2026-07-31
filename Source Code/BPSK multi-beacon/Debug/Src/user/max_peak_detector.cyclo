@@ -1,10 +1,10 @@
 ../Src/user/max_peak_detector.cpp:45:1:MaxPeakDetector::MaxPeakDetector(ADC_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*)	2
-../Src/user/max_peak_detector.cpp:134:6:void MaxPeakDetector::search_loop(uint16_t)	28
-../Src/user/max_peak_detector.cpp:104:6:void MaxPeakDetector::detect_peak()	6
-../Src/user/max_peak_detector.cpp:359:6:void MaxPeakDetector::mark_pinout()	2
-../Src/user/max_peak_detector.cpp:369:6:void MaxPeakDetector::error_1_handle()	1
-../Src/user/max_peak_detector.cpp:381:17:void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef*)	3
-../Src/user/max_peak_detector.cpp:402:18:void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef*)	3
-../Src/user/max_peak_detector.cpp:419:1:Timestamp::Timestamp(uint16_t, uint16_t)	1
-../Src/user/max_peak_detector.cpp:427:10:uint16_t Timestamp::get_total()	1
-../Src/user/max_peak_detector.cpp:434:11:static Timestamp Timestamp::from_total(uint16_t)	1
+../Src/user/max_peak_detector.cpp:135:6:void MaxPeakDetector::search_loop(uint16_t)	26
+../Src/user/max_peak_detector.cpp:105:6:void MaxPeakDetector::detect_peak()	6
+../Src/user/max_peak_detector.cpp:368:6:void MaxPeakDetector::mark_pinout()	2
+../Src/user/max_peak_detector.cpp:378:6:void MaxPeakDetector::error_1_handle()	1
+../Src/user/max_peak_detector.cpp:390:17:void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef*)	3
+../Src/user/max_peak_detector.cpp:411:18:void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef*)	3
+../Src/user/max_peak_detector.cpp:428:1:Timestamp::Timestamp(uint16_t, uint16_t)	1
+../Src/user/max_peak_detector.cpp:436:10:uint16_t Timestamp::get_total()	1
+../Src/user/max_peak_detector.cpp:443:11:static Timestamp Timestamp::from_total(uint16_t)	1

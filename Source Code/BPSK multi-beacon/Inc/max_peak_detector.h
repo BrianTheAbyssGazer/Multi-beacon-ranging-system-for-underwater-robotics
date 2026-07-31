@@ -35,6 +35,7 @@ enum MPDSearchState {
     NO_SIGNAL,
     YES_SIGNAL,
 	DEMODULATOR_DISABLED,
+	STABLIZING,
 	SENDING
 };
 
@@ -61,7 +62,7 @@ class MaxPeakDetector {
         uint16_t search_threshold;   //search context --------
         bool signal_flag;
         bool data_flag;
-		uint16_t last_peak_val; // the value of the last successfully detected pulse peak
+		int16_t last_peak_val; // the value of the last successfully detected pulse peak
 		uint16_t last_peak_idx;
 		uint16_t last_peak_pfx;
 		uint16_t pinout_idx;
@@ -70,6 +71,8 @@ class MaxPeakDetector {
 		uint8_t beacon_id;
 #endif
     private:
+		int16_t dc_val;
+		uint16_t stablize_idx;
 		uint16_t enable_pfx;
 		uint16_t enable_idx;
 		uint32_t delta_idx;

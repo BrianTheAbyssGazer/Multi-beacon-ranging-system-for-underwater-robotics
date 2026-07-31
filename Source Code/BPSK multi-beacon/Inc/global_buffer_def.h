@@ -24,7 +24,7 @@
 #elif TIME_OF_FLIGHT_MODE || TRANSPONDER_MODE
 	#define BUF_LEN 12288 // 16384 = 2^14
 	#define HAL_BUF_LEN 6144 // 16384 = 2^14
-	extern uint16_t buf[BUF_LEN]; //18k elems, or 36k bytes
+	extern int16_t buf[BUF_LEN]; //18k elems, or 36k bytes
 	#define OUT_BUF_LEN 2048 // 4096 = 2^12
 	#define HAL_OUT_BUF_LEN 1024 // 2048 = 2^11
 	#define OUT_BUF_MASK 2047
@@ -33,12 +33,13 @@
 
     #define DATA_LEN 8*STRING_LEN
 	#define N_CYCLE 8 //cycle per symbol
-	#define DEAD_INTERVAL 512 // 2**8 interval between bits
+	#define DEAD_INTERVAL 256 // 2**8 interval between bits
 	#define DATA_PFX (DATA_LEN/(OUT_BUF_LEN/DEAD_INTERVAL)) //length of datapackage in pfx
-	#define TIMEOUT (32+DATA_PFX*3)
+	#define TIMEOUT (24+DATA_PFX*3)
 	#define INIT_OUT 100
+	#define RESPONSE_DELAY 6
 #ifdef __cplusplus
-	static constexpr char id_list[]="M1M2M3";
+	static constexpr char id_list[]="M1M2";
 #endif
 
 #elif SLOW_TX_MODE
@@ -51,8 +52,8 @@
 	#define UART_BUF_LEN 7000
 	#define CCM_BUF_LEN 4096
 	#define SKIP 6*DEAD_INTERVAL*15
-	extern uint16_t uart_buf[UART_BUF_LEN]; //18k elems, or 36k bytes
-	extern uint16_t ccm_capture_buffer[CCM_BUF_LEN] __attribute__((section(".ccmram")));
+	extern int16_t uart_buf[UART_BUF_LEN]; //18k elems, or 36k bytes
+	extern int16_t ccm_capture_buffer[CCM_BUF_LEN] __attribute__((section(".ccmram")));
 #elif DECODE || DEBUG_TIM
 	#define TWOPI 3.14159*2
 #endif
@@ -60,7 +61,9 @@
 #if TRANSPONDER_MODE
 	#define ID 1  //can be 0 1 2
 	extern uint8_t gain;
+	extern uint8_t lost_time;
 #elif TIME_OF_FLIGHT_MODE
 	extern uint8_t gain[3];
+	extern uint8_t lost_time[3];
 #endif
 #endif

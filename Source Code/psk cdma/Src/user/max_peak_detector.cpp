@@ -19,12 +19,12 @@
 
 
 // global ADC buffer:
-uint16_t buf[BUF_LEN];
+int16_t buf[BUF_LEN];
 #if STREAM
-uint16_t uart_buf[UART_BUF_LEN];
-uint16_t ccm_capture_buffer[CCM_BUF_LEN] __attribute__((section(".ccmram")));
+int16_t uart_buf[UART_BUF_LEN];
+int16_t ccm_capture_buffer[CCM_BUF_LEN] __attribute__((section(".ccmram")));
 #elif DECODE
-uint16_t buf_res[3]={1884,1884,1884};
+int16_t buf_res[3]={1884,1884,1884};
 #endif
 
 //initialise statics:
@@ -53,6 +53,7 @@ MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef*
     ccm_idx = 0;
     enable_pfx=0;
     dead_zone_count = 0;
+    signal_flag = false;
 #if DECODE
     phase = 0;
     phase_int=0;
@@ -125,97 +126,48 @@ void MaxPeakDetector :: search_loop() {
 
 	while (1) {
 		cur_val = buf[cur_idx];
-		float sin,cos,real,imag,i_channel,q_channel; // Masking instead of %
 		switch (search_sub_state){
 			case MPDSearchState::NO_SIGNAL: //------------------------------------------------------------------
-				if (cur_val > 2384||cur_val<1384) {
-				    sample_counter=0;
-				    symbol_counter=0;
+				if (signal_flag) {
+					uart_idx=0;
+					ccm_idx=0;
 					search_sub_state = MPDSearchState::YES_SIGNAL;
-					cur_idx+=3;
+					signal_flag=false;
 				}
 				else cur_idx+=2;
 				break;
-#if DECODE
 			case MPDSearchState::YES_SIGNAL: //------------------------------------------------------------------
-				if(symbol_counter<DATA_LEN){
-					if(sample_counter<6*N_CYCLE){
-						uint16_t pre_val;
-						if (cur_idx<3 || (cur_idx-HAL_BUF_LEN)<3)pre_val=buf_res[cur_idx];
-						else pre_val=buf[cur_idx-3];
-						imag = (float(pre_val)-1884) * 0.0005f;// 1/2048=0.00048828125
-						real = (float(cur_val) - 1884) * 0.0005f;
-						arm_sin_cos_f32(phase* 57.2958f, &sin, &cos);
-						i_channel=real*cos+imag*sin;
-						q_channel=imag*cos-real*sin;
-						phase += 0.523599 + (0.05 * i_channel * q_channel); // 1/12=0.5236 (12 samples per cycle), 0.05 is empirical
-						if (phase>6.28319) phase-=6.28319;
-						corr_sum+=i_channel;
-						cur_idx++;
-						sample_counter++;
-					}
-					else{
-						uint8_t i_char = symbol_counter / 8; // Find the character
-						uint8_t i_bit = symbol_counter & 7; // Find the bit position (0-7)
-						if(corr_sum>0.0f){
-							rx_data[i_char] |= (1 << i_bit);
-						}
-						else{
-							rx_data[i_char] &= ~(1 << i_bit);
-						}
-						cur_idx+=(DEAD_INTERVAL-N_CYCLE)*6; //12 samples per cycle * 16 cycle per symbol * 7
-						sample_counter=0;
-						symbol_counter++;
-						corr_sum=0;
-					}
+				if(ccm_idx<SKIP){
+					ccm_idx+=DEAD_INTERVAL*6;
+					cur_idx+=DEAD_INTERVAL*6;
+				}
+				else if (ccm_idx<CCM_BUF_LEN+SKIP){
+					ccm_capture_buffer[ccm_idx-SKIP]=cur_val;
+					ccm_idx++;
+					cur_idx+=3;
+				}
+				else if(uart_idx<UART_BUF_LEN){
+					uart_buf[uart_idx]=cur_val;
+					uart_idx++;
+					cur_idx+=3;
 				}
 				else{
-					symbol_counter=0;
-					sample_counter=0;
-					corr_sum=0;
-					phase=0;
-					cur_idx+=HAL_BUF_LEN;
-					if (rx_data[0]&1) inverse_data=0;
-					else inverse_data=0xFF;
-					for (uint8_t j = 0; j < STRING_LEN; j++){
-					    (*p_index_info_tx).send_byte(rx_data[j]^inverse_data);
-					    rx_data[j]=0;
-					}
-					enable_pfx=cur_pfx+(DATA_LEN/(OUT_BUF_LEN/DEAD_INTERVAL))+1;
-					search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
+					search_sub_state = MPDSearchState::SENDING;
 				}
 				break;
-#elif DEBUG_TIM
-			case MPDSearchState::YES_SIGNAL: //------------------------------------------------------------------
-				if(symbol_counter<DATA_LEN){
-					if(sample_counter<12*N_CYCLE){
-						corr_sum+=cur_val/100;
-						cur_idx++;
-						sample_counter++;
-					}
-					else{
-						cur_idx+=DEAD_INTERVAL*6-N_CYCLE*12; //12 samples per cycle * 16 cycle per symbol * 7
-						sample_counter=0;
-						symbol_counter++;
-					    (*p_index_info_tx).stream_adc(corr_sum);
-						corr_sum=0;
-					}
-				}
-				else{
-					symbol_counter=0;
-					sample_counter=0;
-					corr_sum=0;
-					search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
-					enable_pfx=cur_pfx+5;
-				}
+			case MPDSearchState::SENDING:
+				(*p_index_info_tx).stream_adc(0);
+				for (uint16_t i=0;i<CCM_BUF_LEN;i++)(*p_index_info_tx).stream_adc(ccm_capture_buffer[i]);
+				for (uint16_t i=0;i<UART_BUF_LEN;i++)(*p_index_info_tx).stream_adc(uart_buf[i]);
+				search_sub_state = MPDSearchState::SILENT;
+			    last_peak_pfx=cur_pfx;
+			    last_peak_idx=cur_idx;
 				break;
-#endif
-			case MPDSearchState::DEMODULATOR_DISABLED:
-				if(cur_pfx==enable_pfx)search_sub_state = MPDSearchState::NO_SIGNAL;
-				else cur_idx+=HAL_BUF_LEN;
+			case MPDSearchState::SILENT:
+				cur_idx++;
+				if(cur_pfx>last_peak_pfx+14 && cur_idx>=last_peak_idx)search_sub_state = MPDSearchState::NO_SIGNAL;
 				break;
 		} // switch
-
 		// conditions to escape search mode
 		if ((global_state == MPDState::PROC_BUF_1ST_HLF) && (cur_idx >= (HAL_BUF_LEN))) {
 			global_state = MPDState::IDLE;

@@ -11,8 +11,8 @@ import os
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-MAX_SAMPLES = 11200
-PORT="COM5"
+MAX_SAMPLES = 14340
+PORT="COM8"
 TEST_TYPE="multi_BPSK"
 data_buffer = deque([0] * MAX_SAMPLES, maxlen=MAX_SAMPLES)
 COMMANDS = {
@@ -45,7 +45,7 @@ def rx_data(ser, data_buffer, save,lock):
                     raw_data = ser.read(2)
                     try:
                         # Unpack as little-endian signed int
-                        value = struct.unpack('<H', raw_data)[0]
+                        value = struct.unpack('<h', raw_data)[0]
                         #print(value)
                         data_buffer.append(value)
                     except struct.error:
@@ -65,6 +65,9 @@ def setup_plot():
     plt.subplots_adjust(left=0.04,right=0.9,bottom=0.1,top=1) # Make room for the button
     #ax.xaxis.set_major_formatter(FuncFormatter(scale_x))
     line, = ax.plot(data_buffer)
+    plt.axhline(y=1884, color='r', linestyle='--')
+    plt.axhline(y=1240, color='r', linestyle='--')
+    plt.xlim((0,MAX_SAMPLES))
     ax.set_ylim(0, 4101) # Adjust based on your expected int range
     #ax.set_ylim(86, 94) # Adjust based on your expected int range
 
@@ -83,8 +86,9 @@ def setup_plot():
         cmd_name = selected_command
         data_to_send = COMMANDS[cmd_name]
         with serial_lock:
-            print(f"Sending: {data_to_send.hex(' ')}")
-            ser.write(data_to_send)
+            #print(f"Sending: {data_to_send.hex(' ')}")
+            #ser.write(data_to_send)
+            print(sum(data_buffer)/len(data_buffer))
 
     btn.on_clicked(send_data)
 

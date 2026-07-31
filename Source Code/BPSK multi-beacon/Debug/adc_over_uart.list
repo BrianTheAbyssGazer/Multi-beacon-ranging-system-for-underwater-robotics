@@ -5,55 +5,55 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   00000194  08000000  08000000  00001000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         00005be4  08000198  08000198  00001198  2**3
+  1 .text         00005dc8  08000198  08000198  00001198  2**3
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000b00  08005d7c  08005d7c  00006d7c  2**2
+  2 .rodata       00000b0c  08005f60  08005f60  00006f60  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  0800687c  0800687c  0000801c  2**0
+  3 .ARM.extab    00000000  08006a6c  08006a6c  00008020  2**0
                   CONTENTS, READONLY
-  4 .ARM          00000000  0800687c  0800687c  0000801c  2**0
+  4 .ARM          00000000  08006a6c  08006a6c  00008020  2**0
                   CONTENTS, READONLY
-  5 .preinit_array 00000000  0800687c  0800687c  0000801c  2**0
+  5 .preinit_array 00000000  08006a6c  08006a6c  00008020  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  0800687c  0800687c  0000787c  2**2
+  6 .init_array   00000004  08006a6c  08006a6c  00007a6c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .fini_array   00000004  08006880  08006880  00007880  2**2
+  7 .fini_array   00000004  08006a70  08006a70  00007a70  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .data         0000001c  20000000  08006884  00008000  2**2
+  8 .data         00000020  20000000  08006a74  00008000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .ccmram       00000000  10000000  10000000  0000801c  2**0
+  9 .ccmram       00000000  10000000  10000000  00008020  2**0
                   CONTENTS
- 10 .bss          00008418  20000020  20000020  00008020  2**3
+ 10 .bss          0000841c  20000020  20000020  00008020  2**3
                   ALLOC
- 11 ._user_heap_stack 00002a00  20008438  20008438  00008020  2**0
+ 11 ._user_heap_stack 00002a04  2000843c  2000843c  00008020  2**0
                   ALLOC
- 12 .ARM.attributes 00000030  00000000  00000000  0000801c  2**0
+ 12 .ARM.attributes 00000030  00000000  00000000  00008020  2**0
                   CONTENTS, READONLY
- 13 .debug_line   000275fd  00000000  00000000  0000804c  2**0
+ 13 .debug_line   0002814b  00000000  00000000  00008050  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_line_str 00000098  00000000  00000000  0002f649  2**0
+ 14 .debug_line_str 00000098  00000000  00000000  0003019b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_info   0002872f  00000000  00000000  0002f6e1  2**0
+ 15 .debug_info   00029498  00000000  00000000  00030233  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_abbrev 00004dc4  00000000  00000000  00057e10  2**0
+ 16 .debug_abbrev 00005095  00000000  00000000  000596cb  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_aranges 00001198  00000000  00000000  0005cbd8  2**3
+ 17 .debug_aranges 000011e8  00000000  00000000  0005e760  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000ddb48  00000000  00000000  0005dd70  2**0
+ 18 .debug_str    000ddde3  00000000  00000000  0005f948  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_rnglists 000015e7  00000000  00000000  0013b8b8  2**0
+ 19 .debug_rnglists 00001639  00000000  00000000  0013d72b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_loclists 0000e716  00000000  00000000  0013ce9f  2**0
+ 20 .debug_loclists 0000e829  00000000  00000000  0013ed64  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_macro  00024a88  00000000  00000000  0014b5b5  2**0
+ 21 .debug_macro  00024cd7  00000000  00000000  0014d58d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .comment      000000bc  00000000  00000000  0017003d  2**0
+ 22 .comment      000000bc  00000000  00000000  00172264  2**0
                   CONTENTS, READONLY
- 23 .debug_frame  0000331c  00000000  00000000  001700fc  2**2
+ 23 .debug_frame  000033d4  00000000  00000000  00172320  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 24 .debug_loc    00000435  00000000  00000000  00173418  2**0
+ 24 .debug_loc    00000435  00000000  00000000  001756f4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 25 .debug_ranges 00000010  00000000  00000000  0017384d  2**0
+ 25 .debug_ranges 00000010  00000000  00000000  00175b29  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -72,7 +72,7 @@ Disassembly of section .text:
  80001ae:	bd10      	pop	{r4, pc}
  80001b0:	20000020 	.word	0x20000020
  80001b4:	00000000 	.word	0x00000000
- 80001b8:	08005d64 	.word	0x08005d64
+ 80001b8:	08005f48 	.word	0x08005f48
 
 080001bc <frame_dummy>:
  80001bc:	b508      	push	{r3, lr}
@@ -84,7 +84,7 @@ Disassembly of section .text:
  80001ca:	bd08      	pop	{r3, pc}
  80001cc:	00000000 	.word	0x00000000
  80001d0:	20000024 	.word	0x20000024
- 80001d4:	08005d64 	.word	0x08005d64
+ 80001d4:	08005f48 	.word	0x08005f48
 
 080001d8 <__aeabi_dmul>:
  80001d8:	b570      	push	{r4, r5, r6, lr}
@@ -808,7 +808,7 @@ LoopFillZerobss:
 
 /* Call static constructors */
     bl __libc_init_array
- 8000982:	f005 f9cb 	bl	8005d1c <__libc_init_array>
+ 8000982:	f005 fabd 	bl	8005f00 <__libc_init_array>
 /* Call the application's entry point.*/
 	bl	main
  8000986:	f003 fefd 	bl	8004784 <main>
@@ -823,13 +823,13 @@ LoopForever:
   ldr r0, =_sdata
  8000990:	20000000 	.word	0x20000000
   ldr r1, =_edata
- 8000994:	2000001c 	.word	0x2000001c
+ 8000994:	20000020 	.word	0x20000020
   ldr r2, =_sidata
- 8000998:	08006884 	.word	0x08006884
+ 8000998:	08006a74 	.word	0x08006a74
   ldr r2, =_sbss
  800099c:	20000020 	.word	0x20000020
   ldr r4, =_ebss
- 80009a0:	20008438 	.word	0x20008438
+ 80009a0:	2000843c 	.word	0x2000843c
 
 080009a4 <ADC1_2_IRQHandler>:
  * @retval : None
@@ -1132,7 +1132,7 @@ __weak void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc)
 08000b2c <ADC_DMAHalfConvCplt>:
   HAL_ADC_ConvHalfCpltCallback(hadc);
  8000b2c:	6a40      	ldr	r0, [r0, #36]	@ 0x24
- 8000b2e:	f004 bdc7 	b.w	80056c0 <HAL_ADC_ConvHalfCpltCallback>
+ 8000b2e:	f004 be27 	b.w	8005780 <HAL_ADC_ConvHalfCpltCallback>
  8000b32:	bf00      	nop
 
 08000b34 <ADC_DMAConvCplt>:
@@ -1169,7 +1169,7 @@ __weak void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc)
  8000b68:	641a      	str	r2, [r3, #64]	@ 0x40
       HAL_ADC_ConvCpltCallback(hadc);
  8000b6a:	4618      	mov	r0, r3
- 8000b6c:	f004 bdc0 	b.w	80056f0 <HAL_ADC_ConvCpltCallback>
+ 8000b6c:	f004 be20 	b.w	80057b0 <HAL_ADC_ConvCpltCallback>
     hadc->DMA_Handle->XferErrorCallback(hdma);
  8000b70:	6b9b      	ldr	r3, [r3, #56]	@ 0x38
  8000b72:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
@@ -1509,7 +1509,7 @@ __weak void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc)
  8000e2c:	e7e8      	b.n	8000e00 <HAL_ADC_Init+0x288>
  8000e2e:	bf00      	nop
  8000e30:	50000100 	.word	0x50000100
- 8000e34:	08005d7c 	.word	0x08005d7c
+ 8000e34:	08005f60 	.word	0x08005f60
  8000e38:	01010100 	.word	0x01010100
  8000e3c:	50000500 	.word	0x50000500
  8000e40:	50000700 	.word	0x50000700
@@ -1721,7 +1721,7 @@ __weak void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc)
  8000fec:	f44f 71a0 	mov.w	r1, #320	@ 0x140
  8000ff0:	e6be      	b.n	8000d70 <HAL_ADC_Init+0x1f8>
  8000ff2:	bf00      	nop
- 8000ff4:	08005d7c 	.word	0x08005d7c
+ 8000ff4:	08005f60 	.word	0x08005f60
  8000ff8:	50000500 	.word	0x50000500
  8000ffc:	50000700 	.word	0x50000700
  8001000:	20000008 	.word	0x20000008
@@ -1923,7 +1923,7 @@ __weak void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc)
  800116c:	e7b3      	b.n	80010d6 <HAL_ADC_Start_DMA+0xca>
  800116e:	bf00      	nop
  8001170:	50000100 	.word	0x50000100
- 8001174:	08005d7c 	.word	0x08005d7c
+ 8001174:	08005f60 	.word	0x08005f60
  8001178:	50000700 	.word	0x50000700
  800117c:	50000300 	.word	0x50000300
  8001180:	50000400 	.word	0x50000400
@@ -2281,7 +2281,7 @@ __weak void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc)
  8001448:	619a      	str	r2, [r3, #24]
  800144a:	e715      	b.n	8001278 <HAL_ADC_ConfigChannel+0xe8>
  800144c:	50000100 	.word	0x50000100
- 8001450:	08005d7c 	.word	0x08005d7c
+ 8001450:	08005f60 	.word	0x08005f60
  8001454:	83fff000 	.word	0x83fff000
  8001458:	50000700 	.word	0x50000700
     if (( (sConfig->Channel == ADC_CHANNEL_TEMPSENSOR) &&
@@ -2754,7 +2754,7 @@ __weak void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc)
  80017e0:	e7e1      	b.n	80017a6 <HAL_ADCEx_MultiModeConfigChannel+0x13a>
  80017e2:	bf00      	nop
  80017e4:	50000400 	.word	0x50000400
- 80017e8:	08005d7c 	.word	0x08005d7c
+ 80017e8:	08005f60 	.word	0x08005f60
  80017ec:	50000100 	.word	0x50000100
  80017f0:	50000500 	.word	0x50000500
  80017f4:	50000300 	.word	0x50000300
@@ -2812,7 +2812,7 @@ __STATIC_INLINE void __NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
  800182c:	e7eb      	b.n	8001806 <HAL_NVIC_SetPriorityGrouping+0xa>
  800182e:	bf00      	nop
  8001830:	e000ed00 	.word	0xe000ed00
- 8001834:	08005db8 	.word	0x08005db8
+ 8001834:	08005f9c 	.word	0x08005f9c
 
 08001838 <HAL_NVIC_SetPriority>:
 void HAL_NVIC_SetPriority(IRQn_Type IRQn, uint32_t PreemptPriority, uint32_t SubPriority)
@@ -2911,7 +2911,7 @@ __STATIC_INLINE uint32_t __NVIC_GetPriorityGrouping(void)
  80018b6:	e7c5      	b.n	8001844 <HAL_NVIC_SetPriority+0xc>
  80018b8:	e000ed00 	.word	0xe000ed00
  80018bc:	e000ecfc 	.word	0xe000ecfc
- 80018c0:	08005db8 	.word	0x08005db8
+ 80018c0:	08005f9c 	.word	0x08005f9c
 
 080018c4 <HAL_NVIC_EnableIRQ>:
   * @retval None
@@ -2940,7 +2940,7 @@ void HAL_NVIC_EnableIRQ(IRQn_Type IRQn)
  80018de:	f003 ba35 	b.w	8004d4c <assert_failed>
  80018e2:	bf00      	nop
  80018e4:	e000e100 	.word	0xe000e100
- 80018e8:	08005db8 	.word	0x08005db8
+ 80018e8:	08005f9c 	.word	0x08005f9c
 
 080018ec <HAL_SYSTICK_Config>:
            function <b>SysTick_Config</b> is not included. In this case, the file <b><i>device</i>.h</b>
@@ -3060,7 +3060,7 @@ HAL_StatusTypeDef HAL_DAC_Init(DAC_HandleTypeDef* hdac)
  800195c:	4770      	bx	lr
  800195e:	bf00      	nop
  8001960:	40007400 	.word	0x40007400
- 8001964:	08005df4 	.word	0x08005df4
+ 8001964:	08005fd8 	.word	0x08005fd8
 
 08001968 <HAL_DAC_ConfigChannel>:
 HAL_StatusTypeDef HAL_DAC_ConfigChannel(DAC_HandleTypeDef* hdac, DAC_ChannelConfTypeDef* sConfig, uint32_t Channel)
@@ -3186,7 +3186,7 @@ HAL_StatusTypeDef HAL_DAC_ConfigChannel(DAC_HandleTypeDef* hdac, DAC_ChannelConf
  8001a04:	2002      	movs	r0, #2
 }
  8001a06:	bd70      	pop	{r4, r5, r6, pc}
- 8001a08:	08005e2c 	.word	0x08005e2c
+ 8001a08:	08006010 	.word	0x08006010
 
 08001a0c <HAL_DMA_Init>:
 HAL_StatusTypeDef HAL_DMA_Init(DMA_HandleTypeDef *hdma)
@@ -3396,7 +3396,7 @@ static void DMA_CalcBaseAndBitshift(DMA_HandleTypeDef *hdma)
 }
  8001b62:	4770      	bx	lr
  8001b64:	40020008 	.word	0x40020008
- 8001b68:	08005e68 	.word	0x08005e68
+ 8001b68:	0800604c 	.word	0x0800604c
  8001b6c:	40020407 	.word	0x40020407
  8001b70:	bffdfbf8 	.word	0xbffdfbf8
  8001b74:	cccccccd 	.word	0xcccccccd
@@ -3500,7 +3500,7 @@ static void DMA_CalcBaseAndBitshift(DMA_HandleTypeDef *hdma)
  8001c1c:	f023 0304 	bic.w	r3, r3, #4
  8001c20:	602b      	str	r3, [r5, #0]
  8001c22:	e7e9      	b.n	8001bf8 <HAL_DMA_Start_IT+0x74>
- 8001c24:	08005e68 	.word	0x08005e68
+ 8001c24:	0800604c 	.word	0x0800604c
 
 08001c28 <HAL_DMA_Abort>:
   if(NULL == hdma)
@@ -4106,7 +4106,7 @@ void HAL_GPIO_Init(GPIO_TypeDef  *GPIOx, GPIO_InitTypeDef *GPIO_Init)
  8002034:	9b01      	ldr	r3, [sp, #4]
  8002036:	e72a      	b.n	8001e8e <HAL_GPIO_Init+0x14a>
  8002038:	48000400 	.word	0x48000400
- 800203c:	08005ea0 	.word	0x08005ea0
+ 800203c:	08006084 	.word	0x08006084
  8002040:	48000800 	.word	0x48000800
  8002044:	48000c00 	.word	0x48000c00
  8002048:	48001000 	.word	0x48001000
@@ -4183,7 +4183,7 @@ void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState Pin
  80020c0:	f002 fe44 	bl	8004d4c <assert_failed>
  80020c4:	e7ed      	b.n	80020a2 <HAL_GPIO_WritePin+0xa>
  80020c6:	bf00      	nop
- 80020c8:	08005ea0 	.word	0x08005ea0
+ 80020c8:	08006084 	.word	0x08006084
 
 080020cc <HAL_OPAMP_Init>:
 {
@@ -4492,7 +4492,7 @@ void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState Pin
  80022b2:	f002 fd4b 	bl	8004d4c <assert_failed>
  80022b6:	e76d      	b.n	8002194 <HAL_OPAMP_Init+0xc8>
  80022b8:	40010038 	.word	0x40010038
- 80022bc:	08005edc 	.word	0x08005edc
+ 80022bc:	080060c0 	.word	0x080060c0
  80022c0:	40021000 	.word	0x40021000
  80022c4:	e0003811 	.word	0xe0003811
 
@@ -4957,7 +4957,7 @@ void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState Pin
  80025b2:	bf00      	nop
  80025b4:	40021000 	.word	0x40021000
  80025b8:	10908120 	.word	0x10908120
- 80025bc:	08005f18 	.word	0x08005f18
+ 80025bc:	080060fc 	.word	0x080060fc
  80025c0:	40007000 	.word	0x40007000
         {
           if((HAL_GetTick() - tickstart ) > PLL_TIMEOUT_VALUE)
@@ -5349,7 +5349,7 @@ void HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState Pin
  80028ee:	f002 fa2d 	bl	8004d4c <assert_failed>
  80028f2:	e649      	b.n	8002588 <HAL_RCC_OscConfig+0x2c0>
  80028f4:	40021000 	.word	0x40021000
- 80028f8:	08005f18 	.word	0x08005f18
+ 80028f8:	080060fc 	.word	0x080060fc
  80028fc:	10908120 	.word	0x10908120
  8002900:	f04f 7380 	mov.w	r3, #16777216	@ 0x1000000
  8002904:	fa93 f3a3 	rbit	r3, r3
@@ -5450,8 +5450,8 @@ uint32_t HAL_RCC_GetSysClockFreq(void)
  800299e:	4770      	bx	lr
  80029a0:	40021000 	.word	0x40021000
  80029a4:	007a1200 	.word	0x007a1200
- 80029a8:	0800604c 	.word	0x0800604c
- 80029ac:	0800603c 	.word	0x0800603c
+ 80029a8:	08006230 	.word	0x08006230
+ 80029ac:	08006220 	.word	0x08006220
 
 080029b0 <HAL_RCC_ClockConfig>:
   if(RCC_ClkInitStruct == NULL)
@@ -5704,9 +5704,9 @@ uint32_t HAL_RCC_GetSysClockFreq(void)
  8002bbc:	e72a      	b.n	8002a14 <HAL_RCC_ClockConfig+0x64>
  8002bbe:	bf00      	nop
  8002bc0:	40022000 	.word	0x40022000
- 8002bc4:	08005f18 	.word	0x08005f18
+ 8002bc4:	080060fc 	.word	0x080060fc
  8002bc8:	40021000 	.word	0x40021000
- 8002bcc:	08006064 	.word	0x08006064
+ 8002bcc:	08006248 	.word	0x08006248
  8002bd0:	20000004 	.word	0x20000004
  8002bd4:	20000008 	.word	0x20000008
 
@@ -5735,7 +5735,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  8002bf8:	4770      	bx	lr
  8002bfa:	bf00      	nop
  8002bfc:	40021000 	.word	0x40021000
- 8002c00:	0800605c 	.word	0x0800605c
+ 8002c00:	08006240 	.word	0x08006240
  8002c04:	20000008 	.word	0x20000008
 
 08002c08 <HAL_RCC_GetPCLK2Freq>:
@@ -5763,7 +5763,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
  8002c28:	4770      	bx	lr
  8002c2a:	bf00      	nop
  8002c2c:	40021000 	.word	0x40021000
- 8002c30:	0800605c 	.word	0x0800605c
+ 8002c30:	08006240 	.word	0x08006240
  8002c34:	20000008 	.word	0x20000008
 
 08002c38 <HAL_RCCEx_PeriphCLKConfig>:
@@ -6219,7 +6219,7 @@ HAL_StatusTypeDef HAL_RCCEx_PeriphCLKConfig(RCC_PeriphCLKInitTypeDef  *PeriphClk
  8002e94:	40021000 	.word	0x40021000
  8002e98:	40007000 	.word	0x40007000
  8002e9c:	10908100 	.word	0x10908100
- 8002ea0:	08005f50 	.word	0x08005f50
+ 8002ea0:	08006134 	.word	0x08006134
   
 #if defined(STM32F303xE) || defined(STM32F398xx)\
  || defined(STM32F303xC) || defined(STM32F358xx)
@@ -6587,7 +6587,7 @@ HAL_StatusTypeDef HAL_RCCEx_PeriphCLKConfig(RCC_PeriphCLKInitTypeDef  *PeriphClk
  80030fa:	d1c9      	bne.n	8003090 <HAL_RCCEx_PeriphCLKConfig+0x458>
  80030fc:	e6c0      	b.n	8002e80 <HAL_RCCEx_PeriphCLKConfig+0x248>
  80030fe:	bf00      	nop
- 8003100:	08005f50 	.word	0x08005f50
+ 8003100:	08006134 	.word	0x08006134
  8003104:	40021000 	.word	0x40021000
  8003108:	40007000 	.word	0x40007000
 
@@ -6710,7 +6710,7 @@ HAL_StatusTypeDef HAL_TIM_Base_Start(TIM_HandleTypeDef *htim)
  80031d4:	e7f2      	b.n	80031bc <HAL_TIM_Base_Start+0xb0>
  80031d6:	bf00      	nop
  80031d8:	40012c00 	.word	0x40012c00
- 80031dc:	08005f8c 	.word	0x08005f8c
+ 80031dc:	08006170 	.word	0x08006170
  80031e0:	00010007 	.word	0x00010007
 
 080031e4 <HAL_TIM_OnePulse_MspInit>:
@@ -7125,7 +7125,7 @@ void TIM_ETR_SetConfig(TIM_TypeDef *TIMx, uint32_t TIM_ExtTRGPrescaler,
  80034ce:	bf00      	nop
  80034d0:	fffe0088 	.word	0xfffe0088
  80034d4:	40012c00 	.word	0x40012c00
- 80034d8:	08005f8c 	.word	0x08005f8c
+ 80034d8:	08006170 	.word	0x08006170
   switch (sClockSourceConfig->ClockSource)
  80034dc:	2b30      	cmp	r3, #48	@ 0x30
  80034de:	f47f aeb2 	bne.w	8003246 <HAL_TIM_ConfigClockSource+0x5e>
@@ -7380,7 +7380,7 @@ void TIM_ETR_SetConfig(TIM_TypeDef *TIMx, uint32_t TIM_ExtTRGPrescaler,
  80036bc:	e6ba      	b.n	8003434 <HAL_TIM_ConfigClockSource+0x24c>
  80036be:	bf00      	nop
  80036c0:	40012c00 	.word	0x40012c00
- 80036c4:	08005f8c 	.word	0x08005f8c
+ 80036c4:	08006170 	.word	0x08006170
  80036c8:	fffe0088 	.word	0xfffe0088
 
 080036cc <TIM_Base_SetConfig>:
@@ -7671,7 +7671,7 @@ void TIM_ETR_SetConfig(TIM_TypeDef *TIMx, uint32_t TIM_ExtTRGPrescaler,
 }
  80038f6:	4770      	bx	lr
  80038f8:	40012c00 	.word	0x40012c00
- 80038fc:	08005f8c 	.word	0x08005f8c
+ 80038fc:	08006170 	.word	0x08006170
 
 08003900 <HAL_TIM_OnePulse_Init>:
   if (htim == NULL)
@@ -7832,7 +7832,7 @@ void TIM_ETR_SetConfig(TIM_TypeDef *TIMx, uint32_t TIM_ExtTRGPrescaler,
  8003a54:	4608      	mov	r0, r1
  8003a56:	4770      	bx	lr
  8003a58:	40012c00 	.word	0x40012c00
- 8003a5c:	08005f8c 	.word	0x08005f8c
+ 8003a5c:	08006170 	.word	0x08006170
 
 08003a60 <HAL_TIMEx_MasterConfigSynchronization>:
   *         mode.
@@ -8078,7 +8078,7 @@ HAL_StatusTypeDef HAL_TIMEx_MasterConfigSynchronization(TIM_HandleTypeDef *htim,
  8003bdc:	e7a8      	b.n	8003b30 <HAL_TIMEx_MasterConfigSynchronization+0xd0>
  8003bde:	bf00      	nop
  8003be0:	40012c00 	.word	0x40012c00
- 8003be4:	08005fc4 	.word	0x08005fc4
+ 8003be4:	080061a8 	.word	0x080061a8
  8003be8:	40000400 	.word	0x40000400
  8003bec:	40013400 	.word	0x40013400
  8003bf0:	40015000 	.word	0x40015000
@@ -9081,7 +9081,7 @@ static void UART_EndTransmit_IT(UART_HandleTypeDef *huart)
  80042b8:	e788      	b.n	80041cc <UART_SetConfig+0x14c>
  80042ba:	bf00      	nop
  80042bc:	00895440 	.word	0x00895440
- 80042c0:	08006000 	.word	0x08006000
+ 80042c0:	080061e4 	.word	0x080061e4
  80042c4:	efff69f3 	.word	0xefff69f3
  80042c8:	40013800 	.word	0x40013800
  80042cc:	40004400 	.word	0x40004400
@@ -9332,7 +9332,7 @@ static void UART_EndTransmit_IT(UART_HandleTypeDef *huart)
  80044ac:	e79d      	b.n	80043ea <UART_AdvFeatureConfig+0x102>
  80044ae:	bf00      	nop
  80044b0:	40013800 	.word	0x40013800
- 80044b4:	08006000 	.word	0x08006000
+ 80044b4:	080061e4 	.word	0x080061e4
 
 080044b8 <UART_WaitOnFlagUntilTimeout>:
 {
@@ -9634,7 +9634,7 @@ static void UART_EndTransmit_IT(UART_HandleTypeDef *huart)
  80046cc:	2001      	movs	r0, #1
  80046ce:	4770      	bx	lr
  80046d0:	40013800 	.word	0x40013800
- 80046d4:	08006000 	.word	0x08006000
+ 80046d4:	080061e4 	.word	0x080061e4
 
 080046d8 <HAL_UARTEx_WakeupCallback>:
   UNUSED(huart);
@@ -9663,7 +9663,7 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
  80046e6:	2100      	movs	r1, #0
  80046e8:	eb0d 0002 	add.w	r0, sp, r2
- 80046ec:	f001 fb0e 	bl	8005d0c <memset>
+ 80046ec:	f001 fc00 	bl	8005ef0 <memset>
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
  80046f0:	2100      	movs	r1, #0
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
@@ -9674,7 +9674,7 @@ void SystemClock_Config(void)
  80046fa:	e9cd 1103 	strd	r1, r1, [sp, #12]
  80046fe:	9105      	str	r1, [sp, #20]
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
- 8004700:	f001 fb04 	bl	8005d0c <memset>
+ 8004700:	f001 fbf6 	bl	8005ef0 <memset>
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
@@ -10539,7 +10539,7 @@ void Error_Handler(void)
  8004cb6:	6813      	ldr	r3, [r2, #0]
   	  if ((csr & vpsel_mask) != wanted_vpsel)
  8004cb8:	f8df 8084 	ldr.w	r8, [pc, #132]	@ 8004d40 <main+0x5bc>
-    transponder_main(&hadc4, &htim3, &huart1, &hopamp2, &hopamp3,
+    tof_master_main(&hadc4, &htim3, &huart1, &hopamp2, &hopamp3, &hdma_tim2_up, &htim2);
  8004cbc:	f8df 9084 	ldr.w	r9, [pc, #132]	@ 8004d44 <main+0x5c0>
  8004cc0:	4f18      	ldr	r7, [pc, #96]	@ (8004d24 <main+0x5a0>)
  8004cc2:	4d1a      	ldr	r5, [pc, #104]	@ (8004d2c <main+0x5a8>)
@@ -10575,14 +10575,14 @@ void Error_Handler(void)
  8004cf2:	6893      	ldr	r3, [r2, #8]
  8004cf4:	f043 0301 	orr.w	r3, r3, #1
  8004cf8:	6093      	str	r3, [r2, #8]
-    transponder_main(&hadc4, &htim3, &huart1, &hopamp2, &hopamp3,
+    tof_master_main(&hadc4, &htim3, &huart1, &hopamp2, &hopamp3, &hdma_tim2_up, &htim2);
  8004cfa:	e9cd 8601 	strd	r8, r6, [sp, #4]
  8004cfe:	4808      	ldr	r0, [pc, #32]	@ (8004d20 <main+0x59c>)
  8004d00:	9400      	str	r4, [sp, #0]
  8004d02:	464b      	mov	r3, r9
  8004d04:	463a      	mov	r2, r7
  8004d06:	4629      	mov	r1, r5
- 8004d08:	f000 ff16 	bl	8005b38 <transponder_main>
+ 8004d08:	f000 ff96 	bl	8005c38 <tof_master_main>
   while (1)
  8004d0c:	e7f5      	b.n	8004cfa <main+0x576>
  8004d0e:	bf00      	nop
@@ -11437,1636 +11437,1932 @@ void SystemInit(void)
  800521c:	f87fc00c 	.word	0xf87fc00c
  8005220:	ff00fccc 	.word	0xff00fccc
 
-08005224 <_ZN11IndexInfoTXC1EP20__UART_HandleTypeDef>:
+08005224 <_ZN6CMD_RXC1EP20__UART_HandleTypeDef>:
+uint8_t CMD_RX::rx_buf[CRX_PACKET_LEN] = {CMD_NOT_RX, 0};
+uint8_t CMD_RX::unit_test_buf[8] = {0,0,0,0, 0,0,0,0};
+
+
+CMD_RX::CMD_RX(UART_HandleTypeDef* p_huart) {
+    this->p_huart = p_huart;
+ 8005224:	6001      	str	r1, [r0, #0]
+
+}
+ 8005226:	4770      	bx	lr
+
+08005228 <_ZN11IndexInfoTXC1EP20__UART_HandleTypeDef>:
 #include "main.h"
 #include "index_info_tx.h"
 #include "global_buffer_def.h"
 
 IndexInfoTX :: IndexInfoTX(UART_HandleTypeDef* p_huart) {
     this->p_huart = p_huart;
- 8005224:	6001      	str	r1, [r0, #0]
+ 8005228:	6001      	str	r1, [r0, #0]
 }
- 8005226:	4770      	bx	lr
+ 800522a:	4770      	bx	lr
 
-08005228 <_ZN11IndexInfoTX10send_bytesEPh>:
+0800522c <_ZN11IndexInfoTX10send_bytesEPh>:
 	bytes[1] = byte;
 	HAL_UART_Transmit(p_huart, bytes, 2, 0xFFFF);
 }
 void IndexInfoTX :: send_bytes(uint8_t* data) {
 	static uint8_t bytes[STRING_LEN+5];
 	bytes[0] = INFO_3;
- 8005228:	4a08      	ldr	r2, [pc, #32]	@ (800524c <_ZN11IndexInfoTX10send_bytesEPh+0x24>)
- 800522a:	23f3      	movs	r3, #243	@ 0xf3
- 800522c:	7013      	strb	r3, [r2, #0]
+ 800522c:	4a08      	ldr	r2, [pc, #32]	@ (8005250 <_ZN11IndexInfoTX10send_bytesEPh+0x24>)
+ 800522e:	23f3      	movs	r3, #243	@ 0xf3
+ 8005230:	7013      	strb	r3, [r2, #0]
 	for(size_t i=0;i<STRING_LEN+4;i++)bytes[i+1]=data[i];
- 800522e:	1e4b      	subs	r3, r1, #1
- 8005230:	3105      	adds	r1, #5
- 8005232:	f813 cf01 	ldrb.w	ip, [r3, #1]!
- 8005236:	f802 cf01 	strb.w	ip, [r2, #1]!
- 800523a:	428b      	cmp	r3, r1
- 800523c:	d1f9      	bne.n	8005232 <_ZN11IndexInfoTX10send_bytesEPh+0xa>
+ 8005232:	1e4b      	subs	r3, r1, #1
+ 8005234:	3105      	adds	r1, #5
+ 8005236:	f813 cf01 	ldrb.w	ip, [r3, #1]!
+ 800523a:	f802 cf01 	strb.w	ip, [r2, #1]!
+ 800523e:	428b      	cmp	r3, r1
+ 8005240:	d1f9      	bne.n	8005236 <_ZN11IndexInfoTX10send_bytesEPh+0xa>
 	HAL_UART_Transmit(p_huart, bytes, STRING_LEN+5, 0xFFFF);
- 800523e:	4903      	ldr	r1, [pc, #12]	@ (800524c <_ZN11IndexInfoTX10send_bytesEPh+0x24>)
- 8005240:	6800      	ldr	r0, [r0, #0]
- 8005242:	f64f 73ff 	movw	r3, #65535	@ 0xffff
- 8005246:	2207      	movs	r2, #7
- 8005248:	f7fe bd06 	b.w	8003c58 <HAL_UART_Transmit>
- 800524c:	20000424 	.word	0x20000424
+ 8005242:	4903      	ldr	r1, [pc, #12]	@ (8005250 <_ZN11IndexInfoTX10send_bytesEPh+0x24>)
+ 8005244:	6800      	ldr	r0, [r0, #0]
+ 8005246:	f64f 73ff 	movw	r3, #65535	@ 0xffff
+ 800524a:	2207      	movs	r2, #7
+ 800524c:	f7fe bd04 	b.w	8003c58 <HAL_UART_Transmit>
+ 8005250:	20000424 	.word	0x20000424
+ 8005254:	00000000 	.word	0x00000000
 
-08005250 <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX>:
+08005258 <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX>:
     search_threshold_reduction = 5; 
     search_window = 200;
     dead_zone_len = 4000;
     search_threshold = 2500;
 */
 MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef* p_htim, IndexInfoTX* p_index_info_tx) {
- 8005250:	b570      	push	{r4, r5, r6, lr}
- 8005252:	4604      	mov	r4, r0
+ 8005258:	b570      	push	{r4, r5, r6, lr}
+ 800525a:	4604      	mov	r4, r0
 
     this->p_hadc = p_hadc;
     this->p_htim = p_htim;
- 8005254:	e9c4 1200 	strd	r1, r2, [r4]
-    this->p_index_info_tx = p_index_info_tx;
- 8005258:	60a3      	str	r3, [r4, #8]
-
-	//initialise search sub-state:
-	search_sub_state = MPDSearchState::NO_SIGNAL;
-
-    //initialise start index of adc buffer (start half way through DMA will start at beginning):
-    cur_idx = HAL_BUF_LEN;
- 800525a:	f44f 53c0 	mov.w	r3, #6144	@ 0x1800
+ 800525c:	e9c4 1200 	strd	r1, r2, [r4]
 MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef* p_htim, IndexInfoTX* p_index_info_tx) {
- 800525e:	460e      	mov	r6, r1
  8005260:	4610      	mov	r0, r2
+	pinout_pfx = INIT_OUT;
 	pinout_idx = HAL_BUF_LEN;
     enable_pfx = DATA_PFX+1;
     enable_idx = 0;
 	last_peak_pfx=TIMEOUT;
 	last_peak_idx=HAL_BUF_LEN+12;
-	last_peak_val=1884;
- 8005262:	4917      	ldr	r1, [pc, #92]	@ (80052c0 <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x70>)
- 8005264:	4a17      	ldr	r2, [pc, #92]	@ (80052c4 <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x74>)
+ 8005262:	4a1d      	ldr	r2, [pc, #116]	@ (80052d8 <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x80>)
+    this->p_index_info_tx = p_index_info_tx;
+ 8005264:	60a3      	str	r3, [r4, #8]
+	last_peak_idx=HAL_BUF_LEN+12;
+ 8005266:	f8c4 201a 	str.w	r2, [r4, #26]
+	search_sub_state = MPDSearchState::STABLIZING;
+ 800526a:	2303      	movs	r3, #3
+	last_peak_idx=HAL_BUF_LEN+12;
+ 800526c:	4a1b      	ldr	r2, [pc, #108]	@ (80052dc <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x84>)
+	search_sub_state = MPDSearchState::STABLIZING;
+ 800526e:	81a3      	strh	r3, [r4, #12]
+	last_peak_idx=HAL_BUF_LEN+12;
+ 8005270:	f8c4 201e 	str.w	r2, [r4, #30]
     cur_idx = HAL_BUF_LEN;
- 8005266:	64e3      	str	r3, [r4, #76]	@ 0x4c
+ 8005274:	f44f 53c0 	mov.w	r3, #6144	@ 0x1800
+	last_peak_val=1875;
+ 8005278:	f240 7253 	movw	r2, #1875	@ 0x753
+MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef* p_htim, IndexInfoTX* p_index_info_tx) {
+ 800527c:	460e      	mov	r6, r1
+    cur_idx = HAL_BUF_LEN;
+ 800527e:	6523      	str	r3, [r4, #80]	@ 0x50
+	last_peak_val=1875;
+ 8005280:	8322      	strh	r2, [r4, #24]
     phase = 0;
- 8005268:	2300      	movs	r3, #0
- 800526a:	63e3      	str	r3, [r4, #60]	@ 0x3c
+ 8005282:	2300      	movs	r3, #0
+	dc_val=1884;
+	stablize_idx = 0;
+ 8005284:	f240 715c 	movw	r1, #1884	@ 0x75c
+ 8005288:	2205      	movs	r2, #5
+    phase = 0;
+ 800528a:	6423      	str	r3, [r4, #64]	@ 0x40
     corr_sum=0;
- 800526c:	64a3      	str	r3, [r4, #72]	@ 0x48
-	last_peak_val=1884;
- 800526e:	4b16      	ldr	r3, [pc, #88]	@ (80052c8 <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x78>)
- 8005270:	61a3      	str	r3, [r4, #24]
- 8005272:	e9c4 1207 	strd	r1, r2, [r4, #28]
- 8005276:	4b15      	ldr	r3, [pc, #84]	@ (80052cc <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x7c>)
+ 800528c:	64e3      	str	r3, [r4, #76]	@ 0x4c
+	stablize_idx = 0;
+ 800528e:	e9c4 1209 	strd	r1, r2, [r4, #36]	@ 0x24
+ 8005292:	4b13      	ldr	r3, [pc, #76]	@ (80052e0 <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x88>)
     sample_counter=0;
     symbol_counter=0;
 #endif
 	//zero initialise the adc buffer:
 	for (uint16_t i = 0; i < BUF_LEN; i++) {
 		buf[i] = 1884;
- 8005278:	ed9f 7b0f 	vldr	d7, [pc, #60]	@ 80052b8 <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x68>
+ 8005294:	ed9f 7b0e 	vldr	d7, [pc, #56]	@ 80052d0 <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x78>
 MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef* p_htim, IndexInfoTX* p_index_info_tx) {
- 800527c:	2500      	movs	r5, #0
- 800527e:	f884 505a 	strb.w	r5, [r4, #90]	@ 0x5a
-	search_sub_state = MPDSearchState::NO_SIGNAL;
- 8005282:	81a5      	strh	r5, [r4, #12]
+ 8005298:	2500      	movs	r5, #0
+ 800529a:	f884 505e 	strb.w	r5, [r4, #94]	@ 0x5e
     ccm_idx = 0;
- 8005284:	f8a4 5050 	strh.w	r5, [r4, #80]	@ 0x50
+ 800529e:	f8a4 5054 	strh.w	r5, [r4, #84]	@ 0x54
     dead_zone_count = 0;
- 8005288:	8765      	strh	r5, [r4, #58]	@ 0x3a
+ 80052a2:	87e5      	strh	r5, [r4, #62]	@ 0x3e
+    beacon_id=0;
+ 80052a4:	f884 5022 	strb.w	r5, [r4, #34]	@ 0x22
     phase_int=0;
- 800528a:	6425      	str	r5, [r4, #64]	@ 0x40
+ 80052a8:	6465      	str	r5, [r4, #68]	@ 0x44
     sample_counter=0;
- 800528c:	f8a4 5044 	strh.w	r5, [r4, #68]	@ 0x44
+ 80052aa:	f8a4 5048 	strh.w	r5, [r4, #72]	@ 0x48
     signal_flag = false;
- 8005290:	82e5      	strh	r5, [r4, #22]
-    enable_idx = 0;
- 8005292:	84a5      	strh	r5, [r4, #36]	@ 0x24
+ 80052ae:	82e5      	strh	r5, [r4, #22]
 	for (uint16_t i = 0; i < BUF_LEN; i++) {
- 8005294:	f503 4cc0 	add.w	ip, r3, #24576	@ 0x6000
+ 80052b0:	f503 4cc0 	add.w	ip, r3, #24576	@ 0x6000
 		buf[i] = 1884;
- 8005298:	eca3 7b02 	vstmia	r3!, {d7}
+ 80052b4:	eca3 7b02 	vstmia	r3!, {d7}
 	for (uint16_t i = 0; i < BUF_LEN; i++) {
- 800529c:	4563      	cmp	r3, ip
- 800529e:	d1fb      	bne.n	8005298 <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x48>
+ 80052b8:	4563      	cmp	r3, ip
+ 80052ba:	d1fb      	bne.n	80052b4 <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x5c>
 	}
 
 	//start ADC timer
 	HAL_TIM_Base_Start(p_htim);
- 80052a0:	f7fd ff34 	bl	800310c <HAL_TIM_Base_Start>
+ 80052bc:	f7fd ff26 	bl	800310c <HAL_TIM_Base_Start>
 	// Start DMA
 	HAL_ADC_Start_DMA(p_hadc, (uint32_t*)buf, BUF_LEN);
- 80052a4:	4909      	ldr	r1, [pc, #36]	@ (80052cc <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x7c>)
- 80052a6:	f44f 5240 	mov.w	r2, #12288	@ 0x3000
- 80052aa:	4630      	mov	r0, r6
- 80052ac:	f7fb feae 	bl	800100c <HAL_ADC_Start_DMA>
+ 80052c0:	4907      	ldr	r1, [pc, #28]	@ (80052e0 <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x88>)
+ 80052c2:	f44f 5240 	mov.w	r2, #12288	@ 0x3000
+ 80052c6:	4630      	mov	r0, r6
+ 80052c8:	f7fb fea0 	bl	800100c <HAL_ADC_Start_DMA>
 }
- 80052b0:	4620      	mov	r0, r4
- 80052b2:	bd70      	pop	{r4, r5, r6, pc}
- 80052b4:	f3af 8000 	nop.w
- 80052b8:	075c075c 	.word	0x075c075c
- 80052bc:	075c075c 	.word	0x075c075c
- 80052c0:	1800002c 	.word	0x1800002c
- 80052c4:	00050064 	.word	0x00050064
- 80052c8:	180c075c 	.word	0x180c075c
- 80052cc:	20000430 	.word	0x20000430
+ 80052cc:	4620      	mov	r0, r4
+ 80052ce:	bd70      	pop	{r4, r5, r6, pc}
+ 80052d0:	075c075c 	.word	0x075c075c
+ 80052d4:	075c075c 	.word	0x075c075c
+ 80052d8:	002c180c 	.word	0x002c180c
+ 80052dc:	00641800 	.word	0x00641800
+ 80052e0:	20000430 	.word	0x20000430
+ 80052e4:	00000000 	.word	0x00000000
 
-080052d0 <_ZN15MaxPeakDetector11search_loopEt>:
+080052e8 <_ZN15MaxPeakDetector11search_loopEt>:
         case MPDState::IDLE:
             break;
     }
 }
 
 void MaxPeakDetector :: search_loop(uint16_t offset) {
- 80052d0:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
- 80052d4:	ed2d 8b08 	vpush	{d8-d11}
- 80052d8:	4fc3      	ldr	r7, [pc, #780]	@ (80055e8 <_ZN15MaxPeakDetector11search_loopEt+0x318>)
- 80052da:	4dc4      	ldr	r5, [pc, #784]	@ (80055ec <_ZN15MaxPeakDetector11search_loopEt+0x31c>)
-					}
-				}
-				else{
-					symbol_counter=0;
-					sample_counter=0;
-					corr_sum=0;
- 80052dc:	ed9f aac4 	vldr	s20, [pc, #784]	@ 80055f0 <_ZN15MaxPeakDetector11search_loopEt+0x320>
-						imag = (float(pre_val)-1884) * 0.0005f;// 1/2048=0.00048828125
- 80052e0:	ed9f bac4 	vldr	s22, [pc, #784]	@ 80055f4 <_ZN15MaxPeakDetector11search_loopEt+0x324>
- 80052e4:	eddf aac4 	vldr	s21, [pc, #784]	@ 80055f8 <_ZN15MaxPeakDetector11search_loopEt+0x328>
+ 80052e8:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 80052ec:	ed2d 8b06 	vpush	{d8-d10}
+ 80052f0:	4fad      	ldr	r7, [pc, #692]	@ (80055a8 <_ZN15MaxPeakDetector11search_loopEt+0x2c0>)
+ 80052f2:	4dae      	ldr	r5, [pc, #696]	@ (80055ac <_ZN15MaxPeakDetector11search_loopEt+0x2c4>)
+						}
+
+						cur_idx+=(DEAD_INTERVAL-N_CYCLE)*6; //12 samples per cycle * 16 cycle per symbol * 7
+						sample_counter=0;
+						symbol_counter++;
+						corr_sum=0;
+ 80052f4:	eddf aaae 	vldr	s21, [pc, #696]	@ 80055b0 <_ZN15MaxPeakDetector11search_loopEt+0x2c8>
+						imag = (float(shift_val)-dc_val) * 0.0005f;// 1/2048=0.00048828125
+ 80052f8:	eddf 9aae 	vldr	s19, [pc, #696]	@ 80055b4 <_ZN15MaxPeakDetector11search_loopEt+0x2cc>
+						arm_sin_cos_f32(phase* 57.2958f, &sin, &cos);
+ 80052fc:	ed9f aaae 	vldr	s20, [pc, #696]	@ 80055b8 <_ZN15MaxPeakDetector11search_loopEt+0x2d0>
 void MaxPeakDetector :: search_loop(uint16_t offset) {
- 80052e8:	b083      	sub	sp, #12
- 80052ea:	4604      	mov	r4, r0
- 80052ec:	468a      	mov	sl, r1
- 80052ee:	e00a      	b.n	8005306 <_ZN15MaxPeakDetector11search_loopEt+0x36>
+ 8005300:	b083      	sub	sp, #12
+ 8005302:	4604      	mov	r4, r0
+ 8005304:	468a      	mov	sl, r1
+		cur_val = buf[cur_idx];
+ 8005306:	f8b4 2050 	ldrh.w	r2, [r4, #80]	@ 0x50
+		switch (search_sub_state){
+ 800530a:	89a3      	ldrh	r3, [r4, #12]
+		cur_val = buf[cur_idx];
+ 800530c:	f937 6012 	ldrsh.w	r6, [r7, r2, lsl #1]
+		switch (search_sub_state){
+ 8005310:	2b03      	cmp	r3, #3
+ 8005312:	d813      	bhi.n	800533c <_ZN15MaxPeakDetector11search_loopEt+0x54>
+ 8005314:	e8df f003 	tbb	[pc, r3]
+ 8005318:	0225725b 	.word	0x0225725b
+						}
+					else cur_idx+=2;
+				}
+				break;
+			case MPDSearchState::STABLIZING:
+				if(stablize_idx<HAL_BUF_LEN){
+ 800531c:	8ce3      	ldrh	r3, [r4, #38]	@ 0x26
+ 800531e:	f5b3 5fc0 	cmp.w	r3, #6144	@ 0x1800
+ 8005322:	f080 810d 	bcs.w	8005540 <_ZN15MaxPeakDetector11search_loopEt+0x258>
+					dc_val=(dc_val>>4)*15+(cur_val>>4);
+ 8005326:	f9b4 2024 	ldrsh.w	r2, [r4, #36]	@ 0x24
+					stablize_idx++;
+ 800532a:	3301      	adds	r3, #1
+ 800532c:	84e3      	strh	r3, [r4, #38]	@ 0x26
+					dc_val=(dc_val>>4)*15+(cur_val>>4);
+ 800532e:	f022 030f 	bic.w	r3, r2, #15
+ 8005332:	eba3 1322 	sub.w	r3, r3, r2, asr #4
+ 8005336:	eb03 1326 	add.w	r3, r3, r6, asr #4
+ 800533a:	84a3      	strh	r3, [r4, #36]	@ 0x24
 				}
 				break;
 		} // switch
 #endif
 		// conditions to escape search mode
 		if ((global_state == MPDState::PROC_BUF_1ST_HLF) && (cur_idx >= (HAL_BUF_LEN))) {
- 80052f0:	f8b4 304c 	ldrh.w	r3, [r4, #76]	@ 0x4c
- 80052f4:	f5b3 5fc0 	cmp.w	r3, #6144	@ 0x1800
- 80052f8:	f080 81a0 	bcs.w	800563c <_ZN15MaxPeakDetector11search_loopEt+0x36c>
+ 800533c:	882b      	ldrh	r3, [r5, #0]
+ 800533e:	b29b      	uxth	r3, r3
+ 8005340:	bb1b      	cbnz	r3, 800538a <_ZN15MaxPeakDetector11search_loopEt+0xa2>
+ 8005342:	f8b4 3050 	ldrh.w	r3, [r4, #80]	@ 0x50
+ 8005346:	f5b3 5fc0 	cmp.w	r3, #6144	@ 0x1800
+ 800534a:	f080 81c4 	bcs.w	80056d6 <_ZN15MaxPeakDetector11search_loopEt+0x3ee>
 			global_state = MPDState::IDLE;
 #if !STREAM
 			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[HAL_BUF_LEN-3+i];
 #endif
 			break;
 		} else if (global_state == MPDState::PROC_BUF_2ND_HLF && (cur_idx >= (BUF_LEN))) {
- 80052fc:	882b      	ldrh	r3, [r5, #0]
+ 800534e:	882b      	ldrh	r3, [r5, #0]
 			cur_idx = cur_idx % BUF_LEN;
 #if !STREAM
 			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[BUF_LEN-3+i];
 #endif
 			break;
 		} else if (global_state == MPDState::ERROR_1) {
- 80052fe:	882b      	ldrh	r3, [r5, #0]
- 8005300:	b29b      	uxth	r3, r3
- 8005302:	2b03      	cmp	r3, #3
- 8005304:	d036      	beq.n	8005374 <_ZN15MaxPeakDetector11search_loopEt+0xa4>
-		switch (search_sub_state){
- 8005306:	89a3      	ldrh	r3, [r4, #12]
-		cur_val = buf[cur_idx];
- 8005308:	f8b4 204c 	ldrh.w	r2, [r4, #76]	@ 0x4c
-		switch (search_sub_state){
- 800530c:	2b01      	cmp	r3, #1
-		cur_val = buf[cur_idx];
- 800530e:	f837 6012 	ldrh.w	r6, [r7, r2, lsl #1]
-		switch (search_sub_state){
- 8005312:	d034      	beq.n	800537e <_ZN15MaxPeakDetector11search_loopEt+0xae>
- 8005314:	2b02      	cmp	r3, #2
- 8005316:	f000 80c6 	beq.w	80054a6 <_ZN15MaxPeakDetector11search_loopEt+0x1d6>
- 800531a:	b953      	cbnz	r3, 8005332 <_ZN15MaxPeakDetector11search_loopEt+0x62>
-				if (cur_val > 2284||cur_val<1484) {
- 800531c:	f2a6 56cc 	subw	r6, r6, #1484	@ 0x5cc
- 8005320:	f5b6 7f48 	cmp.w	r6, #800	@ 0x320
- 8005324:	f240 80cd 	bls.w	80054c2 <_ZN15MaxPeakDetector11search_loopEt+0x1f2>
-				    sample_counter=0;
- 8005328:	f8a4 3044 	strh.w	r3, [r4, #68]	@ 0x44
-					search_sub_state = MPDSearchState::YES_SIGNAL;
- 800532c:	2301      	movs	r3, #1
- 800532e:	81a3      	strh	r3, [r4, #12]
-					signal_flag=true;
- 8005330:	75a3      	strb	r3, [r4, #22]
-		if ((global_state == MPDState::PROC_BUF_1ST_HLF) && (cur_idx >= (HAL_BUF_LEN))) {
- 8005332:	882b      	ldrh	r3, [r5, #0]
- 8005334:	b29b      	uxth	r3, r3
- 8005336:	2b00      	cmp	r3, #0
- 8005338:	d0da      	beq.n	80052f0 <_ZN15MaxPeakDetector11search_loopEt+0x20>
-		} else if (global_state == MPDState::PROC_BUF_2ND_HLF && (cur_idx >= (BUF_LEN))) {
- 800533a:	882b      	ldrh	r3, [r5, #0]
- 800533c:	b29b      	uxth	r3, r3
- 800533e:	2b01      	cmp	r3, #1
- 8005340:	d1dd      	bne.n	80052fe <_ZN15MaxPeakDetector11search_loopEt+0x2e>
- 8005342:	f8b4 304c 	ldrh.w	r3, [r4, #76]	@ 0x4c
- 8005346:	f5b3 5f40 	cmp.w	r3, #12288	@ 0x3000
- 800534a:	d3d8      	bcc.n	80052fe <_ZN15MaxPeakDetector11search_loopEt+0x2e>
-			cur_idx = cur_idx % BUF_LEN;
- 800534c:	4aab      	ldr	r2, [pc, #684]	@ (80055fc <_ZN15MaxPeakDetector11search_loopEt+0x32c>)
-			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[BUF_LEN-3+i];
- 800534e:	49ac      	ldr	r1, [pc, #688]	@ (8005600 <_ZN15MaxPeakDetector11search_loopEt+0x330>)
-			cur_idx = cur_idx % BUF_LEN;
- 8005350:	fba2 0203 	umull	r0, r2, r2, r3
- 8005354:	0b52      	lsrs	r2, r2, #13
- 8005356:	eb02 0242 	add.w	r2, r2, r2, lsl #1
- 800535a:	eba3 3302 	sub.w	r3, r3, r2, lsl #12
- 800535e:	f8a4 304c 	strh.w	r3, [r4, #76]	@ 0x4c
-			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[BUF_LEN-3+i];
- 8005362:	4aa8      	ldr	r2, [pc, #672]	@ (8005604 <_ZN15MaxPeakDetector11search_loopEt+0x334>)
- 8005364:	f8d1 0ffa 	ldr.w	r0, [r1, #4090]	@ 0xffa
- 8005368:	f8b1 3ffe 	ldrh.w	r3, [r1, #4094]	@ 0xffe
- 800536c:	6010      	str	r0, [r2, #0]
-			global_state = MPDState::IDLE;
- 800536e:	2102      	movs	r1, #2
- 8005370:	8029      	strh	r1, [r5, #0]
-			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[BUF_LEN-3+i];
- 8005372:	8093      	strh	r3, [r2, #4]
+ 8005350:	882b      	ldrh	r3, [r5, #0]
+ 8005352:	b29b      	uxth	r3, r3
+ 8005354:	2b03      	cmp	r3, #3
+ 8005356:	d1d6      	bne.n	8005306 <_ZN15MaxPeakDetector11search_loopEt+0x1e>
 			break;
 		}
 	} //while
 }
- 8005374:	b003      	add	sp, #12
- 8005376:	ecbd 8b08 	vpop	{d8-d11}
- 800537a:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
-				if(symbol_counter<DATA_LEN){
- 800537e:	f894 1045 	ldrb.w	r1, [r4, #69]	@ 0x45
- 8005382:	290f      	cmp	r1, #15
- 8005384:	f200 80c9 	bhi.w	800551a <_ZN15MaxPeakDetector11search_loopEt+0x24a>
-					if(sample_counter<6*N_CYCLE){
- 8005388:	f894 0044 	ldrb.w	r0, [r4, #68]	@ 0x44
- 800538c:	282f      	cmp	r0, #47	@ 0x2f
- 800538e:	f200 80a3 	bhi.w	80054d8 <_ZN15MaxPeakDetector11search_loopEt+0x208>
-						if (cur_idx<offset+3) pre_val=buf_res[cur_idx-offset];
- 8005392:	f10a 0302 	add.w	r3, sl, #2
- 8005396:	429a      	cmp	r2, r3
- 8005398:	f300 8114 	bgt.w	80055c4 <_ZN15MaxPeakDetector11search_loopEt+0x2f4>
- 800539c:	4b99      	ldr	r3, [pc, #612]	@ (8005604 <_ZN15MaxPeakDetector11search_loopEt+0x334>)
- 800539e:	eba2 020a 	sub.w	r2, r2, sl
- 80053a2:	f833 3012 	ldrh.w	r3, [r3, r2, lsl #1]
- 80053a6:	ee08 3a10 	vmov	s16, r3
-						real = (float(cur_val) - 1884) * 0.0005f;
- 80053aa:	ee07 6a90 	vmov	s15, r6
-						imag = (float(pre_val)-1884) * 0.0005f;// 1/2048=0.00048828125
- 80053ae:	eeb8 8a48 	vcvt.f32.u32	s16, s16
-						real = (float(cur_val) - 1884) * 0.0005f;
- 80053b2:	eeb8 9a67 	vcvt.f32.u32	s18, s15
-						arm_sin_cos_f32(phase* 57.2958f, &sin, &cos);
- 80053b6:	ed94 0a0f 	vldr	s0, [r4, #60]	@ 0x3c
- 80053ba:	eddf 7a93 	vldr	s15, [pc, #588]	@ 8005608 <_ZN15MaxPeakDetector11search_loopEt+0x338>
-						imag = (float(pre_val)-1884) * 0.0005f;// 1/2048=0.00048828125
- 80053be:	ee38 8a4b 	vsub.f32	s16, s16, s22
-						arm_sin_cos_f32(phase* 57.2958f, &sin, &cos);
- 80053c2:	ee20 0a27 	vmul.f32	s0, s0, s15
- 80053c6:	a901      	add	r1, sp, #4
- 80053c8:	4668      	mov	r0, sp
- 80053ca:	f000 fc0d 	bl	8005be8 <arm_sin_cos_f32>
-						imag = (float(pre_val)-1884) * 0.0005f;// 1/2048=0.00048828125
- 80053ce:	ee28 8a2a 	vmul.f32	s16, s16, s21
-						i_channel=real*cos+imag*sin;
- 80053d2:	eddd 7a00 	vldr	s15, [sp]
- 80053d6:	ed9d 7a01 	vldr	s14, [sp, #4]
-						real = (float(cur_val) - 1884) * 0.0005f;
- 80053da:	ee39 9a4b 	vsub.f32	s18, s18, s22
-						i_channel=real*cos+imag*sin;
- 80053de:	ee67 9a88 	vmul.f32	s19, s15, s16
-						real = (float(cur_val) - 1884) * 0.0005f;
- 80053e2:	ee29 9a2a 	vmul.f32	s18, s18, s21
-						i_channel=real*cos+imag*sin;
- 80053e6:	eee7 9a09 	vfma.f32	s19, s14, s18
-						q_channel=imag*cos-real*sin;
- 80053ea:	ee69 8a67 	vnmul.f32	s17, s18, s15
-						phase += 0.523599 + (0.05 * i_channel * q_channel); // 1/12=0.5236 (12 samples per cycle), 0.05 is empirical
- 80053ee:	ee19 0a90 	vmov	r0, s19
-						q_channel=imag*cos-real*sin;
- 80053f2:	eee7 8a08 	vfma.f32	s17, s14, s16
-						phase += 0.523599 + (0.05 * i_channel * q_channel); // 1/12=0.5236 (12 samples per cycle), 0.05 is empirical
- 80053f6:	f7fb f97d 	bl	80006f4 <__aeabi_f2d>
- 80053fa:	a375      	add	r3, pc, #468	@ (adr r3, 80055d0 <_ZN15MaxPeakDetector11search_loopEt+0x300>)
- 80053fc:	e9d3 2300 	ldrd	r2, r3, [r3]
- 8005400:	f7fa feea 	bl	80001d8 <__aeabi_dmul>
- 8005404:	4680      	mov	r8, r0
- 8005406:	ee18 0a90 	vmov	r0, s17
- 800540a:	4689      	mov	r9, r1
- 800540c:	f7fb f972 	bl	80006f4 <__aeabi_f2d>
- 8005410:	4602      	mov	r2, r0
- 8005412:	460b      	mov	r3, r1
- 8005414:	4640      	mov	r0, r8
- 8005416:	4649      	mov	r1, r9
- 8005418:	f7fa fede 	bl	80001d8 <__aeabi_dmul>
- 800541c:	a36e      	add	r3, pc, #440	@ (adr r3, 80055d8 <_ZN15MaxPeakDetector11search_loopEt+0x308>)
- 800541e:	e9d3 2300 	ldrd	r2, r3, [r3]
- 8005422:	f7fb f809 	bl	8000438 <__adddf3>
- 8005426:	4680      	mov	r8, r0
- 8005428:	6be0      	ldr	r0, [r4, #60]	@ 0x3c
- 800542a:	4689      	mov	r9, r1
- 800542c:	f7fb f962 	bl	80006f4 <__aeabi_f2d>
- 8005430:	4602      	mov	r2, r0
- 8005432:	460b      	mov	r3, r1
- 8005434:	4640      	mov	r0, r8
- 8005436:	4649      	mov	r1, r9
- 8005438:	f7fa fffe 	bl	8000438 <__adddf3>
- 800543c:	f7fb fa3a 	bl	80008b4 <__aeabi_d2f>
- 8005440:	4683      	mov	fp, r0
-						if (phase>6.28319) phase-=6.28319;
- 8005442:	f7fb f957 	bl	80006f4 <__aeabi_f2d>
- 8005446:	a366      	add	r3, pc, #408	@ (adr r3, 80055e0 <_ZN15MaxPeakDetector11search_loopEt+0x310>)
- 8005448:	e9d3 2300 	ldrd	r2, r3, [r3]
- 800544c:	4680      	mov	r8, r0
- 800544e:	4689      	mov	r9, r1
- 8005450:	f7fb fa26 	bl	80008a0 <__aeabi_dcmpgt>
- 8005454:	b148      	cbz	r0, 800546a <_ZN15MaxPeakDetector11search_loopEt+0x19a>
- 8005456:	a362      	add	r3, pc, #392	@ (adr r3, 80055e0 <_ZN15MaxPeakDetector11search_loopEt+0x310>)
- 8005458:	e9d3 2300 	ldrd	r2, r3, [r3]
- 800545c:	4640      	mov	r0, r8
- 800545e:	4649      	mov	r1, r9
- 8005460:	f7fa ffe8 	bl	8000434 <__aeabi_dsub>
- 8005464:	f7fb fa26 	bl	80008b4 <__aeabi_d2f>
- 8005468:	4683      	mov	fp, r0
-						corr_sum+=i_channel;
- 800546a:	edd4 7a12 	vldr	s15, [r4, #72]	@ 0x48
-						if(!symbol_counter){
- 800546e:	f894 2045 	ldrb.w	r2, [r4, #69]	@ 0x45
-								last_peak_idx=cur_idx;
- 8005472:	f8b4 304c 	ldrh.w	r3, [r4, #76]	@ 0x4c
-						phase += 0.523599 + (0.05 * i_channel * q_channel); // 1/12=0.5236 (12 samples per cycle), 0.05 is empirical
- 8005476:	f8c4 b03c 	str.w	fp, [r4, #60]	@ 0x3c
-						corr_sum+=i_channel;
- 800547a:	ee77 7aa9 	vadd.f32	s15, s15, s19
- 800547e:	edc4 7a12 	vstr	s15, [r4, #72]	@ 0x48
-						if(!symbol_counter){
- 8005482:	b93a      	cbnz	r2, 8005494 <_ZN15MaxPeakDetector11search_loopEt+0x1c4>
-							if(cur_val>last_peak_val){
- 8005484:	8b22      	ldrh	r2, [r4, #24]
- 8005486:	42b2      	cmp	r2, r6
- 8005488:	d204      	bcs.n	8005494 <_ZN15MaxPeakDetector11search_loopEt+0x1c4>
-								last_peak_pfx=cur_pfx;
- 800548a:	4a60      	ldr	r2, [pc, #384]	@ (800560c <_ZN15MaxPeakDetector11search_loopEt+0x33c>)
-								last_peak_val=cur_val;
- 800548c:	8326      	strh	r6, [r4, #24]
-								last_peak_pfx=cur_pfx;
- 800548e:	8812      	ldrh	r2, [r2, #0]
-								last_peak_idx=cur_idx;
- 8005490:	8363      	strh	r3, [r4, #26]
-								last_peak_pfx=cur_pfx;
- 8005492:	83a2      	strh	r2, [r4, #28]
-						cur_idx++;
- 8005494:	3301      	adds	r3, #1
- 8005496:	f8a4 304c 	strh.w	r3, [r4, #76]	@ 0x4c
-						sample_counter++;
- 800549a:	f894 3044 	ldrb.w	r3, [r4, #68]	@ 0x44
- 800549e:	3301      	adds	r3, #1
- 80054a0:	f884 3044 	strb.w	r3, [r4, #68]	@ 0x44
- 80054a4:	e745      	b.n	8005332 <_ZN15MaxPeakDetector11search_loopEt+0x62>
-				if(cur_pfx<enable_pfx)
- 80054a6:	4859      	ldr	r0, [pc, #356]	@ (800560c <_ZN15MaxPeakDetector11search_loopEt+0x33c>)
- 80054a8:	8c61      	ldrh	r1, [r4, #34]	@ 0x22
- 80054aa:	8803      	ldrh	r3, [r0, #0]
- 80054ac:	b29b      	uxth	r3, r3
- 80054ae:	4299      	cmp	r1, r3
- 80054b0:	d90b      	bls.n	80054ca <_ZN15MaxPeakDetector11search_loopEt+0x1fa>
-					cur_idx+=HAL_BUF_LEN;
- 80054b2:	f502 52c0 	add.w	r2, r2, #6144	@ 0x1800
- 80054b6:	f8a4 204c 	strh.w	r2, [r4, #76]	@ 0x4c
- 80054ba:	e73a      	b.n	8005332 <_ZN15MaxPeakDetector11search_loopEt+0x62>
+ 8005358:	b003      	add	sp, #12
+ 800535a:	ecbd 8b06 	vpop	{d8-d10}
+ 800535e:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+				if(cur_pfx==enable_pfx){
+ 8005362:	4b96      	ldr	r3, [pc, #600]	@ (80055bc <_ZN15MaxPeakDetector11search_loopEt+0x2d4>)
+ 8005364:	8d21      	ldrh	r1, [r4, #40]	@ 0x28
+ 8005366:	881b      	ldrh	r3, [r3, #0]
+ 8005368:	b29b      	uxth	r3, r3
+ 800536a:	4299      	cmp	r1, r3
+ 800536c:	d1e6      	bne.n	800533c <_ZN15MaxPeakDetector11search_loopEt+0x54>
 					if(cur_idx>=enable_idx){
- 80054bc:	8ca3      	ldrh	r3, [r4, #36]	@ 0x24
- 80054be:	4293      	cmp	r3, r2
- 80054c0:	d907      	bls.n	80054d2 <_ZN15MaxPeakDetector11search_loopEt+0x202>
+ 800536e:	8d63      	ldrh	r3, [r4, #42]	@ 0x2a
+ 8005370:	4293      	cmp	r3, r2
+						search_sub_state = MPDSearchState::STABLIZING;
+ 8005372:	bf9c      	itt	ls
+ 8005374:	2303      	movls	r3, #3
+ 8005376:	81a3      	strhls	r3, [r4, #12]
+		if ((global_state == MPDState::PROC_BUF_1ST_HLF) && (cur_idx >= (HAL_BUF_LEN))) {
+ 8005378:	882b      	ldrh	r3, [r5, #0]
 					else cur_idx+=2;
- 80054c2:	3202      	adds	r2, #2
- 80054c4:	f8a4 204c 	strh.w	r2, [r4, #76]	@ 0x4c
- 80054c8:	e733      	b.n	8005332 <_ZN15MaxPeakDetector11search_loopEt+0x62>
-				else if(cur_pfx==enable_pfx){
- 80054ca:	8803      	ldrh	r3, [r0, #0]
- 80054cc:	b29b      	uxth	r3, r3
- 80054ce:	4299      	cmp	r1, r3
- 80054d0:	d0f4      	beq.n	80054bc <_ZN15MaxPeakDetector11search_loopEt+0x1ec>
-						search_sub_state = MPDSearchState::NO_SIGNAL;
- 80054d2:	2300      	movs	r3, #0
- 80054d4:	81a3      	strh	r3, [r4, #12]
- 80054d6:	e72c      	b.n	8005332 <_ZN15MaxPeakDetector11search_loopEt+0x62>
+ 800537a:	bf88      	it	hi
+ 800537c:	3202      	addhi	r2, #2
+		if ((global_state == MPDState::PROC_BUF_1ST_HLF) && (cur_idx >= (HAL_BUF_LEN))) {
+ 800537e:	b29b      	uxth	r3, r3
+					else cur_idx+=2;
+ 8005380:	bf88      	it	hi
+ 8005382:	f8a4 2050 	strhhi.w	r2, [r4, #80]	@ 0x50
+		if ((global_state == MPDState::PROC_BUF_1ST_HLF) && (cur_idx >= (HAL_BUF_LEN))) {
+ 8005386:	2b00      	cmp	r3, #0
+ 8005388:	d0db      	beq.n	8005342 <_ZN15MaxPeakDetector11search_loopEt+0x5a>
+		} else if (global_state == MPDState::PROC_BUF_2ND_HLF && (cur_idx >= (BUF_LEN))) {
+ 800538a:	882b      	ldrh	r3, [r5, #0]
+ 800538c:	b29b      	uxth	r3, r3
+ 800538e:	2b01      	cmp	r3, #1
+ 8005390:	d1de      	bne.n	8005350 <_ZN15MaxPeakDetector11search_loopEt+0x68>
+ 8005392:	f8b4 3050 	ldrh.w	r3, [r4, #80]	@ 0x50
+ 8005396:	f5b3 5f40 	cmp.w	r3, #12288	@ 0x3000
+ 800539a:	d3d9      	bcc.n	8005350 <_ZN15MaxPeakDetector11search_loopEt+0x68>
+			cur_idx = cur_idx % BUF_LEN;
+ 800539c:	4a88      	ldr	r2, [pc, #544]	@ (80055c0 <_ZN15MaxPeakDetector11search_loopEt+0x2d8>)
+			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[BUF_LEN-3+i];
+ 800539e:	4989      	ldr	r1, [pc, #548]	@ (80055c4 <_ZN15MaxPeakDetector11search_loopEt+0x2dc>)
+			cur_idx = cur_idx % BUF_LEN;
+ 80053a0:	fba2 0203 	umull	r0, r2, r2, r3
+ 80053a4:	0b52      	lsrs	r2, r2, #13
+ 80053a6:	eb02 0242 	add.w	r2, r2, r2, lsl #1
+ 80053aa:	eba3 3302 	sub.w	r3, r3, r2, lsl #12
+ 80053ae:	f8a4 3050 	strh.w	r3, [r4, #80]	@ 0x50
+			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[BUF_LEN-3+i];
+ 80053b2:	4a85      	ldr	r2, [pc, #532]	@ (80055c8 <_ZN15MaxPeakDetector11search_loopEt+0x2e0>)
+ 80053b4:	f8d1 0ffa 	ldr.w	r0, [r1, #4090]	@ 0xffa
+ 80053b8:	f8b1 3ffe 	ldrh.w	r3, [r1, #4094]	@ 0xffe
+ 80053bc:	6010      	str	r0, [r2, #0]
+			global_state = MPDState::IDLE;
+ 80053be:	2102      	movs	r1, #2
+ 80053c0:	8029      	strh	r1, [r5, #0]
+			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[BUF_LEN-3+i];
+ 80053c2:	8093      	strh	r3, [r2, #4]
+}
+ 80053c4:	b003      	add	sp, #12
+ 80053c6:	ecbd 8b06 	vpop	{d8-d10}
+ 80053ca:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+				if (cur_val > dc_val+250 || cur_val < dc_val-250) {
+ 80053ce:	f9b4 3024 	ldrsh.w	r3, [r4, #36]	@ 0x24
+ 80053d2:	f103 01fa 	add.w	r1, r3, #250	@ 0xfa
+ 80053d6:	428e      	cmp	r6, r1
+ 80053d8:	f300 80ab 	bgt.w	8005532 <_ZN15MaxPeakDetector11search_loopEt+0x24a>
+ 80053dc:	f1a3 01fa 	sub.w	r1, r3, #250	@ 0xfa
+ 80053e0:	428e      	cmp	r6, r1
+ 80053e2:	f2c0 80a6 	blt.w	8005532 <_ZN15MaxPeakDetector11search_loopEt+0x24a>
+					cur_idx+=2;
+ 80053e6:	3202      	adds	r2, #2
+ 80053e8:	f8a4 2050 	strh.w	r2, [r4, #80]	@ 0x50
+					dc_val=(dc_val>>4)*15+(cur_val>>4);
+ 80053ec:	f023 020f 	bic.w	r2, r3, #15
+ 80053f0:	eba2 1323 	sub.w	r3, r2, r3, asr #4
+ 80053f4:	eb03 1326 	add.w	r3, r3, r6, asr #4
+ 80053f8:	84a3      	strh	r3, [r4, #36]	@ 0x24
+					cur_idx+=2;
+ 80053fa:	e79f      	b.n	800533c <_ZN15MaxPeakDetector11search_loopEt+0x54>
+				if(symbol_counter<DATA_LEN){
+ 80053fc:	f894 3049 	ldrb.w	r3, [r4, #73]	@ 0x49
+ 8005400:	2b0f      	cmp	r3, #15
+ 8005402:	f200 80e3 	bhi.w	80055cc <_ZN15MaxPeakDetector11search_loopEt+0x2e4>
+					if(sample_counter<6*N_CYCLE){
+ 8005406:	f894 1048 	ldrb.w	r1, [r4, #72]	@ 0x48
+ 800540a:	292f      	cmp	r1, #47	@ 0x2f
+ 800540c:	f200 809c 	bhi.w	8005548 <_ZN15MaxPeakDetector11search_loopEt+0x260>
+						if (cur_idx<offset+3) shift_val=buf_res[cur_idx-offset];
+ 8005410:	f10a 0302 	add.w	r3, sl, #2
+ 8005414:	429a      	cmp	r2, r3
+ 8005416:	f300 813c 	bgt.w	8005692 <_ZN15MaxPeakDetector11search_loopEt+0x3aa>
+ 800541a:	4b6b      	ldr	r3, [pc, #428]	@ (80055c8 <_ZN15MaxPeakDetector11search_loopEt+0x2e0>)
+ 800541c:	eba2 020a 	sub.w	r2, r2, sl
+ 8005420:	f933 3012 	ldrsh.w	r3, [r3, r2, lsl #1]
+ 8005424:	ee08 3a90 	vmov	s17, r3
+						imag = (float(shift_val)-dc_val) * 0.0005f;// 1/2048=0.00048828125
+ 8005428:	f9b4 3024 	ldrsh.w	r3, [r4, #36]	@ 0x24
+						arm_sin_cos_f32(phase* 57.2958f, &sin, &cos);
+ 800542c:	ed94 0a10 	vldr	s0, [r4, #64]	@ 0x40
+						imag = (float(shift_val)-dc_val) * 0.0005f;// 1/2048=0.00048828125
+ 8005430:	ee07 3a90 	vmov	s15, r3
+						real = (float(cur_val) - dc_val) * 0.0005f;
+ 8005434:	ee07 6a10 	vmov	s14, r6
+						imag = (float(shift_val)-dc_val) * 0.0005f;// 1/2048=0.00048828125
+ 8005438:	eef8 7ae7 	vcvt.f32.s32	s15, s15
+ 800543c:	eef8 8ae8 	vcvt.f32.s32	s17, s17
+						real = (float(cur_val) - dc_val) * 0.0005f;
+ 8005440:	eeb8 8ac7 	vcvt.f32.s32	s16, s14
+						imag = (float(shift_val)-dc_val) * 0.0005f;// 1/2048=0.00048828125
+ 8005444:	ee78 8ae7 	vsub.f32	s17, s17, s15
+						arm_sin_cos_f32(phase* 57.2958f, &sin, &cos);
+ 8005448:	ee20 0a0a 	vmul.f32	s0, s0, s20
+						real = (float(cur_val) - dc_val) * 0.0005f;
+ 800544c:	ee38 8a67 	vsub.f32	s16, s16, s15
+						arm_sin_cos_f32(phase* 57.2958f, &sin, &cos);
+ 8005450:	a901      	add	r1, sp, #4
+ 8005452:	4668      	mov	r0, sp
+ 8005454:	f000 fcba 	bl	8005dcc <arm_sin_cos_f32>
+						imag = (float(shift_val)-dc_val) * 0.0005f;// 1/2048=0.00048828125
+ 8005458:	ee68 8aa9 	vmul.f32	s17, s17, s19
+						i_channel=real*cos+imag*sin;
+ 800545c:	eddd 7a00 	vldr	s15, [sp]
+ 8005460:	ed9d 7a01 	vldr	s14, [sp, #4]
+						real = (float(cur_val) - dc_val) * 0.0005f;
+ 8005464:	ee28 8a29 	vmul.f32	s16, s16, s19
+						i_channel=real*cos+imag*sin;
+ 8005468:	ee27 9aa8 	vmul.f32	s18, s15, s17
+						q_channel=imag*cos-real*sin;
+ 800546c:	ee68 7a67 	vnmul.f32	s15, s16, s15
+						i_channel=real*cos+imag*sin;
+ 8005470:	eea7 9a08 	vfma.f32	s18, s14, s16
+						q_channel=imag*cos-real*sin;
+ 8005474:	eee7 7a28 	vfma.f32	s15, s14, s17
+						phase += 0.523599 + (0.05 * i_channel * q_channel); // 1/12=0.5236 (12 samples per cycle), 0.05 is empirical
+ 8005478:	ee19 0a10 	vmov	r0, s18
+						q_channel=imag*cos-real*sin;
+ 800547c:	eeb0 8a67 	vmov.f32	s16, s15
+						phase += 0.523599 + (0.05 * i_channel * q_channel); // 1/12=0.5236 (12 samples per cycle), 0.05 is empirical
+ 8005480:	f7fb f938 	bl	80006f4 <__aeabi_f2d>
+ 8005484:	a342      	add	r3, pc, #264	@ (adr r3, 8005590 <_ZN15MaxPeakDetector11search_loopEt+0x2a8>)
+ 8005486:	e9d3 2300 	ldrd	r2, r3, [r3]
+ 800548a:	f7fa fea5 	bl	80001d8 <__aeabi_dmul>
+ 800548e:	4680      	mov	r8, r0
+ 8005490:	ee18 0a10 	vmov	r0, s16
+ 8005494:	4689      	mov	r9, r1
+ 8005496:	f7fb f92d 	bl	80006f4 <__aeabi_f2d>
+ 800549a:	4602      	mov	r2, r0
+ 800549c:	460b      	mov	r3, r1
+ 800549e:	4640      	mov	r0, r8
+ 80054a0:	4649      	mov	r1, r9
+ 80054a2:	f7fa fe99 	bl	80001d8 <__aeabi_dmul>
+ 80054a6:	a33c      	add	r3, pc, #240	@ (adr r3, 8005598 <_ZN15MaxPeakDetector11search_loopEt+0x2b0>)
+ 80054a8:	e9d3 2300 	ldrd	r2, r3, [r3]
+ 80054ac:	f7fa ffc4 	bl	8000438 <__adddf3>
+ 80054b0:	4680      	mov	r8, r0
+ 80054b2:	6c20      	ldr	r0, [r4, #64]	@ 0x40
+ 80054b4:	4689      	mov	r9, r1
+ 80054b6:	f7fb f91d 	bl	80006f4 <__aeabi_f2d>
+ 80054ba:	4602      	mov	r2, r0
+ 80054bc:	460b      	mov	r3, r1
+ 80054be:	4640      	mov	r0, r8
+ 80054c0:	4649      	mov	r1, r9
+ 80054c2:	f7fa ffb9 	bl	8000438 <__adddf3>
+ 80054c6:	f7fb f9f5 	bl	80008b4 <__aeabi_d2f>
+ 80054ca:	4683      	mov	fp, r0
+						if (phase>6.28319) phase-=6.28319;
+ 80054cc:	f7fb f912 	bl	80006f4 <__aeabi_f2d>
+ 80054d0:	a333      	add	r3, pc, #204	@ (adr r3, 80055a0 <_ZN15MaxPeakDetector11search_loopEt+0x2b8>)
+ 80054d2:	e9d3 2300 	ldrd	r2, r3, [r3]
+ 80054d6:	4680      	mov	r8, r0
+ 80054d8:	4689      	mov	r9, r1
+ 80054da:	f7fb f9e1 	bl	80008a0 <__aeabi_dcmpgt>
+ 80054de:	b148      	cbz	r0, 80054f4 <_ZN15MaxPeakDetector11search_loopEt+0x20c>
+ 80054e0:	a32f      	add	r3, pc, #188	@ (adr r3, 80055a0 <_ZN15MaxPeakDetector11search_loopEt+0x2b8>)
+ 80054e2:	e9d3 2300 	ldrd	r2, r3, [r3]
+ 80054e6:	4640      	mov	r0, r8
+ 80054e8:	4649      	mov	r1, r9
+ 80054ea:	f7fa ffa3 	bl	8000434 <__aeabi_dsub>
+ 80054ee:	f7fb f9e1 	bl	80008b4 <__aeabi_d2f>
+ 80054f2:	4683      	mov	fp, r0
+						corr_sum+=i_channel;
+ 80054f4:	edd4 7a13 	vldr	s15, [r4, #76]	@ 0x4c
+						if(!symbol_counter){
+ 80054f8:	f894 2049 	ldrb.w	r2, [r4, #73]	@ 0x49
+								last_peak_idx=cur_idx;
+ 80054fc:	f8b4 3050 	ldrh.w	r3, [r4, #80]	@ 0x50
+						phase += 0.523599 + (0.05 * i_channel * q_channel); // 1/12=0.5236 (12 samples per cycle), 0.05 is empirical
+ 8005500:	f8c4 b040 	str.w	fp, [r4, #64]	@ 0x40
+						corr_sum+=i_channel;
+ 8005504:	ee77 7a89 	vadd.f32	s15, s15, s18
+ 8005508:	edc4 7a13 	vstr	s15, [r4, #76]	@ 0x4c
+						if(!symbol_counter){
+ 800550c:	b942      	cbnz	r2, 8005520 <_ZN15MaxPeakDetector11search_loopEt+0x238>
+							if(cur_val>last_peak_val){
+ 800550e:	f9b4 2018 	ldrsh.w	r2, [r4, #24]
+ 8005512:	42b2      	cmp	r2, r6
+ 8005514:	da04      	bge.n	8005520 <_ZN15MaxPeakDetector11search_loopEt+0x238>
+								last_peak_pfx=cur_pfx;
+ 8005516:	4a29      	ldr	r2, [pc, #164]	@ (80055bc <_ZN15MaxPeakDetector11search_loopEt+0x2d4>)
+								last_peak_val=cur_val;
+ 8005518:	8326      	strh	r6, [r4, #24]
+								last_peak_pfx=cur_pfx;
+ 800551a:	8812      	ldrh	r2, [r2, #0]
+								last_peak_idx=cur_idx;
+ 800551c:	8363      	strh	r3, [r4, #26]
+								last_peak_pfx=cur_pfx;
+ 800551e:	83a2      	strh	r2, [r4, #28]
+						cur_idx++;
+ 8005520:	3301      	adds	r3, #1
+ 8005522:	f8a4 3050 	strh.w	r3, [r4, #80]	@ 0x50
+						sample_counter++;
+ 8005526:	f894 3048 	ldrb.w	r3, [r4, #72]	@ 0x48
+ 800552a:	3301      	adds	r3, #1
+ 800552c:	f884 3048 	strb.w	r3, [r4, #72]	@ 0x48
+ 8005530:	e704      	b.n	800533c <_ZN15MaxPeakDetector11search_loopEt+0x54>
+					search_sub_state = MPDSearchState::YES_SIGNAL;
+ 8005532:	2301      	movs	r3, #1
+ 8005534:	81a3      	strh	r3, [r4, #12]
+					signal_flag=true;
+ 8005536:	75a3      	strb	r3, [r4, #22]
+				    sample_counter=0;
+ 8005538:	2300      	movs	r3, #0
+ 800553a:	f8a4 3048 	strh.w	r3, [r4, #72]	@ 0x48
+					signal_flag=true;
+ 800553e:	e6fd      	b.n	800533c <_ZN15MaxPeakDetector11search_loopEt+0x54>
+					stablize_idx=0;
+ 8005540:	2300      	movs	r3, #0
+ 8005542:	84e3      	strh	r3, [r4, #38]	@ 0x26
+					search_sub_state = MPDSearchState::NO_SIGNAL;
+ 8005544:	81a3      	strh	r3, [r4, #12]
+ 8005546:	e6f9      	b.n	800533c <_ZN15MaxPeakDetector11search_loopEt+0x54>
 						if(corr_sum>0.0f){
- 80054d8:	edd4 7a12 	vldr	s15, [r4, #72]	@ 0x48
+ 8005548:	edd4 7a13 	vldr	s15, [r4, #76]	@ 0x4c
 							rx_data[i_char] |= (1 << i_bit);
- 80054dc:	eb04 06d1 	add.w	r6, r4, r1, lsr #3
- 80054e0:	f001 0007 	and.w	r0, r1, #7
- 80054e4:	4083      	lsls	r3, r0
+ 800554c:	eb04 06d3 	add.w	r6, r4, r3, lsr #3
+ 8005550:	f003 0007 	and.w	r0, r3, #7
+ 8005554:	2101      	movs	r1, #1
+ 8005556:	fa01 f000 	lsl.w	r0, r1, r0
 						if(corr_sum>0.0f){
- 80054e6:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+ 800555a:	eef5 7ac0 	vcmpe.f32	s15, #0.0
 							rx_data[i_char] |= (1 << i_bit);
- 80054ea:	f896 0054 	ldrb.w	r0, [r6, #84]	@ 0x54
+ 800555e:	f896 1058 	ldrb.w	r1, [r6, #88]	@ 0x58
 						if(corr_sum>0.0f){
- 80054ee:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8005562:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
 							rx_data[i_char] |= (1 << i_bit);
- 80054f2:	bfc6      	itte	gt
- 80054f4:	4303      	orrgt	r3, r0
- 80054f6:	b2db      	uxtbgt	r3, r3
+ 8005566:	bfc8      	it	gt
+ 8005568:	4301      	orrgt	r1, r0
+						symbol_counter++;
+ 800556a:	f103 0301 	add.w	r3, r3, #1
+							rx_data[i_char] |= (1 << i_bit);
+ 800556e:	bfcc      	ite	gt
+ 8005570:	b2c9      	uxtbgt	r1, r1
 							rx_data[i_char] &= ~(1 << i_bit);
- 80054f8:	ea20 0303 	bicle.w	r3, r0, r3
+ 8005572:	4381      	bicle	r1, r0
 							rx_data[i_char] |= (1 << i_bit);
- 80054fc:	f886 3054 	strb.w	r3, [r6, #84]	@ 0x54
+ 8005574:	f886 1058 	strb.w	r1, [r6, #88]	@ 0x58
 						cur_idx+=(DEAD_INTERVAL-N_CYCLE)*6; //12 samples per cycle * 16 cycle per symbol * 7
- 8005500:	f502 623d 	add.w	r2, r2, #3024	@ 0xbd0
+ 8005578:	f502 623d 	add.w	r2, r2, #3024	@ 0xbd0
 						symbol_counter++;
- 8005504:	3101      	adds	r1, #1
+ 800557c:	f884 3049 	strb.w	r3, [r4, #73]	@ 0x49
 						sample_counter=0;
- 8005506:	2300      	movs	r3, #0
+ 8005580:	2300      	movs	r3, #0
 						cur_idx+=(DEAD_INTERVAL-N_CYCLE)*6; //12 samples per cycle * 16 cycle per symbol * 7
- 8005508:	f8a4 204c 	strh.w	r2, [r4, #76]	@ 0x4c
-						symbol_counter++;
- 800550c:	f884 1045 	strb.w	r1, [r4, #69]	@ 0x45
+ 8005582:	f8a4 2050 	strh.w	r2, [r4, #80]	@ 0x50
 						corr_sum=0;
- 8005510:	ed84 aa12 	vstr	s20, [r4, #72]	@ 0x48
+ 8005586:	edc4 aa13 	vstr	s21, [r4, #76]	@ 0x4c
 						sample_counter=0;
- 8005514:	f884 3044 	strb.w	r3, [r4, #68]	@ 0x44
+ 800558a:	f884 3048 	strb.w	r3, [r4, #72]	@ 0x48
 						corr_sum=0;
- 8005518:	e70b      	b.n	8005332 <_ZN15MaxPeakDetector11search_loopEt+0x62>
+ 800558e:	e6d5      	b.n	800533c <_ZN15MaxPeakDetector11search_loopEt+0x54>
+ 8005590:	9999999a 	.word	0x9999999a
+ 8005594:	3fa99999 	.word	0x3fa99999
+ 8005598:	b0a6fc59 	.word	0xb0a6fc59
+ 800559c:	3fe0c152 	.word	0x3fe0c152
+ 80055a0:	8f32378b 	.word	0x8f32378b
+ 80055a4:	401921fc 	.word	0x401921fc
+ 80055a8:	20000430 	.word	0x20000430
+ 80055ac:	2000000c 	.word	0x2000000c
+ 80055b0:	00000000 	.word	0x00000000
+ 80055b4:	3a03126f 	.word	0x3a03126f
+ 80055b8:	42652ee6 	.word	0x42652ee6
+ 80055bc:	2000042c 	.word	0x2000042c
+ 80055c0:	aaaaaaab 	.word	0xaaaaaaab
+ 80055c4:	20005430 	.word	0x20005430
+ 80055c8:	20000010 	.word	0x20000010
 					if (rx_data[0]&1) inverse_data=0;
- 800551a:	f894 1054 	ldrb.w	r1, [r4, #84]	@ 0x54
+ 80055cc:	f894 2058 	ldrb.w	r2, [r4, #88]	@ 0x58
 						rx_data[j]=rx_data[j]^inverse_data;
- 800551e:	f894 0055 	ldrb.w	r0, [r4, #85]	@ 0x55
+ 80055d0:	f894 1059 	ldrb.w	r1, [r4, #89]	@ 0x59
+					rx_data[STRING_LEN+2] = gain[beacon_id]; // 0x78
+ 80055d4:	4e47      	ldr	r6, [pc, #284]	@ (80056f4 <_ZN15MaxPeakDetector11search_loopEt+0x40c>)
+					if (rx_data[0]&1) inverse_data=0;
+ 80055d6:	f002 0301 	and.w	r3, r2, #1
+ 80055da:	3b01      	subs	r3, #1
+ 80055dc:	b2db      	uxtb	r3, r3
+						rx_data[j]=rx_data[j]^inverse_data;
+ 80055de:	405a      	eors	r2, r3
+ 80055e0:	f884 2058 	strb.w	r2, [r4, #88]	@ 0x58
+ 80055e4:	f884 305e 	strb.w	r3, [r4, #94]	@ 0x5e
+ 80055e8:	ea83 0201 	eor.w	r2, r3, r1
 					corr_sum=0;
- 8005522:	ed84 aa12 	vstr	s20, [r4, #72]	@ 0x48
-					if (rx_data[0]&1) inverse_data=0;
- 8005526:	f001 0301 	and.w	r3, r1, #1
- 800552a:	3b01      	subs	r3, #1
- 800552c:	b2db      	uxtb	r3, r3
+ 80055ec:	2300      	movs	r3, #0
 						rx_data[j]=rx_data[j]^inverse_data;
- 800552e:	4059      	eors	r1, r3
- 8005530:	f884 1054 	strb.w	r1, [r4, #84]	@ 0x54
- 8005534:	ea83 0100 	eor.w	r1, r3, r0
- 8005538:	f884 305a 	strb.w	r3, [r4, #90]	@ 0x5a
- 800553c:	f884 1055 	strb.w	r1, [r4, #85]	@ 0x55
+ 80055ee:	f884 2059 	strb.w	r2, [r4, #89]	@ 0x59
+					corr_sum=0;
+ 80055f2:	64e3      	str	r3, [r4, #76]	@ 0x4c
 					if(last_peak_pfx>pinout_pfx) delta_idx=uint32_t(last_peak_pfx-pinout_pfx)*BUF_LEN+last_peak_idx-pinout_idx;
- 8005540:	8b63      	ldrh	r3, [r4, #26]
- 8005542:	8be1      	ldrh	r1, [r4, #30]
- 8005544:	8c20      	ldrh	r0, [r4, #32]
+ 80055f4:	8be2      	ldrh	r2, [r4, #30]
 					phase=0;
- 8005546:	ed84 aa0f 	vstr	s20, [r4, #60]	@ 0x3c
- 800554a:	1a59      	subs	r1, r3, r1
+ 80055f6:	6423      	str	r3, [r4, #64]	@ 0x40
 					if(last_peak_pfx>pinout_pfx) delta_idx=uint32_t(last_peak_pfx-pinout_pfx)*BUF_LEN+last_peak_idx-pinout_idx;
- 800554c:	8ba3      	ldrh	r3, [r4, #28]
- 800554e:	4283      	cmp	r3, r0
- 8005550:	eba3 0300 	sub.w	r3, r3, r0
+ 80055f8:	8b63      	ldrh	r3, [r4, #26]
+ 80055fa:	8c21      	ldrh	r1, [r4, #32]
+ 80055fc:	1a9a      	subs	r2, r3, r2
+ 80055fe:	8ba3      	ldrh	r3, [r4, #28]
+ 8005600:	428b      	cmp	r3, r1
+ 8005602:	eba3 0301 	sub.w	r3, r3, r1
 					else delta_idx=uint32_t(0xFFFF-pinout_pfx+last_peak_pfx+1)*BUF_LEN+last_peak_idx-pinout_idx;
- 8005554:	bf98      	it	ls
- 8005556:	f503 3380 	addls.w	r3, r3, #65536	@ 0x10000
-					if(memcmp(rx_data, my_id, STRING_LEN) == 0) {
- 800555a:	f894 0054 	ldrb.w	r0, [r4, #84]	@ 0x54
-					else delta_idx=uint32_t(0xFFFF-pinout_pfx+last_peak_pfx+1)*BUF_LEN+last_peak_idx-pinout_idx;
- 800555e:	eb03 0343 	add.w	r3, r3, r3, lsl #1
- 8005562:	eb01 3303 	add.w	r3, r1, r3, lsl #12
+ 8005606:	bf98      	it	ls
+ 8005608:	f503 3380 	addls.w	r3, r3, #65536	@ 0x10000
+ 800560c:	eb03 0343 	add.w	r3, r3, r3, lsl #1
+ 8005610:	eb02 3303 	add.w	r3, r2, r3, lsl #12
+ 8005614:	62e3      	str	r3, [r4, #44]	@ 0x2c
+					for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = uint8_t((dc_val>>(j*8)) & 0xFF);
+ 8005616:	8ca3      	ldrh	r3, [r4, #36]	@ 0x24
+ 8005618:	f8a4 305a 	strh.w	r3, [r4, #90]	@ 0x5a
 					sample_counter=0;
- 8005566:	2600      	movs	r6, #0
-					if(memcmp(rx_data, my_id, STRING_LEN) == 0) {
- 8005568:	284d      	cmp	r0, #77	@ 0x4d
+ 800561c:	2000      	movs	r0, #0
+					rx_data[STRING_LEN+2] = gain[beacon_id]; // 0x78
+ 800561e:	f894 3022 	ldrb.w	r3, [r4, #34]	@ 0x22
 					sample_counter=0;
- 800556a:	f8a4 6044 	strh.w	r6, [r4, #68]	@ 0x44
-					else delta_idx=uint32_t(0xFFFF-pinout_pfx+last_peak_pfx+1)*BUF_LEN+last_peak_idx-pinout_idx;
- 800556e:	62a3      	str	r3, [r4, #40]	@ 0x28
-					if(memcmp(rx_data, my_id, STRING_LEN) == 0) {
- 8005570:	f104 0154 	add.w	r1, r4, #84	@ 0x54
- 8005574:	d052      	beq.n	800561c <_ZN15MaxPeakDetector11search_loopEt+0x34c>
-						enable_idx=cur_idx;
- 8005576:	84a2      	strh	r2, [r4, #36]	@ 0x24
-						enable_pfx=cur_pfx+8;
- 8005578:	4a24      	ldr	r2, [pc, #144]	@ (800560c <_ZN15MaxPeakDetector11search_loopEt+0x33c>)
- 800557a:	8812      	ldrh	r2, [r2, #0]
- 800557c:	3208      	adds	r2, #8
- 800557e:	8462      	strh	r2, [r4, #34]	@ 0x22
+ 8005622:	f8a4 0048 	strh.w	r0, [r4, #72]	@ 0x48
+					rx_data[STRING_LEN+2] = gain[beacon_id]; // 0x78
+ 8005626:	5cf3      	ldrb	r3, [r6, r3]
 					(*p_index_info_tx).send_bytes(rx_data);
- 8005580:	68a0      	ldr	r0, [r4, #8]
-					for (uint8_t j = 0; j < 4; j++) rx_data[STRING_LEN+j] = uint8_t((delta_idx>>(j*8)) & 0xFF); // 0x78
- 8005582:	f8c4 3056 	str.w	r3, [r4, #86]	@ 0x56
+ 8005628:	68a0      	ldr	r0, [r4, #8]
+					rx_data[STRING_LEN+2] = gain[beacon_id]; // 0x78
+ 800562a:	f884 305c 	strb.w	r3, [r4, #92]	@ 0x5c
+					rx_data[STRING_LEN+3] = 0; // 0x78
+ 800562e:	f04f 0900 	mov.w	r9, #0
 					(*p_index_info_tx).send_bytes(rx_data);
- 8005586:	f7ff fe4f 	bl	8005228 <_ZN11IndexInfoTX10send_bytesEPh>
+ 8005632:	f104 0858 	add.w	r8, r4, #88	@ 0x58
+ 8005636:	4641      	mov	r1, r8
+					rx_data[STRING_LEN+3] = 0; // 0x78
+ 8005638:	f884 905d 	strb.w	r9, [r4, #93]	@ 0x5d
+					(*p_index_info_tx).send_bytes(rx_data);
+ 800563c:	f7ff fdf6 	bl	800522c <_ZN11IndexInfoTX10send_bytesEPh>
+					if(memcmp(rx_data,&id_list[beacon_id*2], STRING_LEN) == 0){
+ 8005640:	4b2d      	ldr	r3, [pc, #180]	@ (80056f8 <_ZN15MaxPeakDetector11search_loopEt+0x410>)
+ 8005642:	f894 0022 	ldrb.w	r0, [r4, #34]	@ 0x22
+ 8005646:	f894 1058 	ldrb.w	r1, [r4, #88]	@ 0x58
+ 800564a:	f813 2010 	ldrb.w	r2, [r3, r0, lsl #1]
+ 800564e:	4291      	cmp	r1, r2
+ 8005650:	eb03 0340 	add.w	r3, r3, r0, lsl #1
+ 8005654:	d029      	beq.n	80056aa <_ZN15MaxPeakDetector11search_loopEt+0x3c2>
+						signal_flag=false;
+ 8005656:	2300      	movs	r3, #0
+ 8005658:	75a3      	strb	r3, [r4, #22]
 					pinout_idx = (last_peak_idx/6)*6;
- 800558a:	4a1c      	ldr	r2, [pc, #112]	@ (80055fc <_ZN15MaxPeakDetector11search_loopEt+0x32c>)
- 800558c:	8b63      	ldrh	r3, [r4, #26]
-					pinout_pfx = last_peak_pfx+DATA_PFX;
- 800558e:	8ba1      	ldrh	r1, [r4, #28]
+ 800565a:	4a28      	ldr	r2, [pc, #160]	@ (80056fc <_ZN15MaxPeakDetector11search_loopEt+0x414>)
+ 800565c:	8b63      	ldrh	r3, [r4, #26]
+ 800565e:	fba2 2303 	umull	r2, r3, r2, r3
+ 8005662:	089b      	lsrs	r3, r3, #2
+					pinout_pfx = last_peak_pfx+DATA_PFX+5;
+ 8005664:	8ba2      	ldrh	r2, [r4, #28]
 					pinout_idx = (last_peak_idx/6)*6;
- 8005590:	fba2 2303 	umull	r2, r3, r2, r3
- 8005594:	089b      	lsrs	r3, r3, #2
- 8005596:	eb03 0343 	add.w	r3, r3, r3, lsl #1
- 800559a:	005b      	lsls	r3, r3, #1
- 800559c:	b29b      	uxth	r3, r3
+ 8005666:	eb03 0343 	add.w	r3, r3, r3, lsl #1
+ 800566a:	005b      	lsls	r3, r3, #1
+					pinout_pfx = last_peak_pfx+DATA_PFX+5;
+ 800566c:	3209      	adds	r2, #9
+					pinout_idx = (last_peak_idx/6)*6;
+ 800566e:	b29b      	uxth	r3, r3
+					pinout_pfx = last_peak_pfx+DATA_PFX+5;
+ 8005670:	b292      	uxth	r2, r2
+ 8005672:	8422      	strh	r2, [r4, #32]
+					pinout_idx = (last_peak_idx/6)*6;
+ 8005674:	83e3      	strh	r3, [r4, #30]
 void MaxPeakDetector::mark_pinout() {
 	//timing for recover receiving after pinout
-	enable_pfx = pinout_pfx+DATA_PFX+1;  // delay from pingout to actual sound wave is 2pfx+1008idx
-	enable_idx = pinout_idx+HAL_BUF_LEN; // delay from pingout to actual sound wave is 2pfx+1008idx
- 800559e:	f503 52c0 	add.w	r2, r3, #6144	@ 0x1800
-					pinout_pfx = last_peak_pfx+DATA_PFX;
- 80055a2:	1d08      	adds	r0, r1, #4
-	enable_idx = pinout_idx+HAL_BUF_LEN; // delay from pingout to actual sound wave is 2pfx+1008idx
- 80055a4:	b292      	uxth	r2, r2
-					pinout_pfx = last_peak_pfx+DATA_PFX;
- 80055a6:	8420      	strh	r0, [r4, #32]
+	enable_pfx = pinout_pfx+DATA_PFX+gain[beacon_id]-1;  // delay from pingout to actual sound wave is 2pfx+1008idx
+ 8005676:	5c31      	ldrb	r1, [r6, r0]
+ 8005678:	440a      	add	r2, r1
+ 800567a:	b292      	uxth	r2, r2
+ 800567c:	1cd1      	adds	r1, r2, #3
+	enable_idx = pinout_idx; // delay from pingout to actual sound wave is 2pfx+1008idx
 	if(enable_idx>=BUF_LEN){
- 80055a8:	f5b2 5f40 	cmp.w	r2, #12288	@ 0x3000
-	enable_pfx = pinout_pfx+DATA_PFX+1;  // delay from pingout to actual sound wave is 2pfx+1008idx
- 80055ac:	f101 0009 	add.w	r0, r1, #9
-					pinout_idx = (last_peak_idx/6)*6;
- 80055b0:	83e3      	strh	r3, [r4, #30]
-	enable_pfx = pinout_pfx+DATA_PFX+1;  // delay from pingout to actual sound wave is 2pfx+1008idx
- 80055b2:	8460      	strh	r0, [r4, #34]	@ 0x22
+ 800567e:	f5b3 5f40 	cmp.w	r3, #12288	@ 0x3000
+	enable_pfx = pinout_pfx+DATA_PFX+gain[beacon_id]-1;  // delay from pingout to actual sound wave is 2pfx+1008idx
+ 8005682:	8521      	strh	r1, [r4, #40]	@ 0x28
 	if(enable_idx>=BUF_LEN){
- 80055b4:	d22c      	bcs.n	8005610 <_ZN15MaxPeakDetector11search_loopEt+0x340>
-	enable_idx = pinout_idx+HAL_BUF_LEN; // delay from pingout to actual sound wave is 2pfx+1008idx
- 80055b6:	84a2      	strh	r2, [r4, #36]	@ 0x24
+ 8005684:	d20b      	bcs.n	800569e <_ZN15MaxPeakDetector11search_loopEt+0x3b6>
+	enable_idx = pinout_idx; // delay from pingout to actual sound wave is 2pfx+1008idx
+ 8005686:	8563      	strh	r3, [r4, #42]	@ 0x2a
 					search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
- 80055b8:	2302      	movs	r3, #2
- 80055ba:	81a3      	strh	r3, [r4, #12]
-					last_peak_val=1884;
- 80055bc:	f240 735c 	movw	r3, #1884	@ 0x75c
- 80055c0:	8323      	strh	r3, [r4, #24]
- 80055c2:	e6b6      	b.n	8005332 <_ZN15MaxPeakDetector11search_loopEt+0x62>
-						else pre_val=buf[cur_idx-3];
- 80055c4:	3a03      	subs	r2, #3
- 80055c6:	f837 3012 	ldrh.w	r3, [r7, r2, lsl #1]
- 80055ca:	ee08 3a10 	vmov	s16, r3
- 80055ce:	e6ec      	b.n	80053aa <_ZN15MaxPeakDetector11search_loopEt+0xda>
- 80055d0:	9999999a 	.word	0x9999999a
- 80055d4:	3fa99999 	.word	0x3fa99999
- 80055d8:	b0a6fc59 	.word	0xb0a6fc59
- 80055dc:	3fe0c152 	.word	0x3fe0c152
- 80055e0:	8f32378b 	.word	0x8f32378b
- 80055e4:	401921fc 	.word	0x401921fc
- 80055e8:	20000430 	.word	0x20000430
- 80055ec:	2000000c 	.word	0x2000000c
- 80055f0:	00000000 	.word	0x00000000
- 80055f4:	44eb8000 	.word	0x44eb8000
- 80055f8:	3a03126f 	.word	0x3a03126f
- 80055fc:	aaaaaaab 	.word	0xaaaaaaab
- 8005600:	20005430 	.word	0x20005430
- 8005604:	20000010 	.word	0x20000010
- 8005608:	42652ee6 	.word	0x42652ee6
- 800560c:	2000042c 	.word	0x2000042c
+ 8005688:	2302      	movs	r3, #2
+ 800568a:	81a3      	strh	r3, [r4, #12]
+					last_peak_val=0;
+ 800568c:	2300      	movs	r3, #0
+ 800568e:	8323      	strh	r3, [r4, #24]
+ 8005690:	e654      	b.n	800533c <_ZN15MaxPeakDetector11search_loopEt+0x54>
+						else shift_val=buf[cur_idx-3];
+ 8005692:	3a03      	subs	r2, #3
+ 8005694:	f937 3012 	ldrsh.w	r3, [r7, r2, lsl #1]
+ 8005698:	ee08 3a90 	vmov	s17, r3
+ 800569c:	e6c4      	b.n	8005428 <_ZN15MaxPeakDetector11search_loopEt+0x140>
 		enable_idx-=BUF_LEN;
- 8005610:	f5a3 53c0 	sub.w	r3, r3, #6144	@ 0x1800
+ 800569e:	f5a3 5340 	sub.w	r3, r3, #12288	@ 0x3000
 		enable_pfx++;
- 8005614:	310a      	adds	r1, #10
+ 80056a2:	3204      	adds	r2, #4
 		enable_idx-=BUF_LEN;
- 8005616:	84a3      	strh	r3, [r4, #36]	@ 0x24
+ 80056a4:	8563      	strh	r3, [r4, #42]	@ 0x2a
 		enable_pfx++;
- 8005618:	8461      	strh	r1, [r4, #34]	@ 0x22
- 800561a:	e7cd      	b.n	80055b8 <_ZN15MaxPeakDetector11search_loopEt+0x2e8>
-					if(memcmp(rx_data, my_id, STRING_LEN) == 0) {
- 800561c:	7848      	ldrb	r0, [r1, #1]
- 800561e:	2832      	cmp	r0, #50	@ 0x32
- 8005620:	d1a9      	bne.n	8005576 <_ZN15MaxPeakDetector11search_loopEt+0x2a6>
-						if (last_peak_val>3767 && gain>2){
- 8005622:	8b20      	ldrh	r0, [r4, #24]
- 8005624:	f640 62b7 	movw	r2, #3767	@ 0xeb7
- 8005628:	4290      	cmp	r0, r2
- 800562a:	d916      	bls.n	800565a <_ZN15MaxPeakDetector11search_loopEt+0x38a>
- 800562c:	4810      	ldr	r0, [pc, #64]	@ (8005670 <_ZN15MaxPeakDetector11search_loopEt+0x3a0>)
- 800562e:	7802      	ldrb	r2, [r0, #0]
- 8005630:	2a02      	cmp	r2, #2
-							gain--;
- 8005632:	bf84      	itt	hi
- 8005634:	f102 32ff 	addhi.w	r2, r2, #4294967295
- 8005638:	7002      	strbhi	r2, [r0, #0]
- 800563a:	e7a1      	b.n	8005580 <_ZN15MaxPeakDetector11search_loopEt+0x2b0>
+ 80056a6:	8522      	strh	r2, [r4, #40]	@ 0x28
+ 80056a8:	e7ee      	b.n	8005688 <_ZN15MaxPeakDetector11search_loopEt+0x3a0>
+					if(memcmp(rx_data,&id_list[beacon_id*2], STRING_LEN) == 0){
+ 80056aa:	f894 2059 	ldrb.w	r2, [r4, #89]	@ 0x59
+ 80056ae:	785b      	ldrb	r3, [r3, #1]
+ 80056b0:	429a      	cmp	r2, r3
+ 80056b2:	d1d0      	bne.n	8005656 <_ZN15MaxPeakDetector11search_loopEt+0x36e>
+						gain[beacon_id]=uint8_t(delta_idx/BUF_LEN)+1;
+ 80056b4:	4a11      	ldr	r2, [pc, #68]	@ (80056fc <_ZN15MaxPeakDetector11search_loopEt+0x414>)
+ 80056b6:	6ae3      	ldr	r3, [r4, #44]	@ 0x2c
+						lost_time[beacon_id]=0;
+ 80056b8:	4911      	ldr	r1, [pc, #68]	@ (8005700 <_ZN15MaxPeakDetector11search_loopEt+0x418>)
+						gain[beacon_id]=uint8_t(delta_idx/BUF_LEN)+1;
+ 80056ba:	fba2 2303 	umull	r2, r3, r2, r3
+						data_flag=true;
+ 80056be:	2201      	movs	r2, #1
+ 80056c0:	75e2      	strb	r2, [r4, #23]
+						lost_time[beacon_id]=0;
+ 80056c2:	f801 9000 	strb.w	r9, [r1, r0]
+						gain[beacon_id]=uint8_t(delta_idx/BUF_LEN)+1;
+ 80056c6:	0b5b      	lsrs	r3, r3, #13
+ 80056c8:	f894 2022 	ldrb.w	r2, [r4, #34]	@ 0x22
+ 80056cc:	3301      	adds	r3, #1
+ 80056ce:	54b3      	strb	r3, [r6, r2]
+	enable_pfx = pinout_pfx+DATA_PFX+gain[beacon_id]-1;  // delay from pingout to actual sound wave is 2pfx+1008idx
+ 80056d0:	f894 0022 	ldrb.w	r0, [r4, #34]	@ 0x22
+ 80056d4:	e7c1      	b.n	800565a <_ZN15MaxPeakDetector11search_loopEt+0x372>
 			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[HAL_BUF_LEN-3+i];
- 800563c:	4a0d      	ldr	r2, [pc, #52]	@ (8005674 <_ZN15MaxPeakDetector11search_loopEt+0x3a4>)
- 800563e:	4b0e      	ldr	r3, [pc, #56]	@ (8005678 <_ZN15MaxPeakDetector11search_loopEt+0x3a8>)
- 8005640:	f8d2 1ffa 	ldr.w	r1, [r2, #4090]	@ 0xffa
- 8005644:	f8b2 2ffe 	ldrh.w	r2, [r2, #4094]	@ 0xffe
- 8005648:	6019      	str	r1, [r3, #0]
+ 80056d6:	4a0b      	ldr	r2, [pc, #44]	@ (8005704 <_ZN15MaxPeakDetector11search_loopEt+0x41c>)
+ 80056d8:	4b0b      	ldr	r3, [pc, #44]	@ (8005708 <_ZN15MaxPeakDetector11search_loopEt+0x420>)
+ 80056da:	f8d2 1ffa 	ldr.w	r1, [r2, #4090]	@ 0xffa
+ 80056de:	f8b2 2ffe 	ldrh.w	r2, [r2, #4094]	@ 0xffe
+ 80056e2:	6019      	str	r1, [r3, #0]
 			global_state = MPDState::IDLE;
- 800564a:	2002      	movs	r0, #2
- 800564c:	8028      	strh	r0, [r5, #0]
+ 80056e4:	2002      	movs	r0, #2
+ 80056e6:	8028      	strh	r0, [r5, #0]
 			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[HAL_BUF_LEN-3+i];
- 800564e:	809a      	strh	r2, [r3, #4]
+ 80056e8:	809a      	strh	r2, [r3, #4]
 }
- 8005650:	b003      	add	sp, #12
- 8005652:	ecbd 8b08 	vpop	{d8-d11}
- 8005656:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
-						else if(last_peak_val<2861 && gain<8){
- 800565a:	f640 322c 	movw	r2, #2860	@ 0xb2c
- 800565e:	4290      	cmp	r0, r2
- 8005660:	d88e      	bhi.n	8005580 <_ZN15MaxPeakDetector11search_loopEt+0x2b0>
- 8005662:	4803      	ldr	r0, [pc, #12]	@ (8005670 <_ZN15MaxPeakDetector11search_loopEt+0x3a0>)
- 8005664:	7802      	ldrb	r2, [r0, #0]
- 8005666:	2a07      	cmp	r2, #7
- 8005668:	d88a      	bhi.n	8005580 <_ZN15MaxPeakDetector11search_loopEt+0x2b0>
-							gain++;
- 800566a:	3201      	adds	r2, #1
- 800566c:	7002      	strb	r2, [r0, #0]
- 800566e:	e787      	b.n	8005580 <_ZN15MaxPeakDetector11search_loopEt+0x2b0>
- 8005670:	2000001a 	.word	0x2000001a
- 8005674:	20002430 	.word	0x20002430
- 8005678:	20000010 	.word	0x20000010
+ 80056ea:	b003      	add	sp, #12
+ 80056ec:	ecbd 8b06 	vpop	{d8-d10}
+ 80056f0:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 80056f4:	2000001c 	.word	0x2000001c
+ 80056f8:	08006258 	.word	0x08006258
+ 80056fc:	aaaaaaab 	.word	0xaaaaaaab
+ 8005700:	20008438 	.word	0x20008438
+ 8005704:	20002430 	.word	0x20002430
+ 8005708:	20000010 	.word	0x20000010
 
-0800567c <_ZN15MaxPeakDetector11detect_peakEv>:
+0800570c <_ZN15MaxPeakDetector11detect_peakEv>:
     switch (global_state)
- 800567c:	4a0f      	ldr	r2, [pc, #60]	@ (80056bc <_ZN15MaxPeakDetector11detect_peakEv+0x40>)
- 800567e:	8811      	ldrh	r1, [r2, #0]
- 8005680:	b289      	uxth	r1, r1
- 8005682:	2901      	cmp	r1, #1
+ 800570c:	4a0f      	ldr	r2, [pc, #60]	@ (800574c <_ZN15MaxPeakDetector11detect_peakEv+0x40>)
+ 800570e:	8811      	ldrh	r1, [r2, #0]
+ 8005710:	b289      	uxth	r1, r1
+ 8005712:	2901      	cmp	r1, #1
 void MaxPeakDetector :: detect_peak() {
- 8005684:	4603      	mov	r3, r0
+ 8005714:	4603      	mov	r3, r0
     switch (global_state)
- 8005686:	d00f      	beq.n	80056a8 <_ZN15MaxPeakDetector11detect_peakEv+0x2c>
- 8005688:	2903      	cmp	r1, #3
- 800568a:	d008      	beq.n	800569e <_ZN15MaxPeakDetector11detect_peakEv+0x22>
- 800568c:	b959      	cbnz	r1, 80056a6 <_ZN15MaxPeakDetector11detect_peakEv+0x2a>
+ 8005716:	d00f      	beq.n	8005738 <_ZN15MaxPeakDetector11detect_peakEv+0x2c>
+ 8005718:	2903      	cmp	r1, #3
+ 800571a:	d008      	beq.n	800572e <_ZN15MaxPeakDetector11detect_peakEv+0x22>
+ 800571c:	b959      	cbnz	r1, 8005736 <_ZN15MaxPeakDetector11detect_peakEv+0x2a>
             if (cur_idx < HAL_BUF_LEN) {
- 800568e:	f8b0 304c 	ldrh.w	r3, [r0, #76]	@ 0x4c
- 8005692:	f5b3 5fc0 	cmp.w	r3, #6144	@ 0x1800
- 8005696:	d30e      	bcc.n	80056b6 <_ZN15MaxPeakDetector11detect_peakEv+0x3a>
+ 800571e:	f8b0 3050 	ldrh.w	r3, [r0, #80]	@ 0x50
+ 8005722:	f5b3 5fc0 	cmp.w	r3, #6144	@ 0x1800
+ 8005726:	d30e      	bcc.n	8005746 <_ZN15MaxPeakDetector11detect_peakEv+0x3a>
                 global_state = MPDState::IDLE;
- 8005698:	2302      	movs	r3, #2
- 800569a:	8013      	strh	r3, [r2, #0]
- 800569c:	4770      	bx	lr
+ 8005728:	2302      	movs	r3, #2
+ 800572a:	8013      	strh	r3, [r2, #0]
+ 800572c:	4770      	bx	lr
 	}
 }
 
 void MaxPeakDetector :: error_1_handle() {
     //(*p_index_info_tx).stream_adc(7); //send error notification
 	global_state = MPDState::IDLE; // then skip this half buffer and try on the next
- 800569e:	2002      	movs	r0, #2
+ 800572e:	2002      	movs	r0, #2
 
 	//need to reset the relevant search context so we are ready to start searching again:
 	search_sub_state = MPDSearchState::NO_SIGNAL;
- 80056a0:	2100      	movs	r1, #0
+ 8005730:	2100      	movs	r1, #0
 	global_state = MPDState::IDLE; // then skip this half buffer and try on the next
- 80056a2:	8010      	strh	r0, [r2, #0]
+ 8005732:	8010      	strh	r0, [r2, #0]
 	search_sub_state = MPDSearchState::NO_SIGNAL;
- 80056a4:	8199      	strh	r1, [r3, #12]
+ 8005734:	8199      	strh	r1, [r3, #12]
 }
- 80056a6:	4770      	bx	lr
+ 8005736:	4770      	bx	lr
             if (cur_idx >= HAL_BUF_LEN) {
- 80056a8:	f8b0 304c 	ldrh.w	r3, [r0, #76]	@ 0x4c
- 80056ac:	f5b3 5fc0 	cmp.w	r3, #6144	@ 0x1800
- 80056b0:	d3f2      	bcc.n	8005698 <_ZN15MaxPeakDetector11detect_peakEv+0x1c>
+ 8005738:	f8b0 3050 	ldrh.w	r3, [r0, #80]	@ 0x50
+ 800573c:	f5b3 5fc0 	cmp.w	r3, #6144	@ 0x1800
+ 8005740:	d3f2      	bcc.n	8005728 <_ZN15MaxPeakDetector11detect_peakEv+0x1c>
                 search_loop(HAL_BUF_LEN);
- 80056b2:	f44f 51c0 	mov.w	r1, #6144	@ 0x1800
- 80056b6:	f7ff be0b 	b.w	80052d0 <_ZN15MaxPeakDetector11search_loopEt>
- 80056ba:	bf00      	nop
- 80056bc:	2000000c 	.word	0x2000000c
+ 8005742:	f44f 51c0 	mov.w	r1, #6144	@ 0x1800
+ 8005746:	f7ff bdcf 	b.w	80052e8 <_ZN15MaxPeakDetector11search_loopEt>
+ 800574a:	bf00      	nop
+ 800574c:	2000000c 	.word	0x2000000c
 
-080056c0 <HAL_ADC_ConvHalfCpltCallback>:
+08005750 <_ZN15MaxPeakDetector11mark_pinoutEv>:
+	enable_pfx = pinout_pfx+DATA_PFX+gain[beacon_id]-1;  // delay from pingout to actual sound wave is 2pfx+1008idx
+ 8005750:	490a      	ldr	r1, [pc, #40]	@ (800577c <_ZN15MaxPeakDetector11mark_pinoutEv+0x2c>)
+ 8005752:	f890 3022 	ldrb.w	r3, [r0, #34]	@ 0x22
+ 8005756:	8c02      	ldrh	r2, [r0, #32]
+ 8005758:	5ccb      	ldrb	r3, [r1, r3]
+ 800575a:	4413      	add	r3, r2
+	enable_idx = pinout_idx; // delay from pingout to actual sound wave is 2pfx+1008idx
+ 800575c:	8bc2      	ldrh	r2, [r0, #30]
+	enable_pfx = pinout_pfx+DATA_PFX+gain[beacon_id]-1;  // delay from pingout to actual sound wave is 2pfx+1008idx
+ 800575e:	b29b      	uxth	r3, r3
+ 8005760:	1cd9      	adds	r1, r3, #3
+	if(enable_idx>=BUF_LEN){
+ 8005762:	f5b2 5f40 	cmp.w	r2, #12288	@ 0x3000
+	enable_pfx = pinout_pfx+DATA_PFX+gain[beacon_id]-1;  // delay from pingout to actual sound wave is 2pfx+1008idx
+ 8005766:	8501      	strh	r1, [r0, #40]	@ 0x28
+	if(enable_idx>=BUF_LEN){
+ 8005768:	d201      	bcs.n	800576e <_ZN15MaxPeakDetector11mark_pinoutEv+0x1e>
+	enable_idx = pinout_idx; // delay from pingout to actual sound wave is 2pfx+1008idx
+ 800576a:	8542      	strh	r2, [r0, #42]	@ 0x2a
+ 800576c:	4770      	bx	lr
+		enable_idx-=BUF_LEN;
+ 800576e:	f5a2 5240 	sub.w	r2, r2, #12288	@ 0x3000
+		enable_pfx++;
+ 8005772:	3304      	adds	r3, #4
+		enable_idx-=BUF_LEN;
+ 8005774:	8542      	strh	r2, [r0, #42]	@ 0x2a
+		enable_pfx++;
+ 8005776:	8503      	strh	r3, [r0, #40]	@ 0x28
+}
+ 8005778:	4770      	bx	lr
+ 800577a:	bf00      	nop
+ 800577c:	2000001c 	.word	0x2000001c
+
+08005780 <HAL_ADC_ConvHalfCpltCallback>:
 
 
 
 //Called when first half of buffer is filled
 extern "C" void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* p_hadc) {
-    MaxPeakDetector::cur_pfx = MaxPeakDetector::cur_pfx + 1; //roll-over after 0x7FFF to fit packet needs
- 80056c0:	4a09      	ldr	r2, [pc, #36]	@ (80056e8 <HAL_ADC_ConvHalfCpltCallback+0x28>)
+    MaxPeakDetector::cur_pfx = MaxPeakDetector::cur_pfx + 1; //roll-over after 0xFFFF
+ 8005780:	4a09      	ldr	r2, [pc, #36]	@ (80057a8 <HAL_ADC_ConvHalfCpltCallback+0x28>)
 
 	//state transition
 		switch (MaxPeakDetector::global_state)
- 80056c2:	490a      	ldr	r1, [pc, #40]	@ (80056ec <HAL_ADC_ConvHalfCpltCallback+0x2c>)
-    MaxPeakDetector::cur_pfx = MaxPeakDetector::cur_pfx + 1; //roll-over after 0x7FFF to fit packet needs
- 80056c4:	8813      	ldrh	r3, [r2, #0]
- 80056c6:	3301      	adds	r3, #1
- 80056c8:	b29b      	uxth	r3, r3
- 80056ca:	8013      	strh	r3, [r2, #0]
+ 8005782:	490a      	ldr	r1, [pc, #40]	@ (80057ac <HAL_ADC_ConvHalfCpltCallback+0x2c>)
+    MaxPeakDetector::cur_pfx = MaxPeakDetector::cur_pfx + 1; //roll-over after 0xFFFF
+ 8005784:	8813      	ldrh	r3, [r2, #0]
+ 8005786:	3301      	adds	r3, #1
+ 8005788:	b29b      	uxth	r3, r3
+ 800578a:	8013      	strh	r3, [r2, #0]
 		switch (MaxPeakDetector::global_state)
- 80056cc:	880b      	ldrh	r3, [r1, #0]
- 80056ce:	b29b      	uxth	r3, r3
- 80056d0:	2b02      	cmp	r3, #2
- 80056d2:	d005      	beq.n	80056e0 <HAL_ADC_ConvHalfCpltCallback+0x20>
- 80056d4:	2b03      	cmp	r3, #3
- 80056d6:	d000      	beq.n	80056da <HAL_ADC_ConvHalfCpltCallback+0x1a>
+ 800578c:	880b      	ldrh	r3, [r1, #0]
+ 800578e:	b29b      	uxth	r3, r3
+ 8005790:	2b02      	cmp	r3, #2
+ 8005792:	d005      	beq.n	80057a0 <HAL_ADC_ConvHalfCpltCallback+0x20>
+ 8005794:	2b03      	cmp	r3, #3
+ 8005796:	d000      	beq.n	800579a <HAL_ADC_ConvHalfCpltCallback+0x1a>
 
 			case MPDState::IDLE:
 				MaxPeakDetector::global_state = MPDState::PROC_BUF_1ST_HLF;
 				break;
 		  }
 }
- 80056d8:	4770      	bx	lr
+ 8005798:	4770      	bx	lr
 				MaxPeakDetector::global_state = MPDState::IDLE;
- 80056da:	2302      	movs	r3, #2
- 80056dc:	800b      	strh	r3, [r1, #0]
+ 800579a:	2302      	movs	r3, #2
+ 800579c:	800b      	strh	r3, [r1, #0]
 				break;
- 80056de:	4770      	bx	lr
+ 800579e:	4770      	bx	lr
 				MaxPeakDetector::global_state = MPDState::PROC_BUF_1ST_HLF;
- 80056e0:	2300      	movs	r3, #0
- 80056e2:	800b      	strh	r3, [r1, #0]
+ 80057a0:	2300      	movs	r3, #0
+ 80057a2:	800b      	strh	r3, [r1, #0]
 }
- 80056e4:	4770      	bx	lr
- 80056e6:	bf00      	nop
- 80056e8:	2000042c 	.word	0x2000042c
- 80056ec:	2000000c 	.word	0x2000000c
+ 80057a4:	4770      	bx	lr
+ 80057a6:	bf00      	nop
+ 80057a8:	2000042c 	.word	0x2000042c
+ 80057ac:	2000000c 	.word	0x2000000c
 
-080056f0 <HAL_ADC_ConvCpltCallback>:
+080057b0 <HAL_ADC_ConvCpltCallback>:
 
 
 //Called when buffer is completely filled
 extern "C"  void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* p_hadc) {
     //state transition
 		switch (MaxPeakDetector::global_state)
- 80056f0:	4a06      	ldr	r2, [pc, #24]	@ (800570c <HAL_ADC_ConvCpltCallback+0x1c>)
- 80056f2:	8813      	ldrh	r3, [r2, #0]
- 80056f4:	b29b      	uxth	r3, r3
- 80056f6:	2b02      	cmp	r3, #2
- 80056f8:	d005      	beq.n	8005706 <HAL_ADC_ConvCpltCallback+0x16>
- 80056fa:	2b03      	cmp	r3, #3
- 80056fc:	d000      	beq.n	8005700 <HAL_ADC_ConvCpltCallback+0x10>
+ 80057b0:	4a06      	ldr	r2, [pc, #24]	@ (80057cc <HAL_ADC_ConvCpltCallback+0x1c>)
+ 80057b2:	8813      	ldrh	r3, [r2, #0]
+ 80057b4:	b29b      	uxth	r3, r3
+ 80057b6:	2b02      	cmp	r3, #2
+ 80057b8:	d005      	beq.n	80057c6 <HAL_ADC_ConvCpltCallback+0x16>
+ 80057ba:	2b03      	cmp	r3, #3
+ 80057bc:	d000      	beq.n	80057c0 <HAL_ADC_ConvCpltCallback+0x10>
 
 			case MPDState::IDLE:
 				MaxPeakDetector::global_state = MPDState::PROC_BUF_2ND_HLF;
 				break;
 		  }
 }
- 80056fe:	4770      	bx	lr
+ 80057be:	4770      	bx	lr
 				MaxPeakDetector::global_state = MPDState::IDLE;
- 8005700:	2302      	movs	r3, #2
- 8005702:	8013      	strh	r3, [r2, #0]
+ 80057c0:	2302      	movs	r3, #2
+ 80057c2:	8013      	strh	r3, [r2, #0]
 				break;
- 8005704:	4770      	bx	lr
+ 80057c4:	4770      	bx	lr
 				MaxPeakDetector::global_state = MPDState::PROC_BUF_2ND_HLF;
- 8005706:	2301      	movs	r3, #1
- 8005708:	8013      	strh	r3, [r2, #0]
+ 80057c6:	2301      	movs	r3, #1
+ 80057c8:	8013      	strh	r3, [r2, #0]
 }
- 800570a:	4770      	bx	lr
- 800570c:	2000000c 	.word	0x2000000c
+ 80057ca:	4770      	bx	lr
+ 80057cc:	2000000c 	.word	0x2000000c
 
-08005710 <_ZN13PGA_cascade_2C1EP19OPAMP_HandleTypeDefS1_>:
+080057d0 <_ZN13PGA_cascade_2C1EP19OPAMP_HandleTypeDefS1_>:
 
 
 
 PGA_cascade_2::PGA_cascade_2(OPAMP_HandleTypeDef* p_opamp_1, OPAMP_HandleTypeDef* p_opamp_2) {
     pga1.p_hopamp = p_opamp_1;
     pga2.p_hopamp = p_opamp_2;
- 8005710:	e9c0 1200 	strd	r1, r2, [r0]
+ 80057d0:	e9c0 1200 	strd	r1, r2, [r0]
 }
- 8005714:	4770      	bx	lr
- 8005716:	bf00      	nop
+ 80057d4:	4770      	bx	lr
+ 80057d6:	bf00      	nop
 
-08005718 <_ZN13PGA_cascade_27setGainEi>:
+080057d8 <_ZN13PGA_cascade_27setGainEi>:
    8   |   256
 
 Indexes not in [2,8] will be ignored.
 */
 void PGA_cascade_2::setGain(int index) {
     switch (index)
- 8005718:	3902      	subs	r1, #2
- 800571a:	2906      	cmp	r1, #6
- 800571c:	d819      	bhi.n	8005752 <_ZN13PGA_cascade_27setGainEi+0x3a>
- 800571e:	e8df f001 	tbb	[pc, r1]
- 8005722:	2e19      	.short	0x2e19
- 8005724:	705b4f3a 	.word	0x705b4f3a
- 8005728:	04          	.byte	0x04
- 8005729:	00          	.byte	0x00
+ 80057d8:	3902      	subs	r1, #2
+ 80057da:	2906      	cmp	r1, #6
+ 80057dc:	d819      	bhi.n	8005812 <_ZN13PGA_cascade_27setGainEi+0x3a>
+ 80057de:	e8df f001 	tbb	[pc, r1]
+ 80057e2:	2e19      	.short	0x2e19
+ 80057e4:	705b4f3a 	.word	0x705b4f3a
+ 80057e8:	04          	.byte	0x04
+ 80057e9:	00          	.byte	0x00
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 800572a:	e9d0 2300 	ldrd	r2, r3, [r0]
- 800572e:	6812      	ldr	r2, [r2, #0]
- 8005730:	681b      	ldr	r3, [r3, #0]
- 8005732:	6811      	ldr	r1, [r2, #0]
- 8005734:	f441 3170 	orr.w	r1, r1, #245760	@ 0x3c000
- 8005738:	6011      	str	r1, [r2, #0]
+ 80057ea:	e9d0 2300 	ldrd	r2, r3, [r0]
+ 80057ee:	6812      	ldr	r2, [r2, #0]
+ 80057f0:	681b      	ldr	r3, [r3, #0]
+ 80057f2:	6811      	ldr	r1, [r2, #0]
+ 80057f4:	f441 3170 	orr.w	r1, r1, #245760	@ 0x3c000
+ 80057f8:	6011      	str	r1, [r2, #0]
 	    p_hopamp->Instance->CSR &= MY_GAIN_16;
- 800573a:	6811      	ldr	r1, [r2, #0]
- 800573c:	f421 3140 	bic.w	r1, r1, #196608	@ 0x30000
- 8005740:	6011      	str	r1, [r2, #0]
+ 80057fa:	6811      	ldr	r1, [r2, #0]
+ 80057fc:	f421 3140 	bic.w	r1, r1, #196608	@ 0x30000
+ 8005800:	6011      	str	r1, [r2, #0]
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 8005742:	681a      	ldr	r2, [r3, #0]
- 8005744:	f442 3270 	orr.w	r2, r2, #245760	@ 0x3c000
- 8005748:	601a      	str	r2, [r3, #0]
+ 8005802:	681a      	ldr	r2, [r3, #0]
+ 8005804:	f442 3270 	orr.w	r2, r2, #245760	@ 0x3c000
+ 8005808:	601a      	str	r2, [r3, #0]
 	    p_hopamp->Instance->CSR &= MY_GAIN_16;
- 800574a:	681a      	ldr	r2, [r3, #0]
- 800574c:	f422 3240 	bic.w	r2, r2, #196608	@ 0x30000
- 8005750:	601a      	str	r2, [r3, #0]
+ 800580a:	681a      	ldr	r2, [r3, #0]
+ 800580c:	f422 3240 	bic.w	r2, r2, #196608	@ 0x30000
+ 8005810:	601a      	str	r2, [r3, #0]
         break;
     
     default:
         break;
     }
 }
- 8005752:	4770      	bx	lr
+ 8005812:	4770      	bx	lr
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 8005754:	e9d0 2300 	ldrd	r2, r3, [r0]
- 8005758:	6812      	ldr	r2, [r2, #0]
- 800575a:	681b      	ldr	r3, [r3, #0]
- 800575c:	6811      	ldr	r1, [r2, #0]
- 800575e:	f441 3170 	orr.w	r1, r1, #245760	@ 0x3c000
- 8005762:	6011      	str	r1, [r2, #0]
+ 8005814:	e9d0 2300 	ldrd	r2, r3, [r0]
+ 8005818:	6812      	ldr	r2, [r2, #0]
+ 800581a:	681b      	ldr	r3, [r3, #0]
+ 800581c:	6811      	ldr	r1, [r2, #0]
+ 800581e:	f441 3170 	orr.w	r1, r1, #245760	@ 0x3c000
+ 8005822:	6011      	str	r1, [r2, #0]
 	    p_hopamp->Instance->CSR &= MY_GAIN_2;
- 8005764:	6811      	ldr	r1, [r2, #0]
- 8005766:	f421 3170 	bic.w	r1, r1, #245760	@ 0x3c000
+ 8005824:	6811      	ldr	r1, [r2, #0]
+ 8005826:	f421 3170 	bic.w	r1, r1, #245760	@ 0x3c000
 	    p_hopamp->Instance->CSR &= MY_GAIN_4;
- 800576a:	6011      	str	r1, [r2, #0]
+ 800582a:	6011      	str	r1, [r2, #0]
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 800576c:	681a      	ldr	r2, [r3, #0]
- 800576e:	f442 3270 	orr.w	r2, r2, #245760	@ 0x3c000
- 8005772:	601a      	str	r2, [r3, #0]
+ 800582c:	681a      	ldr	r2, [r3, #0]
+ 800582e:	f442 3270 	orr.w	r2, r2, #245760	@ 0x3c000
+ 8005832:	601a      	str	r2, [r3, #0]
 	    p_hopamp->Instance->CSR &= MY_GAIN_2;
- 8005774:	681a      	ldr	r2, [r3, #0]
- 8005776:	f422 3270 	bic.w	r2, r2, #245760	@ 0x3c000
- 800577a:	601a      	str	r2, [r3, #0]
+ 8005834:	681a      	ldr	r2, [r3, #0]
+ 8005836:	f422 3270 	bic.w	r2, r2, #245760	@ 0x3c000
+ 800583a:	601a      	str	r2, [r3, #0]
         break;
- 800577c:	4770      	bx	lr
+ 800583c:	4770      	bx	lr
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 800577e:	e9d0 2300 	ldrd	r2, r3, [r0]
+ 800583e:	e9d0 2300 	ldrd	r2, r3, [r0]
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 8005782:	6812      	ldr	r2, [r2, #0]
+ 8005842:	6812      	ldr	r2, [r2, #0]
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 8005784:	681b      	ldr	r3, [r3, #0]
+ 8005844:	681b      	ldr	r3, [r3, #0]
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 8005786:	6811      	ldr	r1, [r2, #0]
- 8005788:	f441 3170 	orr.w	r1, r1, #245760	@ 0x3c000
- 800578c:	6011      	str	r1, [r2, #0]
+ 8005846:	6811      	ldr	r1, [r2, #0]
+ 8005848:	f441 3170 	orr.w	r1, r1, #245760	@ 0x3c000
+ 800584c:	6011      	str	r1, [r2, #0]
 	    p_hopamp->Instance->CSR &= MY_GAIN_4;
- 800578e:	6811      	ldr	r1, [r2, #0]
- 8005790:	f421 3160 	bic.w	r1, r1, #229376	@ 0x38000
- 8005794:	e7e9      	b.n	800576a <_ZN13PGA_cascade_27setGainEi+0x52>
+ 800584e:	6811      	ldr	r1, [r2, #0]
+ 8005850:	f421 3160 	bic.w	r1, r1, #229376	@ 0x38000
+ 8005854:	e7e9      	b.n	800582a <_ZN13PGA_cascade_27setGainEi+0x52>
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 8005796:	e9d0 2300 	ldrd	r2, r3, [r0]
- 800579a:	6812      	ldr	r2, [r2, #0]
- 800579c:	681b      	ldr	r3, [r3, #0]
- 800579e:	6811      	ldr	r1, [r2, #0]
- 80057a0:	f441 3170 	orr.w	r1, r1, #245760	@ 0x3c000
- 80057a4:	6011      	str	r1, [r2, #0]
+ 8005856:	e9d0 2300 	ldrd	r2, r3, [r0]
+ 800585a:	6812      	ldr	r2, [r2, #0]
+ 800585c:	681b      	ldr	r3, [r3, #0]
+ 800585e:	6811      	ldr	r1, [r2, #0]
+ 8005860:	f441 3170 	orr.w	r1, r1, #245760	@ 0x3c000
+ 8005864:	6011      	str	r1, [r2, #0]
 	    p_hopamp->Instance->CSR &= MY_GAIN_4;
- 80057a6:	6811      	ldr	r1, [r2, #0]
- 80057a8:	f421 3160 	bic.w	r1, r1, #229376	@ 0x38000
+ 8005866:	6811      	ldr	r1, [r2, #0]
+ 8005868:	f421 3160 	bic.w	r1, r1, #229376	@ 0x38000
 	    p_hopamp->Instance->CSR &= MY_GAIN_8;
- 80057ac:	6011      	str	r1, [r2, #0]
+ 800586c:	6011      	str	r1, [r2, #0]
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 80057ae:	681a      	ldr	r2, [r3, #0]
- 80057b0:	f442 3270 	orr.w	r2, r2, #245760	@ 0x3c000
- 80057b4:	601a      	str	r2, [r3, #0]
+ 800586e:	681a      	ldr	r2, [r3, #0]
+ 8005870:	f442 3270 	orr.w	r2, r2, #245760	@ 0x3c000
+ 8005874:	601a      	str	r2, [r3, #0]
 	    p_hopamp->Instance->CSR &= MY_GAIN_4;
- 80057b6:	681a      	ldr	r2, [r3, #0]
- 80057b8:	f422 3260 	bic.w	r2, r2, #229376	@ 0x38000
- 80057bc:	601a      	str	r2, [r3, #0]
+ 8005876:	681a      	ldr	r2, [r3, #0]
+ 8005878:	f422 3260 	bic.w	r2, r2, #229376	@ 0x38000
+ 800587c:	601a      	str	r2, [r3, #0]
         break;
- 80057be:	4770      	bx	lr
+ 800587e:	4770      	bx	lr
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 80057c0:	e9d0 2300 	ldrd	r2, r3, [r0]
+ 8005880:	e9d0 2300 	ldrd	r2, r3, [r0]
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 80057c4:	6812      	ldr	r2, [r2, #0]
+ 8005884:	6812      	ldr	r2, [r2, #0]
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 80057c6:	681b      	ldr	r3, [r3, #0]
+ 8005886:	681b      	ldr	r3, [r3, #0]
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 80057c8:	6811      	ldr	r1, [r2, #0]
- 80057ca:	f441 3170 	orr.w	r1, r1, #245760	@ 0x3c000
- 80057ce:	6011      	str	r1, [r2, #0]
+ 8005888:	6811      	ldr	r1, [r2, #0]
+ 800588a:	f441 3170 	orr.w	r1, r1, #245760	@ 0x3c000
+ 800588e:	6011      	str	r1, [r2, #0]
 	    p_hopamp->Instance->CSR &= MY_GAIN_8;
- 80057d0:	6811      	ldr	r1, [r2, #0]
- 80057d2:	f421 3150 	bic.w	r1, r1, #212992	@ 0x34000
- 80057d6:	e7e9      	b.n	80057ac <_ZN13PGA_cascade_27setGainEi+0x94>
+ 8005890:	6811      	ldr	r1, [r2, #0]
+ 8005892:	f421 3150 	bic.w	r1, r1, #212992	@ 0x34000
+ 8005896:	e7e9      	b.n	800586c <_ZN13PGA_cascade_27setGainEi+0x94>
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 80057d8:	e9d0 2300 	ldrd	r2, r3, [r0]
- 80057dc:	6812      	ldr	r2, [r2, #0]
- 80057de:	681b      	ldr	r3, [r3, #0]
- 80057e0:	6811      	ldr	r1, [r2, #0]
- 80057e2:	f441 3170 	orr.w	r1, r1, #245760	@ 0x3c000
- 80057e6:	6011      	str	r1, [r2, #0]
+ 8005898:	e9d0 2300 	ldrd	r2, r3, [r0]
+ 800589c:	6812      	ldr	r2, [r2, #0]
+ 800589e:	681b      	ldr	r3, [r3, #0]
+ 80058a0:	6811      	ldr	r1, [r2, #0]
+ 80058a2:	f441 3170 	orr.w	r1, r1, #245760	@ 0x3c000
+ 80058a6:	6011      	str	r1, [r2, #0]
 	    p_hopamp->Instance->CSR &= MY_GAIN_8;
- 80057e8:	6811      	ldr	r1, [r2, #0]
- 80057ea:	f421 3150 	bic.w	r1, r1, #212992	@ 0x34000
+ 80058a8:	6811      	ldr	r1, [r2, #0]
+ 80058aa:	f421 3150 	bic.w	r1, r1, #212992	@ 0x34000
 	    p_hopamp->Instance->CSR &= MY_GAIN_16;
- 80057ee:	6011      	str	r1, [r2, #0]
+ 80058ae:	6011      	str	r1, [r2, #0]
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 80057f0:	681a      	ldr	r2, [r3, #0]
- 80057f2:	f442 3270 	orr.w	r2, r2, #245760	@ 0x3c000
- 80057f6:	601a      	str	r2, [r3, #0]
+ 80058b0:	681a      	ldr	r2, [r3, #0]
+ 80058b2:	f442 3270 	orr.w	r2, r2, #245760	@ 0x3c000
+ 80058b6:	601a      	str	r2, [r3, #0]
 	    p_hopamp->Instance->CSR &= MY_GAIN_8;
- 80057f8:	681a      	ldr	r2, [r3, #0]
- 80057fa:	f422 3250 	bic.w	r2, r2, #212992	@ 0x34000
- 80057fe:	601a      	str	r2, [r3, #0]
+ 80058b8:	681a      	ldr	r2, [r3, #0]
+ 80058ba:	f422 3250 	bic.w	r2, r2, #212992	@ 0x34000
+ 80058be:	601a      	str	r2, [r3, #0]
         break;
- 8005800:	4770      	bx	lr
+ 80058c0:	4770      	bx	lr
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 8005802:	e9d0 2300 	ldrd	r2, r3, [r0]
+ 80058c2:	e9d0 2300 	ldrd	r2, r3, [r0]
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 8005806:	6812      	ldr	r2, [r2, #0]
+ 80058c6:	6812      	ldr	r2, [r2, #0]
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 8005808:	681b      	ldr	r3, [r3, #0]
+ 80058c8:	681b      	ldr	r3, [r3, #0]
         p_hopamp->Instance->CSR |= MY_GAIN_MASK;
- 800580a:	6811      	ldr	r1, [r2, #0]
- 800580c:	f441 3170 	orr.w	r1, r1, #245760	@ 0x3c000
- 8005810:	6011      	str	r1, [r2, #0]
+ 80058ca:	6811      	ldr	r1, [r2, #0]
+ 80058cc:	f441 3170 	orr.w	r1, r1, #245760	@ 0x3c000
+ 80058d0:	6011      	str	r1, [r2, #0]
 	    p_hopamp->Instance->CSR &= MY_GAIN_16;
- 8005812:	6811      	ldr	r1, [r2, #0]
- 8005814:	f421 3140 	bic.w	r1, r1, #196608	@ 0x30000
- 8005818:	e7e9      	b.n	80057ee <_ZN13PGA_cascade_27setGainEi+0xd6>
- 800581a:	bf00      	nop
+ 80058d2:	6811      	ldr	r1, [r2, #0]
+ 80058d4:	f421 3140 	bic.w	r1, r1, #196608	@ 0x30000
+ 80058d8:	e7e9      	b.n	80058ae <_ZN13PGA_cascade_27setGainEi+0xd6>
+ 80058da:	bf00      	nop
 
-0800581c <_Z27first_half_written_callbackP19__DMA_HandleTypeDef>:
+080058dc <_Z27first_half_written_callbackP19__DMA_HandleTypeDef>:
 	}
 #endif
 	//(*p_index_info_tx).stream_adc(cur_out_pfx);
 }
 
 void first_half_written_callback(DMA_HandleTypeDef *hdma) {
- 800581c:	b508      	push	{r3, lr}
+ 80058dc:	b508      	push	{r3, lr}
 
     if (PingOut::debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);}
- 800581e:	4b11      	ldr	r3, [pc, #68]	@ (8005864 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x48>)
- 8005820:	781b      	ldrb	r3, [r3, #0]
- 8005822:	b9c3      	cbnz	r3, 8005856 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x3a>
+ 80058de:	4b11      	ldr	r3, [pc, #68]	@ (8005924 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x48>)
+ 80058e0:	781b      	ldrb	r3, [r3, #0]
+ 80058e2:	b9c3      	cbnz	r3, 8005916 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x3a>
     PingOut::cur_out_pfx += 1; //roll-over after 0x7FFF to match peak detector
- 8005824:	4a10      	ldr	r2, [pc, #64]	@ (8005868 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x4c>)
+ 80058e4:	4a10      	ldr	r2, [pc, #64]	@ (8005928 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x4c>)
 
     PingOut::po_state = POState::FIRST_HLF_FREE;
- 8005826:	4811      	ldr	r0, [pc, #68]	@ (800586c <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x50>)
+ 80058e6:	4811      	ldr	r0, [pc, #68]	@ (800592c <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x50>)
     PingOut::cur_out_pfx += 1; //roll-over after 0x7FFF to match peak detector
- 8005828:	8813      	ldrh	r3, [r2, #0]
+ 80058e8:	8813      	ldrh	r3, [r2, #0]
 
     if ((PingOut::cur_out_pfx%PingOut::schedule_period) == 0){
- 800582a:	4911      	ldr	r1, [pc, #68]	@ (8005870 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x54>)
+ 80058ea:	4911      	ldr	r1, [pc, #68]	@ (8005930 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x54>)
     PingOut::cur_out_pfx += 1; //roll-over after 0x7FFF to match peak detector
- 800582c:	3301      	adds	r3, #1
- 800582e:	b29b      	uxth	r3, r3
+ 80058ec:	3301      	adds	r3, #1
+ 80058ee:	b29b      	uxth	r3, r3
     PingOut::po_state = POState::FIRST_HLF_FREE;
- 8005830:	f04f 0c00 	mov.w	ip, #0
+ 80058f0:	f04f 0c00 	mov.w	ip, #0
     PingOut::cur_out_pfx += 1; //roll-over after 0x7FFF to match peak detector
- 8005834:	8013      	strh	r3, [r2, #0]
+ 80058f4:	8013      	strh	r3, [r2, #0]
     PingOut::po_state = POState::FIRST_HLF_FREE;
- 8005836:	f8a0 c000 	strh.w	ip, [r0]
+ 80058f6:	f8a0 c000 	strh.w	ip, [r0]
     if ((PingOut::cur_out_pfx%PingOut::schedule_period) == 0){
- 800583a:	8813      	ldrh	r3, [r2, #0]
- 800583c:	880a      	ldrh	r2, [r1, #0]
- 800583e:	b29b      	uxth	r3, r3
- 8005840:	b292      	uxth	r2, r2
- 8005842:	fbb3 f1f2 	udiv	r1, r3, r2
- 8005846:	fb02 3311 	mls	r3, r2, r1, r3
- 800584a:	b29b      	uxth	r3, r3
- 800584c:	b913      	cbnz	r3, 8005854 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x38>
+ 80058fa:	8813      	ldrh	r3, [r2, #0]
+ 80058fc:	880a      	ldrh	r2, [r1, #0]
+ 80058fe:	b29b      	uxth	r3, r3
+ 8005900:	b292      	uxth	r2, r2
+ 8005902:	fbb3 f1f2 	udiv	r1, r3, r2
+ 8005906:	fb02 3311 	mls	r3, r2, r1, r3
+ 800590a:	b29b      	uxth	r3, r3
+ 800590c:	b913      	cbnz	r3, 8005914 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x38>
     	PingOut::time_to_schedule_period=true;
- 800584e:	4b09      	ldr	r3, [pc, #36]	@ (8005874 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x58>)
- 8005850:	2201      	movs	r2, #1
- 8005852:	701a      	strb	r2, [r3, #0]
+ 800590e:	4b09      	ldr	r3, [pc, #36]	@ (8005934 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x58>)
+ 8005910:	2201      	movs	r2, #1
+ 8005912:	701a      	strb	r2, [r3, #0]
     }
 }
- 8005854:	bd08      	pop	{r3, pc}
+ 8005914:	bd08      	pop	{r3, pc}
     if (PingOut::debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);}
- 8005856:	4808      	ldr	r0, [pc, #32]	@ (8005878 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x5c>)
- 8005858:	2201      	movs	r2, #1
- 800585a:	f44f 7100 	mov.w	r1, #512	@ 0x200
- 800585e:	f7fc fc1b 	bl	8002098 <HAL_GPIO_WritePin>
- 8005862:	e7df      	b.n	8005824 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x8>
- 8005864:	20006430 	.word	0x20006430
- 8005868:	20006434 	.word	0x20006434
- 800586c:	20000018 	.word	0x20000018
- 8005870:	20006432 	.word	0x20006432
- 8005874:	20006431 	.word	0x20006431
- 8005878:	48000800 	.word	0x48000800
+ 8005916:	4808      	ldr	r0, [pc, #32]	@ (8005938 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x5c>)
+ 8005918:	2201      	movs	r2, #1
+ 800591a:	f44f 7100 	mov.w	r1, #512	@ 0x200
+ 800591e:	f7fc fbbb 	bl	8002098 <HAL_GPIO_WritePin>
+ 8005922:	e7df      	b.n	80058e4 <_Z27first_half_written_callbackP19__DMA_HandleTypeDef+0x8>
+ 8005924:	20006430 	.word	0x20006430
+ 8005928:	20006434 	.word	0x20006434
+ 800592c:	20000018 	.word	0x20000018
+ 8005930:	20006432 	.word	0x20006432
+ 8005934:	20006431 	.word	0x20006431
+ 8005938:	48000800 	.word	0x48000800
 
-0800587c <_Z27secnd_half_written_callbackP19__DMA_HandleTypeDef>:
+0800593c <_Z27secnd_half_written_callbackP19__DMA_HandleTypeDef>:
 
 void secnd_half_written_callback(DMA_HandleTypeDef *hdma) {
- 800587c:	b508      	push	{r3, lr}
+ 800593c:	b508      	push	{r3, lr}
     if (PingOut::debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);}
- 800587e:	4b08      	ldr	r3, [pc, #32]	@ (80058a0 <_Z27secnd_half_written_callbackP19__DMA_HandleTypeDef+0x24>)
- 8005880:	781b      	ldrb	r3, [r3, #0]
- 8005882:	b91b      	cbnz	r3, 800588c <_Z27secnd_half_written_callbackP19__DMA_HandleTypeDef+0x10>
+ 800593e:	4b08      	ldr	r3, [pc, #32]	@ (8005960 <_Z27secnd_half_written_callbackP19__DMA_HandleTypeDef+0x24>)
+ 8005940:	781b      	ldrb	r3, [r3, #0]
+ 8005942:	b91b      	cbnz	r3, 800594c <_Z27secnd_half_written_callbackP19__DMA_HandleTypeDef+0x10>
 
     PingOut::po_state = POState::SECND_HLF_FREE;
- 8005884:	4b07      	ldr	r3, [pc, #28]	@ (80058a4 <_Z27secnd_half_written_callbackP19__DMA_HandleTypeDef+0x28>)
- 8005886:	2201      	movs	r2, #1
- 8005888:	801a      	strh	r2, [r3, #0]
+ 8005944:	4b07      	ldr	r3, [pc, #28]	@ (8005964 <_Z27secnd_half_written_callbackP19__DMA_HandleTypeDef+0x28>)
+ 8005946:	2201      	movs	r2, #1
+ 8005948:	801a      	strh	r2, [r3, #0]
 }
- 800588a:	bd08      	pop	{r3, pc}
+ 800594a:	bd08      	pop	{r3, pc}
     if (PingOut::debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET);}
- 800588c:	2200      	movs	r2, #0
- 800588e:	4806      	ldr	r0, [pc, #24]	@ (80058a8 <_Z27secnd_half_written_callbackP19__DMA_HandleTypeDef+0x2c>)
- 8005890:	f44f 7100 	mov.w	r1, #512	@ 0x200
- 8005894:	f7fc fc00 	bl	8002098 <HAL_GPIO_WritePin>
+ 800594c:	2200      	movs	r2, #0
+ 800594e:	4806      	ldr	r0, [pc, #24]	@ (8005968 <_Z27secnd_half_written_callbackP19__DMA_HandleTypeDef+0x2c>)
+ 8005950:	f44f 7100 	mov.w	r1, #512	@ 0x200
+ 8005954:	f7fc fba0 	bl	8002098 <HAL_GPIO_WritePin>
     PingOut::po_state = POState::SECND_HLF_FREE;
- 8005898:	4b02      	ldr	r3, [pc, #8]	@ (80058a4 <_Z27secnd_half_written_callbackP19__DMA_HandleTypeDef+0x28>)
- 800589a:	2201      	movs	r2, #1
- 800589c:	801a      	strh	r2, [r3, #0]
+ 8005958:	4b02      	ldr	r3, [pc, #8]	@ (8005964 <_Z27secnd_half_written_callbackP19__DMA_HandleTypeDef+0x28>)
+ 800595a:	2201      	movs	r2, #1
+ 800595c:	801a      	strh	r2, [r3, #0]
 }
- 800589e:	bd08      	pop	{r3, pc}
- 80058a0:	20006430 	.word	0x20006430
- 80058a4:	20000018 	.word	0x20000018
- 80058a8:	48000800 	.word	0x48000800
+ 800595e:	bd08      	pop	{r3, pc}
+ 8005960:	20006430 	.word	0x20006430
+ 8005964:	20000018 	.word	0x20000018
+ 8005968:	48000800 	.word	0x48000800
 
-080058ac <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX>:
+0800596c <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX>:
 PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2, IndexInfoTX* p_index_info_tx) {
- 80058ac:	b570      	push	{r4, r5, r6, lr}
- 80058ae:	4605      	mov	r5, r0
- 80058b0:	4608      	mov	r0, r1
- 80058b2:	4616      	mov	r6, r2
+ 800596c:	b570      	push	{r4, r5, r6, lr}
+ 800596e:	4605      	mov	r5, r0
+ 8005970:	4608      	mov	r0, r1
+ 8005972:	4616      	mov	r6, r2
     p_hdma_tim2_up->XferCpltCallback =     secnd_half_written_callback;
- 80058b4:	4a14      	ldr	r2, [pc, #80]	@ (8005908 <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x5c>)
- 80058b6:	6282      	str	r2, [r0, #40]	@ 0x28
-    clear_offset = 0;
- 80058b8:	2200      	movs	r2, #0
- 80058ba:	e9c5 3202 	strd	r3, r2, [r5, #8]
+ 8005974:	4a16      	ldr	r2, [pc, #88]	@ (80059d0 <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x64>)
     p_hdma_tim2_up->XferHalfCpltCallback = first_half_written_callback;
- 80058be:	4913      	ldr	r1, [pc, #76]	@ (800590c <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x60>)
- 80058c0:	4b13      	ldr	r3, [pc, #76]	@ (8005910 <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x64>)
- 80058c2:	62c1      	str	r1, [r0, #44]	@ 0x2c
-    this->p_htim2 = p_htim2;
- 80058c4:	e9c5 0600 	strd	r0, r6, [r5]
-    peak_count = 4;
- 80058c8:	4912      	ldr	r1, [pc, #72]	@ (8005914 <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x68>)
+ 8005976:	4917      	ldr	r1, [pc, #92]	@ (80059d4 <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x68>)
+    p_hdma_tim2_up->XferCpltCallback =     secnd_half_written_callback;
+ 8005978:	6282      	str	r2, [r0, #40]	@ 0x28
+    clear_offset = 0;
+ 800597a:	2200      	movs	r2, #0
+ 800597c:	e9c5 3202 	strd	r3, r2, [r5, #8]
+    p_hdma_tim2_up->XferHalfCpltCallback = first_half_written_callback;
+ 8005980:	62c1      	str	r1, [r0, #44]	@ 0x2c
     data_idx = 0;
- 80058ca:	612a      	str	r2, [r5, #16]
-    scheduled_flag = false;
- 80058cc:	76aa      	strb	r2, [r5, #26]
-    periodic_schedule_enable = false;
- 80058ce:	832a      	strh	r2, [r5, #24]
-    scheduled_pfx = INIT_OUT;
- 80058d0:	4a11      	ldr	r2, [pc, #68]	@ (8005918 <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x6c>)
+ 8005982:	612a      	str	r2, [r5, #16]
+    beacon_id = 0;
+ 8005984:	4914      	ldr	r1, [pc, #80]	@ (80059d8 <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x6c>)
+    info = id_list;
+ 8005986:	4a15      	ldr	r2, [pc, #84]	@ (80059dc <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x70>)
+ 8005988:	4b15      	ldr	r3, [pc, #84]	@ (80059e0 <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x74>)
+ 800598a:	616a      	str	r2, [r5, #20]
+    this->p_htim2 = p_htim2;
+ 800598c:	e9c5 0600 	strd	r0, r6, [r5]
+    beacon_id = 0;
+ 8005990:	f44f 3280 	mov.w	r2, #65536	@ 0x10000
+ 8005994:	e9c5 1206 	strd	r1, r2, [r5, #24]
     peak_count = 4;
- 80058d2:	61e9      	str	r1, [r5, #28]
-    scheduled_pfx = INIT_OUT;
- 80058d4:	616a      	str	r2, [r5, #20]
+ 8005998:	4a12      	ldr	r2, [pc, #72]	@ (80059e4 <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x78>)
+ 800599a:	622a      	str	r2, [r5, #32]
 	for (uint16_t i = 0; i < OUT_BUF_LEN; i++) {
- 80058d6:	1d19      	adds	r1, r3, #4
- 80058d8:	f503 5400 	add.w	r4, r3, #8192	@ 0x2000
+ 800599c:	1d19      	adds	r1, r3, #4
+ 800599e:	f503 5400 	add.w	r4, r3, #8192	@ 0x2000
 		out_buf[i] = BSRR_PC6_RESET_MASK;
- 80058dc:	f44f 0280 	mov.w	r2, #4194304	@ 0x400000
- 80058e0:	f843 2f04 	str.w	r2, [r3, #4]!
+ 80059a2:	f44f 0280 	mov.w	r2, #4194304	@ 0x400000
+ 80059a6:	f843 2f04 	str.w	r2, [r3, #4]!
 	for (uint16_t i = 0; i < OUT_BUF_LEN; i++) {
- 80058e4:	42a3      	cmp	r3, r4
- 80058e6:	d1fb      	bne.n	80058e0 <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x34>
+ 80059aa:	42a3      	cmp	r3, r4
+ 80059ac:	d1fb      	bne.n	80059a6 <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x3a>
 	HAL_DMA_Start_IT(p_hdma_tim2_up,
- 80058e8:	4a0c      	ldr	r2, [pc, #48]	@ (800591c <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x70>)
- 80058ea:	f44f 6300 	mov.w	r3, #2048	@ 0x800
- 80058ee:	f7fc f949 	bl	8001b84 <HAL_DMA_Start_IT>
+ 80059ae:	4a0e      	ldr	r2, [pc, #56]	@ (80059e8 <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX+0x7c>)
+ 80059b0:	f44f 6300 	mov.w	r3, #2048	@ 0x800
+ 80059b4:	f7fc f8e6 	bl	8001b84 <HAL_DMA_Start_IT>
     HAL_TIM_Base_Start(p_htim2);
- 80058f2:	4630      	mov	r0, r6
- 80058f4:	f7fd fc0a 	bl	800310c <HAL_TIM_Base_Start>
+ 80059b8:	4630      	mov	r0, r6
+ 80059ba:	f7fd fba7 	bl	800310c <HAL_TIM_Base_Start>
 	TIM2->DIER |= (1<<8); //set UDE bit (update dma request enable)
- 80058f8:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
+ 80059be:	f04f 4280 	mov.w	r2, #1073741824	@ 0x40000000
 }
- 80058fc:	4628      	mov	r0, r5
+ 80059c2:	4628      	mov	r0, r5
 	TIM2->DIER |= (1<<8); //set UDE bit (update dma request enable)
- 80058fe:	68d3      	ldr	r3, [r2, #12]
- 8005900:	f443 7380 	orr.w	r3, r3, #256	@ 0x100
- 8005904:	60d3      	str	r3, [r2, #12]
+ 80059c4:	68d3      	ldr	r3, [r2, #12]
+ 80059c6:	f443 7380 	orr.w	r3, r3, #256	@ 0x100
+ 80059ca:	60d3      	str	r3, [r2, #12]
 }
- 8005906:	bd70      	pop	{r4, r5, r6, pc}
- 8005908:	0800587d 	.word	0x0800587d
- 800590c:	0800581d 	.word	0x0800581d
- 8005910:	20006434 	.word	0x20006434
- 8005914:	00060004 	.word	0x00060004
- 8005918:	04000064 	.word	0x04000064
- 800591c:	48000818 	.word	0x48000818
+ 80059cc:	bd70      	pop	{r4, r5, r6, pc}
+ 80059ce:	bf00      	nop
+ 80059d0:	0800593d 	.word	0x0800593d
+ 80059d4:	080058dd 	.word	0x080058dd
+ 80059d8:	04000064 	.word	0x04000064
+ 80059dc:	08006260 	.word	0x08006260
+ 80059e0:	20006434 	.word	0x20006434
+ 80059e4:	00060004 	.word	0x00060004
+ 80059e8:	48000818 	.word	0x48000818
 
-08005920 <_ZN7PingOut8scheduleEtt>:
+080059ec <_ZN7PingOut8scheduleEtt>:
     enable_scheduler = true;
- 8005920:	2301      	movs	r3, #1
+ 80059ec:	2301      	movs	r3, #1
 	scheduled_pfx = pfx;
- 8005922:	8281      	strh	r1, [r0, #20]
+ 80059ee:	8301      	strh	r1, [r0, #24]
     scheduled_idx = idx;
- 8005924:	82c2      	strh	r2, [r0, #22]
+ 80059f0:	8342      	strh	r2, [r0, #26]
     enable_scheduler = true;
- 8005926:	7643      	strb	r3, [r0, #25]
+ 80059f2:	7783      	strb	r3, [r0, #30]
 }
- 8005928:	4770      	bx	lr
- 800592a:	bf00      	nop
+ 80059f4:	4770      	bx	lr
+ 80059f6:	bf00      	nop
 
-0800592c <_ZN7PingOut3setEv>:
+080059f8 <_ZN7PingOut3setEv>:
 void PingOut::set() {
- 800592c:	e92d 4ff8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 80059f8:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
     if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_SET);}
- 8005930:	4d4c      	ldr	r5, [pc, #304]	@ (8005a64 <_ZN7PingOut3setEv+0x138>)
- 8005932:	782a      	ldrb	r2, [r5, #0]
+ 80059fc:	4d4e      	ldr	r5, [pc, #312]	@ (8005b38 <_ZN7PingOut3setEv+0x140>)
+ 80059fe:	782a      	ldrb	r2, [r5, #0]
 void PingOut::set() {
- 8005934:	4604      	mov	r4, r0
+ 8005a00:	b083      	sub	sp, #12
+ 8005a02:	4604      	mov	r4, r0
     if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_SET);}
- 8005936:	2a00      	cmp	r2, #0
- 8005938:	f040 808c 	bne.w	8005a54 <_ZN7PingOut3setEv+0x128>
- 800593c:	4b4a      	ldr	r3, [pc, #296]	@ (8005a68 <_ZN7PingOut3setEv+0x13c>)
-    	if((cur_idx>=HAL_OUT_BUF_LEN) && po_state==POState::FIRST_HLF_FREE){
- 800593e:	89e1      	ldrh	r1, [r4, #14]
- 8005940:	7818      	ldrb	r0, [r3, #0]
- 8005942:	4d4a      	ldr	r5, [pc, #296]	@ (8005a6c <_ZN7PingOut3setEv+0x140>)
-		c = info[i_char];
- 8005944:	4e4a      	ldr	r6, [pc, #296]	@ (8005a70 <_ZN7PingOut3setEv+0x144>)
-    			if(bit ^ phase)out_buf[cur_idx]=BSRR_PC6_RESET_MASK;
- 8005946:	f8df e130 	ldr.w	lr, [pc, #304]	@ 8005a78 <_ZN7PingOut3setEv+0x14c>
-    	if((cur_idx>=HAL_OUT_BUF_LEN) && po_state==POState::FIRST_HLF_FREE){
- 800594a:	2700      	movs	r7, #0
-    			if(bit ^ phase)out_buf[cur_idx]=BSRR_PC6_RESET_MASK;
- 800594c:	f44f 0880 	mov.w	r8, #4194304	@ 0x400000
-    	if((cur_idx>=HAL_OUT_BUF_LEN) && po_state==POState::FIRST_HLF_FREE){
- 8005950:	f5b1 6f80 	cmp.w	r1, #1024	@ 0x400
- 8005954:	d309      	bcc.n	800596a <_ZN7PingOut3setEv+0x3e>
- 8005956:	882b      	ldrh	r3, [r5, #0]
- 8005958:	b29b      	uxth	r3, r3
- 800595a:	b353      	cbz	r3, 80059b2 <_ZN7PingOut3setEv+0x86>
-    	else if((cur_idx>=OUT_BUF_LEN) && po_state==POState::SECND_HLF_FREE){
- 800595c:	f5b1 6f00 	cmp.w	r1, #2048	@ 0x800
- 8005960:	d303      	bcc.n	800596a <_ZN7PingOut3setEv+0x3e>
- 8005962:	882b      	ldrh	r3, [r5, #0]
- 8005964:	b29b      	uxth	r3, r3
- 8005966:	2b01      	cmp	r3, #1
- 8005968:	d064      	beq.n	8005a34 <_ZN7PingOut3setEv+0x108>
-		i_set = data_idx & (DEAD_INTERVAL-1);         // Lower 9 bits (0-511)
- 800596a:	6923      	ldr	r3, [r4, #16]
-		i_char = data_idx >> 12;
- 800596c:	f3c3 3907 	ubfx	r9, r3, #12, #8
-		bit = c & 1 <<(i_bit);
- 8005970:	f3c3 2b42 	ubfx	fp, r3, #9, #3
- 8005974:	f816 c009 	ldrb.w	ip, [r6, r9]
+ 8005a04:	2a00      	cmp	r2, #0
+ 8005a06:	f040 808f 	bne.w	8005b28 <_ZN7PingOut3setEv+0x130>
     	switch (set_state){
- 8005978:	2801      	cmp	r0, #1
-		bit = c & 1 <<(i_bit);
- 800597a:	fa4c fc0b 	asr.w	ip, ip, fp
-		i_set = data_idx & (DEAD_INTERVAL-1);         // Lower 9 bits (0-511)
- 800597e:	fa1f fa83 	uxth.w	sl, r3
-		bit = c & 1 <<(i_bit);
- 8005982:	f00c 0c01 	and.w	ip, ip, #1
-		phase = bool(i_set & 1);
- 8005986:	f003 0b01 	and.w	fp, r3, #1
-    	switch (set_state){
- 800598a:	d019      	beq.n	80059c0 <_ZN7PingOut3setEv+0x94>
- 800598c:	2802      	cmp	r0, #2
- 800598e:	d028      	beq.n	80059e2 <_ZN7PingOut3setEv+0xb6>
- 8005990:	2800      	cmp	r0, #0
- 8005992:	d1dd      	bne.n	8005950 <_ZN7PingOut3setEv+0x24>
-    		if(i_char>STRING_LEN-1){
- 8005994:	f1b9 0f01 	cmp.w	r9, #1
- 8005998:	d92b      	bls.n	80059f2 <_ZN7PingOut3setEv+0xc6>
-    			data_idx-=OUT_BUF_LEN;
- 800599a:	f5a3 6300 	sub.w	r3, r3, #2048	@ 0x800
-    			break;
- 800599e:	2701      	movs	r7, #1
+ 8005a0a:	4e4c      	ldr	r6, [pc, #304]	@ (8005b3c <_ZN7PingOut3setEv+0x144>)
     	if((cur_idx>=HAL_OUT_BUF_LEN) && po_state==POState::FIRST_HLF_FREE){
- 80059a0:	f5b1 6f80 	cmp.w	r1, #1024	@ 0x400
-    			data_idx-=OUT_BUF_LEN;
- 80059a4:	6123      	str	r3, [r4, #16]
+ 8005a0c:	89e1      	ldrh	r1, [r4, #14]
+    	switch (set_state){
+ 8005a0e:	7830      	ldrb	r0, [r6, #0]
+ 8005a10:	4d4b      	ldr	r5, [pc, #300]	@ (8005b40 <_ZN7PingOut3setEv+0x148>)
+    			if(bit ^ phase)out_buf[cur_idx]=BSRR_PC6_RESET_MASK;
+ 8005a12:	f8df 8134 	ldr.w	r8, [pc, #308]	@ 8005b48 <_ZN7PingOut3setEv+0x150>
     			set_state=SetState::CLEAR;
- 80059a6:	4638      	mov	r0, r7
-    	if((cur_idx>=HAL_OUT_BUF_LEN) && po_state==POState::FIRST_HLF_FREE){
- 80059a8:	d3df      	bcc.n	800596a <_ZN7PingOut3setEv+0x3e>
- 80059aa:	882b      	ldrh	r3, [r5, #0]
- 80059ac:	b29b      	uxth	r3, r3
- 80059ae:	2b00      	cmp	r3, #0
- 80059b0:	d1d4      	bne.n	800595c <_ZN7PingOut3setEv+0x30>
- 80059b2:	b10f      	cbz	r7, 80059b8 <_ZN7PingOut3setEv+0x8c>
- 80059b4:	4b2c      	ldr	r3, [pc, #176]	@ (8005a68 <_ZN7PingOut3setEv+0x13c>)
- 80059b6:	7018      	strb	r0, [r3, #0]
-    if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET);}
- 80059b8:	2a00      	cmp	r2, #0
- 80059ba:	d143      	bne.n	8005a44 <_ZN7PingOut3setEv+0x118>
-}
- 80059bc:	e8bd 8ff8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, sl, fp, pc}
-    		if(i_char>STRING_LEN){
- 80059c0:	f1b9 0f02 	cmp.w	r9, #2
- 80059c4:	d812      	bhi.n	80059ec <_ZN7PingOut3setEv+0xc0>
-    		if(i_set < N_CYCLE*2){
- 80059c6:	f41a 7ff8 	tst.w	sl, #496	@ 0x1f0
- 80059ca:	d123      	bne.n	8005a14 <_ZN7PingOut3setEv+0xe8>
-    			if(bit ^ phase)out_buf[cur_idx]=BSRR_PC6_RESET_MASK;
- 80059cc:	45dc      	cmp	ip, fp
- 80059ce:	bf1c      	itt	ne
- 80059d0:	f84e 8021 	strne.w	r8, [lr, r1, lsl #2]
-        		data_idx++;
- 80059d4:	6923      	ldrne	r3, [r4, #16]
-            	cur_idx++;
- 80059d6:	3101      	adds	r1, #1
-        		data_idx++;
- 80059d8:	3301      	adds	r3, #1
-            	cur_idx++;
- 80059da:	b289      	uxth	r1, r1
-        		data_idx++;
- 80059dc:	6123      	str	r3, [r4, #16]
-            	cur_idx++;
- 80059de:	81e1      	strh	r1, [r4, #14]
- 80059e0:	e7b6      	b.n	8005950 <_ZN7PingOut3setEv+0x24>
-    		cur_idx+=HAL_OUT_BUF_LEN;
- 80059e2:	f501 6180 	add.w	r1, r1, #1024	@ 0x400
- 80059e6:	b289      	uxth	r1, r1
- 80059e8:	81e1      	strh	r1, [r4, #14]
-    		break;
- 80059ea:	e7b1      	b.n	8005950 <_ZN7PingOut3setEv+0x24>
- 80059ec:	4607      	mov	r7, r0
+ 8005a16:	9201      	str	r2, [sp, #4]
     			set_state=SetState::PO_DISABLED;
- 80059ee:	2002      	movs	r0, #2
- 80059f0:	e7ae      	b.n	8005950 <_ZN7PingOut3setEv+0x24>
+ 8005a18:	2702      	movs	r7, #2
+    			set_state=SetState::CLEAR;
+ 8005a1a:	f04f 0e01 	mov.w	lr, #1
+    	if((cur_idx>=HAL_OUT_BUF_LEN) && po_state==POState::FIRST_HLF_FREE){
+ 8005a1e:	f5b1 6f80 	cmp.w	r1, #1024	@ 0x400
+ 8005a22:	d309      	bcc.n	8005a38 <_ZN7PingOut3setEv+0x40>
+ 8005a24:	882b      	ldrh	r3, [r5, #0]
+ 8005a26:	b29b      	uxth	r3, r3
+ 8005a28:	b36b      	cbz	r3, 8005a86 <_ZN7PingOut3setEv+0x8e>
+    	else if((cur_idx>=OUT_BUF_LEN) && po_state==POState::SECND_HLF_FREE){
+ 8005a2a:	f5b1 6f00 	cmp.w	r1, #2048	@ 0x800
+ 8005a2e:	d303      	bcc.n	8005a38 <_ZN7PingOut3setEv+0x40>
+ 8005a30:	882b      	ldrh	r3, [r5, #0]
+ 8005a32:	b29b      	uxth	r3, r3
+ 8005a34:	2b01      	cmp	r3, #1
+ 8005a36:	d068      	beq.n	8005b0a <_ZN7PingOut3setEv+0x112>
+		i_set = data_idx & (DEAD_INTERVAL-1);         // Lower 9 bits (0-511)
+ 8005a38:	6923      	ldr	r3, [r4, #16]
+		bit = c & 1 <<(i_bit);
+ 8005a3a:	6962      	ldr	r2, [r4, #20]
+		i_char = data_idx >> 12;
+ 8005a3c:	f3c3 3907 	ubfx	r9, r3, #12, #8
+		bit = c & 1 <<(i_bit);
+ 8005a40:	f3c3 2b42 	ubfx	fp, r3, #9, #3
+ 8005a44:	f812 c009 	ldrb.w	ip, [r2, r9]
+    	switch (set_state){
+ 8005a48:	2801      	cmp	r0, #1
+		bit = c & 1 <<(i_bit);
+ 8005a4a:	fa4c fc0b 	asr.w	ip, ip, fp
+		i_set = data_idx & (DEAD_INTERVAL-1);         // Lower 9 bits (0-511)
+ 8005a4e:	fa1f fa83 	uxth.w	sl, r3
+		bit = c & 1 <<(i_bit);
+ 8005a52:	f00c 0c01 	and.w	ip, ip, #1
+		phase = bool(i_set & 1);
+ 8005a56:	f003 0b01 	and.w	fp, r3, #1
+    	switch (set_state){
+ 8005a5a:	d01a      	beq.n	8005a92 <_ZN7PingOut3setEv+0x9a>
+ 8005a5c:	2802      	cmp	r0, #2
+ 8005a5e:	d01e      	beq.n	8005a9e <_ZN7PingOut3setEv+0xa6>
+ 8005a60:	2800      	cmp	r0, #0
+ 8005a62:	d1dc      	bne.n	8005a1e <_ZN7PingOut3setEv+0x26>
+    		if(i_char>STRING_LEN-1){
+ 8005a64:	f1b9 0f01 	cmp.w	r9, #1
+ 8005a68:	d92e      	bls.n	8005ac8 <_ZN7PingOut3setEv+0xd0>
+    			data_idx-=OUT_BUF_LEN;
+ 8005a6a:	f5a3 6300 	sub.w	r3, r3, #2048	@ 0x800
+    	if((cur_idx>=HAL_OUT_BUF_LEN) && po_state==POState::FIRST_HLF_FREE){
+ 8005a6e:	f5b1 6f80 	cmp.w	r1, #1024	@ 0x400
+    			set_state=SetState::CLEAR;
+ 8005a72:	f886 e000 	strb.w	lr, [r6]
+    			data_idx-=OUT_BUF_LEN;
+ 8005a76:	6123      	str	r3, [r4, #16]
+    			break;
+ 8005a78:	f04f 0001 	mov.w	r0, #1
+    	if((cur_idx>=HAL_OUT_BUF_LEN) && po_state==POState::FIRST_HLF_FREE){
+ 8005a7c:	d3dc      	bcc.n	8005a38 <_ZN7PingOut3setEv+0x40>
+ 8005a7e:	882b      	ldrh	r3, [r5, #0]
+ 8005a80:	b29b      	uxth	r3, r3
+ 8005a82:	2b00      	cmp	r3, #0
+ 8005a84:	d1d1      	bne.n	8005a2a <_ZN7PingOut3setEv+0x32>
+    if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET);}
+ 8005a86:	9a01      	ldr	r2, [sp, #4]
+ 8005a88:	2a00      	cmp	r2, #0
+ 8005a8a:	d144      	bne.n	8005b16 <_ZN7PingOut3setEv+0x11e>
+}
+ 8005a8c:	b003      	add	sp, #12
+ 8005a8e:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
+    		if(i_char>STRING_LEN){
+ 8005a92:	f1b9 0f02 	cmp.w	r9, #2
+ 8005a96:	d907      	bls.n	8005aa8 <_ZN7PingOut3setEv+0xb0>
+    			set_state=SetState::PO_DISABLED;
+ 8005a98:	7037      	strb	r7, [r6, #0]
+    			break;
+ 8005a9a:	2002      	movs	r0, #2
+ 8005a9c:	e7bf      	b.n	8005a1e <_ZN7PingOut3setEv+0x26>
+    		cur_idx+=HAL_OUT_BUF_LEN;
+ 8005a9e:	f501 6180 	add.w	r1, r1, #1024	@ 0x400
+ 8005aa2:	b289      	uxth	r1, r1
+ 8005aa4:	81e1      	strh	r1, [r4, #14]
+    		break;
+ 8005aa6:	e7ba      	b.n	8005a1e <_ZN7PingOut3setEv+0x26>
     		if(i_set < N_CYCLE*2){
- 80059f2:	f41a 7ff8 	tst.w	sl, #496	@ 0x1f0
- 80059f6:	d115      	bne.n	8005a24 <_ZN7PingOut3setEv+0xf8>
+ 8005aa8:	f41a 7ff8 	tst.w	sl, #496	@ 0x1f0
+ 8005aac:	d11d      	bne.n	8005aea <_ZN7PingOut3setEv+0xf2>
+    			if(bit ^ phase)out_buf[cur_idx]=BSRR_PC6_RESET_MASK;
+ 8005aae:	45dc      	cmp	ip, fp
+ 8005ab0:	d004      	beq.n	8005abc <_ZN7PingOut3setEv+0xc4>
+ 8005ab2:	f44f 0380 	mov.w	r3, #4194304	@ 0x400000
+ 8005ab6:	f848 3021 	str.w	r3, [r8, r1, lsl #2]
+        		data_idx++;
+ 8005aba:	6923      	ldr	r3, [r4, #16]
+            	cur_idx++;
+ 8005abc:	3101      	adds	r1, #1
+        		data_idx++;
+ 8005abe:	3301      	adds	r3, #1
+            	cur_idx++;
+ 8005ac0:	b289      	uxth	r1, r1
+        		data_idx++;
+ 8005ac2:	6123      	str	r3, [r4, #16]
+            	cur_idx++;
+ 8005ac4:	81e1      	strh	r1, [r4, #14]
+ 8005ac6:	e7aa      	b.n	8005a1e <_ZN7PingOut3setEv+0x26>
+    		if(i_set < N_CYCLE*2){
+ 8005ac8:	f41a 7ff8 	tst.w	sl, #496	@ 0x1f0
+ 8005acc:	d115      	bne.n	8005afa <_ZN7PingOut3setEv+0x102>
 				if(phase ^ bit) out_buf[cur_idx]=BSRR_PC6_SET_MASK;
- 80059f8:	45dc      	cmp	ip, fp
- 80059fa:	bf14      	ite	ne
- 80059fc:	2340      	movne	r3, #64	@ 0x40
- 80059fe:	f44f 0380 	moveq.w	r3, #4194304	@ 0x400000
- 8005a02:	f84e 3021 	str.w	r3, [lr, r1, lsl #2]
+ 8005ace:	45dc      	cmp	ip, fp
+ 8005ad0:	bf14      	ite	ne
+ 8005ad2:	2340      	movne	r3, #64	@ 0x40
+ 8005ad4:	f44f 0380 	moveq.w	r3, #4194304	@ 0x400000
+ 8005ad8:	f848 3021 	str.w	r3, [r8, r1, lsl #2]
 				data_idx++;
- 8005a06:	6923      	ldr	r3, [r4, #16]
+ 8005adc:	6923      	ldr	r3, [r4, #16]
             	cur_idx++;
- 8005a08:	3101      	adds	r1, #1
- 8005a0a:	b289      	uxth	r1, r1
+ 8005ade:	3101      	adds	r1, #1
+ 8005ae0:	b289      	uxth	r1, r1
 				data_idx++;
- 8005a0c:	3301      	adds	r3, #1
+ 8005ae2:	3301      	adds	r3, #1
             	cur_idx++;
- 8005a0e:	81e1      	strh	r1, [r4, #14]
+ 8005ae4:	81e1      	strh	r1, [r4, #14]
 				data_idx++;
- 8005a10:	6123      	str	r3, [r4, #16]
+ 8005ae6:	6123      	str	r3, [r4, #16]
             	cur_idx++;
- 8005a12:	e79d      	b.n	8005950 <_ZN7PingOut3setEv+0x24>
+ 8005ae8:	e799      	b.n	8005a1e <_ZN7PingOut3setEv+0x26>
         		cur_idx+=(DEAD_INTERVAL-N_CYCLE*2);
- 8005a14:	f501 71f8 	add.w	r1, r1, #496	@ 0x1f0
+ 8005aea:	f501 71f8 	add.w	r1, r1, #496	@ 0x1f0
         		data_idx+=(DEAD_INTERVAL-N_CYCLE*2);
- 8005a18:	f503 73f8 	add.w	r3, r3, #496	@ 0x1f0
+ 8005aee:	f503 73f8 	add.w	r3, r3, #496	@ 0x1f0
         		cur_idx+=(DEAD_INTERVAL-N_CYCLE*2);
- 8005a1c:	b289      	uxth	r1, r1
+ 8005af2:	b289      	uxth	r1, r1
         		data_idx+=(DEAD_INTERVAL-N_CYCLE*2);
- 8005a1e:	6123      	str	r3, [r4, #16]
+ 8005af4:	6123      	str	r3, [r4, #16]
         		cur_idx+=(DEAD_INTERVAL-N_CYCLE*2);
- 8005a20:	81e1      	strh	r1, [r4, #14]
- 8005a22:	e795      	b.n	8005950 <_ZN7PingOut3setEv+0x24>
+ 8005af6:	81e1      	strh	r1, [r4, #14]
+ 8005af8:	e791      	b.n	8005a1e <_ZN7PingOut3setEv+0x26>
         		cur_idx+=(DEAD_INTERVAL-N_CYCLE*2);
- 8005a24:	f501 71f8 	add.w	r1, r1, #496	@ 0x1f0
+ 8005afa:	f501 71f8 	add.w	r1, r1, #496	@ 0x1f0
         		data_idx+=(DEAD_INTERVAL-N_CYCLE*2);
- 8005a28:	f503 73f8 	add.w	r3, r3, #496	@ 0x1f0
+ 8005afe:	f503 73f8 	add.w	r3, r3, #496	@ 0x1f0
         		cur_idx+=(DEAD_INTERVAL-N_CYCLE*2);
- 8005a2c:	b289      	uxth	r1, r1
+ 8005b02:	b289      	uxth	r1, r1
         		data_idx+=(DEAD_INTERVAL-N_CYCLE*2);
- 8005a2e:	6123      	str	r3, [r4, #16]
+ 8005b04:	6123      	str	r3, [r4, #16]
         		cur_idx+=(DEAD_INTERVAL-N_CYCLE*2);
- 8005a30:	81e1      	strh	r1, [r4, #14]
- 8005a32:	e78d      	b.n	8005950 <_ZN7PingOut3setEv+0x24>
- 8005a34:	b10f      	cbz	r7, 8005a3a <_ZN7PingOut3setEv+0x10e>
- 8005a36:	4b0c      	ldr	r3, [pc, #48]	@ (8005a68 <_ZN7PingOut3setEv+0x13c>)
- 8005a38:	7018      	strb	r0, [r3, #0]
+ 8005b06:	81e1      	strh	r1, [r4, #14]
+ 8005b08:	e789      	b.n	8005a1e <_ZN7PingOut3setEv+0x26>
     		cur_idx=cur_idx&OUT_BUF_MASK;
- 8005a3a:	f3c1 010a 	ubfx	r1, r1, #0, #11
- 8005a3e:	81e1      	strh	r1, [r4, #14]
+ 8005b0a:	9a01      	ldr	r2, [sp, #4]
+ 8005b0c:	f3c1 010a 	ubfx	r1, r1, #0, #11
+ 8005b10:	81e1      	strh	r1, [r4, #14]
     if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET);}
- 8005a40:	2a00      	cmp	r2, #0
- 8005a42:	d0bb      	beq.n	80059bc <_ZN7PingOut3setEv+0x90>
+ 8005b12:	2a00      	cmp	r2, #0
+ 8005b14:	d0ba      	beq.n	8005a8c <_ZN7PingOut3setEv+0x94>
+ 8005b16:	480b      	ldr	r0, [pc, #44]	@ (8005b44 <_ZN7PingOut3setEv+0x14c>)
+ 8005b18:	2200      	movs	r2, #0
+ 8005b1a:	f44f 6180 	mov.w	r1, #1024	@ 0x400
 }
- 8005a44:	e8bd 4ff8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 8005b1e:	b003      	add	sp, #12
+ 8005b20:	e8bd 4ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
     if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET);}
- 8005a48:	480a      	ldr	r0, [pc, #40]	@ (8005a74 <_ZN7PingOut3setEv+0x148>)
- 8005a4a:	2200      	movs	r2, #0
- 8005a4c:	f44f 6180 	mov.w	r1, #1024	@ 0x400
- 8005a50:	f7fc bb22 	b.w	8002098 <HAL_GPIO_WritePin>
+ 8005b24:	f7fc bab8 	b.w	8002098 <HAL_GPIO_WritePin>
     if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_SET);}
- 8005a54:	2201      	movs	r2, #1
- 8005a56:	4807      	ldr	r0, [pc, #28]	@ (8005a74 <_ZN7PingOut3setEv+0x148>)
- 8005a58:	f44f 6180 	mov.w	r1, #1024	@ 0x400
- 8005a5c:	f7fc fb1c 	bl	8002098 <HAL_GPIO_WritePin>
+ 8005b28:	2201      	movs	r2, #1
+ 8005b2a:	4806      	ldr	r0, [pc, #24]	@ (8005b44 <_ZN7PingOut3setEv+0x14c>)
+ 8005b2c:	f44f 6180 	mov.w	r1, #1024	@ 0x400
+ 8005b30:	f7fc fab2 	bl	8002098 <HAL_GPIO_WritePin>
     if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET);}
- 8005a60:	782a      	ldrb	r2, [r5, #0]
- 8005a62:	e76b      	b.n	800593c <_ZN7PingOut3setEv+0x10>
- 8005a64:	20006430 	.word	0x20006430
- 8005a68:	20000016 	.word	0x20000016
- 8005a6c:	20000018 	.word	0x20000018
- 8005a70:	08006074 	.word	0x08006074
- 8005a74:	48000800 	.word	0x48000800
- 8005a78:	20006438 	.word	0x20006438
+ 8005b34:	782a      	ldrb	r2, [r5, #0]
+ 8005b36:	e768      	b.n	8005a0a <_ZN7PingOut3setEv+0x12>
+ 8005b38:	20006430 	.word	0x20006430
+ 8005b3c:	20000016 	.word	0x20000016
+ 8005b40:	20000018 	.word	0x20000018
+ 8005b44:	48000800 	.word	0x48000800
+ 8005b48:	20006438 	.word	0x20006438
 
-08005a7c <_ZN7PingOut6updateEv>:
+08005b4c <_ZN7PingOut6updateEv>:
     if (time_to_schedule_period && periodic_schedule_enable){
- 8005a7c:	4b2a      	ldr	r3, [pc, #168]	@ (8005b28 <_ZN7PingOut6updateEv+0xac>)
- 8005a7e:	781a      	ldrb	r2, [r3, #0]
+ 8005b4c:	4b35      	ldr	r3, [pc, #212]	@ (8005c24 <_ZN7PingOut6updateEv+0xd8>)
+ 8005b4e:	781a      	ldrb	r2, [r3, #0]
 void PingOut::update() {
- 8005a80:	b410      	push	{r4}
+ 8005b50:	b410      	push	{r4}
     if (time_to_schedule_period && periodic_schedule_enable){
- 8005a82:	b10a      	cbz	r2, 8005a88 <_ZN7PingOut6updateEv+0xc>
- 8005a84:	7e02      	ldrb	r2, [r0, #24]
- 8005a86:	b992      	cbnz	r2, 8005aae <_ZN7PingOut6updateEv+0x32>
+ 8005b52:	b10a      	cbz	r2, 8005b58 <_ZN7PingOut6updateEv+0xc>
+ 8005b54:	7f42      	ldrb	r2, [r0, #29]
+ 8005b56:	b992      	cbnz	r2, 8005b7e <_ZN7PingOut6updateEv+0x32>
 	switch (po_state)
- 8005a88:	4b28      	ldr	r3, [pc, #160]	@ (8005b2c <_ZN7PingOut6updateEv+0xb0>)
- 8005a8a:	881b      	ldrh	r3, [r3, #0]
- 8005a8c:	b29b      	uxth	r3, r3
- 8005a8e:	b1db      	cbz	r3, 8005ac8 <_ZN7PingOut6updateEv+0x4c>
- 8005a90:	2b01      	cmp	r3, #1
- 8005a92:	d109      	bne.n	8005aa8 <_ZN7PingOut6updateEv+0x2c>
+ 8005b58:	4b33      	ldr	r3, [pc, #204]	@ (8005c28 <_ZN7PingOut6updateEv+0xdc>)
+ 8005b5a:	881b      	ldrh	r3, [r3, #0]
+ 8005b5c:	b29b      	uxth	r3, r3
+ 8005b5e:	b1db      	cbz	r3, 8005b98 <_ZN7PingOut6updateEv+0x4c>
+ 8005b60:	2b01      	cmp	r3, #1
+ 8005b62:	d109      	bne.n	8005b78 <_ZN7PingOut6updateEv+0x2c>
 		if (cur_out_pfx==scheduled_pfx && enable_scheduler && scheduled_idx>=HAL_OUT_BUF_LEN) enable_pingout();
- 8005a94:	4b26      	ldr	r3, [pc, #152]	@ (8005b30 <_ZN7PingOut6updateEv+0xb4>)
- 8005a96:	8a82      	ldrh	r2, [r0, #20]
- 8005a98:	881b      	ldrh	r3, [r3, #0]
- 8005a9a:	b29b      	uxth	r3, r3
- 8005a9c:	429a      	cmp	r2, r3
- 8005a9e:	d021      	beq.n	8005ae4 <_ZN7PingOut6updateEv+0x68>
+ 8005b64:	4b31      	ldr	r3, [pc, #196]	@ (8005c2c <_ZN7PingOut6updateEv+0xe0>)
+ 8005b66:	8b02      	ldrh	r2, [r0, #24]
+ 8005b68:	881b      	ldrh	r3, [r3, #0]
+ 8005b6a:	b29b      	uxth	r3, r3
+ 8005b6c:	429a      	cmp	r2, r3
+ 8005b6e:	d021      	beq.n	8005bb4 <_ZN7PingOut6updateEv+0x68>
 		if (cur_idx>=HAL_OUT_BUF_LEN) {
- 8005aa0:	89c3      	ldrh	r3, [r0, #14]
- 8005aa2:	f5b3 6f80 	cmp.w	r3, #1024	@ 0x400
- 8005aa6:	d219      	bcs.n	8005adc <_ZN7PingOut6updateEv+0x60>
+ 8005b70:	89c3      	ldrh	r3, [r0, #14]
+ 8005b72:	f5b3 6f80 	cmp.w	r3, #1024	@ 0x400
+ 8005b76:	d219      	bcs.n	8005bac <_ZN7PingOut6updateEv+0x60>
 }
- 8005aa8:	f85d 4b04 	ldr.w	r4, [sp], #4
- 8005aac:	4770      	bx	lr
+ 8005b78:	f85d 4b04 	ldr.w	r4, [sp], #4
+ 8005b7c:	4770      	bx	lr
     	time_to_schedule_period=false;
- 8005aae:	2200      	movs	r2, #0
- 8005ab0:	701a      	strb	r2, [r3, #0]
+ 8005b7e:	2200      	movs	r2, #0
+ 8005b80:	701a      	strb	r2, [r3, #0]
 	switch (po_state)
- 8005ab2:	4b1e      	ldr	r3, [pc, #120]	@ (8005b2c <_ZN7PingOut6updateEv+0xb0>)
+ 8005b82:	4b29      	ldr	r3, [pc, #164]	@ (8005c28 <_ZN7PingOut6updateEv+0xdc>)
 		set_state=SetState::SET_PIN;
- 8005ab4:	4c1f      	ldr	r4, [pc, #124]	@ (8005b34 <_ZN7PingOut6updateEv+0xb8>)
+ 8005b84:	4c2a      	ldr	r4, [pc, #168]	@ (8005c30 <_ZN7PingOut6updateEv+0xe4>)
 	switch (po_state)
- 8005ab6:	881b      	ldrh	r3, [r3, #0]
+ 8005b86:	881b      	ldrh	r3, [r3, #0]
 		data_idx = 0;
- 8005ab8:	6102      	str	r2, [r0, #16]
+ 8005b88:	6102      	str	r2, [r0, #16]
 		scheduled_idx = 117;
- 8005aba:	2175      	movs	r1, #117	@ 0x75
+ 8005b8a:	2175      	movs	r1, #117	@ 0x75
 	switch (po_state)
- 8005abc:	b29b      	uxth	r3, r3
+ 8005b8c:	b29b      	uxth	r3, r3
 		scheduled_idx = 117;
- 8005abe:	82c1      	strh	r1, [r0, #22]
+ 8005b8e:	8341      	strh	r1, [r0, #26]
 		set_state=SetState::SET_PIN;
- 8005ac0:	7022      	strb	r2, [r4, #0]
+ 8005b90:	7022      	strb	r2, [r4, #0]
 		cur_idx = scheduled_idx;
- 8005ac2:	81c1      	strh	r1, [r0, #14]
+ 8005b92:	81c1      	strh	r1, [r0, #14]
 	switch (po_state)
- 8005ac4:	2b00      	cmp	r3, #0
- 8005ac6:	d1e3      	bne.n	8005a90 <_ZN7PingOut6updateEv+0x14>
+ 8005b94:	2b00      	cmp	r3, #0
+ 8005b96:	d1e3      	bne.n	8005b60 <_ZN7PingOut6updateEv+0x14>
 		if (cur_out_pfx==scheduled_pfx && enable_scheduler && scheduled_idx<HAL_OUT_BUF_LEN) enable_pingout();
- 8005ac8:	4a19      	ldr	r2, [pc, #100]	@ (8005b30 <_ZN7PingOut6updateEv+0xb4>)
- 8005aca:	8a81      	ldrh	r1, [r0, #20]
- 8005acc:	8812      	ldrh	r2, [r2, #0]
- 8005ace:	b292      	uxth	r2, r2
- 8005ad0:	4291      	cmp	r1, r2
- 8005ad2:	d018      	beq.n	8005b06 <_ZN7PingOut6updateEv+0x8a>
+ 8005b98:	4a24      	ldr	r2, [pc, #144]	@ (8005c2c <_ZN7PingOut6updateEv+0xe0>)
+ 8005b9a:	8b01      	ldrh	r1, [r0, #24]
+ 8005b9c:	8812      	ldrh	r2, [r2, #0]
+ 8005b9e:	b292      	uxth	r2, r2
+ 8005ba0:	4291      	cmp	r1, r2
+ 8005ba2:	d023      	beq.n	8005bec <_ZN7PingOut6updateEv+0xa0>
 		if (cur_idx<HAL_OUT_BUF_LEN) {
- 8005ad4:	89c3      	ldrh	r3, [r0, #14]
- 8005ad6:	f5b3 6f80 	cmp.w	r3, #1024	@ 0x400
- 8005ada:	d2e5      	bcs.n	8005aa8 <_ZN7PingOut6updateEv+0x2c>
+ 8005ba4:	89c3      	ldrh	r3, [r0, #14]
+ 8005ba6:	f5b3 6f80 	cmp.w	r3, #1024	@ 0x400
+ 8005baa:	d2e5      	bcs.n	8005b78 <_ZN7PingOut6updateEv+0x2c>
 }
- 8005adc:	f85d 4b04 	ldr.w	r4, [sp], #4
+ 8005bac:	f85d 4b04 	ldr.w	r4, [sp], #4
 			set();
- 8005ae0:	f7ff bf24 	b.w	800592c <_ZN7PingOut3setEv>
+ 8005bb0:	f7ff bf22 	b.w	80059f8 <_ZN7PingOut3setEv>
 		if (cur_out_pfx==scheduled_pfx && enable_scheduler && scheduled_idx>=HAL_OUT_BUF_LEN) enable_pingout();
- 8005ae4:	7e43      	ldrb	r3, [r0, #25]
- 8005ae6:	2b00      	cmp	r3, #0
- 8005ae8:	d0da      	beq.n	8005aa0 <_ZN7PingOut6updateEv+0x24>
- 8005aea:	8ac3      	ldrh	r3, [r0, #22]
- 8005aec:	f5b3 6f80 	cmp.w	r3, #1024	@ 0x400
- 8005af0:	d3d6      	bcc.n	8005aa0 <_ZN7PingOut6updateEv+0x24>
-	set_state=SetState::SET_PIN;
- 8005af2:	4c10      	ldr	r4, [pc, #64]	@ (8005b34 <_ZN7PingOut6updateEv+0xb8>)
+ 8005bb4:	7f83      	ldrb	r3, [r0, #30]
+ 8005bb6:	2b00      	cmp	r3, #0
+ 8005bb8:	d0da      	beq.n	8005b70 <_ZN7PingOut6updateEv+0x24>
+ 8005bba:	8b43      	ldrh	r3, [r0, #26]
+ 8005bbc:	f5b3 6f80 	cmp.w	r3, #1024	@ 0x400
+ 8005bc0:	d3d6      	bcc.n	8005b70 <_ZN7PingOut6updateEv+0x24>
+    info+=2;
+ 8005bc2:	6944      	ldr	r4, [r0, #20]
+    beacon_id++;
+ 8005bc4:	7f02      	ldrb	r2, [r0, #28]
 	cur_idx = scheduled_idx;
- 8005af4:	81c3      	strh	r3, [r0, #14]
-	set_state=SetState::SET_PIN;
- 8005af6:	2200      	movs	r2, #0
+ 8005bc6:	81c3      	strh	r3, [r0, #14]
 	enable_scheduler = false;
- 8005af8:	f44f 7180 	mov.w	r1, #256	@ 0x100
+ 8005bc8:	f44f 7380 	mov.w	r3, #256	@ 0x100
 	set_state=SetState::SET_PIN;
- 8005afc:	7022      	strb	r2, [r4, #0]
+ 8005bcc:	2100      	movs	r1, #0
+    beacon_id++;
+ 8005bce:	3201      	adds	r2, #1
+	enable_scheduler = false;
+ 8005bd0:	83c3      	strh	r3, [r0, #30]
+    info+=2;
+ 8005bd2:	1ca3      	adds	r3, r4, #2
+    beacon_id++;
+ 8005bd4:	7702      	strb	r2, [r0, #28]
 	data_idx = 0;
- 8005afe:	6102      	str	r2, [r0, #16]
-	enable_scheduler = false;
- 8005b00:	f8a0 1019 	strh.w	r1, [r0, #25]
-		if (cur_idx>=HAL_OUT_BUF_LEN) {
- 8005b04:	e7ea      	b.n	8005adc <_ZN7PingOut6updateEv+0x60>
+ 8005bd6:	6101      	str	r1, [r0, #16]
+    info+=2;
+ 8005bd8:	6143      	str	r3, [r0, #20]
+	set_state=SetState::SET_PIN;
+ 8005bda:	4a15      	ldr	r2, [pc, #84]	@ (8005c30 <_ZN7PingOut6updateEv+0xe4>)
+	if (*info == '\0') { // Check if we hit the null terminator
+ 8005bdc:	78a3      	ldrb	r3, [r4, #2]
+	set_state=SetState::SET_PIN;
+ 8005bde:	7011      	strb	r1, [r2, #0]
+	if (*info == '\0') { // Check if we hit the null terminator
+ 8005be0:	2b00      	cmp	r3, #0
+ 8005be2:	d1e3      	bne.n	8005bac <_ZN7PingOut6updateEv+0x60>
+		info = id_list;
+ 8005be4:	4a13      	ldr	r2, [pc, #76]	@ (8005c34 <_ZN7PingOut6updateEv+0xe8>)
+ 8005be6:	6142      	str	r2, [r0, #20]
+	    beacon_id=0;
+ 8005be8:	7703      	strb	r3, [r0, #28]
+ 8005bea:	e7df      	b.n	8005bac <_ZN7PingOut6updateEv+0x60>
 		if (cur_out_pfx==scheduled_pfx && enable_scheduler && scheduled_idx<HAL_OUT_BUF_LEN) enable_pingout();
- 8005b06:	7e42      	ldrb	r2, [r0, #25]
- 8005b08:	2a00      	cmp	r2, #0
- 8005b0a:	d0e3      	beq.n	8005ad4 <_ZN7PingOut6updateEv+0x58>
- 8005b0c:	8ac2      	ldrh	r2, [r0, #22]
- 8005b0e:	f5b2 6f80 	cmp.w	r2, #1024	@ 0x400
- 8005b12:	d2df      	bcs.n	8005ad4 <_ZN7PingOut6updateEv+0x58>
-	set_state=SetState::SET_PIN;
- 8005b14:	4c07      	ldr	r4, [pc, #28]	@ (8005b34 <_ZN7PingOut6updateEv+0xb8>)
-	data_idx = 0;
- 8005b16:	6103      	str	r3, [r0, #16]
-	enable_scheduler = false;
- 8005b18:	f44f 7180 	mov.w	r1, #256	@ 0x100
-	set_state=SetState::SET_PIN;
- 8005b1c:	7023      	strb	r3, [r4, #0]
+ 8005bec:	7f82      	ldrb	r2, [r0, #30]
+ 8005bee:	2a00      	cmp	r2, #0
+ 8005bf0:	d0d8      	beq.n	8005ba4 <_ZN7PingOut6updateEv+0x58>
+ 8005bf2:	8b42      	ldrh	r2, [r0, #26]
+ 8005bf4:	f5b2 6f80 	cmp.w	r2, #1024	@ 0x400
+ 8005bf8:	d2d4      	bcs.n	8005ba4 <_ZN7PingOut6updateEv+0x58>
+    info+=2;
+ 8005bfa:	6944      	ldr	r4, [r0, #20]
+    beacon_id++;
+ 8005bfc:	7f01      	ldrb	r1, [r0, #28]
 	cur_idx = scheduled_idx;
- 8005b1e:	81c2      	strh	r2, [r0, #14]
+ 8005bfe:	81c2      	strh	r2, [r0, #14]
+    beacon_id++;
+ 8005c00:	3101      	adds	r1, #1
+    info+=2;
+ 8005c02:	1ca2      	adds	r2, r4, #2
 	enable_scheduler = false;
- 8005b20:	f8a0 1019 	strh.w	r1, [r0, #25]
-		if (cur_idx<HAL_OUT_BUF_LEN) {
- 8005b24:	e7da      	b.n	8005adc <_ZN7PingOut6updateEv+0x60>
- 8005b26:	bf00      	nop
- 8005b28:	20006431 	.word	0x20006431
- 8005b2c:	20000018 	.word	0x20000018
- 8005b30:	20006434 	.word	0x20006434
- 8005b34:	20000016 	.word	0x20000016
+ 8005c04:	f44f 7c80 	mov.w	ip, #256	@ 0x100
+    beacon_id++;
+ 8005c08:	7701      	strb	r1, [r0, #28]
+	enable_scheduler = false;
+ 8005c0a:	f8a0 c01e 	strh.w	ip, [r0, #30]
+	data_idx = 0;
+ 8005c0e:	6103      	str	r3, [r0, #16]
+    info+=2;
+ 8005c10:	6142      	str	r2, [r0, #20]
+	set_state=SetState::SET_PIN;
+ 8005c12:	4907      	ldr	r1, [pc, #28]	@ (8005c30 <_ZN7PingOut6updateEv+0xe4>)
+	if (*info == '\0') { // Check if we hit the null terminator
+ 8005c14:	78a2      	ldrb	r2, [r4, #2]
+	set_state=SetState::SET_PIN;
+ 8005c16:	700b      	strb	r3, [r1, #0]
+	if (*info == '\0') { // Check if we hit the null terminator
+ 8005c18:	2a00      	cmp	r2, #0
+ 8005c1a:	d1c7      	bne.n	8005bac <_ZN7PingOut6updateEv+0x60>
+		info = id_list;
+ 8005c1c:	4b05      	ldr	r3, [pc, #20]	@ (8005c34 <_ZN7PingOut6updateEv+0xe8>)
+ 8005c1e:	6143      	str	r3, [r0, #20]
+	    beacon_id=0;
+ 8005c20:	7702      	strb	r2, [r0, #28]
+ 8005c22:	e7c3      	b.n	8005bac <_ZN7PingOut6updateEv+0x60>
+ 8005c24:	20006431 	.word	0x20006431
+ 8005c28:	20000018 	.word	0x20000018
+ 8005c2c:	20006434 	.word	0x20006434
+ 8005c30:	20000016 	.word	0x20000016
+ 8005c34:	08006260 	.word	0x08006260
 
-08005b38 <transponder_main>:
-                                TIM_HandleTypeDef* p_htim3, 
-                                UART_HandleTypeDef* p_huart, 
-                                OPAMP_HandleTypeDef* p_opamp_1, 
-                                OPAMP_HandleTypeDef* p_opamp_2,
-                                DMA_HandleTypeDef* p_hdma_tim2_up, 
+08005c38 <tof_master_main>:
+                                TIM_HandleTypeDef* p_htim3,
+                                UART_HandleTypeDef* p_huart,
+								OPAMP_HandleTypeDef* p_opamp_1,
+								OPAMP_HandleTypeDef* p_opamp_2,
+                                DMA_HandleTypeDef* p_hdma_tim2_up,
                                 TIM_HandleTypeDef* p_htim2) {
- 8005b38:	b580      	push	{r7, lr}
- 8005b3a:	b0a4      	sub	sp, #144	@ 0x90
- 8005b3c:	461e      	mov	r6, r3
- 8005b3e:	460d      	mov	r5, r1
- 8005b40:	4604      	mov	r4, r0
+ 8005c38:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 8005c3c:	b0ab      	sub	sp, #172	@ 0xac
+ 8005c3e:	461f      	mov	r7, r3
+ 8005c40:	460e      	mov	r6, r1
+ 8005c42:	4605      	mov	r5, r0
 
     /******************* SETUP RX ************************/
-    //CMD_RX cmd_rx(p_huart);
+    CMD_RX cmd_rx(p_huart);
+ 8005c44:	4611      	mov	r1, r2
+#if ECHO_MASTER_MODE
+    cmd_rx.start_unit_test();
+#endif
+	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
+    pgas.setGain(gain[0]);
+ 8005c46:	f8df a17c 	ldr.w	sl, [pc, #380]	@ 8005dc4 <tof_master_main+0x18c>
+ 8005c4a:	f8df 817c 	ldr.w	r8, [pc, #380]	@ 8005dc8 <tof_master_main+0x190>
+    CMD_RX cmd_rx(p_huart);
+ 8005c4e:	a803      	add	r0, sp, #12
+                                TIM_HandleTypeDef* p_htim2) {
+ 8005c50:	4614      	mov	r4, r2
+    CMD_RX cmd_rx(p_huart);
+ 8005c52:	f7ff fae7 	bl	8005224 <_ZN6CMD_RXC1EP20__UART_HandleTypeDef>
+	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
+ 8005c56:	9a34      	ldr	r2, [sp, #208]	@ 0xd0
+ 8005c58:	4639      	mov	r1, r7
+ 8005c5a:	a804      	add	r0, sp, #16
+ 8005c5c:	f7ff fdb8 	bl	80057d0 <_ZN13PGA_cascade_2C1EP19OPAMP_HandleTypeDefS1_>
+    pgas.setGain(gain[0]);
+ 8005c60:	f89a 1000 	ldrb.w	r1, [sl]
+ 8005c64:	4f52      	ldr	r7, [pc, #328]	@ (8005db0 <tof_master_main+0x178>)
+ 8005c66:	a804      	add	r0, sp, #16
+ 8005c68:	f7ff fdb6 	bl	80057d8 <_ZN13PGA_cascade_27setGainEi>
+
+    /******************* SETUP TX ************************/
 	IndexInfoTX idx_info_tx(p_huart);
- 8005b42:	4611      	mov	r1, r2
- 8005b44:	a802      	add	r0, sp, #8
- 8005b46:	f7ff fb6d 	bl	8005224 <_ZN11IndexInfoTXC1EP20__UART_HandleTypeDef>
-	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
- 8005b4a:	4631      	mov	r1, r6
-	pgas.setGain(gain);
- 8005b4c:	4e22      	ldr	r6, [pc, #136]	@ (8005bd8 <transponder_main+0xa0>)
-	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
- 8005b4e:	9a26      	ldr	r2, [sp, #152]	@ 0x98
- 8005b50:	f8df 8090 	ldr.w	r8, [pc, #144]	@ 8005be4 <transponder_main+0xac>
-        	max_peak_detector.detect_peak();
+ 8005c6c:	4621      	mov	r1, r4
+ 8005c6e:	a806      	add	r0, sp, #24
+ 8005c70:	f7ff fada 	bl	8005228 <_ZN11IndexInfoTXC1EP20__UART_HandleTypeDef>
+    PingOut ping_out(p_hdma_tim2_up, p_htim2, &idx_info_tx);
+ 8005c74:	e9dd 1235 	ldrd	r1, r2, [sp, #212]	@ 0xd4
+ 8005c78:	ab06      	add	r3, sp, #24
+ 8005c7a:	a809      	add	r0, sp, #36	@ 0x24
+ 8005c7c:	f7ff fe76 	bl	800596c <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX>
+    //ping_out.start_periodic_scheduler(50);
+    //PingOut::debug = true;
+	MaxPeakDetector max_peak_detector(p_hadc, p_htim3,  &idx_info_tx);
+ 8005c80:	ab06      	add	r3, sp, #24
+ 8005c82:	4632      	mov	r2, r6
+ 8005c84:	4629      	mov	r1, r5
+ 8005c86:	a812      	add	r0, sp, #72	@ 0x48
+ 8005c88:	f7ff fae6 	bl	8005258 <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX>
+    uint16_t prev_pfx=0;
+    uint8_t time_since_last_pinout=0;
+ 8005c8c:	2600      	movs	r6, #0
+	bool gain_inc = true;
+ 8005c8e:	2301      	movs	r3, #1
+ 8005c90:	4d48      	ldr	r5, [pc, #288]	@ (8005db4 <tof_master_main+0x17c>)
+ 8005c92:	4c49      	ldr	r4, [pc, #292]	@ (8005db8 <tof_master_main+0x180>)
+ 8005c94:	9301      	str	r3, [sp, #4]
+    uint16_t prev_pfx=0;
+ 8005c96:	46b3      	mov	fp, r6
+        	}
         	if(max_peak_detector.signal_flag) {
         		ping_out.enable_scheduler = false;
         	}
-        	if(max_peak_detector.data_flag){
-    			ping_out.schedule(max_peak_detector.pinout_pfx,max_peak_detector.pinout_idx/6);
- 8005b54:	4f21      	ldr	r7, [pc, #132]	@ (8005bdc <transponder_main+0xa4>)
-	PGA_cascade_2 pgas(p_opamp_1, p_opamp_2);
- 8005b56:	4668      	mov	r0, sp
- 8005b58:	f7ff fdda 	bl	8005710 <_ZN13PGA_cascade_2C1EP19OPAMP_HandleTypeDefS1_>
-	pgas.setGain(gain);
- 8005b5c:	7831      	ldrb	r1, [r6, #0]
- 8005b5e:	4668      	mov	r0, sp
- 8005b60:	f7ff fdda 	bl	8005718 <_ZN13PGA_cascade_27setGainEi>
-	MaxPeakDetector max_peak_detector(p_hadc, p_htim3,  &idx_info_tx);
- 8005b64:	462a      	mov	r2, r5
- 8005b66:	4621      	mov	r1, r4
- 8005b68:	ab02      	add	r3, sp, #8
- 8005b6a:	a80d      	add	r0, sp, #52	@ 0x34
- 8005b6c:	f7ff fb70 	bl	8005250 <_ZN15MaxPeakDetectorC1EP19__ADC_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX>
-    PingOut ping_out(p_hdma_tim2_up, p_htim2, &idx_info_tx);
- 8005b70:	e9dd 1227 	ldrd	r1, r2, [sp, #156]	@ 0x9c
- 8005b74:	ab02      	add	r3, sp, #8
- 8005b76:	a805      	add	r0, sp, #20
- 8005b78:	f7ff fe98 	bl	80058ac <_ZN7PingOutC1EP19__DMA_HandleTypeDefP17TIM_HandleTypeDefP11IndexInfoTX>
- 8005b7c:	4c18      	ldr	r4, [pc, #96]	@ (8005be0 <transponder_main+0xa8>)
-        		ping_out.enable_scheduler = false;
- 8005b7e:	2500      	movs	r5, #0
+        	else if(time_since_last_pinout>TIMEOUT){//to be wrapped around
+        		time_since_last_pinout=0;
+ 8005c98:	46b1      	mov	r9, r6
     	if(max_peak_detector.global_state == ping_out.po_state){
- 8005b80:	f8b8 2000 	ldrh.w	r2, [r8]
- 8005b84:	8823      	ldrh	r3, [r4, #0]
- 8005b86:	b292      	uxth	r2, r2
- 8005b88:	b29b      	uxth	r3, r3
- 8005b8a:	429a      	cmp	r2, r3
- 8005b8c:	d1f8      	bne.n	8005b80 <transponder_main+0x48>
+ 8005c9a:	882a      	ldrh	r2, [r5, #0]
+ 8005c9c:	8823      	ldrh	r3, [r4, #0]
+ 8005c9e:	b292      	uxth	r2, r2
+ 8005ca0:	b29b      	uxth	r3, r3
+ 8005ca2:	429a      	cmp	r2, r3
+ 8005ca4:	d1f9      	bne.n	8005c9a <tof_master_main+0x62>
         	max_peak_detector.detect_peak();
- 8005b8e:	a80d      	add	r0, sp, #52	@ 0x34
- 8005b90:	f7ff fd74 	bl	800567c <_ZN15MaxPeakDetector11detect_peakEv>
+ 8005ca6:	a812      	add	r0, sp, #72	@ 0x48
+ 8005ca8:	f7ff fd30 	bl	800570c <_ZN15MaxPeakDetector11detect_peakEv>
+        	if(prev_pfx!=ping_out.cur_out_pfx){
+ 8005cac:	f8b8 3000 	ldrh.w	r3, [r8]
+ 8005cb0:	b29b      	uxth	r3, r3
+ 8005cb2:	455b      	cmp	r3, fp
         	if(max_peak_detector.signal_flag) {
- 8005b94:	f89d 304a 	ldrb.w	r3, [sp, #74]	@ 0x4a
- 8005b98:	b10b      	cbz	r3, 8005b9e <transponder_main+0x66>
+ 8005cb4:	f89d b05e 	ldrb.w	fp, [sp, #94]	@ 0x5e
+        		time_since_last_pinout++;
+ 8005cb8:	bf1c      	itt	ne
+ 8005cba:	3601      	addne	r6, #1
+ 8005cbc:	b2f6      	uxtbne	r6, r6
+        	if(max_peak_detector.signal_flag) {
+ 8005cbe:	f1bb 0f00 	cmp.w	fp, #0
+ 8005cc2:	d036      	beq.n	8005d32 <tof_master_main+0xfa>
         		ping_out.enable_scheduler = false;
- 8005b9a:	f88d 502d 	strb.w	r5, [sp, #45]	@ 0x2d
+ 8005cc4:	f88d 9042 	strb.w	r9, [sp, #66]	@ 0x42
+    			ping_out.schedule(ping_out.cur_out_pfx+1,(ping_out.scheduled_idx+11)%OUT_BUF_LEN);
+    			max_peak_detector.pinout_pfx = max_peak_detector.cur_pfx+1;
+    			max_peak_detector.pinout_idx = (max_peak_detector.pinout_idx+66)%BUF_LEN;
+    			max_peak_detector.search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
+        	}
         	if(max_peak_detector.data_flag){
- 8005b9e:	f89d 304b 	ldrb.w	r3, [sp, #75]	@ 0x4b
- 8005ba2:	b963      	cbnz	r3, 8005bbe <transponder_main+0x86>
+ 8005cc8:	f89d 305f 	ldrb.w	r3, [sp, #95]	@ 0x5f
+ 8005ccc:	2b00      	cmp	r3, #0
+ 8005cce:	d159      	bne.n	8005d84 <tof_master_main+0x14c>
+    			ping_out.schedule(max_peak_detector.pinout_pfx,max_peak_detector.pinout_idx/6);
     			max_peak_detector.data_flag=false;
         		max_peak_detector.signal_flag =false;
         	}
         	if(ping_out.scheduled_flag){
- 8005ba4:	f89d 302e 	ldrb.w	r3, [sp, #46]	@ 0x2e
-        	    pgas.setGain(gain);
- 8005ba8:	4668      	mov	r0, sp
-        	if(ping_out.scheduled_flag){
- 8005baa:	b123      	cbz	r3, 8005bb6 <transponder_main+0x7e>
-        	    pgas.setGain(gain);
- 8005bac:	7831      	ldrb	r1, [r6, #0]
- 8005bae:	f7ff fdb3 	bl	8005718 <_ZN13PGA_cascade_27setGainEi>
+ 8005cd0:	f89d 2043 	ldrb.w	r2, [sp, #67]	@ 0x43
+ 8005cd4:	b32a      	cbz	r2, 8005d22 <tof_master_main+0xea>
+        		if(lost_time[ping_out.beacon_id]>2){
+ 8005cd6:	f89d 3040 	ldrb.w	r3, [sp, #64]	@ 0x40
+ 8005cda:	5cf8      	ldrb	r0, [r7, r3]
+					if(gain[ping_out.beacon_id]==8)gain_inc=false;
+ 8005cdc:	f81a 1003 	ldrb.w	r1, [sl, r3]
+        		if(lost_time[ping_out.beacon_id]>2){
+ 8005ce0:	2802      	cmp	r0, #2
+ 8005ce2:	d90d      	bls.n	8005d00 <tof_master_main+0xc8>
+					if(gain[ping_out.beacon_id]==8)gain_inc=false;
+ 8005ce4:	2908      	cmp	r1, #8
+					else if(gain[ping_out.beacon_id]==2)gain_inc=true;
+        			lost_time[ping_out.beacon_id]=0;
+ 8005ce6:	f807 9003 	strb.w	r9, [r7, r3]
+					if(gain[ping_out.beacon_id]==8)gain_inc=false;
+ 8005cea:	d059      	beq.n	8005da0 <tof_master_main+0x168>
+					else if(gain[ping_out.beacon_id]==2)gain_inc=true;
+ 8005cec:	2902      	cmp	r1, #2
+ 8005cee:	d002      	beq.n	8005cf6 <tof_master_main+0xbe>
+					if(gain_inc)gain[ping_out.beacon_id]++;
+ 8005cf0:	9801      	ldr	r0, [sp, #4]
+ 8005cf2:	2800      	cmp	r0, #0
+ 8005cf4:	d054      	beq.n	8005da0 <tof_master_main+0x168>
+ 8005cf6:	3101      	adds	r1, #1
+ 8005cf8:	b2c9      	uxtb	r1, r1
+ 8005cfa:	f80a 1003 	strb.w	r1, [sl, r3]
+ 8005cfe:	9201      	str	r2, [sp, #4]
+					else gain[ping_out.beacon_id]--;
+        		}
+        	    pgas.setGain(gain[ping_out.beacon_id]);
+ 8005d00:	a804      	add	r0, sp, #16
+ 8005d02:	f7ff fd69 	bl	80057d8 <_ZN13PGA_cascade_27setGainEi>
+        	    max_peak_detector.beacon_id=ping_out.beacon_id;
+ 8005d06:	f89d 3040 	ldrb.w	r3, [sp, #64]	@ 0x40
+ 8005d0a:	f88d 306a 	strb.w	r3, [sp, #106]	@ 0x6a
+				max_peak_detector.mark_pinout();
+ 8005d0e:	a812      	add	r0, sp, #72	@ 0x48
+ 8005d10:	f7ff fd1e 	bl	8005750 <_ZN15MaxPeakDetector11mark_pinoutEv>
+        	    lost_time[ping_out.beacon_id]++;
+ 8005d14:	f89d 2040 	ldrb.w	r2, [sp, #64]	@ 0x40
         		ping_out.scheduled_flag=false;
- 8005bb2:	f88d 502e 	strb.w	r5, [sp, #46]	@ 0x2e
+ 8005d18:	f88d 9043 	strb.w	r9, [sp, #67]	@ 0x43
+        	    lost_time[ping_out.beacon_id]++;
+ 8005d1c:	5cbb      	ldrb	r3, [r7, r2]
+ 8005d1e:	3301      	adds	r3, #1
+ 8005d20:	54bb      	strb	r3, [r7, r2]
         	}
+        	//idx_info_tx.stream_adc(gain[1]);
         	ping_out.update();
- 8005bb6:	a805      	add	r0, sp, #20
- 8005bb8:	f7ff ff60 	bl	8005a7c <_ZN7PingOut6updateEv>
- 8005bbc:	e7e0      	b.n	8005b80 <transponder_main+0x48>
+ 8005d22:	a809      	add	r0, sp, #36	@ 0x24
+ 8005d24:	f7ff ff12 	bl	8005b4c <_ZN7PingOut6updateEv>
+        	prev_pfx=ping_out.cur_out_pfx;
+ 8005d28:	f8b8 b000 	ldrh.w	fp, [r8]
+ 8005d2c:	fa1f fb8b 	uxth.w	fp, fp
+ 8005d30:	e7b3      	b.n	8005c9a <tof_master_main+0x62>
+        	else if(time_since_last_pinout>TIMEOUT){//to be wrapped around
+ 8005d32:	2e2c      	cmp	r6, #44	@ 0x2c
+ 8005d34:	d9c8      	bls.n	8005cc8 <tof_master_main+0x90>
+    			ping_out.schedule(ping_out.cur_out_pfx+1,(ping_out.scheduled_idx+11)%OUT_BUF_LEN);
+ 8005d36:	f8b8 1000 	ldrh.w	r1, [r8]
+ 8005d3a:	f8bd 203e 	ldrh.w	r2, [sp, #62]	@ 0x3e
+ 8005d3e:	3101      	adds	r1, #1
+ 8005d40:	320b      	adds	r2, #11
+ 8005d42:	b289      	uxth	r1, r1
+ 8005d44:	f3c2 020a 	ubfx	r2, r2, #0, #11
+ 8005d48:	a809      	add	r0, sp, #36	@ 0x24
+ 8005d4a:	f7ff fe4f 	bl	80059ec <_ZN7PingOut8scheduleEtt>
+    			max_peak_detector.search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
+ 8005d4e:	f04f 0302 	mov.w	r3, #2
+ 8005d52:	f8ad 3054 	strh.w	r3, [sp, #84]	@ 0x54
+    			max_peak_detector.pinout_idx = (max_peak_detector.pinout_idx+66)%BUF_LEN;
+ 8005d56:	f8bd 3066 	ldrh.w	r3, [sp, #102]	@ 0x66
+ 8005d5a:	4a18      	ldr	r2, [pc, #96]	@ (8005dbc <tof_master_main+0x184>)
+ 8005d5c:	3342      	adds	r3, #66	@ 0x42
+ 8005d5e:	fba2 1203 	umull	r1, r2, r2, r3
+ 8005d62:	0b52      	lsrs	r2, r2, #13
+ 8005d64:	eb02 0242 	add.w	r2, r2, r2, lsl #1
+ 8005d68:	eba3 3302 	sub.w	r3, r3, r2, lsl #12
+ 8005d6c:	f8ad 3066 	strh.w	r3, [sp, #102]	@ 0x66
+    			max_peak_detector.pinout_pfx = max_peak_detector.cur_pfx+1;
+ 8005d70:	4b13      	ldr	r3, [pc, #76]	@ (8005dc0 <tof_master_main+0x188>)
+ 8005d72:	881b      	ldrh	r3, [r3, #0]
+ 8005d74:	3301      	adds	r3, #1
+ 8005d76:	f8ad 3068 	strh.w	r3, [sp, #104]	@ 0x68
+        	if(max_peak_detector.data_flag){
+ 8005d7a:	f89d 305f 	ldrb.w	r3, [sp, #95]	@ 0x5f
+        		time_since_last_pinout=0;
+ 8005d7e:	465e      	mov	r6, fp
+        	if(max_peak_detector.data_flag){
+ 8005d80:	2b00      	cmp	r3, #0
+ 8005d82:	d0a5      	beq.n	8005cd0 <tof_master_main+0x98>
     			ping_out.schedule(max_peak_detector.pinout_pfx,max_peak_detector.pinout_idx/6);
- 8005bbe:	f8bd 2052 	ldrh.w	r2, [sp, #82]	@ 0x52
- 8005bc2:	f8bd 1054 	ldrh.w	r1, [sp, #84]	@ 0x54
- 8005bc6:	fba7 3202 	umull	r3, r2, r7, r2
- 8005bca:	0892      	lsrs	r2, r2, #2
- 8005bcc:	a805      	add	r0, sp, #20
- 8005bce:	f7ff fea7 	bl	8005920 <_ZN7PingOut8scheduleEtt>
+ 8005d84:	f8bd 2066 	ldrh.w	r2, [sp, #102]	@ 0x66
+ 8005d88:	4b0c      	ldr	r3, [pc, #48]	@ (8005dbc <tof_master_main+0x184>)
+ 8005d8a:	f8bd 1068 	ldrh.w	r1, [sp, #104]	@ 0x68
+ 8005d8e:	fba3 3202 	umull	r3, r2, r3, r2
+ 8005d92:	0892      	lsrs	r2, r2, #2
+ 8005d94:	a809      	add	r0, sp, #36	@ 0x24
+ 8005d96:	f7ff fe29 	bl	80059ec <_ZN7PingOut8scheduleEtt>
         		max_peak_detector.signal_flag =false;
- 8005bd2:	f8ad 504a 	strh.w	r5, [sp, #74]	@ 0x4a
- 8005bd6:	e7e5      	b.n	8005ba4 <transponder_main+0x6c>
- 8005bd8:	2000001a 	.word	0x2000001a
- 8005bdc:	aaaaaaab 	.word	0xaaaaaaab
- 8005be0:	20000018 	.word	0x20000018
- 8005be4:	2000000c 	.word	0x2000000c
+ 8005d9a:	f8ad 905e 	strh.w	r9, [sp, #94]	@ 0x5e
+ 8005d9e:	e797      	b.n	8005cd0 <tof_master_main+0x98>
+					else gain[ping_out.beacon_id]--;
+ 8005da0:	3901      	subs	r1, #1
+ 8005da2:	b2c9      	uxtb	r1, r1
+ 8005da4:	f80a 1003 	strb.w	r1, [sl, r3]
+ 8005da8:	2300      	movs	r3, #0
+ 8005daa:	9301      	str	r3, [sp, #4]
+ 8005dac:	e7a8      	b.n	8005d00 <tof_master_main+0xc8>
+ 8005dae:	bf00      	nop
+ 8005db0:	20008438 	.word	0x20008438
+ 8005db4:	2000000c 	.word	0x2000000c
+ 8005db8:	20000018 	.word	0x20000018
+ 8005dbc:	aaaaaaab 	.word	0xaaaaaaab
+ 8005dc0:	2000042c 	.word	0x2000042c
+ 8005dc4:	2000001c 	.word	0x2000001c
+ 8005dc8:	20006434 	.word	0x20006434
 
-08005be8 <arm_sin_cos_f32>:
- 8005be8:	ed9f 6a44 	vldr	s12, [pc, #272]	@ 8005cfc <arm_sin_cos_f32+0x114>
- 8005bec:	eddf 7a44 	vldr	s15, [pc, #272]	@ 8005d00 <arm_sin_cos_f32+0x118>
- 8005bf0:	4a44      	ldr	r2, [pc, #272]	@ (8005d04 <arm_sin_cos_f32+0x11c>)
- 8005bf2:	eddf 6a45 	vldr	s13, [pc, #276]	@ 8005d08 <arm_sin_cos_f32+0x120>
- 8005bf6:	ee20 6a06 	vmul.f32	s12, s0, s12
- 8005bfa:	b470      	push	{r4, r5, r6}
- 8005bfc:	eeb5 6ac0 	vcmpe.f32	s12, #0.0
- 8005c00:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8005c04:	bf48      	it	mi
- 8005c06:	eeb1 6a46 	vnegmi.f32	s12, s12
- 8005c0a:	eebd 5ac6 	vcvt.s32.f32	s10, s12
- 8005c0e:	eeb0 1a08 	vmov.f32	s2, #8	@ 0x40400000  3.0
- 8005c12:	eeb8 5ac5 	vcvt.f32.s32	s10, s10
- 8005c16:	eeb5 0ac0 	vcmpe.f32	s0, #0.0
- 8005c1a:	ee36 6a45 	vsub.f32	s12, s12, s10
- 8005c1e:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
- 8005c22:	ee26 5a27 	vmul.f32	s10, s12, s15
- 8005c26:	eefc 7ac5 	vcvt.u32.f32	s15, s10
- 8005c2a:	ee17 3a90 	vmov	r3, s15
- 8005c2e:	f3c3 0308 	ubfx	r3, r3, #0, #9
- 8005c32:	f103 0480 	add.w	r4, r3, #128	@ 0x80
- 8005c36:	eb02 0683 	add.w	r6, r2, r3, lsl #2
- 8005c3a:	f3c4 0408 	ubfx	r4, r4, #0, #9
- 8005c3e:	edd6 3a00 	vldr	s7, [r6]
- 8005c42:	ed96 7a01 	vldr	s14, [r6, #4]
- 8005c46:	eb02 0584 	add.w	r5, r2, r4, lsl #2
- 8005c4a:	ed95 3a00 	vldr	s6, [r5]
- 8005c4e:	edd5 1a01 	vldr	s3, [r5, #4]
- 8005c52:	eeb1 6a63 	vneg.f32	s12, s7
- 8005c56:	ee36 4a47 	vsub.f32	s8, s12, s14
- 8005c5a:	ee71 5ac3 	vsub.f32	s11, s3, s6
- 8005c5e:	ee36 2a06 	vadd.f32	s4, s12, s12
- 8005c62:	ee07 3a90 	vmov	s15, r3
- 8005c66:	ee75 0aa5 	vadd.f32	s1, s11, s11
- 8005c6a:	ee24 4a26 	vmul.f32	s8, s8, s13
- 8005c6e:	ee32 2a47 	vsub.f32	s4, s4, s14
- 8005c72:	ee73 4a21 	vadd.f32	s9, s6, s3
- 8005c76:	ee37 7a63 	vsub.f32	s14, s14, s7
- 8005c7a:	eef8 7a67 	vcvt.f32.u32	s15, s15
- 8005c7e:	ee73 2a03 	vadd.f32	s5, s6, s6
- 8005c82:	ee75 7a67 	vsub.f32	s15, s10, s15
- 8005c86:	ee34 4a60 	vsub.f32	s8, s8, s1
- 8005c8a:	ee24 5aa6 	vmul.f32	s10, s9, s13
- 8005c8e:	ee77 0a07 	vadd.f32	s1, s14, s14
- 8005c92:	ee72 2aa1 	vadd.f32	s5, s5, s3
- 8005c96:	ee64 4a27 	vmul.f32	s9, s8, s15
- 8005c9a:	ee22 2a26 	vmul.f32	s4, s4, s13
- 8005c9e:	ee22 4aa6 	vmul.f32	s8, s5, s13
- 8005ca2:	ee65 5a81 	vmul.f32	s11, s11, s2
- 8005ca6:	ee27 7a01 	vmul.f32	s14, s14, s2
- 8005caa:	ee35 5a60 	vsub.f32	s10, s10, s1
- 8005cae:	ee75 5ac2 	vsub.f32	s11, s11, s4
- 8005cb2:	ee25 5a27 	vmul.f32	s10, s10, s15
- 8005cb6:	ee37 7a44 	vsub.f32	s14, s14, s8
- 8005cba:	ee75 5aa4 	vadd.f32	s11, s11, s9
- 8005cbe:	ee37 7a05 	vadd.f32	s14, s14, s10
- 8005cc2:	ee65 5aa7 	vmul.f32	s11, s11, s15
- 8005cc6:	ee26 6a26 	vmul.f32	s12, s12, s13
- 8005cca:	ee27 7a27 	vmul.f32	s14, s14, s15
- 8005cce:	ee63 6a26 	vmul.f32	s13, s6, s13
- 8005cd2:	ee36 6a25 	vadd.f32	s12, s12, s11
- 8005cd6:	ee36 7a87 	vadd.f32	s14, s13, s14
- 8005cda:	ee26 6a27 	vmul.f32	s12, s12, s15
- 8005cde:	ee67 7a27 	vmul.f32	s15, s14, s15
- 8005ce2:	ee36 6a03 	vadd.f32	s12, s12, s6
- 8005ce6:	ee77 7aa3 	vadd.f32	s15, s15, s7
- 8005cea:	ed81 6a00 	vstr	s12, [r1]
- 8005cee:	bf48      	it	mi
- 8005cf0:	eef1 7a67 	vnegmi.f32	s15, s15
- 8005cf4:	bc70      	pop	{r4, r5, r6}
- 8005cf6:	edc0 7a00 	vstr	s15, [r0]
- 8005cfa:	4770      	bx	lr
- 8005cfc:	3b360b61 	.word	0x3b360b61
- 8005d00:	44000000 	.word	0x44000000
- 8005d04:	08006078 	.word	0x08006078
- 8005d08:	3c490fdb 	.word	0x3c490fdb
+08005dcc <arm_sin_cos_f32>:
+ 8005dcc:	ed9f 6a44 	vldr	s12, [pc, #272]	@ 8005ee0 <arm_sin_cos_f32+0x114>
+ 8005dd0:	eddf 7a44 	vldr	s15, [pc, #272]	@ 8005ee4 <arm_sin_cos_f32+0x118>
+ 8005dd4:	4a44      	ldr	r2, [pc, #272]	@ (8005ee8 <arm_sin_cos_f32+0x11c>)
+ 8005dd6:	eddf 6a45 	vldr	s13, [pc, #276]	@ 8005eec <arm_sin_cos_f32+0x120>
+ 8005dda:	ee20 6a06 	vmul.f32	s12, s0, s12
+ 8005dde:	b470      	push	{r4, r5, r6}
+ 8005de0:	eeb5 6ac0 	vcmpe.f32	s12, #0.0
+ 8005de4:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8005de8:	bf48      	it	mi
+ 8005dea:	eeb1 6a46 	vnegmi.f32	s12, s12
+ 8005dee:	eebd 5ac6 	vcvt.s32.f32	s10, s12
+ 8005df2:	eeb0 1a08 	vmov.f32	s2, #8	@ 0x40400000  3.0
+ 8005df6:	eeb8 5ac5 	vcvt.f32.s32	s10, s10
+ 8005dfa:	eeb5 0ac0 	vcmpe.f32	s0, #0.0
+ 8005dfe:	ee36 6a45 	vsub.f32	s12, s12, s10
+ 8005e02:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+ 8005e06:	ee26 5a27 	vmul.f32	s10, s12, s15
+ 8005e0a:	eefc 7ac5 	vcvt.u32.f32	s15, s10
+ 8005e0e:	ee17 3a90 	vmov	r3, s15
+ 8005e12:	f3c3 0308 	ubfx	r3, r3, #0, #9
+ 8005e16:	f103 0480 	add.w	r4, r3, #128	@ 0x80
+ 8005e1a:	eb02 0683 	add.w	r6, r2, r3, lsl #2
+ 8005e1e:	f3c4 0408 	ubfx	r4, r4, #0, #9
+ 8005e22:	edd6 3a00 	vldr	s7, [r6]
+ 8005e26:	ed96 7a01 	vldr	s14, [r6, #4]
+ 8005e2a:	eb02 0584 	add.w	r5, r2, r4, lsl #2
+ 8005e2e:	ed95 3a00 	vldr	s6, [r5]
+ 8005e32:	edd5 1a01 	vldr	s3, [r5, #4]
+ 8005e36:	eeb1 6a63 	vneg.f32	s12, s7
+ 8005e3a:	ee36 4a47 	vsub.f32	s8, s12, s14
+ 8005e3e:	ee71 5ac3 	vsub.f32	s11, s3, s6
+ 8005e42:	ee36 2a06 	vadd.f32	s4, s12, s12
+ 8005e46:	ee07 3a90 	vmov	s15, r3
+ 8005e4a:	ee75 0aa5 	vadd.f32	s1, s11, s11
+ 8005e4e:	ee24 4a26 	vmul.f32	s8, s8, s13
+ 8005e52:	ee32 2a47 	vsub.f32	s4, s4, s14
+ 8005e56:	ee73 4a21 	vadd.f32	s9, s6, s3
+ 8005e5a:	ee37 7a63 	vsub.f32	s14, s14, s7
+ 8005e5e:	eef8 7a67 	vcvt.f32.u32	s15, s15
+ 8005e62:	ee73 2a03 	vadd.f32	s5, s6, s6
+ 8005e66:	ee75 7a67 	vsub.f32	s15, s10, s15
+ 8005e6a:	ee34 4a60 	vsub.f32	s8, s8, s1
+ 8005e6e:	ee24 5aa6 	vmul.f32	s10, s9, s13
+ 8005e72:	ee77 0a07 	vadd.f32	s1, s14, s14
+ 8005e76:	ee72 2aa1 	vadd.f32	s5, s5, s3
+ 8005e7a:	ee64 4a27 	vmul.f32	s9, s8, s15
+ 8005e7e:	ee22 2a26 	vmul.f32	s4, s4, s13
+ 8005e82:	ee22 4aa6 	vmul.f32	s8, s5, s13
+ 8005e86:	ee65 5a81 	vmul.f32	s11, s11, s2
+ 8005e8a:	ee27 7a01 	vmul.f32	s14, s14, s2
+ 8005e8e:	ee35 5a60 	vsub.f32	s10, s10, s1
+ 8005e92:	ee75 5ac2 	vsub.f32	s11, s11, s4
+ 8005e96:	ee25 5a27 	vmul.f32	s10, s10, s15
+ 8005e9a:	ee37 7a44 	vsub.f32	s14, s14, s8
+ 8005e9e:	ee75 5aa4 	vadd.f32	s11, s11, s9
+ 8005ea2:	ee37 7a05 	vadd.f32	s14, s14, s10
+ 8005ea6:	ee65 5aa7 	vmul.f32	s11, s11, s15
+ 8005eaa:	ee26 6a26 	vmul.f32	s12, s12, s13
+ 8005eae:	ee27 7a27 	vmul.f32	s14, s14, s15
+ 8005eb2:	ee63 6a26 	vmul.f32	s13, s6, s13
+ 8005eb6:	ee36 6a25 	vadd.f32	s12, s12, s11
+ 8005eba:	ee36 7a87 	vadd.f32	s14, s13, s14
+ 8005ebe:	ee26 6a27 	vmul.f32	s12, s12, s15
+ 8005ec2:	ee67 7a27 	vmul.f32	s15, s14, s15
+ 8005ec6:	ee36 6a03 	vadd.f32	s12, s12, s6
+ 8005eca:	ee77 7aa3 	vadd.f32	s15, s15, s7
+ 8005ece:	ed81 6a00 	vstr	s12, [r1]
+ 8005ed2:	bf48      	it	mi
+ 8005ed4:	eef1 7a67 	vnegmi.f32	s15, s15
+ 8005ed8:	bc70      	pop	{r4, r5, r6}
+ 8005eda:	edc0 7a00 	vstr	s15, [r0]
+ 8005ede:	4770      	bx	lr
+ 8005ee0:	3b360b61 	.word	0x3b360b61
+ 8005ee4:	44000000 	.word	0x44000000
+ 8005ee8:	08006268 	.word	0x08006268
+ 8005eec:	3c490fdb 	.word	0x3c490fdb
 
-08005d0c <memset>:
- 8005d0c:	4402      	add	r2, r0
- 8005d0e:	4603      	mov	r3, r0
- 8005d10:	4293      	cmp	r3, r2
- 8005d12:	d100      	bne.n	8005d16 <memset+0xa>
- 8005d14:	4770      	bx	lr
- 8005d16:	f803 1b01 	strb.w	r1, [r3], #1
- 8005d1a:	e7f9      	b.n	8005d10 <memset+0x4>
+08005ef0 <memset>:
+ 8005ef0:	4402      	add	r2, r0
+ 8005ef2:	4603      	mov	r3, r0
+ 8005ef4:	4293      	cmp	r3, r2
+ 8005ef6:	d100      	bne.n	8005efa <memset+0xa>
+ 8005ef8:	4770      	bx	lr
+ 8005efa:	f803 1b01 	strb.w	r1, [r3], #1
+ 8005efe:	e7f9      	b.n	8005ef4 <memset+0x4>
 
-08005d1c <__libc_init_array>:
- 8005d1c:	b570      	push	{r4, r5, r6, lr}
- 8005d1e:	4d0d      	ldr	r5, [pc, #52]	@ (8005d54 <__libc_init_array+0x38>)
- 8005d20:	4c0d      	ldr	r4, [pc, #52]	@ (8005d58 <__libc_init_array+0x3c>)
- 8005d22:	1b64      	subs	r4, r4, r5
- 8005d24:	10a4      	asrs	r4, r4, #2
- 8005d26:	2600      	movs	r6, #0
- 8005d28:	42a6      	cmp	r6, r4
- 8005d2a:	d109      	bne.n	8005d40 <__libc_init_array+0x24>
- 8005d2c:	4d0b      	ldr	r5, [pc, #44]	@ (8005d5c <__libc_init_array+0x40>)
- 8005d2e:	4c0c      	ldr	r4, [pc, #48]	@ (8005d60 <__libc_init_array+0x44>)
- 8005d30:	f000 f818 	bl	8005d64 <_init>
- 8005d34:	1b64      	subs	r4, r4, r5
- 8005d36:	10a4      	asrs	r4, r4, #2
- 8005d38:	2600      	movs	r6, #0
- 8005d3a:	42a6      	cmp	r6, r4
- 8005d3c:	d105      	bne.n	8005d4a <__libc_init_array+0x2e>
- 8005d3e:	bd70      	pop	{r4, r5, r6, pc}
- 8005d40:	f855 3b04 	ldr.w	r3, [r5], #4
- 8005d44:	4798      	blx	r3
- 8005d46:	3601      	adds	r6, #1
- 8005d48:	e7ee      	b.n	8005d28 <__libc_init_array+0xc>
- 8005d4a:	f855 3b04 	ldr.w	r3, [r5], #4
- 8005d4e:	4798      	blx	r3
- 8005d50:	3601      	adds	r6, #1
- 8005d52:	e7f2      	b.n	8005d3a <__libc_init_array+0x1e>
- 8005d54:	0800687c 	.word	0x0800687c
- 8005d58:	0800687c 	.word	0x0800687c
- 8005d5c:	0800687c 	.word	0x0800687c
- 8005d60:	08006880 	.word	0x08006880
+08005f00 <__libc_init_array>:
+ 8005f00:	b570      	push	{r4, r5, r6, lr}
+ 8005f02:	4d0d      	ldr	r5, [pc, #52]	@ (8005f38 <__libc_init_array+0x38>)
+ 8005f04:	4c0d      	ldr	r4, [pc, #52]	@ (8005f3c <__libc_init_array+0x3c>)
+ 8005f06:	1b64      	subs	r4, r4, r5
+ 8005f08:	10a4      	asrs	r4, r4, #2
+ 8005f0a:	2600      	movs	r6, #0
+ 8005f0c:	42a6      	cmp	r6, r4
+ 8005f0e:	d109      	bne.n	8005f24 <__libc_init_array+0x24>
+ 8005f10:	4d0b      	ldr	r5, [pc, #44]	@ (8005f40 <__libc_init_array+0x40>)
+ 8005f12:	4c0c      	ldr	r4, [pc, #48]	@ (8005f44 <__libc_init_array+0x44>)
+ 8005f14:	f000 f818 	bl	8005f48 <_init>
+ 8005f18:	1b64      	subs	r4, r4, r5
+ 8005f1a:	10a4      	asrs	r4, r4, #2
+ 8005f1c:	2600      	movs	r6, #0
+ 8005f1e:	42a6      	cmp	r6, r4
+ 8005f20:	d105      	bne.n	8005f2e <__libc_init_array+0x2e>
+ 8005f22:	bd70      	pop	{r4, r5, r6, pc}
+ 8005f24:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8005f28:	4798      	blx	r3
+ 8005f2a:	3601      	adds	r6, #1
+ 8005f2c:	e7ee      	b.n	8005f0c <__libc_init_array+0xc>
+ 8005f2e:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8005f32:	4798      	blx	r3
+ 8005f34:	3601      	adds	r6, #1
+ 8005f36:	e7f2      	b.n	8005f1e <__libc_init_array+0x1e>
+ 8005f38:	08006a6c 	.word	0x08006a6c
+ 8005f3c:	08006a6c 	.word	0x08006a6c
+ 8005f40:	08006a6c 	.word	0x08006a6c
+ 8005f44:	08006a70 	.word	0x08006a70
 
-08005d64 <_init>:
- 8005d64:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8005d66:	bf00      	nop
- 8005d68:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8005d6a:	bc08      	pop	{r3}
- 8005d6c:	469e      	mov	lr, r3
- 8005d6e:	4770      	bx	lr
+08005f48 <_init>:
+ 8005f48:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8005f4a:	bf00      	nop
+ 8005f4c:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8005f4e:	bc08      	pop	{r3}
+ 8005f50:	469e      	mov	lr, r3
+ 8005f52:	4770      	bx	lr
 
-08005d70 <_fini>:
- 8005d70:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8005d72:	bf00      	nop
- 8005d74:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8005d76:	bc08      	pop	{r3}
- 8005d78:	469e      	mov	lr, r3
- 8005d7a:	4770      	bx	lr
+08005f54 <_fini>:
+ 8005f54:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8005f56:	bf00      	nop
+ 8005f58:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8005f5a:	bc08      	pop	{r3}
+ 8005f5c:	469e      	mov	lr, r3
+ 8005f5e:	4770      	bx	lr

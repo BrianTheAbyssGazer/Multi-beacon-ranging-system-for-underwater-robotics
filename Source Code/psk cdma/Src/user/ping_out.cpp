@@ -6,20 +6,19 @@
  */
 
 #include "main.h"
-#include "max_peak_detector.h"
 #include "mode.h"
 #include "global_buffer_def.h"
 #include "ping_out.h"
-#include <string>
-
 
 // global out buffer, with DMA to GPIO register
 uint32_t out_buf[OUT_BUF_LEN];
-static const std::string info="I am beacon 1!";
 
+#if TRANSPONDER_MODE
+static constexpr char info[STRING_LEN] = {id_list[ID*2],id_list[ID*2+1]};
+#endif
 
 //initialize statics
-volatile uint16_t PingOut::po_state = POState::PO_IDLE;
+volatile uint16_t PingOut::po_state = POState::SECND_HLF_FREE;
 uint8_t PingOut::set_state = SetState::PO_DISABLED;
 volatile uint16_t PingOut::cur_out_pfx = 0;
 volatile uint16_t PingOut::schedule_period = 0;
@@ -48,12 +47,20 @@ PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2
     peak_count = 4;
     samples_per_half_period = 6;
     /* schedule data initialisation */
-    scheduled_idx = 0;
     clear_offset = 0;
-    cur_idx=0;
-    data_idx=0;
+    cur_idx = 0;
+    data_idx = 0;
     periodic_schedule_enable = false;
-
+    scheduled_pfx = INIT_OUT;
+    scheduled_idx = HAL_OUT_BUF_LEN;
+    scheduled_flag = false;
+#if TIME_OF_FLIGHT_MODE
+    info = id_list;
+    beacon_id = 0;
+    enable_scheduler = true;
+#elif TRANSPONDER_MODE
+    enable_scheduler = false;
+#endif
     /* buffer initialization to reset (LOW):*/
 	for (uint16_t i = 0; i < OUT_BUF_LEN; i++) {
 		out_buf[i] = BSRR_PC6_RESET_MASK;
@@ -93,7 +100,12 @@ void PingOut::start_periodic_scheduler(uint16_t period) {
     PingOut::schedule_period = period;
     periodic_schedule_enable = true;
 }
-
+void PingOut::schedule(uint16_t pfx, uint16_t idx) {
+	scheduled_pfx = pfx;
+    scheduled_idx = idx;
+	//(*p_index_info_tx).stream_adc(idx);
+    enable_scheduler = true;
+}
 /*
 * Should be run at least twice per full in/out buffer (one per half),
 * to ensure any scheduled output is actually transmitted.
@@ -106,22 +118,26 @@ void PingOut::update() {
 		set_state=SetState::SET_PIN;
 		cur_idx = scheduled_idx;
     }
+	//(*p_index_info_tx).stream_adc(cur_out_pfx);
 
     // set:
 	switch (po_state)
 	{
 	case POState::FIRST_HLF_FREE:
+		if (cur_out_pfx==scheduled_pfx && enable_scheduler && scheduled_idx<HAL_OUT_BUF_LEN) enable_pingout();
 		if (cur_idx<HAL_OUT_BUF_LEN) {
 			set();
 		}
-		po_state=POState::PO_IDLE;
+		//po_state=POState::PO_IDLE;
 		break;
 
 	case POState::SECND_HLF_FREE:
+		//(*p_index_info_tx).stream_adc(scheduled_pfx);
+		if (cur_out_pfx==scheduled_pfx && enable_scheduler && scheduled_idx>=HAL_OUT_BUF_LEN) enable_pingout();
 		if (cur_idx>=HAL_OUT_BUF_LEN) {
 			set();
 		}
-		po_state=POState::PO_IDLE;
+		//po_state=POState::PO_IDLE;
 		break;
 	case POState::PO_IDLE:
 		break;
@@ -195,7 +211,22 @@ void PingOut::set() {
     if (debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_RESET);}
 }
 
-
+void PingOut::enable_pingout(){
+	set_state=SetState::SET_PIN;
+	data_idx = 0;
+	cur_idx = scheduled_idx;
+	enable_scheduler = false;
+	scheduled_flag=true;
+#if TIME_OF_FLIGHT_MODE
+    info+=2;
+    beacon_id++;
+	if (*info == '\0') { // Check if we hit the null terminator
+		info = id_list;
+	    beacon_id=0;
+	}
+#endif
+	//(*p_index_info_tx).stream_adc(cur_out_pfx);
+}
 
 void first_half_written_callback(DMA_HandleTypeDef *hdma) {
 

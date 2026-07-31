@@ -103,7 +103,6 @@ void PingOut::start_periodic_scheduler(uint16_t period) {
 void PingOut::schedule(uint16_t pfx, uint16_t idx) {
 	scheduled_pfx = pfx;
     scheduled_idx = idx;
-	//(*p_index_info_tx).stream_adc(idx);
     enable_scheduler = true;
 }
 /*
@@ -118,12 +117,15 @@ void PingOut::update() {
 		set_state=SetState::SET_PIN;
 		cur_idx = scheduled_idx;
     }
-	//(*p_index_info_tx).stream_adc(cur_out_pfx);
+
 
     // set:
 	switch (po_state)
 	{
 	case POState::FIRST_HLF_FREE:
+        //(*p_index_info_tx).stream_adc(cur_out_pfx);
+        //(*p_index_info_tx).stream_adc(scheduled_pfx);
+        //(*p_index_info_tx).stream_adc(0);
 		if (cur_out_pfx==scheduled_pfx && enable_scheduler && scheduled_idx<HAL_OUT_BUF_LEN) enable_pingout();
 		if (cur_idx<HAL_OUT_BUF_LEN) {
 			set();
@@ -164,11 +166,11 @@ void PingOut::set() {
     		cur_idx=cur_idx&OUT_BUF_MASK;
     		break;
     	}
-		i_set = data_idx & (DEAD_INTERVAL-1);         // Lower 9 bits (0-511)
-		i_bit  = (data_idx >> 9) & 7;    // Next 3 bits (0-7)
-		i_char = data_idx >> 12;
+		i_set = data_idx & (DEAD_INTERVAL*2-1);         // Lower 9 bits (0-511) index of buffer
+		i_bit  = (data_idx >> 9) & 7;    // Next 3 bits (0-7) index of bit in character
+		i_char = data_idx >> 12; // index of character
 		c = info[i_char];
-		bit = c & 1 <<(i_bit);
+		bit = bool(c >> i_bit & 1);
 		phase = bool(i_set & 1);
     	switch (set_state){
     	case SetState::CLEAR:
@@ -182,8 +184,8 @@ void PingOut::set() {
             	cur_idx++;
     		}
     		else{
-        		data_idx+=(DEAD_INTERVAL-N_CYCLE*2);
-        		cur_idx+=(DEAD_INTERVAL-N_CYCLE*2);
+        		data_idx+=(DEAD_INTERVAL-N_CYCLE)*2;
+        		cur_idx+=(DEAD_INTERVAL-N_CYCLE)*2;
     		}
     		break;
     	case SetState::SET_PIN:
@@ -199,8 +201,9 @@ void PingOut::set() {
             	cur_idx++;
     		}
     		else{
-        		data_idx+=(DEAD_INTERVAL-N_CYCLE*2);
-        		cur_idx+=(DEAD_INTERVAL-N_CYCLE*2);
+        		data_idx+=(DEAD_INTERVAL-N_CYCLE)*2;
+        		cur_idx+=(DEAD_INTERVAL-N_CYCLE)*2;
+        		//(*p_index_info_tx).send_byte(i_char);
     		}
     		break;
     	case SetState::PO_DISABLED:
@@ -225,7 +228,6 @@ void PingOut::enable_pingout(){
 	    beacon_id=0;
 	}
 #endif
-	//(*p_index_info_tx).stream_adc(cur_out_pfx);
 }
 
 void first_half_written_callback(DMA_HandleTypeDef *hdma) {

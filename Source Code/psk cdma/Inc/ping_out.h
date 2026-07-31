@@ -4,6 +4,7 @@
  *  Created on: Sep 13, 2024
  *      Author: arthur
  */
+#include "index_info_tx.h"
 
 #ifdef __cplusplus
 
@@ -15,7 +16,6 @@ enum POState {
     FIRST_HLF_FREE,
     SECND_HLF_FREE,
 	PO_IDLE,
-	ERROR_2,
 };
 
 enum SetState {
@@ -37,13 +37,22 @@ class PingOut {
         static volatile uint16_t cur_out_pfx; // the prefix of the free space on the buffer
 
     private:
-        uint16_t scheduled_idx; //this has already been rounded to out_buf units
         uint16_t clear_offset; //this has already been rounded to out_buf units
-        uint16_t scheduled_pfx; // -1 indicates nothing to schedule
         uint16_t cur_idx;
         uint32_t data_idx;
+#if TIME_OF_FLIGHT_MODE
+        const char* info;
+#endif
     public:
+        uint16_t scheduled_pfx; // -1 indicates nothing to schedule
+        uint16_t scheduled_idx; //this has already been rounded to out_buf units
+#if TIME_OF_FLIGHT_MODE
+        uint8_t beacon_id;
+#endif
+
         bool periodic_schedule_enable;
+        bool enable_scheduler;
+        bool scheduled_flag;
         static uint8_t set_state;
 
         static volatile uint16_t schedule_period;
@@ -64,14 +73,16 @@ class PingOut {
         PingOut(DMA_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*);
         void schedule_ping(uint16_t, uint16_t);
         void start_periodic_scheduler(uint16_t);
+        void schedule(uint16_t pfx, uint16_t idx);
         uint16_t start_datapacket_scheduler(uint8_t data);
         void update(void);
         bool calculateParity(bool codeword[], const uint8_t positions[], uint8_t size);
+    private:
+        void enable_pingout();
 };
 
 
 void first_half_written_callback(DMA_HandleTypeDef*);
-
 void secnd_half_written_callback(DMA_HandleTypeDef*);
 
 extern "C" {

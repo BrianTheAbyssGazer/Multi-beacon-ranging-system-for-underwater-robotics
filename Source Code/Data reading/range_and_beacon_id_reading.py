@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 import pandas as pd
 import time
 
-rc = RangeCalc("COM3", 115200, 10, 30.012)
+rc = RangeCalc("COM8", 115200, 10, 30.012)
 
 # Initialize live plot
 plt.ion()

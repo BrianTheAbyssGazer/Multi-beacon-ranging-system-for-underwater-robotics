@@ -11,9 +11,10 @@
 #include "index_info_tx.h"
 #include <deque>
 #include "global_buffer_def.h"
-
-
-
+#ifndef GAIN
+#define GAIN
+static uint8_t gain=2;
+#endif
 class Timestamp {
   public:
 	uint16_t idx;
@@ -34,8 +35,10 @@ enum MPDState {
 
 enum MPDSearchState {
     NO_SIGNAL,
+	PREAMBLE,
     YES_SIGNAL,
-	DEMODULATOR_DISABLED,
+	SENDING,
+	SILENT,
 };
 
 
@@ -57,6 +60,7 @@ class MaxPeakDetector {
     public:
         bool min_aid; //set to true to incorporate min peak assistance
         static bool sending_signal;
+        bool signal_flag;
         uint16_t search_threshold_reduction;
         uint16_t search_window;
         uint16_t dead_zone_len; //set to -1 to jump to buffer end after each peak detection
@@ -89,7 +93,7 @@ class MaxPeakDetector {
     public:
         uint16_t cur_idx; //current idx of adc buffer
         uint16_t uart_idx; //current idx of adc buffer
-        uint16_t ccm_idx; //current idx of adc buffer
+        uint32_t ccm_idx; //current idx of adc buffer
         uint16_t bg_idx; //current idx of adc buffer
         static volatile uint16_t cur_pfx; // incremented each time the ADC buffer completely fills
 #if DECODE

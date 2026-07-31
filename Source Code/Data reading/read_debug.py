@@ -6,7 +6,7 @@ import numpy as np
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 MAX_SAMPLES = 5700
-PORT="COM5"
+PORT="COM8"
 TEST_TYPE="box full sample"
 serial_lock = threading.Lock() # Prevents simultaneous read/write collisions
 N=1
@@ -17,7 +17,7 @@ def rx_data(ser,lock):
     prev=0
     while True:
         with lock:
-            if ser.in_waiting >= 3:
+            if ser.in_waiting >= 2:
                 flag = ser.read(1)
                 if flag==b'\xf2':
                     data  = ser.read(2)
@@ -32,6 +32,9 @@ def rx_data(ser,lock):
                         b[index]=a
                         index+=1
                     prev=value
+                if flag==b'\xf1':
+                    data  = ser.read(1)
+                    print(data)
 
 if __name__ == "__main__":
     ser = serial.Serial(PORT, 115200,timeout=0.1)
