@@ -68,6 +68,7 @@ MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef*
     corr_sum=0;
     signal_flag = false;
     data_flag = false;
+    gain_update_flag = false;
 	pinout_pfx = INIT_OUT;
 	pinout_idx = HAL_BUF_LEN;
     enable_pfx = DATA_PFX+1;
@@ -211,17 +212,19 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 #if TRANSPONDER_MODE
 					if (amp>700 && gain>2){
 						gain--;
+						gain_update_flag=true;
 					}
-					else if(amp<350 && gain<8){
-						gain++;
-					}
-					//for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = uint8_t((dc_val>>(j*8)) & 0xFF);
-					//rx_data[STRING_LEN+2] = gain; // 0x78
-					//rx_data[STRING_LEN+3] = 0; // 0x78
+					for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = uint8_t((amp>>(j*8)) & 0xFF);
+					rx_data[STRING_LEN+2] = gain; // 0x78
+					rx_data[STRING_LEN+3] = 0; // 0x78
+					(*p_index_info_tx).send_bytes(rx_data);
 					if(memcmp(rx_data, my_id, STRING_LEN) == 0) {
 						data_flag=true;
 		        		lost_time=0;
-
+		        		if(amp<350 && gain<8){
+		        			gain++;
+							gain_update_flag=true;
+		        		}
 						pinout_pfx = last_peak_pfx+DATA_PFX+RESPONSE_DELAY;
 						pinout_idx = (last_peak_idx/6)*6;//+HAL_BUF_LEN;
 						if(pinout_idx>BUF_LEN){
@@ -326,7 +329,7 @@ void MaxPeakDetector::mark_pinout() {
 	//div_t div_result = std::div(gain, 2);
 	//enable_pfx = pinout_pfx+DATA_PFX+div_result.quot;  // delay from pingout to actual sound wave is 2pfx+1008idx
 	//enable_idx+=HAL_BUF_LEN*div_result.rem;
-	enable_pfx=pinout_pfx+DATA_PFX+RESPONSE_DELAY;
+	enable_pfx=pinout_pfx+DATA_PFX+RESPONSE_DELAY*2;
 	enable_idx+=HAL_BUF_LEN;
 #endif
 	if(enable_idx>=BUF_LEN){

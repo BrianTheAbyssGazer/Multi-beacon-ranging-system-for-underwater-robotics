@@ -34,7 +34,8 @@ def rx_data(ser,lock):
                     prev=value
                 if flag==b'\xf1':
                     data  = ser.read(1)
-                    print(data)
+                    value = int.from_bytes(data, byteorder='little')
+                    print(value)
 
 if __name__ == "__main__":
     ser = serial.Serial(PORT, 115200,timeout=0.1)

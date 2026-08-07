@@ -3,6 +3,6 @@
 ../Src/user/ping_out.cpp:34:1:PingOut::PingOut(DMA_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*)	2
 ../Src/user/ping_out.cpp:99:6:void PingOut::start_periodic_scheduler(uint16_t)	1
 ../Src/user/ping_out.cpp:103:6:void PingOut::schedule(uint16_t, uint16_t)	1
-../Src/user/ping_out.cpp:153:6:void PingOut::set()	25
-../Src/user/ping_out.cpp:112:6:void PingOut::update()	13
-../Src/user/ping_out.cpp:217:6:void PingOut::enable_pingout()	1
+../Src/user/ping_out.cpp:153:6:void PingOut::set()	24
+../Src/user/ping_out.cpp:112:6:void PingOut::update()	15
+../Src/user/ping_out.cpp:217:6:void PingOut::enable_pingout()	2

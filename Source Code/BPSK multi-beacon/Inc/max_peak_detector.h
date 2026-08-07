@@ -62,6 +62,7 @@ class MaxPeakDetector {
         uint16_t search_threshold;   //search context --------
         bool signal_flag;
         bool data_flag;
+        bool gain_update_flag;
 		int16_t last_peak_val; // the value of the last successfully detected pulse peak
 		uint16_t last_peak_idx;
 		uint16_t last_peak_pfx;
