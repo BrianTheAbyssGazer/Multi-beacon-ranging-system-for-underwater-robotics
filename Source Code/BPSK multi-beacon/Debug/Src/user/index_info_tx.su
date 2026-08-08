@@ -1,7 +1,10 @@
-../Src/user/index_info_tx.cpp:13:1:IndexInfoTX::IndexInfoTX(UART_HandleTypeDef*)	0	static
-../Src/user/index_info_tx.cpp:27:6:void IndexInfoTX::stream_adc(int)	4	static
-../Src/user/index_info_tx.cpp:35:6:void IndexInfoTX::stream_adc(uint16_t)	4	static
-../Src/user/index_info_tx.cpp:41:6:void IndexInfoTX::send_byte(uint8_t)	4	static
-../Src/user/index_info_tx.cpp:46:6:void IndexInfoTX::send_bytes(uint8_t*)	0	static
-../Src/user/index_info_tx.cpp:58:6:void IndexInfoTX::transmit_err_1(int, int)	0	static
-../Src/user/index_info_tx.cpp:70:6:void IndexInfoTX::test_pattern()	32	static
+../Inc/mavlink/common/../mavlink_sha256.h:107:13:void mavlink_sha256_calc(mavlink_sha256_ctx*)	56	static
+../Inc/mavlink/common/../mavlink_helpers.h:77:24:uint8_t mavlink_sign_packet(mavlink_signing_t*, uint8_t*, const uint8_t*, uint8_t, const uint8_t*, uint8_t, const uint8_t*)	152	static
+../Src/user/index_info_tx.cpp:18:1:IndexInfoTX::IndexInfoTX(UART_HandleTypeDef*)	0	static
+../Src/user/index_info_tx.cpp:32:6:void IndexInfoTX::stream_adc(int)	4	static
+../Src/user/index_info_tx.cpp:40:6:void IndexInfoTX::stream_adc(uint16_t)	4	static
+../Src/user/index_info_tx.cpp:46:6:void IndexInfoTX::send_byte(uint8_t)	4	static
+../Src/user/index_info_tx.cpp:51:6:void IndexInfoTX::send_bytes(uint8_t*)	0	static
+../Src/user/index_info_tx.cpp:57:6:void IndexInfoTX::send_range_and_depth(uint8_t, uint16_t, uint8_t)	680	static
+../Src/user/index_info_tx.cpp:105:6:void IndexInfoTX::transmit_err_1(int, int)	0	static
+../Src/user/index_info_tx.cpp:117:6:void IndexInfoTX::test_pattern()	32	static

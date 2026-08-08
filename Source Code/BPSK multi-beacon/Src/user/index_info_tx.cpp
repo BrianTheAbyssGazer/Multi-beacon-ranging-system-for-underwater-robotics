@@ -9,7 +9,12 @@
 #include "main.h"
 #include "index_info_tx.h"
 #include "global_buffer_def.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Waddress-of-packed-member"
 
+#include "mavlink/common/mavlink.h"
+
+#pragma GCC diagnostic pop
 IndexInfoTX :: IndexInfoTX(UART_HandleTypeDef* p_huart) {
     this->p_huart = p_huart;
 }
@@ -48,6 +53,48 @@ void IndexInfoTX :: send_bytes(uint8_t* data) {
 	bytes[0] = INFO_3;
 	for(size_t i=0;i<STRING_LEN+4;i++)bytes[i+1]=data[i];
 	HAL_UART_Transmit(p_huart, bytes, STRING_LEN+5, 0xFFFF);
+}
+void IndexInfoTX :: send_range_and_depth(uint8_t sensor_id, uint16_t range, uint8_t depth) {
+    uint8_t buf[MAVLINK_MAX_PACKET_LEN];
+    mavlink_message_t msg;
+    uint16_t len;
+    static const float zero_quaternion[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+    // -------------------------------------------------------------
+    // 1. Pack DISTANCE_SENSOR (ID & Range)
+    // -------------------------------------------------------------
+    mavlink_msg_distance_sensor_pack(
+        1,                             // 1.  uint8_t system_id
+        MAV_COMP_ID_PATHPLANNER,       // 2.  uint8_t component_id
+        &msg,                          // 3.  mavlink_message_t* msg
+        0,                             // 4.  uint32_t time_boot_ms
+        10,                            // 5.  uint16_t min_distance (cm)
+        5000,                          // 6.  uint16_t max_distance (cm)
+		range,           // 7.  uint16_t current_distance (cm)
+        MAV_DISTANCE_SENSOR_ULTRASOUND,// 8.  uint8_t type
+        sensor_id,                     // 9.  uint8_t id
+        MAV_SENSOR_ROTATION_PITCH_270, // 10. uint8_t orientation (Facing Down)
+        255,                           // 11. uint8_t covariance (255 = unknown)
+        0.0f,                          // 12. float horizontal_fov (rad, 0 = N/A)
+        0.0f,                          // 13. float vertical_fov (rad, 0 = N/A)
+        zero_quaternion,               // 14. const float* quaternion (Must be valid array pointer!)
+        0                              // 15. uint8_t signal_quality (0% = unknown, 1-100%)
+    );
+
+    len = mavlink_msg_to_send_buffer(buf, &msg);
+    HAL_UART_Transmit(p_huart, buf, len, HAL_MAX_DELAY);
+
+    // -------------------------------------------------------------
+    // 2. Pack NAMED_VALUE_FLOAT (Depth)
+    // -------------------------------------------------------------
+    mavlink_msg_named_value_int_pack(
+        1, MAV_COMP_ID_PATHPLANNER, &msg,
+        0,                     // time_boot_ms
+        "Depth"+static_cast<char>(sensor_id),               // Key name (max 10 chars)
+        (int32_t)depth   // Promoted uint8_t to int32_t
+    );
+
+    len = mavlink_msg_to_send_buffer(buf, &msg);
+    HAL_UART_Transmit(p_huart, buf, len, HAL_MAX_DELAY);
 }
 //Send error1 packet
 /*

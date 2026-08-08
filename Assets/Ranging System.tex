@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{float}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+\title{PID Control System for Quantum Bit}
+\maketitle
+\section{echos}
+Let $d$ be the distance to a flat surface, $v$ be the speed of sound, $\delta(t)$ be the transmitted signal, $\alpha$ be the absorption coeeficient. the impulse response of the echo channel is $I(t)=\dfrac{\delta(t-T)Ae^{-\alpha T}}{\sqrt{d}}, T=2d/v$. For an unknown environment, an upper boundary of the impulse response of an echo channel is the sum of echos from surfaces at all possible distances $E(t)=\int^{\infty}_0 \dfrac{\delta(t-T)Ae^{-\alpha T}}{\sqrt{vT/2}}\dfrac{v}{2} dT=A\sqrt{\dfrac{v}{2t}}e^{-\alpha t}$.
+Let $d$ be the distance to another beacon. Then the received response from it is $R(t)=\dfrac{\delta(t-T)Aexp(-\alpha T)}{\sqrt{d}}, T=d/v$.
+
+
+
+\end{document}
