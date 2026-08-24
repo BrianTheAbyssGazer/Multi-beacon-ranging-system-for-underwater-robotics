@@ -255,8 +255,7 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 					for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = uint8_t((amp>>(j*8)) & 0xFF);
 					rx_data[STRING_LEN+2] = gain[beacon_id]; // 0x78
 					rx_data[STRING_LEN+3] = 0; // 0x78
-					(*p_index_info_tx).send_bytes(rx_data);
-					(*p_index_info_tx).send_range_and_depth(rx_data[1], (uint16_t)amp, rx_data[0]);
+					//(*p_index_info_tx).send_bytes(rx_data);
 					if(memcmp(rx_data,&id_list[beacon_id*2], STRING_LEN) == 0){
 						data_flag=true;
 						lost_time[beacon_id]=0;

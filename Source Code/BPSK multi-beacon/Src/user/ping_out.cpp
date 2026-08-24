@@ -223,6 +223,7 @@ void PingOut::enable_pingout(){
 #if TIME_OF_FLIGHT_MODE
     info+=2;
     beacon_id++;
+	(*p_index_info_tx).send_range_and_depth(beacon_id, (uint16_t)17, 13);
 	if (*info == '\0') { // Check if we hit the null terminator
 		info = id_list;
 	    beacon_id=0;
