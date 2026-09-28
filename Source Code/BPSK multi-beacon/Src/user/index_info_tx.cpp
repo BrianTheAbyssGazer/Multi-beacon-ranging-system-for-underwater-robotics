@@ -59,6 +59,26 @@ void IndexInfoTX :: send_range_and_depth(uint8_t sensor_id, uint16_t range, uint
     mavlink_message_t msg;
     uint16_t len;
     static const float zero_quaternion[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+    uint8_t dist_orient;
+    uint8_t depth_orient;
+    switch (sensor_id){
+    	case 1:
+    		dist_orient=MAV_SENSOR_ROTATION_YAW_225;//id 1 orientation 5
+    		depth_orient=MAV_SENSOR_ROTATION_NONE; //id 1 orientation 0
+    		break;
+    	case 2:
+    		dist_orient=MAV_SENSOR_ROTATION_YAW_270;//id 2 orientation 6
+    		depth_orient=MAV_SENSOR_ROTATION_YAW_45;//id 2 orientation 1
+    	    break;
+    	case 3:
+    		dist_orient=MAV_SENSOR_ROTATION_YAW_315;// orientation 7
+    		depth_orient=MAV_SENSOR_ROTATION_YAW_90;// orientation 2
+    	    break;
+    	default:
+    		dist_orient=MAV_SENSOR_ROTATION_PITCH_270;// id 3 orientation
+    		depth_orient=MAV_SENSOR_ROTATION_PITCH_90;// id 3 orientation
+    	    break;
+    }
     // -------------------------------------------------------------
     // 1. Pack DISTANCE_SENSOR (ID & distance)
     // -------------------------------------------------------------
@@ -71,8 +91,8 @@ void IndexInfoTX :: send_range_and_depth(uint8_t sensor_id, uint16_t range, uint
         5000,                          // 6.  uint16_t max_distance (cm)
 		range,           // 7.  uint16_t current_distance (cm)
         MAV_DISTANCE_SENSOR_ULTRASOUND,// 8.  uint8_t type
-        sensor_id,                     // 9.  uint8_t id
-        MAV_SENSOR_ROTATION_PITCH_270, // 10. uint8_t orientation (Facing Down)
+        1,                     // 9.  uint8_t id
+		dist_orient, // 10. uint8_t orientation (Facing Down)
         255,                           // 11. uint8_t covariance (255 = unknown)
         0.0f,                          // 12. float horizontal_fov (rad, 0 = N/A)
         0.0f,                          // 13. float vertical_fov (rad, 0 = N/A)
@@ -93,8 +113,8 @@ void IndexInfoTX :: send_range_and_depth(uint8_t sensor_id, uint16_t range, uint
         5000,                          // 6.  uint16_t max_distance (cm)
 		depth,           // 7.  uint16_t current_distance (cm)
         MAV_DISTANCE_SENSOR_ULTRASOUND,// 8.  uint8_t type
-        sensor_id,                     // 9.  uint8_t id
-		MAV_SENSOR_ROTATION_PITCH_90, // 10. uint8_t orientation (Facing Down)
+        2,                     // 9.  uint8_t id
+		depth_orient, 					// 10. uint8_t orientation (Facing Down)
         255,                           // 11. uint8_t covariance (255 = unknown)
         0.0f,                          // 12. float horizontal_fov (rad, 0 = N/A)
         0.0f,                          // 13. float vertical_fov (rad, 0 = N/A)
@@ -104,6 +124,7 @@ void IndexInfoTX :: send_range_and_depth(uint8_t sensor_id, uint16_t range, uint
     len = mavlink_msg_to_send_buffer(buf, &msg);
     HAL_UART_Transmit(p_huart, buf, len, HAL_MAX_DELAY);
 }
+
 //Send error1 packet
 /*
 Args:

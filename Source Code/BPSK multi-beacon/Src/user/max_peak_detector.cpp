@@ -205,8 +205,8 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 						rx_data[j]=rx_data[j]^inverse_data;
 					}
 
-					if(last_peak_pfx>pinout_pfx) delta_idx=uint32_t(last_peak_pfx-pinout_pfx-5)*BUF_LEN+last_peak_idx-pinout_idx;
-					else delta_idx=uint32_t(0xFFFF-pinout_pfx+last_peak_pfx-4)*BUF_LEN+last_peak_idx-pinout_idx;
+					if(last_peak_pfx>pinout_pfx) delta_idx=uint16_t(last_peak_pfx-pinout_pfx-8)*HAL_BUF_LEN+(last_peak_idx>>1)-(pinout_idx>>1)-12200;
+					else delta_idx=uint16_t(0xFFFF-pinout_pfx+last_peak_pfx-7)*HAL_BUF_LEN+(last_peak_idx>>1)-(pinout_idx>>1)-12200;
 					int16_t amp;
 					amp=last_peak_val-dc_val;
 #if TRANSPONDER_MODE
@@ -252,13 +252,15 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 						gain[beacon_id]++;
 					}
 					//for (uint8_t j = 0; j < 4; j++) rx_data[STRING_LEN+j] = uint8_t((delta_idx>>(j*8)) & 0xFF); // 0x78
-					for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = uint8_t((amp>>(j*8)) & 0xFF);
+					for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = uint8_t((delta_idx>>(j*8)) & 0xFF);
 					rx_data[STRING_LEN+2] = gain[beacon_id]; // 0x78
 					rx_data[STRING_LEN+3] = 0; // 0x78
-					//(*p_index_info_tx).send_bytes(rx_data);
+					(*p_index_info_tx).send_bytes(rx_data);
+
 					if(memcmp(rx_data,&id_list[beacon_id*2], STRING_LEN) == 0){
 						data_flag=true;
 						lost_time[beacon_id]=0;
+						//(*p_index_info_tx).send_range_and_depth(beacon_id, delta_idx, delta_idx);
 
 						pinout_pfx = last_peak_pfx+DATA_PFX;
 						pinout_idx = (last_peak_idx/6)*6+HAL_BUF_LEN;

@@ -5,5 +5,5 @@
 ../Src/user/index_info_tx.cpp:46:6:void IndexInfoTX::send_byte(uint8_t)	4	static
 ../Src/user/index_info_tx.cpp:51:6:void IndexInfoTX::send_bytes(uint8_t*)	0	static
 ../Src/user/index_info_tx.cpp:57:6:void IndexInfoTX::send_range_and_depth(uint8_t, uint16_t, uint16_t)	808	static
-../Src/user/index_info_tx.cpp:113:6:void IndexInfoTX::transmit_err_1(int, int)	0	static
-../Src/user/index_info_tx.cpp:125:6:void IndexInfoTX::test_pattern()	32	static
+../Src/user/index_info_tx.cpp:134:6:void IndexInfoTX::transmit_err_1(int, int)	0	static
+../Src/user/index_info_tx.cpp:146:6:void IndexInfoTX::test_pattern()	32	static

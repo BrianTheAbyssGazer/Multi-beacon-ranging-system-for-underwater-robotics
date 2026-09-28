@@ -4,5 +4,5 @@
 ../Src/user/ping_out.cpp:99:6:void PingOut::start_periodic_scheduler(uint16_t)	0	static
 ../Src/user/ping_out.cpp:103:6:void PingOut::schedule(uint16_t, uint16_t)	0	static
 ../Src/user/ping_out.cpp:153:6:void PingOut::set()	48	static
-../Src/user/ping_out.cpp:217:6:void PingOut::enable_pingout()	8	static
-../Src/user/ping_out.cpp:112:6:void PingOut::update()	16	static
+../Src/user/ping_out.cpp:112:6:void PingOut::update()	4	static
+../Src/user/ping_out.cpp:217:6:void PingOut::enable_pingout()	4	static

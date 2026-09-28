@@ -39,7 +39,7 @@
 	#define INIT_OUT 100
 	#define RESPONSE_DELAY 6
 #ifdef __cplusplus
-	static constexpr char id_list[]="M1M2";
+	static constexpr char id_list[]="M1M2M3";
 #endif
 
 #elif SLOW_TX_MODE
@@ -59,7 +59,7 @@
 #endif
 
 #if TRANSPONDER_MODE
-	#define ID 1  //can be 0 1 2
+	#define ID 2  //can be 0 1 2
 	extern uint8_t gain;
 	extern uint8_t lost_time;
 #elif TIME_OF_FLIGHT_MODE

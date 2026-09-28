@@ -76,7 +76,7 @@ class MaxPeakDetector {
 		uint16_t stablize_idx;
 		uint16_t enable_pfx;
 		uint16_t enable_idx;
-		uint32_t delta_idx;
+		uint16_t delta_idx;
 		uint16_t tentative_max_val;
 		uint16_t tentative_max_idx;
 		uint16_t tentative_max_pfx;
