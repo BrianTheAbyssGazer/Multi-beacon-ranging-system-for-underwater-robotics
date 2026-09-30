@@ -20,10 +20,9 @@
 
 // global ADC buffer:
 #if TRANSPONDER_MODE
-static constexpr uint8_t my_id[STRING_LEN] = {
-    static_cast<uint8_t>(id_list[ID*2]),
-    static_cast<uint8_t>(id_list[ID*2+1]),
-};
+static constexpr uint16_t my_id = static_cast<uint16_t>(id_list[ID*2]) + (static_cast<uint16_t>(id_list[ID*2+1]) << 8);
+static constexpr uint16_t inv_id = ~my_id;
+static uint16_t template_id;
 #endif
 int16_t buf[BUF_LEN];
 #if STREAM
@@ -181,13 +180,32 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 					else{
 						uint8_t i_char = symbol_counter >> 3; // divide by 8
 						uint8_t i_bit = symbol_counter & 7; // Find the bit position (0-7)
-						if(corr_sum>0.0f){
-							rx_data[i_char] |= (1 << i_bit);
+						if(symbol_counter==0){
+							if(corr_sum>0.0f) template_id=my_id;
+							else template_id=inv_id;
 						}
 						else{
-							rx_data[i_char] &= ~(1 << i_bit);
-						}
+							if((corr_sum>0.0f && (template_id>>symbol_counter)&1==0)||(corr_sum<0.0f && (template_id>>symbol_counter)&1==1)){
+								int16_t amp;
+								amp=last_peak_val-dc_val;
+								if (amp>700 && gain>2){
+									gain--;
+									gain_update_flag=true;
+									search_sub_state = MPDSearchState::STABLIZING;
+								}
+								else{
+									search_sub_state = MPDSearchState::NO_SIGNAL;
+								}
+								signal_flag=false;
+								symbol_counter=0;
+								sample_counter=0;
+								corr_sum=0;
+								phase=0;
 
+							}
+						}
+						//if(corr_sum>0.0f)rx_data[i_char] |= (1 << i_bit);
+						//else rx_data[i_char] &= ~(1 << i_bit);
 						cur_idx+=(DEAD_INTERVAL-N_CYCLE)*12; //12 samples per cycle * 8 cycle per symbol * 7
 						sample_counter=0;
 						symbol_counter++;
@@ -199,50 +217,34 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 					sample_counter=0;
 					corr_sum=0;
 					phase=0;
-					if (rx_data[0]&1) inverse_data=0;
-					else inverse_data=0xFF;
-					for (uint8_t j = 0; j < STRING_LEN; j++){
-						rx_data[j]=rx_data[j]^inverse_data;
-					}
 
 					if(last_peak_pfx>pinout_pfx) delta_idx=uint16_t(last_peak_pfx-pinout_pfx-8)*HAL_BUF_LEN+(last_peak_idx>>1)-(pinout_idx>>1)-12200;
 					else delta_idx=uint16_t(0xFFFF-pinout_pfx+last_peak_pfx-7)*HAL_BUF_LEN+(last_peak_idx>>1)-(pinout_idx>>1)-12200;
-					int16_t amp;
-					amp=last_peak_val-dc_val;
+
 #if TRANSPONDER_MODE
-					if (amp>700 && gain>2){
-						gain--;
-						gain_update_flag=true;
-					}
-					for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = uint8_t((amp>>(j*8)) & 0xFF);
+
+					for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = uint8_t((delta_idx>>(j*8)) & 0xFF);
 					rx_data[STRING_LEN+2] = gain; // 0x78
 					rx_data[STRING_LEN+3] = 0; // 0x78
 					(*p_index_info_tx).send_bytes(rx_data);
-					if(memcmp(rx_data, my_id, STRING_LEN) == 0) {
-						data_flag=true;
-		        		lost_time=0;
-		        		if(amp<350 && gain<8){
-		        			gain++;
-							gain_update_flag=true;
-		        		}
-						pinout_pfx = last_peak_pfx+DATA_PFX+RESPONSE_DELAY;
-						pinout_idx = (last_peak_idx/6)*6;//+HAL_BUF_LEN;
-						if(pinout_idx>BUF_LEN){
-							pinout_idx-=BUF_LEN;
-							pinout_pfx++;
-						}
-						mark_pinout();
-						search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
+					data_flag=true;
+					lost_time=0;
+					if(amp<350 && gain<8){
+						gain++;
+						gain_update_flag=true;
 					}
-					else{
-						signal_flag=false;
-						search_sub_state = MPDSearchState::STABLIZING;
+					else if (amp>700 && gain>2){
+						gain--;
+						gain_update_flag=true;
 					}
-					//for (uint8_t j = 0; j < 4; j++) rx_data[STRING_LEN+j] = uint8_t((delta_idx>>(j*8)) & 0xFF);
-					//for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = uint8_t((dc_val>>(j*8)) & 0xFF);
-					//rx_data[STRING_LEN+2] = gain; // 0x78
-					//rx_data[STRING_LEN+3] = 0; // 0x78
-					//(*p_index_info_tx).send_bytes(rx_data);
+					pinout_pfx = last_peak_pfx+DATA_PFX+RESPONSE_DELAY;
+					pinout_idx = (last_peak_idx/6)*6;//+HAL_BUF_LEN;
+					if(pinout_idx>BUF_LEN){
+						pinout_idx-=BUF_LEN;
+						pinout_pfx++;
+					}
+					mark_pinout();
+					search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
 
 #elif TIME_OF_FLIGHT_MODE
 					if (amp>700 && gain[beacon_id]>2){
