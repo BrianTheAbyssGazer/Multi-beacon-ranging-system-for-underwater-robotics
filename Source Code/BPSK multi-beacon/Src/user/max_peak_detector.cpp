@@ -179,7 +179,7 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 						sample_counter++;
 					}
 					else{
-						uint8_t i_char = symbol_counter / 8; // to be changed to >>3
+						uint8_t i_char = symbol_counter >> 3; // divide by 8
 						uint8_t i_bit = symbol_counter & 7; // Find the bit position (0-7)
 						if(corr_sum>0.0f){
 							rx_data[i_char] |= (1 << i_bit);

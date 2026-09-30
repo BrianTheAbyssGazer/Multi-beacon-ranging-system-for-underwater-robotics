@@ -234,7 +234,7 @@ void PingOut::enable_pingout(){
 void first_half_written_callback(DMA_HandleTypeDef *hdma) {
 
     if (PingOut::debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);}
-    PingOut::cur_out_pfx += 1; //roll-over after 0x7FFF to match peak detector
+    PingOut::cur_out_pfx += 1; //roll-over after 0xFFFF to match peak detector
 
     PingOut::po_state = POState::FIRST_HLF_FREE;
 

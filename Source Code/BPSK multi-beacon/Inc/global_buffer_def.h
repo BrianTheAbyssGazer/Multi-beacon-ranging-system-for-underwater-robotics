@@ -32,7 +32,7 @@
 	#define STRING_LEN 2
 
     #define DATA_LEN 8*STRING_LEN
-	#define N_CYCLE 8 //cycle per symbol
+	#define N_CYCLE 16 //cycle per symbol
 	#define DEAD_INTERVAL 256 // 2**8 interval between bits
 	#define DATA_PFX (DATA_LEN/(OUT_BUF_LEN/DEAD_INTERVAL)) //length of datapackage in pfx
 	#define TIMEOUT (24+DATA_PFX*3)
