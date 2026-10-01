@@ -51,9 +51,10 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
         	}
         	if(max_peak_detector.signal_flag) {
         		ping_out.enable_scheduler = false;
-        		time_since_last_pinout=0;
+        		//time_since_last_pinout=0;
         	}
         	else if(time_since_last_pinout>TIMEOUT){//to be wrapped around
+        		gain[ping_out.beacon_id] = max_peak_detector.tempt_gain;
         		time_since_last_pinout=0;
     			ping_out.schedule(ping_out.cur_out_pfx+1,ping_out.scheduled_idx);
     			max_peak_detector.pinout_pfx = max_peak_detector.cur_pfx+1;
@@ -72,8 +73,11 @@ extern "C" void tof_master_main(ADC_HandleTypeDef* p_hadc,
         			lost_time[ping_out.beacon_id]=0;
 					if(gain[ping_out.beacon_id]<8)gain[ping_out.beacon_id]++;
         		}
+        		max_peak_detector.tempt_gain=gain[ping_out.beacon_id];
         	    pgas.setGain(gain[ping_out.beacon_id]);
         	    max_peak_detector.beacon_id=ping_out.beacon_id;
+        	    max_peak_detector.my_id=static_cast<uint16_t>(id_list[ping_out.beacon_id*2]) + (static_cast<uint16_t>(id_list[ping_out.beacon_id*2+1]) << 8);
+        	    max_peak_detector.inv_id = ~max_peak_detector.my_id;
 				max_peak_detector.mark_pinout();
 				lost_time[ping_out.beacon_id]++;
         		ping_out.scheduled_flag=false;

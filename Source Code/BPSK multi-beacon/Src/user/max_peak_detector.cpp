@@ -19,11 +19,6 @@
 
 
 // global ADC buffer:
-#if TRANSPONDER_MODE
-static constexpr uint16_t my_id = static_cast<uint16_t>(id_list[ID*2]) + (static_cast<uint16_t>(id_list[ID*2+1]) << 8);
-static constexpr uint16_t inv_id = ~my_id;
-static uint16_t template_id;
-#endif
 int16_t buf[BUF_LEN];
 #if STREAM
 int16_t uart_buf[UART_BUF_LEN];
@@ -77,6 +72,15 @@ MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef*
 	last_peak_val=1875;
 	dc_val=1884;
 	stablize_idx = 0;
+	amp = 0;
+	tempt_gain = 0;
+	rx_data[0] = static_cast<uint8_t>('M');
+#if TRANSPONDER_MODE
+	my_id = static_cast<uint16_t>(id_list[ID*2]) + (static_cast<uint16_t>(id_list[ID*2+1]) << 8);
+	inv_id = ~my_id;
+	rx_data[1] = static_cast<uint8_t>(id_list[ID*2+1]);
+#endif
+	for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = 0xFF;
 #elif DEBUG_TIM
     corr_sum=0;
     sample_counter=0;
@@ -178,30 +182,32 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 						sample_counter++;
 					}
 					else{
-						uint8_t i_char = symbol_counter >> 3; // divide by 8
-						uint8_t i_bit = symbol_counter & 7; // Find the bit position (0-7)
+						//uint8_t i_char = symbol_counter >> 3; // divide by 8
+						//uint8_t i_bit = symbol_counter & 7; // Find the bit position (0-7)
 						if(symbol_counter==0){
 							if(corr_sum>0.0f) template_id=my_id;
 							else template_id=inv_id;
 						}
 						else{
-							if((corr_sum>0.0f && (template_id>>symbol_counter)&1==0)||(corr_sum<0.0f && (template_id>>symbol_counter)&1==1)){
-								int16_t amp;
+							if((corr_sum>0.0f && ((template_id>>symbol_counter)&1)==0)||(corr_sum<0.0f && ((template_id>>symbol_counter)&1)==1)){
 								amp=last_peak_val-dc_val;
+#if TRANSPONDER_MODE
 								if (amp>700 && gain>2){
 									gain--;
 									gain_update_flag=true;
 									search_sub_state = MPDSearchState::STABLIZING;
 								}
-								else{
-									search_sub_state = MPDSearchState::NO_SIGNAL;
-								}
+								else search_sub_state = MPDSearchState::NO_SIGNAL;
+#elif TIME_OF_FLIGHT_MODE
+								if (amp>700 && gain[beacon_id]>2) tempt_gain=gain[beacon_id]-1;
+								else if(amp<350 && gain[beacon_id]<8) tempt_gain=gain[beacon_id]+1;
+								search_sub_state = MPDSearchState::NO_SIGNAL;
+#endif
 								signal_flag=false;
 								symbol_counter=0;
 								sample_counter=0;
 								corr_sum=0;
 								phase=0;
-
 							}
 						}
 						//if(corr_sum>0.0f)rx_data[i_char] |= (1 << i_bit);
@@ -217,13 +223,8 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 					sample_counter=0;
 					corr_sum=0;
 					phase=0;
-
-					if(last_peak_pfx>pinout_pfx) delta_idx=uint16_t(last_peak_pfx-pinout_pfx-8)*HAL_BUF_LEN+(last_peak_idx>>1)-(pinout_idx>>1)-12200;
-					else delta_idx=uint16_t(0xFFFF-pinout_pfx+last_peak_pfx-7)*HAL_BUF_LEN+(last_peak_idx>>1)-(pinout_idx>>1)-12200;
-
+					amp=last_peak_val-dc_val;
 #if TRANSPONDER_MODE
-
-					for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = uint8_t((delta_idx>>(j*8)) & 0xFF);
 					rx_data[STRING_LEN+2] = gain; // 0x78
 					rx_data[STRING_LEN+3] = 0; // 0x78
 					(*p_index_info_tx).send_bytes(rx_data);
@@ -247,36 +248,29 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 					search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
 
 #elif TIME_OF_FLIGHT_MODE
-					if (amp>700 && gain[beacon_id]>2){
-						gain[beacon_id]--;
-					}
-					else if(amp<350 && gain[beacon_id]<8){
-						gain[beacon_id]++;
-					}
-					//for (uint8_t j = 0; j < 4; j++) rx_data[STRING_LEN+j] = uint8_t((delta_idx>>(j*8)) & 0xFF); // 0x78
+					if(last_peak_pfx>pinout_pfx) delta_idx=uint16_t(last_peak_pfx-pinout_pfx-8)*HAL_BUF_LEN+(last_peak_idx>>1)-(pinout_idx>>1)-12200;
+					else delta_idx=uint16_t(0xFFFF-pinout_pfx+last_peak_pfx-7)*HAL_BUF_LEN+(last_peak_idx>>1)-(pinout_idx>>1)-12200;
+
+					if (amp>700 && gain[beacon_id]>2) gain[beacon_id]--;
+					else if(amp<350 && gain[beacon_id]<8) gain[beacon_id]++;
+					rx_data[1]=beacon_id;
 					for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = uint8_t((delta_idx>>(j*8)) & 0xFF);
 					rx_data[STRING_LEN+2] = gain[beacon_id]; // 0x78
 					rx_data[STRING_LEN+3] = 0; // 0x78
 					(*p_index_info_tx).send_bytes(rx_data);
+					//(*p_index_info_tx).send_range_and_depth(beacon_id, delta_idx, delta_idx);
 
-					if(memcmp(rx_data,&id_list[beacon_id*2], STRING_LEN) == 0){
-						data_flag=true;
-						lost_time[beacon_id]=0;
-						//(*p_index_info_tx).send_range_and_depth(beacon_id, delta_idx, delta_idx);
+					data_flag=true;
+					lost_time[beacon_id]=0;
 
-						pinout_pfx = last_peak_pfx+DATA_PFX;
-						pinout_idx = (last_peak_idx/6)*6+HAL_BUF_LEN;
-						if(pinout_idx>BUF_LEN){
-							pinout_idx-=BUF_LEN;
-							pinout_pfx++;
-						}
-						mark_pinout();
-						search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
+					pinout_pfx = last_peak_pfx+DATA_PFX;
+					pinout_idx = (last_peak_idx/6)*6+HAL_BUF_LEN;
+					if(pinout_idx>BUF_LEN){
+						pinout_idx-=BUF_LEN;
+						pinout_pfx++;
 					}
-					else{
-						signal_flag=false;
-						search_sub_state = MPDSearchState::STABLIZING;
-					}
+					mark_pinout();
+					search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
 					//(*p_index_info_tx).stream_adc(uint16_t(gain[beacon_id]));
 
 #endif

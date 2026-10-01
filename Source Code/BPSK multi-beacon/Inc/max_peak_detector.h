@@ -52,7 +52,6 @@ class MaxPeakDetector {
     public:
         static volatile uint16_t global_state;
         uint16_t search_sub_state;
-
     // Parameters ---------
     public:
         static bool sending_signal;
@@ -63,11 +62,17 @@ class MaxPeakDetector {
         bool signal_flag;
         bool data_flag;
         bool gain_update_flag;
+        bool no_data;
 		int16_t last_peak_val; // the value of the last successfully detected pulse peak
 		uint16_t last_peak_idx;
 		uint16_t last_peak_pfx;
 		uint16_t pinout_idx;
 		uint16_t pinout_pfx;
+		int16_t amp;
+		uint8_t tempt_gain;
+		uint16_t template_id;
+		uint16_t my_id;
+		uint16_t inv_id;
 #if TIME_OF_FLIGHT_MODE
 		uint8_t beacon_id;
 #endif

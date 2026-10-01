@@ -47,11 +47,11 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
         	max_peak_detector.detect_peak();
         	if(max_peak_detector.signal_flag) {
         		ping_out.enable_scheduler = false;
-        		lost_time=0;
+        		//lost_time=0;
         	}
         	else if (prev_pfx!=ping_out.cur_out_pfx){
         		lost_time++;
-        		if(lost_time>180){
+        		if(lost_time>150){
         			if(gain<8)gain++;
 					lost_time=0;
 					//idx_info_tx.send_byte(gain);
@@ -60,6 +60,7 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
         		}
         	}
         	if(max_peak_detector.data_flag){
+        		lost_time=0;
     			ping_out.schedule(max_peak_detector.pinout_pfx,max_peak_detector.pinout_idx/6);
     			max_peak_detector.data_flag=false;
         		max_peak_detector.signal_flag =false;
