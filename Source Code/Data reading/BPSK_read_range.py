@@ -46,7 +46,7 @@ def rx_data(ser, max_samples):
                     # Print occasionally to monitor progress without overwhelming the console
                     #if samples_collected % 100 == 0 or samples_collected == max_samples:
                     print(f"ID: {char1}{char2} | Amp: {amplitude} | gain: {gain}")
-                    if char1=='M':
+                    if char1=='A':
                         if char2=='1':
                             a1.append(amplitude)
                             t1.append(current_time)

@@ -9,12 +9,17 @@
 #include "mode.h"
 #include "global_buffer_def.h"
 #include "ping_out.h"
-
+#include <array>
 // global out buffer, with DMA to GPIO register
 uint32_t out_buf[OUT_BUF_LEN];
 
 #if TRANSPONDER_MODE
-static constexpr char info[STRING_LEN] = {id_list[ID*2],id_list[ID*2+1]};
+constexpr auto generateArray() {
+    std::array<uint8_t, STRING_LEN> temp{};
+    for (uint8_t i=0; i < STRING_LEN; ++i) temp[i] = id_list[ID*2+i];
+    return temp;
+}
+static constexpr auto info = generateArray();
 #endif
 
 //initialize statics
@@ -62,7 +67,7 @@ PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2
     enable_scheduler = false;
 #endif
     /* buffer initialization to reset (LOW):*/
-	for (uint16_t i = 0; i < OUT_BUF_LEN; i++) {
+	for (uint16_t i = 0; i < OUT_BUF_LEN; ++i) {
 		out_buf[i] = BSRR_PC6_RESET_MASK;
 	}
 	//for (uint16_t i = 0; i < 8; i++) {
@@ -155,7 +160,7 @@ void PingOut::set() {
 
 	uint16_t i_set;         // Lower 9 bits (0-511)
 	uint8_t i_bit,i_char;    // Next 3 bits (0-7)
-	char c;
+	uint8_t c;
 	bool bit;
 	bool phase;
     while(1){
@@ -180,8 +185,8 @@ void PingOut::set() {
     		}
     		if(i_set < N_CYCLE*2){
     			if(bit ^ phase)out_buf[cur_idx]=BSRR_PC6_RESET_MASK;
-        		data_idx++;
-            	cur_idx++;
+        		++data_idx;
+        		++cur_idx;
     		}
     		else{
         		data_idx+=(DEAD_INTERVAL-N_CYCLE)*2;
@@ -197,8 +202,8 @@ void PingOut::set() {
     		if(i_set < N_CYCLE*2){
 				if(phase ^ bit) out_buf[cur_idx]=BSRR_PC6_SET_MASK;
 				else out_buf[cur_idx]=BSRR_PC6_RESET_MASK;
-				data_idx++;
-            	cur_idx++;
+				++data_idx;
+				++cur_idx;
     		}
     		else{
         		data_idx+=(DEAD_INTERVAL-N_CYCLE)*2;
@@ -221,8 +226,8 @@ void PingOut::enable_pingout(){
 	enable_scheduler = false;
 	scheduled_flag=true;
 #if TIME_OF_FLIGHT_MODE
-    info+=2;
-    beacon_id++;
+    info+=STRING_LEN;
+    ++beacon_id;
 	//(*p_index_info_tx).send_range_and_depth(beacon_id, (uint16_t)beacon_id, (uint16_t)cur_out_pfx);
 	if (*info == '\0') { // Check if we hit the null terminator
 		info = id_list;

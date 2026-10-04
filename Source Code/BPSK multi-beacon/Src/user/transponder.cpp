@@ -50,9 +50,9 @@ extern "C" void transponder_main(ADC_HandleTypeDef* p_hadc,
         		//lost_time=0;
         	}
         	else if (prev_pfx!=ping_out.cur_out_pfx){
-        		lost_time++;
+        		++lost_time;
         		if(lost_time>150){
-        			if(gain<8)gain++;
+        			if(gain<8) ++gain;
 					lost_time=0;
 					//idx_info_tx.send_byte(gain);
 	        	    pgas.setGain(gain);

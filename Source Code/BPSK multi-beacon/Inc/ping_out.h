@@ -41,7 +41,7 @@ class PingOut {
         uint16_t cur_idx;
         uint32_t data_idx;
 #if TIME_OF_FLIGHT_MODE
-        const char* info;
+        const uint8_t* info;
 #endif
     public:
         uint16_t scheduled_pfx; // -1 indicates nothing to schedule

@@ -51,7 +51,7 @@ void IndexInfoTX :: send_byte(uint8_t byte) {
 void IndexInfoTX :: send_bytes(uint8_t* data) {
 	static uint8_t bytes[STRING_LEN+5];
 	bytes[0] = INFO_3;
-	for(size_t i=0;i<STRING_LEN+4;i++)bytes[i+1]=data[i];
+	for(size_t i=0;i<STRING_LEN+4;++i)bytes[i+1]=data[i];
 	HAL_UART_Transmit(p_huart, bytes, STRING_LEN+5, 0xFFFF);
 }
 void IndexInfoTX :: send_range_and_depth(uint8_t sensor_id, uint16_t range, uint16_t depth) {

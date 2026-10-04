@@ -39,7 +39,7 @@
 	#define INIT_OUT 100
 	#define RESPONSE_DELAY 6
 #ifdef __cplusplus
-	static constexpr char id_list[]="M1M2M3";
+	static constexpr uint8_t id_list[]={0x30,0x30,0x31,0x31,0x32,0x32};
 #endif
 
 #elif SLOW_TX_MODE
