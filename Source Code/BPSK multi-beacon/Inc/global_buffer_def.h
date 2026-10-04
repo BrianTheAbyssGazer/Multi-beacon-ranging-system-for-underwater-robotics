@@ -29,17 +29,18 @@
 	#define HAL_OUT_BUF_LEN 1024 // 2048 = 2^11
 	#define OUT_BUF_MASK 2047
 	extern uint32_t out_buf[OUT_BUF_LEN]; //3k elems, or 12k bytes
-	#define STRING_LEN 2
+	#define STRING_LEN 1
 
     #define DATA_LEN 8*STRING_LEN
-	#define N_CYCLE 8 //cycle per symbol
-	#define DEAD_INTERVAL 256 // 2**8 interval between bits
+	#define N_CYCLE 12 //cycle per symbol
+	#define SYMBOL_POWER 9 // 2**8 interval between bits
+	#define DEAD_INTERVAL (1<<SYMBOL_POWER) // 2**8 interval between bits
 	#define DATA_PFX (DATA_LEN/(OUT_BUF_LEN/DEAD_INTERVAL)) //length of datapackage in pfx
 	#define TIMEOUT (24+DATA_PFX*3)
 	#define INIT_OUT 100
 	#define RESPONSE_DELAY 6
 #ifdef __cplusplus
-	static constexpr uint8_t id_list[]={0x30,0x30,0x31,0x31,0x32,0x32};
+	static constexpr uint8_t id_list[]={0x30,0x31,0x32};
 #endif
 
 #elif SLOW_TX_MODE

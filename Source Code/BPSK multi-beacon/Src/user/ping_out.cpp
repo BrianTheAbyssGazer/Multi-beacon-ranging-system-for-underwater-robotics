@@ -16,7 +16,7 @@ uint32_t out_buf[OUT_BUF_LEN];
 #if TRANSPONDER_MODE
 constexpr auto generateArray() {
     std::array<uint8_t, STRING_LEN> temp{};
-    for (uint8_t i=0; i < STRING_LEN; ++i) temp[i] = id_list[ID*2+i];
+    for (uint8_t i=0; i < STRING_LEN; ++i) temp[i] = id_list[ID*STRING_LEN+i];
     return temp;
 }
 static constexpr auto info = generateArray();
@@ -172,8 +172,8 @@ void PingOut::set() {
     		break;
     	}
 		i_set = data_idx & (DEAD_INTERVAL*2-1);         // Lower 9 bits (0-511) index of buffer
-		i_bit  = (data_idx >> 9) & 7;    // Next 3 bits (0-7) index of bit in character
-		i_char = data_idx >> 12; // index of character
+		i_bit  = (data_idx >> (SYMBOL_POWER+1)) & 7;    // Next 3 bits (0-7) index of bit in character
+		i_char = data_idx >> (SYMBOL_POWER+4); // index of character
 		c = info[i_char];
 		bit = bool(c >> i_bit & 1);
 		phase = bool(i_set & 1);

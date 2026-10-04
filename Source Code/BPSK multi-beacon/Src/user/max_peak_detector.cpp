@@ -75,18 +75,18 @@ MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef*
 	amp = 0;
 	tempt_gain = 0;
 	rx_data[0] = id_list[0];
-#if TRANSPONDER_MODE
-	rx_data[0] = id_list[ID*2];
-	my_id = 0;
-	for(uint8_t i=0;i<STRING_LEN;++i) my_id+=(static_cast<uint16_t>(id_list[ID*STRING_LEN+i]) << 8*i);
-	inv_id = ~my_id;
-	rx_data[1] =id_list[ID*2+1];
-#endif
 	for (uint8_t j = 0; j < 2; ++j) rx_data[STRING_LEN+j] = 0xFF;
 #elif DEBUG_TIM
     corr_sum=0;
     sample_counter=0;
     symbol_counter=0;
+#endif
+#if TRANSPONDER_MODE
+	rx_data[0] = 48+ID;
+	my_id = 0;
+	for(uint8_t i=0;i<STRING_LEN;++i) my_id+=(static_cast<uint16_t>(id_list[ID*STRING_LEN+i]) << 8*i);
+	inv_id = ~my_id;
+	rx_data[1] = 48+ID;
 #endif
 	//zero initialise the adc buffer:
 	for (uint16_t i = 0; i < BUF_LEN; ++i) {
