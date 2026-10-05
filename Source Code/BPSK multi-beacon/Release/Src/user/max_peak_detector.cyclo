@@ -1,5 +1,5 @@
 ../Src/user/max_peak_detector.cpp:40:1:MaxPeakDetector::MaxPeakDetector(ADC_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*)	2
-../Src/user/max_peak_detector.cpp:142:6:void MaxPeakDetector::search_loop(uint16_t)	37
+../Src/user/max_peak_detector.cpp:142:6:void MaxPeakDetector::search_loop(uint16_t)	35
 ../Src/user/max_peak_detector.cpp:112:6:void MaxPeakDetector::detect_peak()	6
 ../Src/user/max_peak_detector.cpp:324:6:void MaxPeakDetector::mark_pinout()	2
 ../Src/user/max_peak_detector.cpp:345:6:void MaxPeakDetector::error_1_handle()	1

@@ -199,15 +199,15 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 									gain_update_flag=true;
 									search_sub_state = MPDSearchState::STABLIZING;
 								}
-								else search_sub_state = MPDSearchState::NO_SIGNAL;
+								else search_sub_state = MPDSearchState::STABLIZING;
 								//rx_data[1]=48+symbol_counter;
 								//rx_data[STRING_LEN+2] = gain; // 0x78
 								//rx_data[STRING_LEN+3] = 0; // 0x78
 								//(*p_index_info_tx).send_bytes(rx_data);
 #elif TIME_OF_FLIGHT_MODE
 								if (amp>700 && gain[beacon_id]>2) tempt_gain=gain[beacon_id]-1;
-								else if(amp<350 && gain[beacon_id]<8) tempt_gain=gain[beacon_id]+1;
-								search_sub_state = MPDSearchState::NO_SIGNAL;
+								//else if(amp<350 && gain[beacon_id]<8) tempt_gain=gain[beacon_id]+1;
+								search_sub_state = MPDSearchState::STABLIZING;
 #endif
 								signal_flag=false;
 								symbol_counter=0;
