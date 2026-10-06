@@ -12,6 +12,7 @@
 #include <array>
 // global out buffer, with DMA to GPIO register
 uint32_t out_buf[OUT_BUF_LEN];
+
 #if TRANSPONDER_MODE
 constexpr auto generateArray() {
     std::array<uint8_t, STRING_LEN> temp{};
@@ -170,15 +171,9 @@ void PingOut::set() {
     		cur_idx=cur_idx&OUT_BUF_MASK;
     		break;
     	}
-<<<<<<< HEAD
-    	i_set = data_idx & (DEAD_INTERVAL*2-1);         // Lower 9 bits (0-511) index of buffer
-    	i_bit  = (data_idx >> (SYMBOL_POWER+1)) & 7;    // Next 3 bits (0-7) index of bit in character
-    	i_char = data_idx >> (SYMBOL_POWER+4); // index of character
-=======
 		i_set = data_idx & (DEAD_INTERVAL*2-1);         // Lower 9 bits (0-511) index of buffer
 		i_bit  = (data_idx >> (SYMBOL_POWER+1)) & 7;    // Next 3 bits (0-7) index of bit in character
 		i_char = data_idx >> (SYMBOL_POWER+4); // index of character
->>>>>>> d538a0663e8d0b8eeb2f80456c37cfdba988968e
 		c = info[i_char];
 		bit = bool(c >> i_bit & 1);
 		phase = bool(i_set & 1);

@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-../Src/user/ping_out.cpp:238:6:void first_half_written_callback(DMA_HandleTypeDef*)	8	static
-../Src/user/ping_out.cpp:250:6:void secnd_half_written_callback(DMA_HandleTypeDef*)	8	static
-../Src/user/ping_out.cpp:38:1:PingOut::PingOut(DMA_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*)	16	static
-../Src/user/ping_out.cpp:103:6:void PingOut::start_periodic_scheduler(uint16_t)	0	static
-../Src/user/ping_out.cpp:107:6:void PingOut::schedule(uint16_t, uint16_t)	0	static
-../Src/user/ping_out.cpp:157:6:void PingOut::set()	48	static
-../Src/user/ping_out.cpp:116:6:void PingOut::update()	4	static
-../Src/user/ping_out.cpp:221:6:void PingOut::enable_pingout()	4	static
-=======
 ../Src/user/ping_out.cpp:239:6:void first_half_written_callback(DMA_HandleTypeDef*)	8	static
 ../Src/user/ping_out.cpp:251:6:void secnd_half_written_callback(DMA_HandleTypeDef*)	8	static
 ../Src/user/ping_out.cpp:39:1:PingOut::PingOut(DMA_HandleTypeDef*, TIM_HandleTypeDef*, IndexInfoTX*)	16	static
@@ -16,4 +6,3 @@
 ../Src/user/ping_out.cpp:158:6:void PingOut::set()	40	static
 ../Src/user/ping_out.cpp:117:6:void PingOut::update()	4	static
 ../Src/user/ping_out.cpp:222:6:void PingOut::enable_pingout()	4	static
->>>>>>> d538a0663e8d0b8eeb2f80456c37cfdba988968e
