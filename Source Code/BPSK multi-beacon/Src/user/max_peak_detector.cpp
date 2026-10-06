@@ -73,23 +73,13 @@ MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef*
 	dc_val=1884;
 	stablize_idx = 0;
 	amp = 0;
-	tempt_gain = 0;
-	rx_data[0] = id_list[0];
-	for (uint8_t j = 0; j < 2; ++j) rx_data[STRING_LEN+j] = 0xFF;
 #elif DEBUG_TIM
     corr_sum=0;
     sample_counter=0;
     symbol_counter=0;
 #endif
-#if TRANSPONDER_MODE
-	rx_data[0] = 48+ID;
-	my_id = 0;
-	for(uint8_t i=0;i<STRING_LEN;++i) my_id+=(static_cast<uint16_t>(id_list[ID*STRING_LEN+i]) << 8*i);
-	inv_id = ~my_id;
-	rx_data[1] = 48+ID;
-#endif
 	//zero initialise the adc buffer:
-	for (uint16_t i = 0; i < BUF_LEN; ++i) {
+	for (uint16_t i = 0; i < BUF_LEN; i++) {
 		buf[i] = 1884;
 	}
 
@@ -180,47 +170,22 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 								last_peak_pfx=cur_pfx;
 							}
 						}
-						++cur_idx;
-						++sample_counter;
+						cur_idx++;
+						sample_counter++;
 					}
 					else{
-						//uint8_t i_char = symbol_counter >> 3; // divide by 8
-						//uint8_t i_bit = symbol_counter & 7; // Find the bit position (0-7)
-						if(symbol_counter==0){
-							if(corr_sum<0.0f) template_id=my_id;
-							else template_id=inv_id;
+						uint8_t i_char = symbol_counter / 8; // to be changed to >>3
+						uint8_t i_bit = symbol_counter & 7; // Find the bit position (0-7)
+						if(corr_sum>0.0f){
+							rx_data[i_char] |= (1 << i_bit);
 						}
 						else{
-							if((corr_sum<0.0f && ((template_id>>symbol_counter)&1)==1)||(corr_sum>0.0f && ((template_id>>symbol_counter)&1)==0)){
-								amp=last_peak_val-dc_val;
-#if TRANSPONDER_MODE
-								if (amp>700 && gain>2){
-									gain--;
-									gain_update_flag=true;
-									search_sub_state = MPDSearchState::STABLIZING;
-								}
-								else search_sub_state = MPDSearchState::STABLIZING;
-								//rx_data[1]=48+symbol_counter;
-								//rx_data[STRING_LEN+2] = gain; // 0x78
-								//rx_data[STRING_LEN+3] = 0; // 0x78
-								//(*p_index_info_tx).send_bytes(rx_data);
-#elif TIME_OF_FLIGHT_MODE
-								if (amp>700 && gain[beacon_id]>2) tempt_gain=gain[beacon_id]-1;
-								//else if(amp<350 && gain[beacon_id]<8) tempt_gain=gain[beacon_id]+1;
-								search_sub_state = MPDSearchState::STABLIZING;
-#endif
-								signal_flag=false;
-								symbol_counter=0;
-								sample_counter=0;
-								corr_sum=0;
-								phase=0;
-							}
+							rx_data[i_char] &= ~(1 << i_bit);
 						}
-						//if(corr_sum>0.0f)rx_data[i_char] |= (1 << i_bit);
-						//else rx_data[i_char] &= ~(1 << i_bit);
+
 						cur_idx+=(DEAD_INTERVAL-N_CYCLE)*12; //12 samples per cycle * 8 cycle per symbol * 7
 						sample_counter=0;
-						++symbol_counter;
+						symbol_counter++;
 						corr_sum=0;
 					}
 				}
@@ -229,54 +194,82 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 					sample_counter=0;
 					corr_sum=0;
 					phase=0;
+					if (rx_data[0]&1) inverse_data=0;
+					else inverse_data=0xFF;
+					for (uint8_t j = 0; j < STRING_LEN; j++){
+						rx_data[j]=rx_data[j]^inverse_data;
+					}
+
+					if(last_peak_pfx>pinout_pfx) delta_idx=uint16_t(last_peak_pfx-pinout_pfx-8)*HAL_BUF_LEN+(last_peak_idx>>1)-(pinout_idx>>1)-12200;
+					else delta_idx=uint16_t(0xFFFF-pinout_pfx+last_peak_pfx-7)*HAL_BUF_LEN+(last_peak_idx>>1)-(pinout_idx>>1)-12200;
+					int16_t amp;
 					amp=last_peak_val-dc_val;
 #if TRANSPONDER_MODE
-					rx_data[STRING_LEN+2] = gain; // 0x78
-					rx_data[STRING_LEN+3] = 0; // 0x78
-					(*p_index_info_tx).send_bytes(rx_data);
-					data_flag=true;
-					lost_time=0;
-					if(amp<350 && gain<8){
-						++gain;
-						gain_update_flag=true;
-					}
-					else if (amp>700 && gain>2){
+					if (amp>700 && gain>2){
 						gain--;
 						gain_update_flag=true;
 					}
-					pinout_pfx = last_peak_pfx+DATA_PFX+RESPONSE_DELAY;
-					pinout_idx = (last_peak_idx/6)*6;//+HAL_BUF_LEN;
-					if(pinout_idx>BUF_LEN){
-						pinout_idx-=BUF_LEN;
-						++pinout_pfx;
+					for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = uint8_t((amp>>(j*8)) & 0xFF);
+					rx_data[STRING_LEN+2] = gain; // 0x78
+					rx_data[STRING_LEN+3] = 0; // 0x78
+					(*p_index_info_tx).send_bytes(rx_data);
+					if(memcmp(rx_data, &id_list[ID], STRING_LEN) == 0) {
+						data_flag=true;
+		        		lost_time=0;
+		        		if(amp<350 && gain<8){
+		        			gain++;
+							gain_update_flag=true;
+		        		}
+						pinout_pfx = last_peak_pfx+DATA_PFX+RESPONSE_DELAY;
+						pinout_idx = (last_peak_idx/6)*6;//+HAL_BUF_LEN;
+						if(pinout_idx>BUF_LEN){
+							pinout_idx-=BUF_LEN;
+							pinout_pfx++;
+						}
+						mark_pinout();
+						search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
 					}
-					mark_pinout();
-					search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
+					else{
+						signal_flag=false;
+						search_sub_state = MPDSearchState::STABLIZING;
+					}
+					//for (uint8_t j = 0; j < 4; j++) rx_data[STRING_LEN+j] = uint8_t((delta_idx>>(j*8)) & 0xFF);
+					//for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = uint8_t((dc_val>>(j*8)) & 0xFF);
+					//rx_data[STRING_LEN+2] = gain; // 0x78
+					//rx_data[STRING_LEN+3] = 0; // 0x78
+					//(*p_index_info_tx).send_bytes(rx_data);
 
 #elif TIME_OF_FLIGHT_MODE
-					if(last_peak_pfx>pinout_pfx) delta_idx=uint16_t(last_peak_pfx-pinout_pfx-8)*HAL_BUF_LEN+(last_peak_idx>>1)-(pinout_idx>>1)-12200;
-					else delta_idx=uint16_t(0xFFFF-pinout_pfx+last_peak_pfx-7)*HAL_BUF_LEN+(last_peak_idx>>1)-(pinout_idx>>1)-12200;
-
-					if (amp>700 && gain[beacon_id]>2) gain[beacon_id]--;
-					else if(amp<350 && gain[beacon_id]<8) ++gain[beacon_id];
-					rx_data[1]=beacon_id;
-					for (uint8_t j = 0; j < 2; ++j) rx_data[STRING_LEN+j] = uint8_t((delta_idx>>(j*8)) & 0xFF);
+					if (amp>700 && gain[beacon_id]>2){
+						gain[beacon_id]--;
+					}
+					else if(amp<350 && gain[beacon_id]<8){
+						gain[beacon_id]++;
+					}
+					//for (uint8_t j = 0; j < 4; j++) rx_data[STRING_LEN+j] = uint8_t((delta_idx>>(j*8)) & 0xFF); // 0x78
+					for (uint8_t j = 0; j < 2; j++) rx_data[STRING_LEN+j] = uint8_t((delta_idx>>(j*8)) & 0xFF);
 					rx_data[STRING_LEN+2] = gain[beacon_id]; // 0x78
 					rx_data[STRING_LEN+3] = 0; // 0x78
 					(*p_index_info_tx).send_bytes(rx_data);
-					//(*p_index_info_tx).send_range_and_depth(beacon_id, delta_idx, delta_idx);
 
-					data_flag=true;
-					lost_time[beacon_id]=0;
+					if(memcmp(rx_data,&id_list[beacon_id*2], STRING_LEN) == 0){
+						data_flag=true;
+						lost_time[beacon_id]=0;
+						//(*p_index_info_tx).send_range_and_depth(beacon_id, delta_idx, delta_idx);
 
-					pinout_pfx = last_peak_pfx+DATA_PFX;
-					pinout_idx = (last_peak_idx/6)*6+HAL_BUF_LEN;
-					if(pinout_idx>BUF_LEN){
-						pinout_idx-=BUF_LEN;
-						++pinout_pfx;
+						pinout_pfx = last_peak_pfx+DATA_PFX;
+						pinout_idx = (last_peak_idx/6)*6+HAL_BUF_LEN;
+						if(pinout_idx>BUF_LEN){
+							pinout_idx-=BUF_LEN;
+							pinout_pfx++;
+						}
+						mark_pinout();
+						search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
 					}
-					mark_pinout();
-					search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
+					else{
+						signal_flag=false;
+						search_sub_state = MPDSearchState::STABLIZING;
+					}
 					//(*p_index_info_tx).stream_adc(uint16_t(gain[beacon_id]));
 
 #endif
@@ -297,24 +290,24 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 			case MPDSearchState::STABLIZING:
 				if(stablize_idx<HAL_BUF_LEN){
 					dc_val=(dc_val>>4)*15+(cur_val>>4);
-					++stablize_idx;
+					stablize_idx++;
 				}
 				else{
 					stablize_idx=0;
 					search_sub_state = MPDSearchState::NO_SIGNAL;
 				}
-				++cur_idx;
+				cur_idx++;
 				break;
 		} // switch
 		// conditions to escape search mode
 		if ((global_state == MPDState::PROC_BUF_1ST_HLF) && (cur_idx >= (HAL_BUF_LEN))) {
 			global_state = MPDState::IDLE;
-			for (uint8_t i=0;i<3;++i)buf_res[i]=buf[HAL_BUF_LEN-3+i];
+			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[HAL_BUF_LEN-3+i];
 			break;
 		} else if (global_state == MPDState::PROC_BUF_2ND_HLF && (cur_idx >= (BUF_LEN))) {
 			global_state = MPDState::IDLE;
 			cur_idx = cur_idx % BUF_LEN;
-			for (uint8_t i=0;i<3;++i)buf_res[i]=buf[BUF_LEN-3+i];
+			for (uint8_t i=0;i<3;i++)buf_res[i]=buf[BUF_LEN-3+i];
 			break;
 		} else if (global_state == MPDState::ERROR_1) {
 			break;
@@ -338,7 +331,7 @@ void MaxPeakDetector::mark_pinout() {
 #endif
 	if(enable_idx>=BUF_LEN){
 		enable_idx-=BUF_LEN;
-		++enable_pfx;
+		enable_pfx++;
 	}
 }
 

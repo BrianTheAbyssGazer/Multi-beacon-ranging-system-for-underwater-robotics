@@ -38,7 +38,7 @@
 	#define DATA_PFX (DATA_LEN/(OUT_BUF_LEN/DEAD_INTERVAL)) //length of datapackage in pfx
 	#define TIMEOUT (24+DATA_PFX*3)
 	#define INIT_OUT 100
-	#define RESPONSE_DELAY 12
+	#define RESPONSE_DELAY 6
 #ifdef __cplusplus
 	static constexpr uint8_t id_list[]={0x4D,0x30,0x4D,0x31,0x4D,0x32};
 #endif

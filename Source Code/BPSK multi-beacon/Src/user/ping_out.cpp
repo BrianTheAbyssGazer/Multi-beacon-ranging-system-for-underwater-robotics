@@ -21,7 +21,6 @@ constexpr auto generateArray() {
 }
 static constexpr auto info = generateArray();
 #endif
-
 //initialize statics
 volatile uint16_t PingOut::po_state = POState::SECND_HLF_FREE;
 uint8_t PingOut::set_state = SetState::PO_DISABLED;
@@ -31,10 +30,6 @@ volatile bool PingOut::time_to_schedule_period = false;
 volatile bool PingOut::time_to_schedule_databit = false;
 volatile bool PingOut::time_to_schedule_phase_keying = false;
 bool PingOut::debug = false;
-
-
-
-
 
 PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2, IndexInfoTX* p_index_info_tx) {
 
@@ -67,7 +62,7 @@ PingOut :: PingOut(DMA_HandleTypeDef* p_hdma_tim2_up, TIM_HandleTypeDef* p_htim2
     enable_scheduler = false;
 #endif
     /* buffer initialization to reset (LOW):*/
-	for (uint16_t i = 0; i < OUT_BUF_LEN; ++i) {
+	for (uint16_t i = 0; i < OUT_BUF_LEN; i++) {
 		out_buf[i] = BSRR_PC6_RESET_MASK;
 	}
 	//for (uint16_t i = 0; i < 8; i++) {
@@ -160,7 +155,7 @@ void PingOut::set() {
 
 	uint16_t i_set;         // Lower 9 bits (0-511)
 	uint8_t i_bit,i_char;    // Next 3 bits (0-7)
-	uint8_t c;
+	char c;
 	bool bit;
 	bool phase;
     while(1){
@@ -185,8 +180,8 @@ void PingOut::set() {
     		}
     		if(i_set < N_CYCLE*2){
     			if(bit ^ phase)out_buf[cur_idx]=BSRR_PC6_RESET_MASK;
-        		++data_idx;
-        		++cur_idx;
+        		data_idx++;
+            	cur_idx++;
     		}
     		else{
         		data_idx+=(DEAD_INTERVAL-N_CYCLE)*2;
@@ -202,8 +197,8 @@ void PingOut::set() {
     		if(i_set < N_CYCLE*2){
 				if(phase ^ bit) out_buf[cur_idx]=BSRR_PC6_SET_MASK;
 				else out_buf[cur_idx]=BSRR_PC6_RESET_MASK;
-				++data_idx;
-				++cur_idx;
+				data_idx++;
+            	cur_idx++;
     		}
     		else{
         		data_idx+=(DEAD_INTERVAL-N_CYCLE)*2;
@@ -227,7 +222,7 @@ void PingOut::enable_pingout(){
 	scheduled_flag=true;
 #if TIME_OF_FLIGHT_MODE
     info+=STRING_LEN;
-    ++beacon_id;
+    beacon_id++;
 	//(*p_index_info_tx).send_range_and_depth(beacon_id, (uint16_t)beacon_id, (uint16_t)cur_out_pfx);
 	if (*info == '\0') { // Check if we hit the null terminator
 		info = id_list;
@@ -239,7 +234,7 @@ void PingOut::enable_pingout(){
 void first_half_written_callback(DMA_HandleTypeDef *hdma) {
 
     if (PingOut::debug) {HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);}
-    PingOut::cur_out_pfx += 1; //roll-over after 0xFFFF to match peak detector
+    PingOut::cur_out_pfx += 1; //roll-over after 0x7FFF to match peak detector
 
     PingOut::po_state = POState::FIRST_HLF_FREE;
 
