@@ -60,7 +60,7 @@
 #endif
 
 #if TRANSPONDER_MODE
-	#define ID 2  //can be 0 1 2
+	#define ID 1  //can be 0 1 2
 	extern uint8_t gain;
 	extern uint8_t lost_time;
 #elif TIME_OF_FLIGHT_MODE

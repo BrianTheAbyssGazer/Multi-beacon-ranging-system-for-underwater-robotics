@@ -81,11 +81,19 @@ MaxPeakDetector :: MaxPeakDetector(ADC_HandleTypeDef* p_hadc, TIM_HandleTypeDef*
     sample_counter=0;
     symbol_counter=0;
 #endif
+<<<<<<< HEAD
+    amp=0;
+	tempt_gain = 0;
+	rx_data[0] = id_list[0];
+#if TRANSPONDER_MODE
+	rx_data[0] = 48+ID;
+=======
 #if TRANSPONDER_MODE
 	rx_data[0] = 48+ID;
 	my_id = 0;
 	for(uint8_t i=0;i<STRING_LEN;++i) my_id+=(static_cast<uint16_t>(id_list[ID*STRING_LEN+i]) << 8*i);
 	inv_id = ~my_id;
+>>>>>>> d538a0663e8d0b8eeb2f80456c37cfdba988968e
 	rx_data[1] = 48+ID;
 #endif
 	//zero initialise the adc buffer:
@@ -229,16 +237,45 @@ void MaxPeakDetector :: search_loop(uint16_t offset) {
 					sample_counter=0;
 					corr_sum=0;
 					phase=0;
+<<<<<<< HEAD
+					if (rx_data[0]&1) inverse_data=0;
+					else inverse_data=0xFF;
+					for (uint8_t j = 0; j < STRING_LEN; j++){
+						rx_data[j]=rx_data[j]^inverse_data;
+					}
+
+					if(last_peak_pfx>pinout_pfx) delta_idx=uint16_t(last_peak_pfx-pinout_pfx-8)*HAL_BUF_LEN+(last_peak_idx>>1)-(pinout_idx>>1)-12200;
+					else delta_idx=uint16_t(0xFFFF-pinout_pfx+last_peak_pfx-7)*HAL_BUF_LEN+(last_peak_idx>>1)-(pinout_idx>>1)-12200;
+=======
+>>>>>>> d538a0663e8d0b8eeb2f80456c37cfdba988968e
 					amp=last_peak_val-dc_val;
 #if TRANSPONDER_MODE
 					rx_data[STRING_LEN+2] = gain; // 0x78
 					rx_data[STRING_LEN+3] = 0; // 0x78
 					(*p_index_info_tx).send_bytes(rx_data);
+<<<<<<< HEAD
+					if(memcmp(rx_data, &id_list[ID], STRING_LEN) == 0) {
+						data_flag=true;
+		        		lost_time=0;
+		        		if(amp<350 && gain<8){
+		        			gain++;
+							gain_update_flag=true;
+		        		}
+						pinout_pfx = last_peak_pfx+DATA_PFX+RESPONSE_DELAY;
+						pinout_idx = (last_peak_idx/6)*6;//+HAL_BUF_LEN;
+						if(pinout_idx>BUF_LEN){
+							pinout_idx-=BUF_LEN;
+							pinout_pfx++;
+						}
+						mark_pinout();
+						search_sub_state = MPDSearchState::DEMODULATOR_DISABLED;
+=======
 					data_flag=true;
 					lost_time=0;
 					if(amp<350 && gain<8){
 						++gain;
 						gain_update_flag=true;
+>>>>>>> d538a0663e8d0b8eeb2f80456c37cfdba988968e
 					}
 					else if (amp>700 && gain>2){
 						gain--;

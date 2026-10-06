@@ -70,9 +70,12 @@ class MaxPeakDetector {
 		uint16_t pinout_pfx;
 		int16_t amp;
 		uint8_t tempt_gain;
+<<<<<<< HEAD
+=======
 		uint16_t template_id;
 		uint16_t my_id;
 		uint16_t inv_id;
+>>>>>>> d538a0663e8d0b8eeb2f80456c37cfdba988968e
 #if TIME_OF_FLIGHT_MODE
 		uint8_t beacon_id;
 #endif
